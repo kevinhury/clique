@@ -1,0 +1,17 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+      "react"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "semi": [1, "never"],
+      "no-console": 0
+    },
+    globals: {
+      console: true
+    }
+}
