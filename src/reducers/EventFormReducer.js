@@ -1,6 +1,12 @@
 const INITIAL_STATE = {
-  phoneNumber: '',
-  countryCode: ''
+  name: '',
+  description: '',
+  location: '',
+  dates: [],
+  minAtendees: 0,
+  maxAtendees: 0,
+  friends: [],
+  deadline: 0,
 }
 
 export default (state = INITIAL_STATE, action) => {
