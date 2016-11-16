@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions, ActionConst } from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux'
 
 class LobbyPage extends Component {
   static propTypes = {
