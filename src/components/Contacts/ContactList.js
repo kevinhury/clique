@@ -11,7 +11,9 @@ import Header from './Header'
 
 class ContactList extends Component {
   static propTypes = {
-    contacts: PropTypes.array
+    contacts: PropTypes.array.isRequired,
+    selectedList: PropTypes.array.isRequired,
+    onValueChange: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -63,7 +65,7 @@ class ContactList extends Component {
       <ContactCell
         contact={contact}
         selected={false}
-        onValueChange={this.onValueChange.bind(this)}
+        onValueChange={value => this.props.onValueChange(value, contact)}
       />
     )
   }

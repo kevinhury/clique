@@ -3,7 +3,7 @@ const INITIAL_STATE = {
   countryCode: ''
 }
 
-export default (state = INITIAL_STATE, action) => {
+export const LoginReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     default:
       return state
