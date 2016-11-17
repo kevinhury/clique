@@ -16,9 +16,15 @@ class ContactList extends Component {
     onValueChange: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props)
+  componentWillMount() {
+    this.createDataSource(this.props)
+  }
 
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps)
+  }
+
+  createDataSource({ contacts }) {
     const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId]
     const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`]
 
@@ -29,7 +35,7 @@ class ContactList extends Component {
       getRowData,
     })
 
-    const { dataBlob, sectionIds, rowIds } = this.formatData(props.contacts)
+    const { dataBlob, sectionIds, rowIds } = this.formatData(contacts)
     this.dataSource = ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)
   }
 
@@ -61,10 +67,11 @@ class ContactList extends Component {
   }
 
   renderRow(contact) {
+    const selected = this.props.selectedList.includes(contact.recordId)
     return (
       <ContactCell
         contact={contact}
-        selected={false}
+        selected={selected}
         onValueChange={value => this.props.onValueChange(value, contact)}
       />
     )
@@ -74,10 +81,6 @@ class ContactList extends Component {
     return (
       <View key={rowId} style={styles.separator} />
     )
-  }
-
-  onValueChange(value) {
-    console.log(value)
   }
 
   render() {

@@ -4,7 +4,7 @@ import {
 } from '../actions/types'
 
 export type Contact = {
-
+  
 }
 
 export type State = {
@@ -30,16 +30,15 @@ export const INITIAL_STATE = {
 }
 
 export const EventFormReducer = (state: State = INITIAL_STATE, action) => {
-  console.log(state)
   switch (action.type) {
     case FORM_ADD_CONTACT: {
       let prevContacts = state.contacts
-      const contacts = [ ...prevContacts, action.contact]
-      return { ...state, contacts}
+      const contacts = [ ...prevContacts, action.contact.recordId]
+      return { ...state, contacts }
     }
     case FORM_REMOVE_CONTACT: {
       let prevContacts = state.contacts
-      const index = prevContacts.indexOf(action.contact)
+      const index = prevContacts.indexOf(action.contact.recordId)
       const contacts = [
         ...prevContacts.slice(0, index),
         ...prevContacts.slice(index + 1)

@@ -9,9 +9,7 @@ import { Actions } from 'react-native-router-flux'
 class CreateEventPage extends Component {
   render() {
     return (
-      <View>
-        
-      </View>
+      <View />
     )
   }
 }
