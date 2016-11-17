@@ -12,6 +12,8 @@
       "no-console": 0
     },
     globals: {
-      console: true
+      console: true,
+      describe: true,
+      it: true,
     }
 }
