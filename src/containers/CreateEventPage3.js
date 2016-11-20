@@ -18,7 +18,7 @@ class CreateEventPage3 extends Component {
 
   contactChanged(selected, contact) {
     const { addContact, removeContact } = this.props
-    selected ? addContact(contact) : removeContact(contact)
+    selected ? addContact(contact.recordId) : removeContact(contact.recordId)
   }
 
   render() {

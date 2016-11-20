@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import {
   ListView,
   View,
-  TouchableOpacity,
-  Text,
+  StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
+import EventCell from '../components/EventCell'
 
 class LobbyPage extends Component {
   static propTypes = {
@@ -22,25 +22,26 @@ class LobbyPage extends Component {
 
   renderRow() {
     return (
-      <View />
+      <EventCell />
     )
   }
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <ListView
           enableEmptySections
           dataSource={this.dataSource}
           renderRow={this.renderRow.bind(this)}
         />
-        <TouchableOpacity onPress={() => Actions.createEvent()}>
-          <Text>Create event</Text>
-        </TouchableOpacity>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+
+})
 
 const mapStateToProps = () => {
   return {events: ['a', 'b']}
