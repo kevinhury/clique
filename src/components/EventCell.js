@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	Switch,
 } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 
 const info = {
 	title: 'FIFA 17 SESSION',
@@ -19,7 +20,10 @@ class EventCell extends Component {
 	render() {
 		const { title, owner, date, going, expires, atendees } = info
 		return (
-			<View style={styles.container}>
+			<LinearGradient
+				colors={['#31A5FD', '#ffffff']}
+				style={styles.container}
+			>
 				<View style={styles.topSection}>
 					<View style={styles.topTitleSection}>
 						<Text>{title}</Text>
@@ -28,6 +32,7 @@ class EventCell extends Component {
 					<Text>Created by {owner}</Text>
 					<Text>{date}</Text>
 				</View>
+				<View style={styles.separator} />
 				<View style={styles.middleSection}>
 					<View style={styles.middleVerticalSection}>
 							<Text>Going:
@@ -39,10 +44,11 @@ class EventCell extends Component {
 					</View>
 					<Text>Minimum of 5 people</Text>
 				</View>
+				<View style={styles.separator} />
 				<View style={styles.bottomSection}>
 					<Text>Invite expires on: {expires}</Text>
 				</View>
-			</View>
+			</LinearGradient>
 		)
 	}
 }
@@ -50,8 +56,14 @@ class EventCell extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		borderRadius: 10,
-		backgroundColor: 'blue',
+		margin: 10,
+		padding: 5,
+		borderRadius: 5,
+		backgroundColor: 'transparent',
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
 	},
 	topSection: {
 		alignItems: 'center',
@@ -70,6 +82,13 @@ const styles = StyleSheet.create({
 	bottomSection: {
 		alignItems: 'center',
 	},
+	separator: {
+		backgroundColor: '#4BA4E1',
+		alignSelf: 'stretch',
+		height: 1,
+		marginLeft: 10,
+		marginRight: 10,
+	}
 })
 
 export default EventCell

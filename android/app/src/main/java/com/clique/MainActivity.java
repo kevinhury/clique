@@ -1,6 +1,8 @@
 package com.clique;
 
 import com.facebook.react.ReactActivity;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 public class MainActivity extends ReactActivity {
 

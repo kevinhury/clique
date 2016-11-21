@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import EventCell from '../components/EventCell'
+import PlusButton from '../components/PlusButton'
 
 class LobbyPage extends Component {
   static propTypes = {
@@ -34,6 +35,7 @@ class LobbyPage extends Component {
           dataSource={this.dataSource}
           renderRow={this.renderRow.bind(this)}
         />
+        <PlusButton onPress={() => Actions.createEvent()}/>
       </View>
     )
   }
