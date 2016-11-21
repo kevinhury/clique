@@ -2,11 +2,11 @@ import {
   FORM_ADD_CONTACT,
   FORM_REMOVE_CONTACT,
   FORM_CHANGE_NAME,
-  FORM_CHAGE_DESCRIPTION,
+  FORM_CHANGE_DESCRIPTION,
   FORM_CHANGE_LOCATION,
   FORM_ADD_DATE,
   FORM_REMOVE_DATE,
-} from './types'
+} from '../actions/types'
 
 export type Contact = {
 
@@ -44,20 +44,21 @@ export const EventFormReducer = (state = INITIAL_STATE, action) => {
       const contacts = state.contacts.filter(c => c !== action.contactId)
       return { ...state, contacts }
     }
-    case FORM_CHANGE_NAME: {
-      return state
-    }
-    case FORM_CHAGE_DESCRIPTION: {
-      return state
+    case FORM_CHANGE_NAME:
+      return { ...state, name: action.name }
+    case FORM_CHANGE_DESCRIPTION: {
+      return { ...state, description: action.description }
     }
     case FORM_CHANGE_LOCATION: {
-      return state
+      return { ...state, location: action.location }
     }
     case FORM_ADD_DATE: {
-      return state
+      const dates = [...state.dates, action.date]
+      return { ...state, dates }
     }
     case FORM_REMOVE_DATE: {
-      return state
+      const dates = state.dates.filter(d => d !== action.date)
+      return { ...state, dates }
     }
     default:
       return state

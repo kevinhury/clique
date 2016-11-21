@@ -1,17 +1,19 @@
 import { INITIAL_STATE, EventFormReducer } from '../EventFormReducer'
-import { FORM_ADD_CONTACT, FORM_REMOVE_CONTACT } from '../../actions/types'
+import {
+  addContact,
+  removeContact,
+  changeEventName,
+  changeEventDescription,
+  changeEventLocation,
+  addEventDate,
+  removeEventDate,
+} from '../../actions'
 
 describe('EventFormReducer', () => {
-  let stateBefore
-  let stateAfter
-
-  beforeEach(() => {
-    stateBefore = { ...INITIAL_STATE, contacts: [] }
-    stateAfter = { ...INITIAL_STATE, contacts: [2] }
-  })
-
   it('Add contact', () => {
-    const action = { type: FORM_ADD_CONTACT, contactId: 2 }
+    const stateBefore = { ...INITIAL_STATE, contacts: [] }
+    const stateAfter = { ...INITIAL_STATE, contacts: [2] }
+    const action = addContact(2)
 
     expect(
       EventFormReducer(stateBefore, action)
@@ -19,18 +21,54 @@ describe('EventFormReducer', () => {
   })
 
   it('Remove contact', () => {
-    const action = { type: FORM_REMOVE_CONTACT, contactId: 2 }
+    const stateBefore = { ...INITIAL_STATE, contacts: [2] }
+    const stateAfter = { ...INITIAL_STATE, contacts: [] }
+    const action = removeContact(2)
 
     expect(
-      EventFormReducer(stateAfter, action)
-    ).toEqual(stateBefore)
+      EventFormReducer(stateBefore, action)
+    ).toEqual(stateAfter)
   })
 
   it('Handle invalid action type', () => {
+    const stateBefore = { ...INITIAL_STATE }
     const action = { type: 'BLA_BLA', contactId: 2 }
 
     expect(
       EventFormReducer(stateBefore, action)
-    ).toEqual(stateBefore)
+    ).toEqual({ ...INITIAL_STATE })
+  })
+
+  it('Change event name', () => {
+    const name = 'K'
+    const stateBefore = { ...INITIAL_STATE }
+    const stateAfter = { ...INITIAL_STATE, name }
+    const action = changeEventName(name)
+
+    expect(
+      EventFormReducer(stateBefore, action)
+    ).toEqual(stateAfter)
+  })
+
+  it('Change event description', () => {
+    const description = 'A'
+    const stateBefore = { ...INITIAL_STATE }
+    const stateAfter = { ...INITIAL_STATE, description }
+    const action = changeEventDescription(description)
+
+    expect(
+      EventFormReducer(stateBefore, action)
+    ).toEqual(stateAfter)
+  })
+
+  it('Change event location', () => {
+    const location = 'custom location'
+    const stateBefore = { ...INITIAL_STATE }
+    const stateAfter = { ...INITIAL_STATE, location }
+    const action = changeEventLocation(location)
+
+    expect(
+      EventFormReducer(stateBefore, action)
+    ).toEqual(stateAfter)
   })
 })
