@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import ContactList from '../components/Contacts/ContactList'
+import UsersPanel from '../components/UsersPanel'
 import { addContact, removeContact } from '../actions'
 
 class CreateEventPage3 extends Component {
@@ -28,6 +29,11 @@ class CreateEventPage3 extends Component {
           contacts={this.props.contacts}
           selectedList={this.props.selectedContacts}
           onValueChange={this.contactChanged.bind(this)}
+          style={{flex: 6}}
+        />
+        <UsersPanel
+          style={{flex: 1}}
+          users={this.props.contacts}
         />
       </View>
     )

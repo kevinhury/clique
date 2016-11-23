@@ -18,7 +18,8 @@ class SectionHeader extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
+    padding: 2,
+    paddingLeft: 8,
     justifyContent: 'center',
     backgroundColor: '#EAEAEA',
   },

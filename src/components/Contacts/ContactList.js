@@ -6,7 +6,6 @@ import {
 } from 'react-native'
 import ContactCell from './ContactCell'
 import SectionHeader from './SectionHeader'
-import Footer from './Footer'
 import Header from './Header'
 
 class ContactList extends Component {
@@ -92,7 +91,6 @@ class ContactList extends Component {
         renderSeparator={this.renderSeparator.bind(this)}
         style={styles.container}
         renderHeader={() => <Header />}
-        renderFotter={() => <Footer />}
         renderSectionHeader={(sectionData) => <SectionHeader { ...sectionData} />}
       />
     )

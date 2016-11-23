@@ -24,13 +24,13 @@ class EventCell extends Component {
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.container}
 			>
+				<Switch value={going} style={styles.switch} />
 				<View style={styles.topSection}>
 					<View style={styles.topTitleSection}>
-						<Text>{title}</Text>
-						<Switch value={going}/>
+						<Text style={styles.titleText}>{title}</Text>
 					</View>
-					<Text>Created by {owner}</Text>
-					<Text>{date}</Text>
+					<Text style={styles.creatorText}>Created by {owner}</Text>
+					<Text style={styles.dateText}>{date}</Text>
 				</View>
 				<View style={styles.separator} />
 				<View style={styles.middleSection}>
@@ -56,6 +56,7 @@ class EventCell extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		justifyContent: 'space-between',
 		margin: 10,
 		padding: 5,
 		borderRadius: 5,
@@ -72,12 +73,29 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
+	titleText: {
+		color: 'white',
+		fontSize: 18,
+	},
+	creatorText: {
+		color: 'white',
+		fontSize: 12,
+	},
+	dateText: {
+		color: 'white',
+		fontSize: 16,
+	},
+	switch: {
+		position: 'absolute',
+		top: 4,
+		right: 4,
+	},
 	middleSection: {
 		alignItems: 'center',
 	},
 	middleVerticalSection: {
 		flexDirection: 'row',
-		justifyContent: 'space-around',
+		justifyContent: 'space-between',
 	},
 	bottomSection: {
 		alignItems: 'center',
