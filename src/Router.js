@@ -18,7 +18,7 @@ const RouterComponent = () => (
     </Scene>
     <Scene key='main' initial>
       <Scene key='lobbyPage' component={LobbyPage} title='Events' />
-      <Scene key='eventInfoPage' component={EventInfoPage} title='Event' initial />
+      <Scene key='eventInfoPage' component={EventInfoPage} title='Event' initial/>
       <Scene key='createEvent' direction='vertical'>
         <Scene key='createEventPage' component={CreateEventPage} title='Create Event' leftTitle='Cancel' onLeft={ () => Actions.pop()} />
         <Scene key='createEventPage2' component={CreateEventPage2} title='Create Event2' />

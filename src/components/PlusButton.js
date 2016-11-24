@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import {
   TouchableHighlight,
-  Image,
+  Text,
   StyleSheet,
 } from 'react-native'
-import images from '../themes/Images'
 
 type PlusButtonProps = {
     onPress: () => void,
@@ -16,11 +15,7 @@ class PlusButton extends Component {
   render() {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
-        <Image
-          source={images.addButton}
-          style={styles.image}
-          underlayColor='#ff0000'
-        />
+        <Text>+</Text>
       </TouchableHighlight>
     )
   }
