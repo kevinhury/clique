@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import EventCell from '../components/EventCell'
 import PlusButton from '../components/PlusButton'
+import Calendar from 'react-native-calendar'
 
 class LobbyPage extends Component {
   static propTypes = {
@@ -27,12 +28,22 @@ class LobbyPage extends Component {
     )
   }
 
+  renderCalendar() {
+    return (
+      <Calendar
+        scrollEnabled
+        customStyle={{selectedDayCircle: { 'backgroundColor': 'green' }}}
+      />
+    )
+  }
+
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <ListView
           enableEmptySections
           dataSource={this.dataSource}
+          renderHeader={this.renderCalendar.bind(this)}
           renderRow={this.renderRow.bind(this)}
         />
         <PlusButton onPress={() => Actions.createEvent()}/>
@@ -42,7 +53,9 @@ class LobbyPage extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+  },
 })
 
 const mapStateToProps = () => {

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import {
   View,
-  TextInput,
   Button,
   StyleSheet,
 } from 'react-native'
+import { FormLabel, FormInput } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import {
@@ -26,18 +26,18 @@ class CreateEventPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.TextInput}
+        <FormLabel>Name</FormLabel>
+        <FormInput
           onChangeText={this.props.changeEventName}
           value={this.props.name}
         />
-        <TextInput
-          style={styles.TextInput}
+        <FormLabel>Description</FormLabel>
+        <FormInput
           onChangeText={this.props.changeEventDescription}
           value={this.props.description}
         />
-        <TextInput
-          style={styles.TextInput}
+        <FormLabel>Location</FormLabel>
+        <FormInput
           onChangeText={this.props.changeEventLocation}
           value={this.props.location}
         />
@@ -53,11 +53,6 @@ class CreateEventPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
   },
 })
 

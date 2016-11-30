@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import {
 	View,
-	Text,
 	StyleSheet,
-	Switch,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import {
+	EventCellTitleSection,
+	EventCellTopSection,
+	EventCellMiddleSection,
+	EventCellBottomSection,
+} from './EventCellComponents'
 
 const info = {
 	title: 'FIFA 17 SESSION',
@@ -22,31 +26,15 @@ class EventCell extends Component {
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
-				style={styles.container}
+				style={styles.background}
 			>
-				<Switch value={going} style={styles.switch} />
-				<View style={styles.topSection}>
-					<View style={styles.topTitleSection}>
-						<Text style={styles.titleText}>{title}</Text>
-					</View>
-					<Text style={styles.creatorText}>Created by {owner}</Text>
-					<Text style={styles.dateText}>{date}</Text>
-				</View>
-				<View style={styles.separator} />
-				<View style={styles.middleSection}>
-					<View style={styles.middleVerticalSection}>
-							<Text>Going:
-								<Text>First 30 people</Text>
-							</Text>
-
-						<Text>Icons</Text>
-						<Text>Chat</Text>
-					</View>
-					<Text>Minimum of 5 people</Text>
-				</View>
-				<View style={styles.separator} />
-				<View style={styles.bottomSection}>
-					<Text>Invite expires on: {expires}</Text>
+				<EventCellTitleSection going={going} />
+				<View style={styles.container}>
+					<EventCellTopSection title={title} owner={owner} date={date} />
+					<View style={styles.separator} />
+					<EventCellMiddleSection />
+					<View style={styles.separator} />
+					<EventCellBottomSection expires={expires} />
 				</View>
 			</LinearGradient>
 		)
@@ -54,51 +42,21 @@ class EventCell extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
+	background: {
 		flex: 1,
-		justifyContent: 'space-between',
-		margin: 10,
-		padding: 5,
 		borderRadius: 5,
-		backgroundColor: 'transparent',
+		margin: 5,
 		shadowColor: '#000',
 		shadowOffset: { width: 0, height: 2 },
 		shadowOpacity: 0.1,
 		shadowRadius: 2,
 	},
-	topSection: {
-		alignItems: 'center',
-	},
-	topTitleSection: {
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
-	titleText: {
-		color: 'white',
-		fontSize: 18,
-	},
-	creatorText: {
-		color: 'white',
-		fontSize: 12,
-	},
-	dateText: {
-		color: 'white',
-		fontSize: 16,
-	},
-	switch: {
-		position: 'absolute',
-		top: 4,
-		right: 4,
-	},
-	middleSection: {
-		alignItems: 'center',
-	},
-	middleVerticalSection: {
-		flexDirection: 'row',
+	container: {
+		flex: 1,
 		justifyContent: 'space-between',
-	},
-	bottomSection: {
-		alignItems: 'center',
+		padding: 5,
+		borderRadius: 5,
+		backgroundColor: 'transparent',
 	},
 	separator: {
 		backgroundColor: '#4BA4E1',

@@ -13,8 +13,15 @@ class UsersPanel extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-
+        <ScrollView
+          style={styles.scrollView}
+          scrollEnabled={false}
+          horizontal
+          bounces
+        >
+          <View style={styles.circle}/>
+          <View style={styles.circle}/>
+          <View style={styles.circle}/>
         </ScrollView>
       </View>
     )
@@ -24,6 +31,16 @@ class UsersPanel extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'red'
+  },
+  scrollView: {
+    backgroundColor: 'blue',
+    flexDirection: 'row',
+  },
+  circle: {
+    borderRadius: 30,
+    height: 40,
+    width: 40,
+    backgroundColor: '#12fc8b',
   }
 })
 
