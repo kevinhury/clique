@@ -22,9 +22,9 @@ class LobbyPage extends Component {
     this.dataSource = ds.cloneWithRows(this.props.events)
   }
 
-  renderRow() {
+  renderRow(event) {
     return (
-      <EventCell />
+      <EventCell event={event}/>
     )
   }
 
@@ -58,8 +58,38 @@ const styles = StyleSheet.create({
   },
 })
 
+const mock_events = [
+  {
+    title: 'FIFA 17 SESSION',
+    owner: 'Yossi K',
+    date: '14th Wed, December 13:30',
+    going: true,
+    admin: false,
+    expires: '8th Tue, November 19:00',
+    atendees: [],
+  },
+  {
+    title: 'FIFA 17 SESSION',
+    owner: 'Yossi K',
+    date: '14th Wed, December 13:30',
+    going: false,
+    admin: false,
+    expires: '8th Tue, November 19:00',
+    atendees: [],
+  },
+  {
+    title: 'FIFA 17 SESSION',
+    owner: 'You',
+    date: '14th Wed, December 13:30',
+    going: true,
+    admin: true,
+    expires: '8th Tue, November 19:00',
+    atendees: [],
+  },
+]
+
 const mapStateToProps = () => {
-  return {events: ['a', 'b']}
+  return { events: mock_events }
 }
 
 export default connect(mapStateToProps, {})(LobbyPage)

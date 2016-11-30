@@ -9,13 +9,40 @@ import {
 class TitleSection extends Component {
   static propTypes = {
     going: PropTypes.bool.isRequired,
+    admin: PropTypes.bool.isRequired,
+  }
+
+  titleText(): string {
+    return this.props.going ? 'You\'re going!' : 'Are you coming?'
+  }
+
+  sectionColor() {
+    const backgroundColor = this.props.going ? '#01a836' : '#3C9BFD'
+    return { backgroundColor }
+  }
+
+  adminState() {
+    return (
+      <View style={[styles.content, {justifyContent: 'space-between'}]}>
+        <Text style={styles.titleText}>{this.titleText()}</Text>
+        <Text>Edit</Text>
+      </View>
+    )
+  }
+
+  inviteeState() {
+    return (
+      <View style={[styles.content, {justifyContent: 'flex-end'}]}>
+        <Text style={styles.titleText}>{this.titleText()}</Text>
+        <Switch value={this.props.going} style={styles.switch} />
+      </View>
+    )
   }
 
   render() {
     return (
-      <View style={styles.titleSection}>
-        <Text style={styles.titleText}>Are you coming?</Text>
-        <Switch value={this.props.going} style={styles.switch} />
+      <View style={[styles.titleSection, this.sectionColor()]}>
+        { this.props.admin ? this.adminState() : this.inviteeState() }
       </View>
     )
   }
@@ -23,14 +50,16 @@ class TitleSection extends Component {
 
 const styles = StyleSheet.create({
   titleSection: {
-		backgroundColor: '#3C9BFD',
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
+    flex: 1,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-		alignItems: 'center',
     padding: 2,
 	},
+  content: {
+    flex: 1,
+		flexDirection: 'row',
+    alignItems: 'center',
+  },
   titleText: {
     color: '#fff'
   },

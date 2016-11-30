@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
 	View,
 	StyleSheet,
@@ -9,31 +9,25 @@ import TopSection from './TopSection'
 import MiddleSection from './MiddleSection'
 import BottomSection from './BottomSection'
 
-
-const info = {
-	title: 'FIFA 17 SESSION',
-	owner: 'Yossi K',
-	date: '14th Wed, December 13:30',
-	going: true,
-	expires: '8th Tue, November 19:00',
-	atendees: [],
-}
-
 class EventCell extends Component {
+	static propTypes = {
+		event: PropTypes.object.isRequired
+	}
+
 	render() {
-		const { title, owner, date, going, expires, atendees } = info
+		const { title, owner, date, going, expires, atendees, admin } = this.props.event
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.background}
 			>
-				<TitleSection going={going} />
+				<TitleSection going={going} admin={admin} />
 				<View style={styles.container}>
 					<TopSection title={title} owner={owner} date={date} />
 					<View style={styles.separator} />
 					<MiddleSection />
 					<View style={styles.separator} />
-					<BottomSection expires={expires} />
+					<BottomSection going={going} expires={expires} />
 				</View>
 			</LinearGradient>
 		)
@@ -61,6 +55,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#4BA4E1',
 		alignSelf: 'stretch',
 		height: 1,
+		marginTop: 5,
+		marginBottom: 5,
 		marginLeft: 10,
 		marginRight: 10,
 	}

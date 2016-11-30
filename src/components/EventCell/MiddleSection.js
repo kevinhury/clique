@@ -15,7 +15,7 @@ const mock_images = [
 
 class MiddleSection extends Component {
   static propTypes = {
-    
+
   }
 
   render() {
@@ -26,7 +26,7 @@ class MiddleSection extends Component {
           <AtendeeBubbles images={mock_images} bubbles={2} />
           <Text>Chat</Text>
         </View>
-        <Text>Minimum of 5 people</Text>
+        <Text style={styles.minText}>Minimum of 5 people</Text>
       </View>
     )
   }
@@ -38,8 +38,14 @@ const styles = StyleSheet.create({
   middleVerticalSection: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  minText: {
+    color: '#01a836',
+    fontSize: 12,
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
 })
 
