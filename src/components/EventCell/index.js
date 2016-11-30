@@ -4,12 +4,11 @@ import {
 	StyleSheet,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import {
-	EventCellTitleSection,
-	EventCellTopSection,
-	EventCellMiddleSection,
-	EventCellBottomSection,
-} from './EventCellComponents'
+import TitleSection from './TitleSection'
+import TopSection from './TopSection'
+import MiddleSection from './MiddleSection'
+import BottomSection from './BottomSection'
+
 
 const info = {
 	title: 'FIFA 17 SESSION',
@@ -28,13 +27,13 @@ class EventCell extends Component {
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.background}
 			>
-				<EventCellTitleSection going={going} />
+				<TitleSection going={going} />
 				<View style={styles.container}>
-					<EventCellTopSection title={title} owner={owner} date={date} />
+					<TopSection title={title} owner={owner} date={date} />
 					<View style={styles.separator} />
-					<EventCellMiddleSection />
+					<MiddleSection />
 					<View style={styles.separator} />
-					<EventCellBottomSection expires={expires} />
+					<BottomSection expires={expires} />
 				</View>
 			</LinearGradient>
 		)
