@@ -5,6 +5,7 @@ import {
   Text,
   Switch
 } from 'react-native'
+import AtendeeBubbles from './AtendeeBubbles'
 
 export const EventCellTitleSection = ({ going }) => (
   <View style={styles.titleSection}>
@@ -23,14 +24,18 @@ export const EventCellTopSection = ({ title, owner, date }) => (
   </View>
 )
 
+const mock_images = [
+  'https://facebook.github.io/react/img/logo_og.png',
+  'https://facebook.github.io/react/img/logo_og.png',
+  'https://facebook.github.io/react/img/logo_og.png',
+  'https://facebook.github.io/react/img/logo_og.png',
+]
+
 export const EventCellMiddleSection = () => (
   <View style={styles.middleSection}>
     <View style={styles.middleVerticalSection}>
-        <Text>Going:
-          <Text>First 30 people</Text>
-        </Text>
-
-      <Text>Icons</Text>
+      <Text>Going:</Text>
+      <AtendeeBubbles images={mock_images} bubbles={2} />
       <Text>Chat</Text>
     </View>
     <Text>Minimum of 5 people</Text>
@@ -51,11 +56,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
 		alignItems: 'center',
+    padding: 2,
 	},
   titleText: {
     color: '#fff'
   },
   switch: {
+    marginLeft: 5,
   },
   topSection: {
     alignItems: 'center',
@@ -77,11 +84,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   middleSection: {
-    alignItems: 'center',
   },
   middleVerticalSection: {
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   bottomSection: {
     alignItems: 'center',
