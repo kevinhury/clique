@@ -3,13 +3,16 @@ import {
   View,
   StyleSheet,
   Text,
-  Switch
+  Switch,
+  TouchableOpacity
 } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class TitleSection extends Component {
   static propTypes = {
     going: PropTypes.bool.isRequired,
     admin: PropTypes.bool.isRequired,
+    onEditPress: PropTypes.func.isRequired,
   }
 
   titleText(): string {
@@ -25,7 +28,12 @@ class TitleSection extends Component {
     return (
       <View style={[styles.content, {justifyContent: 'space-between'}]}>
         <Text style={styles.titleText}>{this.titleText()}</Text>
-        <Text>Edit</Text>
+        <TouchableOpacity onPress={this.props.onEditPress}>
+          <View style={styles.editButton}>
+            <Text style={styles.titleText}>Edit</Text>
+            <Icon size={12} name='border-color' color='#fff' style={styles.editIcon} />
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -66,6 +74,14 @@ const styles = StyleSheet.create({
   switch: {
     marginLeft: 5,
   },
+  editButton: {
+    margin: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editIcon: {
+    marginLeft: 5,
+  }
 })
 
 export default TitleSection

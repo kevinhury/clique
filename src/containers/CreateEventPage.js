@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import {
   View,
-  Button,
   StyleSheet,
 } from 'react-native'
-import { FormLabel, FormInput } from 'react-native-elements'
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import {
@@ -42,8 +41,11 @@ class CreateEventPage extends Component {
           value={this.props.location}
         />
         <Button
+          large
+          raised
           onPress={() => Actions.createEventPage2()}
           title='Next'
+          backgroundColor='#01a836'
         />
       </View>
     )

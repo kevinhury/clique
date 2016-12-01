@@ -2613,10 +2613,6 @@ inquirer@^0.12.0:
     strip-ansi "^3.0.0"
     through "^2.3.6"
 
-install@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/install/-/install-0.8.2.tgz#bf3dc6fc7e9467a4e484b3e1d1f610f1c23adc0f"
-
 interpret@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.1.tgz#d579fb7f693b858004947af39fa0db49f795602c"
@@ -4149,9 +4145,9 @@ react-native-contacts@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-0.5.2.tgz#04de37e3ee5db10cb5f61572b31ce18f20339bbb"
 
-react-native-elements@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.6.3.tgz#db5d1dc6a3afcc34d08c84c6917189a7e825fac7"
+react-native-elements@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.7.0.tgz#f3a7ea4de0b7ccae4c5fe8eba698a58bb4138ef1"
   dependencies:
     react-native-tab-navigator "^0.3.3"
 

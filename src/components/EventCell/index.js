@@ -11,7 +11,8 @@ import BottomSection from './BottomSection'
 
 class EventCell extends Component {
 	static propTypes = {
-		event: PropTypes.object.isRequired
+		event: PropTypes.object.isRequired,
+		onEditPress: PropTypes.func.isRequired,
 	}
 
 	render() {
@@ -21,7 +22,11 @@ class EventCell extends Component {
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.background}
 			>
-				<TitleSection going={going} admin={admin} />
+				<TitleSection
+					going={going}
+					admin={admin}
+					onEditPress={() => this.props.onEditPress(this.props.event)}
+				/>
 				<View style={styles.container}>
 					<TopSection title={title} owner={owner} date={date} />
 					<View style={styles.separator} />

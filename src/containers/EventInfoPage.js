@@ -8,7 +8,8 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import { Button } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/Ionicons'
+import CardView from '../components/CardView'
 
 const info = {
   title: 'FIFA 17 SESSION',
@@ -35,7 +36,7 @@ class EventInfoPage extends Component {
         colors={['#31A5FD', '#ffffff']}
         style={styles.page}
       >
-        <View style={styles.card}>
+        <CardView>
           <View style={styles.titleSection}>
             <Text style={styles.titleText}>{title}</Text>
             <Text style={styles.creatorText}>by {creator}</Text>
@@ -70,15 +71,15 @@ class EventInfoPage extends Component {
           <View style={styles.separator} />
           <View style={styles.infoSection}>
             <View style={styles.infoRow}>
-              <Icon name='calendar' />
+              <Icon name='ios-calendar-outline' size={20} />
               <Text>{date}</Text>
             </View>
             <View style={styles.infoRow}>
-              <Icon name='calendar' />
+              <Icon name='ios-clock-outline' size={20} />
               <Text>{time}</Text>
             </View>
             <View style={styles.infoRow}>
-              <Icon name='calendar' />
+              <Icon name='ios-pin-outline' size={20} />
               <Text>{location}</Text>
             </View>
           </View>
@@ -110,7 +111,7 @@ class EventInfoPage extends Component {
             fontSize={20}
             backgroundColor='#289FFF'
           />
-        </View>
+        </CardView>
       </LinearGradient>
     )
   }
@@ -119,21 +120,6 @@ class EventInfoPage extends Component {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-  },
-  card: {
-    backgroundColor: 'white',
-    margin: 10,
-    marginBottom: 0,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderTopLeftRadius: 4,
-    borderTopRightRadius: 4,
-    padding: 5,
-    shadowColor: '#000',
-		shadowOpacity: 0.5,
-		shadowRadius: 3,
-    flex: 1,
-    justifyContent: 'space-between',
   },
   titleSection: {
     backgroundColor: '#222222',
@@ -177,6 +163,7 @@ const styles = StyleSheet.create({
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   atendeesSection: {
     paddingLeft: 20,
