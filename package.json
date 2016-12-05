@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "react": "~15.3.2",
-    "react-native": "^0.38.0",
+    "react-native": "^0.39.0",
     "react-native-calendar": "^0.9.0",
     "react-native-contacts": "^0.5.2",
     "react-native-elements": "^0.7.0",
