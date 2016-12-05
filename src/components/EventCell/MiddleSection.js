@@ -4,29 +4,27 @@ import {
   StyleSheet,
   Text,
 } from 'react-native'
-import AtendeeBubbles from './AtendeeBubbles'
-
-const mock_images = [
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-]
+import { AtendeeBubbles, ChatButton } from '../Common'
 
 class MiddleSection extends Component {
   static propTypes = {
-
+    images: PropTypes.array.isRequired,
+    minAtendees: PropTypes.number.isRequired,
+    bubblesToShow: PropTypes.number.isRequired,
   }
 
   render() {
+    const { images, bubblesToShow, minAtendees } = this.props
     return (
       <View style={styles.middleSection}>
         <View style={styles.middleVerticalSection}>
           <Text>Going:</Text>
-          <AtendeeBubbles images={mock_images} bubbles={2} />
-          <Text>Chat</Text>
+          <AtendeeBubbles images={images} bubbles={bubblesToShow} />
+          <ChatButton
+            onPress={() => console.log('press')}
+          />
         </View>
-        <Text style={styles.minText}>Minimum of 5 people</Text>
+        <Text style={styles.minText}>Minimum of {minAtendees} people</Text>
       </View>
     )
   }
@@ -40,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 6,
   },
   minText: {
     color: '#01a836',

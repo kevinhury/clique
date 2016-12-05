@@ -47,10 +47,13 @@ class LobbyPage extends Component {
 
   renderCalendar() {
     return (
-      <Calendar
-        scrollEnabled
-        customStyle={{selectedDayCircle: { 'backgroundColor': 'green' }}}
-      />
+      <View>
+        <Calendar
+          scrollEnabled
+          customStyle={{ calendarContainer: styles.calendar }}
+        />
+        <View style={styles.separator} />
+      </View>
     )
   }
 
@@ -86,6 +89,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  calendar: {
+    backgroundColor: 'transparent',
+  },
   plusButton: {
     position: 'absolute',
     bottom: 5,
@@ -93,6 +99,12 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.8,
     shadowRadius: 3,
+  },
+  separator: {
+    backgroundColor: 'rgba(254, 193, 51, 0.5)',
+    alignSelf: 'stretch',
+    height: 1,
+    margin: 5,
   }
 })
 

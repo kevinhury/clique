@@ -9,6 +9,13 @@ import TopSection from './TopSection'
 import MiddleSection from './MiddleSection'
 import BottomSection from './BottomSection'
 
+const mock_images = [
+  'https://facebook.github.io/react/img/logo_og.png',
+  'https://facebook.github.io/react/img/logo_og.png',
+  'https://facebook.github.io/react/img/logo_og.png',
+  'https://facebook.github.io/react/img/logo_og.png',
+]
+
 class EventCell extends Component {
 	static propTypes = {
 		event: PropTypes.object.isRequired,
@@ -30,7 +37,11 @@ class EventCell extends Component {
 				<View style={styles.container}>
 					<TopSection title={title} owner={owner} date={date} />
 					<View style={styles.separator} />
-					<MiddleSection />
+					<MiddleSection
+						images={mock_images}
+						minAtendees={5}
+						bubblesToShow={2}
+					/>
 					<View style={styles.separator} />
 					<BottomSection going={going} expires={expires} />
 				</View>
@@ -45,8 +56,8 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		margin: 5,
 		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.1,
+		shadowOffset: { width: 0, height: 0 },
+		shadowOpacity: 0.5,
 		shadowRadius: 2,
 	},
 	container: {
