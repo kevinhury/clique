@@ -9,12 +9,7 @@ import TopSection from './TopSection'
 import MiddleSection from './MiddleSection'
 import BottomSection from './BottomSection'
 
-const mock_images = [
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-]
+import type { Status } from '../../reducers/EventsReducer'
 
 class EventCell extends Component {
 	static propTypes = {
@@ -22,28 +17,47 @@ class EventCell extends Component {
 		onEditPress: PropTypes.func.isRequired,
 	}
 
+	cellGradient(): Array<string> {
+		const status: Status = this.props.event.status
+		switch (status) {
+		case 'Pending':
+			return ['#31A5FD', '#fff']
+		case 'Cancelled':
+			return ['#e8e8e8', '#fff']
+		case 'Cliqued':
+			return ['#01a836', '#fff']
+		}
+	}
+
 	render() {
-		const { title, owner, date, going, expires, atendees, admin } = this.props.event
+		const {
+			title, owner, date, approved, status, expires, invitees, isAdmin
+		} = this.props.event
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={this.cellGradient()}
 				style={styles.background}
 			>
 				<TitleSection
-					going={going}
-					admin={admin}
+					status={status}
+					approved={approved}
+					isAdmin={isAdmin}
 					onEditPress={() => this.props.onEditPress(this.props.event)}
 				/>
 				<View style={styles.container}>
 					<TopSection title={title} owner={owner} date={date} />
 					<View style={styles.separator} />
 					<MiddleSection
-						images={mock_images}
+						images={invitees.map(x => x.image )}
 						minAtendees={5}
 						bubblesToShow={2}
 					/>
 					<View style={styles.separator} />
-					<BottomSection going={going} expires={expires} />
+					<BottomSection
+						approved={approved}
+						expires={expires}
+						status={status}
+					/>
 				</View>
 			</LinearGradient>
 		)

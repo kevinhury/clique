@@ -1,22 +1,94 @@
 {
-    "parser": "babel-eslint",
-    "plugins": [
-      "react"
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "standard",
+    "flowtype"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "semi": [
+      1,
+      "never"
     ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended"
+    "no-console": 0,
+    "valid-jsdoc": 1,
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": false
+        }
+      }
     ],
-    "rules": {
-      "semi": [1, "never"],
-      "no-console": 0
-    },
-    globals: {
-      require: true,
-      console: true,
-      describe: true,
-      it: true,
-      beforeEach: true,
-      expect: true
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "no-tabs": [
+      0
+    ],
+    "indent": [
+      "error",
+      "tab"
+    ],
+    "quotes": [
+      1,
+      "single",
+      "avoid-escape"
+    ],
+    "flowtype/define-flow-type": 1,
+    "flowtype/require-parameter-type": [
+      1,
+      {
+        "excludeArrowFunctions": true
+      }
+    ],
+    "flowtype/require-return-type": [
+      0,
+      "always",
+      {
+        "annotateUndefined": "never"
+      }
+    ],
+    "flowtype/space-after-type-colon": [
+      1,
+      "always"
+    ],
+    "flowtype/space-before-type-colon": [
+      1,
+      "never"
+    ],
+    "flowtype/type-id-match": [
+      0,
+      "^([A-Z][a-z0-9]+)+Type$"
+    ],
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
+  },
+  "globals": {
+    "require": true,
+    "console": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "expect": true
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": false
     }
+  }
 }

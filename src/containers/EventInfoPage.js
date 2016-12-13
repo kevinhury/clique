@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   View,
   Text,
@@ -13,34 +13,50 @@ import InfoSection from '../components/EventPage/InfoSection'
 import { Separator, AtendeeBubbles, ChatButton } from '../components/Common'
 
 const info = {
-  title: 'FIFA 17 SESSION',
-  status: 'PENDING',
-  creator: 'Yossi Kerman',
-  creatorImage: 'https://facebook.github.io/react/img/logo_og.png',
-  userStatus: 'Going',
-  eventStatus: 'Pending',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-  date: 'TUESDAY, 23rd NOVEMBER 2016',
-  time: '10:30 AM - 6:00 PM',
-  location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
-  atendees: [],
-  minAtendees: 999,
-  limitedRSVP: false,
+	title: 'FIFA 17 SESSION',
+	status: 'PENDING',
+	creator: 'Yossi Kerman',
+	creatorImage: 'https://facebook.github.io/react/img/logo_og.png',
+	userStatus: 'Going',
+	eventStatus: 'Pending',
+	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
+	date: 'TUESDAY, 23rd NOVEMBER 2016',
+	time: '10:30 AM - 6:00 PM',
+	location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
+	atendees: [],
+	minAtendees: 999,
+	limitedRSVP: false,
 }
 
 const mock_images = [
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
-  'https://facebook.github.io/react/img/logo_og.png',
+	'https://facebook.github.io/react/img/logo_og.png',
+	'https://facebook.github.io/react/img/logo_og.png',
+	'https://facebook.github.io/react/img/logo_og.png',
+	'https://facebook.github.io/react/img/logo_og.png',
 ]
 
 class EventInfoPage extends Component {
-  render() {
-    const { title, status, creator, creatorImage, userStatus, eventStatus
+	static propTypes = {
+		event: PropTypes.object,
+	}
+
+	renderBottomButton() {
+		return (
+      <Button
+        raised
+        title='INVITE & FINISH'
+        borderRadius={30}
+        fontSize={20}
+        backgroundColor='#289FFF'
+      />
+		)
+	}
+
+	render() {
+		const { title, status, creator, creatorImage, userStatus, eventStatus
       , description, date, time, location, atendees, minAtendees, limitedRSVP,
     } = info
-    return (
+		return (
       <LinearGradient
         colors={['#31A5FD', '#ffffff']}
         style={styles.page}
@@ -70,66 +86,64 @@ class EventInfoPage extends Component {
           </View>
           <Separator style={styles.separator} />
           <View style={styles.numAtendeesSection}>
-            <Text>Minimum of RSVP's: {minAtendees}</Text>
-            <Text>Maximum of RSVP's: Up to {limitedRSVP} people</Text>
+            <Text>Minimum of RSVP's: <Text style={styles.greenText}>{minAtendees}</Text></Text>
+            <Text>Maximum of RSVP's: <Text style={styles.greenText}>{limitedRSVP} / {limitedRSVP}</Text></Text>
           </View>
           <Separator style={styles.separator} />
-          <View style={styles.grocerySection}>
+          {/* <View style={styles.grocerySection}>
             <Text>Grocery list:</Text>
-          </View>
-          <Button
-            raised
-            title='INVITE & FINISH'
-            borderRadius={30}
-            fontSize={20}
-            backgroundColor='#289FFF'
-          />
+          </View> */}
+          {this.renderBottomButton()}
         </CardView>
       </LinearGradient>
-    )
-  }
+		)
+	}
 }
 
 const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-  },
-  descriptionSection: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  descriptionText: {
-    textAlign: 'center'
-  },
-  separator: {
-    backgroundColor: '#F1CE81',
-  },
-  atendeesSection: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  goingSection: {
-    marginTop: 10,
-    paddingLeft: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  numAtendeesSection: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  grocerySection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: 20,
-    paddingRight: 20,
-    justifyContent: 'space-between'
-  },
+	page: {
+		flex: 1,
+	},
+	descriptionSection: {
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	descriptionText: {
+		textAlign: 'center'
+	},
+	separator: {
+		backgroundColor: '#F1CE81',
+	},
+	atendeesSection: {
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	goingSection: {
+		marginTop: 10,
+		paddingLeft: 10,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	numAtendeesSection: {
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	grocerySection: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingLeft: 20,
+		paddingRight: 20,
+		justifyContent: 'space-between'
+	},
+	greenText: {
+		color: '#01a836',
+		fontWeight: 'bold',
+	}
 })
 
 const mapStateToProps = state => {
-  return state
+	return state
 }
 
 export default connect(mapStateToProps, {
