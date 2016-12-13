@@ -5,12 +5,12 @@ import {
 	Text,
 } from 'react-native'
 
-import type { Status } from '../../reducers/EventsReducer'
+import type { Status, Approval } from '../../reducers/EventsReducer'
 
 class BottomSection extends Component {
 	static propTypes = {
 		status: PropTypes.string.isRequired, // type "Status"
-		approved: PropTypes.bool.isRequired,
+		approved: PropTypes.string.isRequired, // type "Approval"
 		expires: PropTypes.string.isRequired,
 	}
 
@@ -26,8 +26,16 @@ class BottomSection extends Component {
 		}
 	}
 
+	expirationText() {
+		if (this.props.status === 'Cliqued') {
+			return (<View />)
+		}
+		return (
+			<Text>Invite expires on: {this.props.expires}</Text>
+		)
+	}
+
 	render() {
-		const { expires } = this.props
 		return (
 			<View style={styles.bottomSection}>
 				<Text>Event Status:{' '}
@@ -35,7 +43,7 @@ class BottomSection extends Component {
 						{this.statusText()}
 					</Text>
 				</Text>
-				<Text>Invite expires on: {expires}</Text>
+				{this.expirationText()}
 			</View>
 		)
 	}

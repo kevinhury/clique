@@ -6,6 +6,11 @@ export type Status =
 	| 'Cancelled'
 	| 'Cliqued'
 
+export type Approval =
+		'Pending'
+	| 'Declined'
+	|	'Approved'
+
 export type Invitee = {
 	name: string,
 	image: string,
@@ -44,7 +49,7 @@ export const INITIAL_STATE: Array<Event> = [
 		title: 'FIFA 17 SESSION',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
 		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
-		approved: false,
+		approved: 'Pending',
 		status: 'Pending',
 		owner: 'You',
 		date: {
@@ -65,7 +70,7 @@ export const INITIAL_STATE: Array<Event> = [
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
-		approved: true,
+		approved: 'Declined',
 		status: 'Cliqued',
 		owner: 'You',
 		date: {
@@ -82,7 +87,24 @@ export const INITIAL_STATE: Array<Event> = [
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
-		approved: true,
+		approved: 'Approved',
+		status: 'Cliqued',
+		owner: 'You',
+		date: {
+			date: '14th Wed, December',
+			time: '13:30'
+		},
+		isAdmin: true,
+		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
+		invitees: []
+	},
+	{
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
+		approved: 'Approved',
 		status: 'Cancelled',
 		owner: 'You',
 		date: {

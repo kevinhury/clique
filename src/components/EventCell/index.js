@@ -25,7 +25,7 @@ class EventCell extends Component {
 		case 'Pending':
 			return ['#31A5FD', '#fff']
 		case 'Cancelled':
-			return ['#e8e8e8', '#fff']
+			return ['#999999', '#fff']
 		case 'Cliqued':
 			return ['#01a836', '#fff']
 		}

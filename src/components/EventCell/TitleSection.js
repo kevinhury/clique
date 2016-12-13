@@ -8,11 +8,11 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import type { Status } from '../../reducers/EventsReducer'
+import type { Status, Approval } from '../../reducers/EventsReducer'
 
 class TitleSection extends Component {
 	static propTypes = {
-		approved: PropTypes.bool.isRequired,
+		approved: PropTypes.string.isRequired,
 		status: PropTypes.string.isRequired,
 		isAdmin: PropTypes.bool.isRequired,
 		onEditPress: PropTypes.func.isRequired,
@@ -20,17 +20,30 @@ class TitleSection extends Component {
 
 	titleText(): string {
 		const status: Status = this.props.status
-		const approved: boolean = this.props.approved
-		if (status === 'Pending' && approved)
+		const approved: Approval = this.props.approved
+		if (status === 'Pending' && approved === 'Approved')
 			return 'RSVP\'d'
-		else if (approved)
+		else if (approved === 'Approved')
 			return 'You\'re going!'
+		else if (approved === 'Declined')
+			return 'Declined'
 		else
 			return 'Are you coming?'
 	}
 
 	sectionColor() {
-		const backgroundColor = this.props.approved ? '#01a836' : '#3C9BFD'
+		var backgroundColor: string
+		switch (this.props.approved) {
+		case 'Approved':
+			backgroundColor = '#01a836'
+			break
+		case 'Pending':
+			backgroundColor = '#3c9bfd'
+			break
+		case 'Declined':
+			backgroundColor = '#999'
+			break
+		}
 		return { backgroundColor }
 	}
 

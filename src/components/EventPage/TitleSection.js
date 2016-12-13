@@ -9,13 +9,15 @@ import {
 } from 'react-native'
 import { Button } from 'react-native-elements'
 
+import type { Status, Approved } from '../../reducers/EventsReducer'
+
 class TitleSection extends Component {
 	static propTypes = {
 		title: PropTypes.string.isRequired,
 		creator: PropTypes.string.isRequired,
 		image: PropTypes.string.isRequired,
-		approved: PropTypes.bool.isRequired,
-		status: PropTypes.string.isRequired,
+		approved: PropTypes.string.isRequired, // type "Approval"
+		status: PropTypes.string.isRequired, // type "Status"
 	}
 
 	eventStatus(): string {
@@ -24,13 +26,14 @@ class TitleSection extends Component {
 
 	userStatus(): string {
 		const { approved, status } = this.props
-		if (approved && status === 'Cliqued') {
+		if (approved === 'Approved' && status === 'Cliqued')
 			return 'Going'
-		} else if (approved) {
+		else if (approved === 'Approved')
 			return 'RSVP\'d'
-		} else {
+		else if (approved === 'Pending')
+			return 'Pending'
+		else
 			return 'Declined'
-		}
 	}
 
 	render() {
