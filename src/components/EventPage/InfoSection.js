@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import {
   View,
@@ -7,15 +9,15 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 
 class InfoSection extends Component {
-  static propTypes = {
-    date: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-  }
+	static propTypes = {
+		date: PropTypes.string.isRequired,
+		time: PropTypes.string.isRequired,
+		location: PropTypes.string.isRequired,
+	}
 
-  render() {
-    const { date, time, location } = this.props
-    return (
+	render() {
+		const { date, time, location } = this.props
+		return (
       <View style={styles.infoSection}>
         <View style={styles.infoRow}>
           <Icon name='ios-calendar-outline' size={20} style={styles.icon} />
@@ -30,24 +32,24 @@ class InfoSection extends Component {
           <Text>{location}</Text>
         </View>
       </View>
-    )
-  }
+		)
+	}
 }
 
 const styles = StyleSheet.create({
-  infoSection: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  icon: {
-    margin: 2,
-    marginRight: 8,
-  }
+	infoSection: {
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	infoRow: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+	},
+	icon: {
+		margin: 2,
+		marginRight: 8,
+	}
 })
 
 export default InfoSection

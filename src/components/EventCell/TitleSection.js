@@ -3,7 +3,6 @@ import {
 	View,
 	StyleSheet,
 	Text,
-	Switch,
 	TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -65,7 +64,6 @@ class TitleSection extends Component {
 		return (
 			<View style={[styles.content, {justifyContent: 'flex-end'}]}>
 				<Text style={styles.titleText}>{this.titleText()}</Text>
-				<Switch value={this.props.approved} style={styles.switch} />
 			</View>
 		)
 	}
@@ -93,9 +91,6 @@ const styles = StyleSheet.create({
 	},
 	titleText: {
 		color: '#fff'
-	},
-	switch: {
-		marginLeft: 5,
 	},
 	editButton: {
 		margin: 2,

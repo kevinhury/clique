@@ -50,7 +50,7 @@ class EventCell extends Component {
 					<TopSection title={title} owner={owner} date={date.date + ' ' + date.time} />
 					<View style={styles.separator} />
 					<MiddleSection
-						images={invitees.map(x => x.image )}
+						invitees={invitees}
 						minAtendees={5}
 						bubblesToShow={2}
 					/>

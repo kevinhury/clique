@@ -13,11 +13,14 @@ import type { Status, Approved } from '../../reducers/EventsReducer'
 
 class TitleSection extends Component {
 	static propTypes = {
+		isAdmin: PropTypes.bool.isRequired,
 		title: PropTypes.string.isRequired,
 		creator: PropTypes.string.isRequired,
 		image: PropTypes.string.isRequired,
 		approved: PropTypes.string.isRequired, // type "Approval"
 		status: PropTypes.string.isRequired, // type "Status"
+		onStatusPress: PropTypes.func,
+		onCancelPress: PropTypes.func,
 	}
 
 	eventStatus(): string {
@@ -36,6 +39,20 @@ class TitleSection extends Component {
 			return 'Declined'
 	}
 
+	renderCancelButton() {
+		if (this.props.isAdmin == false) {
+			return (<View />)
+		}
+		return (
+			<Button
+				title={'Cancel'}
+				raised
+				buttonStyle={styles.button}
+				backgroundColor='#b04549'
+			/>
+		)
+	}
+
 	render() {
 		const { title, creator, image } = this.props
 		return (
@@ -43,6 +60,7 @@ class TitleSection extends Component {
         <Text style={styles.titleText}>{title}</Text>
         <Text style={styles.creatorText}>by {creator}</Text>
         <View style={styles.buttonContainer}>
+          {this.renderCancelButton()}
           <Image
             source={{ uri: image }}
             style={styles.image}

@@ -1,4 +1,5 @@
 // @flow
+
 import type { Action } from '../actions/types'
 
 export type Status =
@@ -56,7 +57,7 @@ export const INITIAL_STATE: Array<Event> = [
 			date: '14th Wed, December',
 			time: '13:30'
 		},
-		isAdmin: true,
+		isAdmin: false,
 		expires: '8th Tue, November 19:00',
 		minAtendees: 999,
 		limitedRSVP: false,

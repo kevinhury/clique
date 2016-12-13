@@ -8,23 +8,38 @@ import { AtendeeBubbles, ChatButton } from '../Common'
 
 class MiddleSection extends Component {
 	static propTypes = {
-		images: PropTypes.array.isRequired,
+		invitees: PropTypes.array.isRequired,
 		minAtendees: PropTypes.number.isRequired,
 		bubblesToShow: PropTypes.number.isRequired,
 	}
 
+	renderBubbles() {
+		const { invitees, bubblesToShow } = this.props
+		if (invitees.length == 0)
+			return (
+				<View style={styles.noRSVPs}>
+					<Text>NO RSVP's at the moment</Text>
+				</View>
+			)
+		return (
+			<View style={styles.middleVerticalSection}>
+				<Text>Going:</Text>
+				<AtendeeBubbles
+					images={invitees.map(x => x.image)}
+					bubbles={bubblesToShow}
+				/>
+				<ChatButton
+					onPress={() => console.log('press')}
+				/>
+			</View>
+		)
+	}
+
 	render() {
-		const { images, bubblesToShow, minAtendees } = this.props
 		return (
 			<View style={styles.middleSection}>
-				<View style={styles.middleVerticalSection}>
-					<Text>Going:</Text>
-					<AtendeeBubbles images={images} bubbles={bubblesToShow} />
-					<ChatButton
-						onPress={() => console.log('press')}
-					/>
-				</View>
-				<Text style={styles.minText}>Minimum of {minAtendees} people</Text>
+					{this.renderBubbles()}
+				<Text style={styles.minText}>Minimum of {this.props.minAtendees} people</Text>
 			</View>
 		)
 	}
@@ -46,6 +61,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		alignSelf: 'center',
 	},
+	noRSVPs: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	}
 })
 
 export default MiddleSection

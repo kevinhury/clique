@@ -14,6 +14,7 @@ import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
 import { Separator, AtendeeBubbles, ChatButton } from '../components/Common'
 
+// TODO: DELETE THIS MOCK OBJECT
 const info = {
 	title: 'FIFA 17 SESSION',
 	status: 'PENDING',
@@ -50,7 +51,7 @@ class EventInfoPage extends Component {
 	render() {
 		const {
 			title, description, location, approved, status, owner,
-			date, minAtendees, limitedRSVP, invitees
+			date, isAdmin, minAtendees, limitedRSVP, invitees
 		} = this.props.event
 		return (
       <LinearGradient
@@ -59,11 +60,14 @@ class EventInfoPage extends Component {
       >
         <CardView>
           <TitleSection
+            isAdmin={isAdmin}
             title={title}
             creator={owner}
             image={'https://facebook.github.io/react/img/logo_og.png'}
             approved={approved}
             status={status}
+            onStatusPress={() => {}}
+            onCancelPress={() => {}}
           />
           <View style={styles.descriptionSection}>
             <Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
