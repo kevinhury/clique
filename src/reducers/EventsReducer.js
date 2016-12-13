@@ -10,6 +10,12 @@ export type Invitee = {
 	name: string,
 	image: string,
 	approved: bool,
+	admin: bool,
+}
+
+export type EventDate = {
+	date: string,
+	time: string,
 }
 
 export type Event = {
@@ -19,9 +25,11 @@ export type Event = {
 	approved: bool,
 	status: Status,
 	owner: string,
-	date: string,
+	date: EventDate,
 	isAdmin: bool,
-	expires: ?string,
+	expires: ?EventDate,
+	minAtendees: ?number,
+	limitedRSVP: ?number,
 	invitees: Array<Invitee>,
 }
 
@@ -34,14 +42,19 @@ const mock_invitee: Invitee = {
 export const INITIAL_STATE: Array<Event> = [
 	{
 		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: 'Location',
+		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
+		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
 		approved: false,
 		status: 'Pending',
 		owner: 'You',
-		date: '14th Wed, December 13:30',
+		date: {
+			date: '14th Wed, December',
+			time: '13:30'
+		},
 		isAdmin: true,
 		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
 		invitees: [
 			{ ...mock_invitee, name: 'Moshe Abutbul' },
 			{ ...mock_invitee, name: 'Moshiko Balagan' },
@@ -51,25 +64,35 @@ export const INITIAL_STATE: Array<Event> = [
 	{
 		title: 'FIFA 17 SESSION',
 		description: 'string',
-		location: 'Location',
+		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
 		approved: true,
 		status: 'Cliqued',
 		owner: 'You',
-		date: '14th Wed, December 13:30',
+		date: {
+			date: '14th Wed, December',
+			time: '13:30'
+		},
 		isAdmin: true,
 		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
 		invitees: []
 	},
 	{
 		title: 'FIFA 17 SESSION',
 		description: 'string',
-		location: 'Location',
+		location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
 		approved: true,
 		status: 'Cancelled',
 		owner: 'You',
-		date: '14th Wed, December 13:30',
+		date: {
+			date: '14th Wed, December',
+			time: '13:30'
+		},
 		isAdmin: true,
 		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
 		invitees: []
 	},
 ]

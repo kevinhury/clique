@@ -39,7 +39,7 @@ class LobbyPage extends Component {
 
 	renderRow(event: Event) {
 		return (
-			<TouchableOpacity onPress={() => Actions.eventInfoPage()}>
+			<TouchableOpacity onPress={() => Actions.eventInfoPage({event})}>
 				<EventCell
 					event={event}
 					onEditPress={this.onEditPress.bind(this)}

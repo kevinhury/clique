@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import {
   View,
@@ -28,13 +30,6 @@ const info = {
 	limitedRSVP: false,
 }
 
-const mock_images = [
-	'https://facebook.github.io/react/img/logo_og.png',
-	'https://facebook.github.io/react/img/logo_og.png',
-	'https://facebook.github.io/react/img/logo_og.png',
-	'https://facebook.github.io/react/img/logo_og.png',
-]
-
 class EventInfoPage extends Component {
 	static propTypes = {
 		event: PropTypes.object,
@@ -53,9 +48,10 @@ class EventInfoPage extends Component {
 	}
 
 	render() {
-		const { title, status, creator, creatorImage, userStatus, eventStatus
-      , description, date, time, location, atendees, minAtendees, limitedRSVP,
-    } = info
+		const {
+			title, description, location, approved, status, owner,
+			date, minAtendees, limitedRSVP, invitees
+		} = this.props.event
 		return (
       <LinearGradient
         colors={['#31A5FD', '#ffffff']}
@@ -64,21 +60,21 @@ class EventInfoPage extends Component {
         <CardView>
           <TitleSection
             title={title}
-            creator={creator}
-            image={creatorImage}
-            userStatus={userStatus}
-            eventStatus={eventStatus}
+            creator={owner}
+            image={'https://facebook.github.io/react/img/logo_og.png'}
+            approved={approved}
+            status={status}
           />
           <View style={styles.descriptionSection}>
             <Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
           </View>
           <Separator style={styles.separator} />
-          <InfoSection date={date} time={time} location={location} />
+          <InfoSection date={date.date} time={date.time} location={location} />
           <Separator style={styles.separator} />
           <View style={styles.atendeesSection}>
             <Text>People going:</Text>
             <View style={styles.goingSection}>
-              <AtendeeBubbles images={mock_images} bubblesToShow={2} />
+              <AtendeeBubbles images={invitees.map(x => x.image)} bubblesToShow={2} />
               <ChatButton
                 onPress={() => console.log('press')}
               />

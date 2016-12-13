@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import {
 	View,
@@ -45,7 +47,7 @@ class EventCell extends Component {
 					onEditPress={() => this.props.onEditPress(this.props.event)}
 				/>
 				<View style={styles.container}>
-					<TopSection title={title} owner={owner} date={date} />
+					<TopSection title={title} owner={owner} date={date.date + ' ' + date.time} />
 					<View style={styles.separator} />
 					<MiddleSection
 						images={invitees.map(x => x.image )}
