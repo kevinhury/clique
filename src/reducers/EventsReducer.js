@@ -27,7 +27,7 @@ export type Event = {
 	title: string,
 	description: string,
 	location: string,
-	approved: bool,
+	approved: Approval,
 	status: Status,
 	owner: string,
 	date: EventDate,
