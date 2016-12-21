@@ -26,7 +26,7 @@ class MiddleSection extends Component {
 				<Text>Going:</Text>
 				<AtendeeBubbles
 					images={invitees.map(x => x.image)}
-					bubbles={bubblesToShow}
+					bubblesToShow={bubblesToShow}
 				/>
 				<ChatButton
 					onPress={() => console.log('press')}

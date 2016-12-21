@@ -54,7 +54,7 @@ export const INITIAL_STATE: Array<Event> = [
 		status: 'Pending',
 		owner: 'You',
 		date: {
-			date: '14th Wed, December',
+			date: '14th Wed, December 2016',
 			time: '13:30'
 		},
 		isAdmin: false,
@@ -75,7 +75,7 @@ export const INITIAL_STATE: Array<Event> = [
 		status: 'Cliqued',
 		owner: 'You',
 		date: {
-			date: '14th Wed, December',
+			date: '14th Wed, December 2016',
 			time: '13:30'
 		},
 		isAdmin: true,
@@ -92,7 +92,7 @@ export const INITIAL_STATE: Array<Event> = [
 		status: 'Cliqued',
 		owner: 'You',
 		date: {
-			date: '14th Wed, December',
+			date: '14th Wed, December 2016',
 			time: '13:30'
 		},
 		isAdmin: true,
@@ -109,7 +109,7 @@ export const INITIAL_STATE: Array<Event> = [
 		status: 'Cancelled',
 		owner: 'You',
 		date: {
-			date: '14th Wed, December',
+			date: '14th Wed, December 2016',
 			time: '13:30'
 		},
 		isAdmin: true,

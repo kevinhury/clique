@@ -5,6 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -29,7 +30,9 @@ class InfoSection extends Component {
         </View>
         <View style={styles.infoRow}>
           <Icon name='ios-pin-outline' size={20} style={styles.icon} />
-          <Text>{location}</Text>
+          <TouchableOpacity>
+            <Text style={styles.locationText}>{location}</Text>
+          </TouchableOpacity>
         </View>
       </View>
 		)
@@ -49,6 +52,10 @@ const styles = StyleSheet.create({
 	icon: {
 		margin: 2,
 		marginRight: 8,
+	},
+	locationText: {
+		textDecorationLine: 'underline',
+		color: '#50A5F9'
 	}
 })
 

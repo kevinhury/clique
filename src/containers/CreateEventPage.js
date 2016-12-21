@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { View, StyleSheet, } from 'react-native'
+import { View, StyleSheet, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
-import { Input } from '../components/Common'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
+import LinearGradient from 'react-native-linear-gradient'
+import CardView from '../components/CardView'
 import {
 	changeEventName,
 	changeEventDescription,
@@ -22,42 +23,87 @@ class CreateEventPage extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<Input
-					label='Name'
-					onChangeText={this.props.changeEventName}
-					value={this.props.name}
-				/>
-				<Input
-					label='Description'
-					onChangeText={this.props.changeEventDescription}
-					value={this.props.description}
-				/>
-				<Input
-					label='Location'
-					onChangeText={this.props.changeEventLocation}
-					value={this.props.location}
-				/>
-				<Button
-					large
-					raised
-					onPress={() => Actions.createEventPage2()}
-					title='Next'
-					backgroundColor='#01a836'
-					buttonStyle={styles.nextButton}
-				/>
-			</View>
+			<LinearGradient
+				colors={['#31A5FD', '#ffffff']}
+				style={styles.page}
+			>
+				<CardView style={styles.card}>
+					<View style={styles.createEventStatePanel}/>
+					<View style={styles.inputContainer}>
+						<TextInput
+							placeholder='Type event name here...'
+							onChangeText={this.props.changeEventName}
+							value={this.props.name}
+							style={styles.inputStyle}
+						/>
+						<TextInput
+							placeholder='Type event description...'
+							onChangeText={this.props.changeEventDescription}
+							value={this.props.description}
+							style={[styles.inputStyle, { height: 120 }]}
+						/>
+						<TextInput
+							placeholder='Enter location name'
+							onChangeText={this.props.changeEventLocation}
+							value={this.props.location}
+							style={styles.inputStyle}
+						/>
+						<TextInput
+							placeholder='Set location'
+							onChangeText={this.props.changeEventLocation}
+							value={this.props.location}
+							style={styles.inputStyle}
+						/>
+					</View>
+					<View style={styles.buttonContainer}>
+						<Button
+							large
+							raised
+							onPress={() => Actions.createEventPage2()}
+							title='Next'
+							backgroundColor='#01a836'
+							buttonStyle={styles.nextButton}
+						/>
+					</View>
+				</CardView>
+			</LinearGradient>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1
+	page: {
+		flex: 1,
+	},
+	card: {
+		justifyContent: 'flex-start',
+	},
+	createEventStatePanel: {
+		flex: 1,
+	},
+	inputContainer: {
+		justifyContent: 'space-between',
+		flex: 4,
+	},
+	buttonContainer: {
+		flex: 2,
+		justifyContent: 'flex-end',
 	},
 	nextButton: {
+		height: 50,
 		borderRadius: 15,
-	}
+	},
+	inputStyle: {
+		color: '#000',
+		paddingRight: 5,
+		paddingLeft: 5,
+		fontSize: 18,
+		lineHeight: 23,
+		borderRadius: 20,
+		borderWidth: 1,
+		borderColor: '#31A5FD',
+		height: 40,
+	},
 })
 
 const mapStateToProps = state => {

@@ -16,16 +16,6 @@
     ],
     "no-console": 0,
     "valid-jsdoc": 1,
-    "require-jsdoc": [
-      "error",
-      {
-        "require": {
-          "FunctionDeclaration": true,
-          "MethodDefinition": false,
-          "ClassDeclaration": false
-        }
-      }
-    ],
     "prefer-const": [
       "error",
       {

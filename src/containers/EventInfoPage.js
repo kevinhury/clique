@@ -14,23 +14,6 @@ import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
 import { Separator, AtendeeBubbles, ChatButton } from '../components/Common'
 
-// TODO: DELETE THIS MOCK OBJECT
-const info = {
-	title: 'FIFA 17 SESSION',
-	status: 'PENDING',
-	creator: 'Yossi Kerman',
-	creatorImage: 'https://facebook.github.io/react/img/logo_og.png',
-	userStatus: 'Going',
-	eventStatus: 'Pending',
-	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-	date: 'TUESDAY, 23rd NOVEMBER 2016',
-	time: '10:30 AM - 6:00 PM',
-	location: 'RAMI\'S PLACE - 72 LA GUARDIA ST.',
-	atendees: [],
-	minAtendees: 999,
-	limitedRSVP: false,
-}
-
 class EventInfoPage extends Component {
 	static propTypes = {
 		event: PropTypes.object,
@@ -48,10 +31,28 @@ class EventInfoPage extends Component {
 		)
 	}
 
+	minAtendeesText() {
+		const { minAtendees } = this.props.event
+		if (minAtendees == 0)
+			return (<Text>Not limited</Text>)
+		return (
+			<Text style={styles.greenText}>{minAtendees}</Text>
+		)
+	}
+
+	maxAtendeesText() {
+		const { limitedRSVP } = this.props.event
+		if (limitedRSVP == 0)
+			return (<Text>Not limited</Text>)
+		return (
+			<Text style={styles.greenText}>{limitedRSVP} / {limitedRSVP}</Text>
+		)
+	}
+
 	render() {
 		const {
 			title, description, location, approved, status, owner,
-			date, isAdmin, minAtendees, limitedRSVP, invitees
+			date, isAdmin, invitees
 		} = this.props.event
 		return (
       <LinearGradient
@@ -86,13 +87,10 @@ class EventInfoPage extends Component {
           </View>
           <Separator style={styles.separator} />
           <View style={styles.numAtendeesSection}>
-            <Text>Minimum of RSVP's: <Text style={styles.greenText}>{minAtendees}</Text></Text>
-            <Text>Maximum of RSVP's: <Text style={styles.greenText}>{limitedRSVP} / {limitedRSVP}</Text></Text>
+            <Text>Minimum of RSVP's: {this.minAtendeesText()}</Text>
+            <Text>Maximum of RSVP's: {this.maxAtendeesText()}</Text>
           </View>
           <Separator style={styles.separator} />
-          {/* <View style={styles.grocerySection}>
-            <Text>Grocery list:</Text>
-          </View> */}
           {this.renderBottomButton()}
         </CardView>
       </LinearGradient>
@@ -128,13 +126,6 @@ const styles = StyleSheet.create({
 	numAtendeesSection: {
 		paddingLeft: 20,
 		paddingRight: 20,
-	},
-	grocerySection: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		paddingLeft: 20,
-		paddingRight: 20,
-		justifyContent: 'space-between'
 	},
 	greenText: {
 		color: '#01a836',

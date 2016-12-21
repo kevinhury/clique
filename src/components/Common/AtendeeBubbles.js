@@ -9,7 +9,7 @@ import UserBubble from './UserBubble'
 class AtendeeBubbles extends Component {
 	static propTypes = {
 		images: PropTypes.array,
-		bubbles: PropTypes.number,
+		bubblesToShow: PropTypes.number,
 	}
 
 	renderBubble(uri: string) {
@@ -22,13 +22,14 @@ class AtendeeBubbles extends Component {
 	}
 
 	renderMoreBubble() {
-		const { images, bubbles } = this.props
-		if (images.length - bubbles <= 0) {
+		const { images, bubblesToShow } = this.props
+		const diff = images.length - bubblesToShow
+		if (diff <= 0) {
 			return (<View />)
 		}
 		return (
       <View style={styles.moreBubble}>
-        <Text style={styles.text}>+{this.props.bubbles}</Text>
+        <Text style={styles.text}>+{diff}</Text>
       </View>
 		)
 	}

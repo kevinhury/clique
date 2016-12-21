@@ -1,10 +1,7 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import {
-	View,
-	StyleSheet,
-} from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import TitleSection from './TitleSection'
 import TopSection from './TopSection'
