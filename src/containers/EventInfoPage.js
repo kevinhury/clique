@@ -51,9 +51,16 @@ class EventInfoPage extends Component {
 		)
 	}
 
+	cancelDialogToggle(state: boolean) {
+		if (state)
+			this.refs.cancelDialog.modal().open()
+		else
+		this.refs.cancelDialog.modal().close()
+	}
+
 	inviteesDialogToggle(state: boolean) {
 		if (state)
-		  this.refs.inviteesDialog.modal().open()
+			this.refs.inviteesDialog.modal().open()
 		else
       this.refs.inviteesDialog.modal().close()
 	}
@@ -77,7 +84,7 @@ class EventInfoPage extends Component {
             approved={approved}
             status={status}
             onStatusPress={() => {}}
-            onCancelPress={() => {}}
+            onCancelPress={() => this.cancelDialogToggle(true)}
           />
           <View style={styles.descriptionSection}>
             <Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
@@ -112,6 +119,12 @@ class EventInfoPage extends Component {
           modalStyle={{ height: 280 }}
           buttonCallback={() => this.inviteesDialogToggle(false)}
         />
+        <Dialog
+					ref={'cancelDialog'}
+					title='Wait a second...'
+					type={{ name: 'text', text: 'Are you sure you want to cancel this event?' }}
+					buttonText='YES'
+				/>
       </LinearGradient>
 		)
 	}

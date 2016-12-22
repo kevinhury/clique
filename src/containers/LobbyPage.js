@@ -84,7 +84,7 @@ class LobbyPage extends Component {
 					<Icon
 						type='ionicon'
 						name='md-add'
-						color='#01a836'
+						color='#F2AB2A'
 						raised
 						reverse
 						// onPress={() => Actions.createEvent()}

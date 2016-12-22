@@ -49,6 +49,7 @@ class TitleSection extends Component {
 				raised
 				buttonStyle={styles.button}
 				backgroundColor='#b04549'
+        onPress={this.props.onCancelPress}
 			/>
 		)
 	}
