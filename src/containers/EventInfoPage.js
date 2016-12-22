@@ -5,6 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableWithoutFeedback,
 } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
@@ -13,6 +14,7 @@ import CardView from '../components/CardView'
 import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
 import { Separator, AtendeeBubbles, ChatButton } from '../components/Common'
+import Dialog from '../components/Dialogs/Dialog'
 
 class EventInfoPage extends Component {
 	static propTypes = {
@@ -49,6 +51,13 @@ class EventInfoPage extends Component {
 		)
 	}
 
+	inviteesDialogToggle(state: boolean) {
+		if (state)
+		  this.refs.inviteesDialog.modal().open()
+		else
+      this.refs.inviteesDialog.modal().close()
+	}
+
 	render() {
 		const {
 			title, description, location, approved, status, owner,
@@ -78,12 +87,14 @@ class EventInfoPage extends Component {
           <Separator style={styles.separator} />
           <View style={styles.atendeesSection}>
             <Text>People going:</Text>
-            <View style={styles.goingSection}>
-              <AtendeeBubbles images={invitees.map(x => x.image)} bubblesToShow={2} />
-              <ChatButton
-                onPress={() => console.log('press')}
-              />
-            </View>
+            <TouchableWithoutFeedback onPress={() => this.inviteesDialogToggle(true)}>
+              <View style={styles.goingSection}>
+                <AtendeeBubbles images={invitees.map(x => x.image)} bubblesToShow={2} />
+                <ChatButton
+                  onPress={() => console.log('press')}
+                />
+              </View>
+            </TouchableWithoutFeedback>
           </View>
           <Separator style={styles.separator} />
           <View style={styles.numAtendeesSection}>
@@ -93,6 +104,14 @@ class EventInfoPage extends Component {
           <Separator style={styles.separator} />
           {this.renderBottomButton()}
         </CardView>
+        <Dialog
+          ref={'inviteesDialog'}
+          title='See you there!'
+          type={{ name:'invitees', invitees: this.props.event.invitees }}
+          buttonText='GREAT!'
+          modalStyle={{ height: 280 }}
+          buttonCallback={() => this.inviteesDialogToggle(false)}
+        />
       </LinearGradient>
 		)
 	}

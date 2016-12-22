@@ -94,7 +94,7 @@ class LobbyPage extends Component {
 				</CardView>
 				<Dialog
 					ref={'dialog'}
-					title='Some title'
+					title='You have declined this event'
 					type={{ name: 'text', text: 'You can still change your RSVP status and attend this event just click below.' }}
 					buttonText='CHANGE RSVP'
 				/>

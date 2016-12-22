@@ -8,6 +8,7 @@ import Modal from 'react-native-modalbox'
 import { Separator } from '../Common'
 import { Button } from 'react-native-elements'
 import TextComponent from './TextComponent'
+import InviteesComponent from './InviteesComponent'
 
 class Dialog extends Component {
 	static propTypes = {
@@ -46,6 +47,9 @@ class Dialog extends Component {
 			return (
 				<TextComponent text={this.props.type.text}/>
 			)
+		case 'invitees':
+			console.log(this.props.type)
+			return (<InviteesComponent invitees={this.props.type.invitees} />)
 		default:
 			return (<View />)
 		}
@@ -55,9 +59,7 @@ class Dialog extends Component {
 		return (
 			<Modal style={[styles.modal, this.props.modalStyle]} ref={'modal'} position='bottom'>
 				<View style={styles.container}>
-					<View style={styles.title}>
-						<Text style={styles.titleText}>{this.props.title}</Text>
-					</View>
+					<Text style={styles.titleText}>{this.props.title}</Text>
 					<Separator style={styles.separator} />
 					{this.renderComponent()}
 					{this.renderButton()}
@@ -76,19 +78,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center'
 	},
-	title: {
-
-	},
 	titleText: {
 		color: '#31A5FD',
 		fontSize: 20,
 		fontWeight: 'bold',
-		margin: 5,
+		margin: 10,
 	},
 	separator: {
 		backgroundColor: '#F1CE81',
-		marginLeft: 20,
-		marginRight: 20,
+		marginLeft: 40,
+		marginRight: 40,
 	},
 	button: {
 		position: 'absolute',
