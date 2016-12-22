@@ -835,11 +835,7 @@ babel-types@^6.15.0, babel-types@^6.16.0, babel-types@^6.18.0, babel-types@^6.19
     lodash "^4.2.0"
     to-fast-properties "^1.0.1"
 
-babylon@^6.11.0, babylon@^6.11.2, babylon@^6.13.0:
-  version "6.14.0"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.14.0.tgz#c8ba4b69b544b2cd8f3fb96b06614660a49b7128"
-
-babylon@^6.14.1:
+babylon@^6.11.0, babylon@^6.11.2, babylon@^6.13.0, babylon@^6.14.1:
   version "6.14.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.14.1.tgz#956275fab72753ad9b3435d7afe58f8bf0a29815"
 
@@ -3555,13 +3551,13 @@ mime-db@~1.23.0:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.23.0.tgz#a31b4070adaea27d732ea333740a64d0ec9a6659"
 
-mime-types@2.1.11, mime-types@~2.1.7:
+mime-types@2.1.11, mime-types@~2.1.11, mime-types@~2.1.6, mime-types@~2.1.7, mime-types@~2.1.9:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.11.tgz#c259c471bda808a85d6cd193b430a5fae4473b3c"
   dependencies:
     mime-db "~1.23.0"
 
-mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.6, mime-types@~2.1.9:
+mime-types@^2.1.12:
   version "2.1.12"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.12.tgz#152ba256777020dd4663f54c2e7bc26381e71729"
   dependencies:
@@ -4075,6 +4071,10 @@ react-native-experimental-navigation@0.26.x:
 react-native-linear-gradient@^1.5.15:
   version "1.5.15"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-1.5.15.tgz#4413111934dc1d8f5e0572ca96e60b1a2cf41f4d"
+
+react-native-modalbox@^1.3.8:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
 
 react-native-router-flux@^3.37.0:
   version "3.37.0"

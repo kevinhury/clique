@@ -5,7 +5,9 @@ import {
 	ListView,
 	View,
 	StyleSheet,
-	TouchableOpacity
+	TouchableOpacity,
+	Button,
+	Text,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
@@ -14,6 +16,7 @@ import { Icon } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
+import Dialog from '../components/Dialogs/Dialog'
 
 import type { Event, Invitee } from '../reducers/EventsReducer'
 
@@ -61,6 +64,10 @@ class LobbyPage extends Component {
 		)
 	}
 
+	bla() {
+		this.refs.dialog.modal().open()
+	}
+
 	render() {
 		return (
 			<LinearGradient
@@ -80,10 +87,17 @@ class LobbyPage extends Component {
 						color='#01a836'
 						raised
 						reverse
-						onPress={() => Actions.createEvent()}
+						// onPress={() => Actions.createEvent()}
+						onPress={this.bla.bind(this)}
 						containerStyle={styles.plusButton}
 						/>
 				</CardView>
+				<Dialog
+					ref={'dialog'}
+					title='Some title'
+					type={{ name: 'text', text: 'You can still change your RSVP status and attend this event just click below.' }}
+					buttonText='CHANGE RSVP'
+				/>
 			</LinearGradient>
 		)
 	}

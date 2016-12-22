@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 		marginRight: 10,
 		marginLeft: 10,
 		height: 1,
+		alignSelf: 'stretch',
 	},
 })
 
