@@ -11,6 +11,7 @@ import {
 	changeEventLocation,
 } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
+import { FormButton } from '../components/Common'
 
 class CreateEventPage extends Component {
 	static propTypes = {
@@ -36,12 +37,14 @@ class CreateEventPage extends Component {
 							onChangeText={this.props.changeEventName}
 							value={this.props.name}
 							style={styles.inputStyle}
+							autoFocus
 						/>
 						<TextInput
 							placeholder='Type event description...'
 							onChangeText={this.props.changeEventDescription}
 							value={this.props.description}
-							style={[styles.inputStyle, { height: 120 }]}
+							style={[styles.inputStyle, { height: 100 }]}
+							multiline
 						/>
 						<TextInput
 							placeholder='Enter location name'
@@ -49,11 +52,10 @@ class CreateEventPage extends Component {
 							value={this.props.location}
 							style={styles.inputStyle}
 						/>
-						<TextInput
-							placeholder='Set location'
-							onChangeText={this.props.changeEventLocation}
-							value={this.props.location}
-							style={styles.inputStyle}
+						<FormButton
+							text='Set location'
+							onPress={() => console.log('press')}
+							style={styles.locationButton}
 						/>
 					</View>
 					<View style={styles.buttonContainer}>
@@ -81,10 +83,9 @@ const styles = StyleSheet.create({
 	},
 	statePanel: {
 		margin: 5,
-		marginBottom: 10,
+		marginBottom: 15,
 	},
 	inputContainer: {
-		justifyContent: 'space-between',
 		flex: 4,
 	},
 	buttonContainer: {
@@ -105,7 +106,14 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: '#31A5FD',
 		height: 40,
+		margin: 8,
 	},
+	locationButton: {
+		height: 40,
+		marginLeft: 5,
+		marginRight: 5,
+		margin: 8,
+	}
 })
 
 const mapStateToProps = state => {
