@@ -10,6 +10,7 @@ import {
 	changeEventDescription,
 	changeEventLocation,
 } from '../actions'
+import EventCreatePanel from '../components/EventCreatePanel'
 
 class CreateEventPage extends Component {
 	static propTypes = {
@@ -28,7 +29,7 @@ class CreateEventPage extends Component {
 				style={styles.page}
 			>
 				<CardView style={styles.card}>
-					<View style={styles.createEventStatePanel}/>
+					<EventCreatePanel stateIndex={0} style={styles.statePanel} />
 					<View style={styles.inputContainer}>
 						<TextInput
 							placeholder='Type event name here...'
@@ -78,8 +79,9 @@ const styles = StyleSheet.create({
 	card: {
 		justifyContent: 'flex-start',
 	},
-	createEventStatePanel: {
-		flex: 1,
+	statePanel: {
+		margin: 5,
+		marginBottom: 10,
 	},
 	inputContainer: {
 		justifyContent: 'space-between',
