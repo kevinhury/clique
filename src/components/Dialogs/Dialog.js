@@ -9,6 +9,7 @@ import { Separator } from '../Common'
 import { Button } from 'react-native-elements'
 import TextComponent from './TextComponent'
 import InviteesComponent from './InviteesComponent'
+import PickerComponent from './PickerComponent'
 
 class Dialog extends Component {
 	static propTypes = {
@@ -48,8 +49,9 @@ class Dialog extends Component {
 				<TextComponent text={this.props.type.text}/>
 			)
 		case 'invitees':
-			console.log(this.props.type)
 			return (<InviteesComponent invitees={this.props.type.invitees} />)
+		case 'picker':
+			return (<PickerComponent options={this.props.type.options} />)
 		default:
 			return (<View />)
 		}
