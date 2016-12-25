@@ -54,7 +54,7 @@ class CreateEventPage extends Component {
 						/>
 						<FormButton
 							text='Set location'
-							onPress={() => console.log('press')}
+							onPress={() => Actions.setLocationPage()}
 							style={styles.locationButton}
 						/>
 					</View>

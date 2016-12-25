@@ -9,6 +9,7 @@ import CreateEventPage from './containers/CreateEventPage'
 import CreateEventPage2 from './containers/CreateEventPage2'
 import CreateEventPage3 from './containers/CreateEventPage3'
 import EventInfoPage from './containers/EventInfoPage'
+import SetLocationPage from './containers/SetLocationPage'
 
 const RouterComponent = () => (
   <Router sceneStyle={{ paddingTop: 65 }}>
@@ -23,6 +24,7 @@ const RouterComponent = () => (
         <Scene key='createEventPage' component={CreateEventPage} title='Create Event' leftTitle='Cancel' onLeft={ () => Actions.pop()} />
         <Scene key='createEventPage2' component={CreateEventPage2} title='Create Event' />
         <Scene key='createEventPage3' component={CreateEventPage3} title='Create Event' />
+        <Scene key='setLocationPage' component={SetLocationPage} title='Set Location' />
       </Scene>
     </Scene>
   </Router>
