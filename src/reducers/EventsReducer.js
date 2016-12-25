@@ -118,6 +118,108 @@ export const INITIAL_STATE: Array<Event> = [
 		limitedRSVP: false,
 		invitees: []
 	},
+	{
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: "RAMI'S PLACE - 72 LA GUARDIA ST.",
+		approved: 'Approved',
+		status: 'Cancelled',
+		owner: 'him',
+		date: {
+			date: '14th Wed, December 2016',
+			time: '13:30'
+		},
+		isAdmin: false,
+		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
+		invitees: []
+	},
+	{
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: "RAMI'S PLACE - 72 LA GUARDIA ST.",
+		approved: 'Declined',
+		status: 'Cliqued',
+		owner: 'him',
+		date: {
+			date: '14th Wed, December 2016',
+			time: '13:30'
+		},
+		isAdmin: false,
+		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
+		invitees: []
+	},
+	{
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: "RAMI'S PLACE - 72 LA GUARDIA ST.",
+		approved: 'Declined',
+		status: 'Cliqued',
+		owner: 'him',
+		date: {
+			date: '14th Wed, December 2016',
+			time: '13:30'
+		},
+		isAdmin: false,
+		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
+		invitees: []
+	},
+	{
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: "RAMI'S PLACE - 72 LA GUARDIA ST.",
+		approved: 'Declined',
+		status: 'Pending',
+		owner: 'him',
+		date: {
+			date: '14th Wed, December 2016',
+			time: '13:30'
+		},
+		isAdmin: false,
+		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
+		invitees: []
+	},
+	{
+		'title': 'FIFA 17 SESSION',
+		'description': 'string',
+		'location': "RAMI'S PLACE - 72 LA GUARDIA ST.",
+		'approved': 'Approved',
+		'status': 'Cliqued',
+		'owner': 'him',
+		'date': {
+			'date': '14th Wed, December 2016',
+			'time': '13:30'
+		},
+		'isAdmin': false,
+		'expires': '8th Tue, November 19:00',
+		'minAtendees': 999,
+		'limitedRSVP': false,
+		'invitees': []
+	},
+	{
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: "RAMI'S PLACE - 72 LA GUARDIA ST.",
+		approved: 'Approved',
+		status: 'Pending',
+		owner: 'him',
+		date: {
+			date: '14th Wed, December 2016',
+			time: '13:30'
+		},
+		isAdmin: false,
+		expires: '8th Tue, November 19:00',
+		minAtendees: 999,
+		limitedRSVP: false,
+		invitees: []
+	}
 ]
 
 export const EventsReducer = (state = INITIAL_STATE, action: Action): Array<Event> => {
