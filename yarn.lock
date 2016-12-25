@@ -4072,6 +4072,10 @@ react-native-linear-gradient@^1.5.15:
   version "1.5.15"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-1.5.15.tgz#4413111934dc1d8f5e0572ca96e60b1a2cf41f4d"
 
+react-native-maps@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.12.2.tgz#f13603ab908acee6e4afe8978b65e6138c30f50b"
+
 react-native-modalbox@^1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
