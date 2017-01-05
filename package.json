@@ -32,7 +32,7 @@
     "babel-polyfill": "^6.16.0",
     "eslint": "^3.10.0",
     "eslint-plugin-react": "^6.6.0",
-    "flow-bin": "^0.36.0",
+    "flow-bin": "^0.37.4",
     "jest": "17.0.0",
     "jest-react-native": "17.0.0",
     "react-test-renderer": "15.3.2",
