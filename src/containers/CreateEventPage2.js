@@ -9,15 +9,17 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
+import Calendar from 'react-native-calendar'
 import CardView from '../components/CardView'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
 import Dialog from '../components/Dialogs/Dialog'
-
 import {
 	changeEventLength,
 	changeStartTime,
 	changeRSVPDeadline,
+	addEventDate,
+	removeEventDate,
 } from '../actions'
 
 function generateTimeFormat(): Array<string> {
@@ -49,9 +51,12 @@ class CreateEventPage2 extends Component {
 		length: PropTypes.number,
 		startTime: PropTypes.string,
 		deadline: PropTypes.number,
+		dates: PropTypes.arrayOf(Date),
 		changeEventLength: PropTypes.func,
 		changeStartTime: PropTypes.func,
 		changeRSVPDeadline: PropTypes.func,
+		addEventDate: PropTypes.func,
+		removeEventDate: PropTypes.func,
 	}
 
 	componentWillMount() {
@@ -72,6 +77,15 @@ class CreateEventPage2 extends Component {
 		this.refs.deadlineDialog.modal().open()
 	}
 
+	dateOnClick(datestr: string) {
+		const date = new Date(datestr)
+		const exist = this.props.dates.map(x => x.getTime()).indexOf(date.getTime()) > -1
+		if (exist)
+			this.props.removeEventDate(date)
+		else if (this.props.dates.length < 3)
+			this.props.addEventDate(date)
+	}
+
 	render() {
 		return (
 			<LinearGradient
@@ -87,6 +101,20 @@ class CreateEventPage2 extends Component {
 							onPress={() => this.setDaysOnClick()}
 							style={styles.button}
 							/>
+						<View style={styles.calendarContainer}>
+							<Calendar
+								scrollEnabled
+								dayHeadings={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
+								events={this.props.dates.map(x => { return { date: x }})}
+								showEventIndicators
+								customStyle={{
+									calendarContainer: styles.calendar,
+									eventIndicator: styles.eventIndicator,
+									hasEventCircle: styles.hasEventCircle,
+								}}
+								onDateSelect={this.dateOnClick.bind(this)}
+							/>
+						</View>
 						<FormButton
 							placeholder='Start time'
 							text={`${this.props.startTime}`}
@@ -174,15 +202,36 @@ const styles = StyleSheet.create({
 		height: 50,
 		borderRadius: 15,
 	},
+	calendarContainer: {
+		borderWidth: 1,
+		borderRadius: 15,
+		borderColor: '#31A5FD',
+		margin: 8,
+		marginLeft: 5,
+		marginRight: 5,
+	},
+	calendar: {
+		backgroundColor: 'transparent',
+	},
+	eventIndicator: {
+		backgroundColor: '#31A5FD',
+		width: 5,
+		height: 5,
+	},
+	hasEventCircle: {
+		backgroundColor: '#31A5FD',
+	},
 })
 
 const mapStateToProps = state => {
-	const { length, startTime, deadline } = state.form
-	return { length, startTime, deadline }
+	const { length, startTime, deadline, dates } = state.form
+	return { length, startTime, deadline, dates }
 }
 
 export default connect(mapStateToProps, {
 	changeEventLength,
 	changeStartTime,
 	changeRSVPDeadline,
+	addEventDate,
+	removeEventDate,
 })(CreateEventPage2)

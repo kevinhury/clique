@@ -1,8 +1,10 @@
 import {
+	FORM_CANCEL,
 	FORM_ADD_CONTACT,
 	FORM_REMOVE_CONTACT,
 	FORM_CHANGE_NAME,
 	FORM_CHANGE_DESCRIPTION,
+	FORM_CHANGE_LOCATION_NAME,
 	FORM_CHANGE_LOCATION,
 	FORM_ADD_DATE,
 	FORM_REMOVE_DATE,
@@ -20,6 +22,7 @@ export type Contact = {
 export type State = {
 	name: string,
 	description: string,
+	locationName: string,
 	location: string,
 	dates: Array<Date>,
 	minAtendees: number,
@@ -33,6 +36,7 @@ export type State = {
 export const INITIAL_STATE: State = {
 	name: '',
 	description: '',
+	locationName: '',
 	location: '',
 	dates: [],
 	minAtendees: 0,
@@ -45,6 +49,9 @@ export const INITIAL_STATE: State = {
 
 export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 	switch (action.type) {
+	case FORM_CANCEL: {
+		return { ...state, INITIAL_STATE }
+	}
 	case FORM_ADD_CONTACT: {
 		const contacts = [...state.contacts, action.contactId]
 		return { ...state, contacts }
@@ -58,6 +65,9 @@ export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 	case FORM_CHANGE_DESCRIPTION: {
 		return { ...state, description: action.description }
 	}
+	case FORM_CHANGE_LOCATION_NAME: {
+		return { ...state, locationName: action.locationName }
+	}
 	case FORM_CHANGE_LOCATION: {
 		return { ...state, location: action.location }
 	}
@@ -66,7 +76,9 @@ export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 		return { ...state, dates }
 	}
 	case FORM_REMOVE_DATE: {
-		const dates = state.dates.filter(d => d !== action.date)
+		const dates = state.dates.filter(d => {
+			return d.getTime() !== action.date.getTime()
+		})
 		return { ...state, dates }
 	}
 	case FORM_CHANGE_LENGTH: {

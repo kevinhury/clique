@@ -8,6 +8,7 @@ import CardView from '../components/CardView'
 import {
 	changeEventName,
 	changeEventDescription,
+	changeLocationName,
 	changeEventLocation,
 } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
@@ -17,9 +18,11 @@ class CreateEventPage extends Component {
 	static propTypes = {
 		name: PropTypes.string.isRequired,
 		description: PropTypes.string.isRequired,
+		locationName: PropTypes.string.isRequired,
 		location: PropTypes.string.isRequired,
 		changeEventName: PropTypes.func.isRequired,
 		changeEventDescription: PropTypes.func.isRequired,
+		changeLocationName: PropTypes.func.isRequired,
 		changeEventLocation: PropTypes.func.isRequired,
 	}
 
@@ -48,8 +51,8 @@ class CreateEventPage extends Component {
 						/>
 						<TextInput
 							placeholder='Enter location name'
-							onChangeText={this.props.changeEventLocation}
-							value={this.props.location}
+							onChangeText={this.props.changeLocationName}
+							value={this.props.locationName}
 							style={styles.inputStyle}
 						/>
 						<FormButton
@@ -118,12 +121,13 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { name, description, location } = state.form
-	return { name, description, location }
+	const { name, description, locationName, location } = state.form
+	return { name, description, locationName, location }
 }
 
 export default connect(mapStateToProps, {
 	changeEventName,
 	changeEventDescription,
+	changeLocationName,
 	changeEventLocation,
 })(CreateEventPage)

@@ -1,8 +1,10 @@
 import {
+	FORM_CANCEL,
 	FORM_ADD_CONTACT,
 	FORM_REMOVE_CONTACT,
 	FORM_CHANGE_NAME,
 	FORM_CHANGE_DESCRIPTION,
+	FORM_CHANGE_LOCATION_NAME,
 	FORM_CHANGE_LOCATION,
 	FORM_ADD_DATE,
 	FORM_REMOVE_DATE,
@@ -12,6 +14,12 @@ import {
 	FORM_CHANGE_MIN_ATENDEES,
 	FORM_CHANGE_MAX_ATENDEES,
 } from './types'
+
+export const cancelForm = () => {
+	return {
+		type: FORM_CANCEL,
+	}
+}
 
 export const addContact = (contactId: number) => {
 	return {
@@ -38,6 +46,13 @@ export const changeEventDescription = (description: string) => {
 	return {
 		type: FORM_CHANGE_DESCRIPTION,
 		description,
+	}
+}
+
+export const changeLocationName = (locationName: string) => {
+	return {
+		type: FORM_CHANGE_LOCATION_NAME,
+		locationName,
 	}
 }
 
