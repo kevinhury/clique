@@ -9,15 +9,15 @@ import Router from './Router'
 
 
 class App extends Component {
-  render() {
-    const logger = createLogger()
-    const store = createStore(reducers, {}, applyMiddleware(thunk, logger))
-    return (
-      <Provider store={store}>
-        <Router />
-      </Provider>
-    )
-  }
+	render() {
+		const logger = createLogger()
+		const store = createStore(reducers, {}, applyMiddleware(thunk, logger))
+		return (
+			<Provider store={store}>
+				<Router />
+			</Provider>
+		)
+	}
 }
 
 export default App

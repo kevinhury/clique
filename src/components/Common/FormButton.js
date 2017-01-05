@@ -9,20 +9,21 @@ import {
 class FormButton extends Component {
 	static propTypes = {
 		text: PropTypes.string,
-		highlighted: PropTypes.bool,
+		placeholder: PropTypes.string,
 		onPress: PropTypes.func,
 		style: PropTypes.any,
 		textStyle: PropTypes.any,
 	}
 
 	render() {
-		const colorStyle = this.props.highlighted ? styles.highlighted : styles.normal
-		const textColor = this.props.highlighted ? undefined : styles.normalText
+		const highlighted = this.props.text.length > 0
+		const colorStyle = highlighted ? styles.highlighted : styles.normal
+		const textColor = highlighted ? undefined : styles.normalText
 		return (
 			<TouchableOpacity onPress={this.props.onPress}>
 				<View style={[styles.button, this.props.style, colorStyle]}>
 					<Text style={[styles.text, this.props.textStyle, textColor]}>
-						{this.props.text}
+						{this.props.text || this.props.placeholder }
 					</Text>
 				</View>
 			</TouchableOpacity>
@@ -42,14 +43,14 @@ const styles = StyleSheet.create({
 		borderColor: '#31A5FD',
 	},
 	normal: {
-		borderColor: '#BFBFBF'
+		borderColor: '#BFBFBF',
 	},
 	text: {
 		fontSize: 18,
 	},
 	normalText: {
-		color: '#BFBFBF'
-	}
+		color: '#BFBFBF',
+	},
 })
 
 export { FormButton }

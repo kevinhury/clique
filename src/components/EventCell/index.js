@@ -26,6 +26,7 @@ class EventCell extends Component {
 		case 'Cliqued':
 			return ['#01a836', '#fff']
 		}
+		return []
 	}
 
 	render() {
@@ -44,7 +45,7 @@ class EventCell extends Component {
 					onEditPress={() => this.props.onEditPress(this.props.event)}
 				/>
 				<View style={styles.container}>
-					<TopSection title={title} owner={owner} date={date.date + ' ' + date.time} />
+					<TopSection title={title} owner={owner} date={date.getTime() + ' ' + date.getTime()} />
 					<View style={styles.separator} />
 					<MiddleSection
 						invitees={invitees}

@@ -49,9 +49,16 @@ class Dialog extends Component {
 				<TextComponent text={this.props.type.text}/>
 			)
 		case 'invitees':
-			return (<InviteesComponent invitees={this.props.type.invitees} />)
+			return (
+				<InviteesComponent invitees={this.props.type.invitees} />
+			)
 		case 'picker':
-			return (<PickerComponent options={this.props.type.options} />)
+			return (
+				<PickerComponent
+					options={this.props.type.options}
+					onValueChange={this.props.type.onValueChange}
+				/>
+			)
 		default:
 			return (<View />)
 		}

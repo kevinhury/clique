@@ -19,11 +19,6 @@ export type Invitee = {
 	admin: bool,
 }
 
-export type EventDate = {
-	date: string,
-	time: string,
-}
-
 export type Event = {
 	title: string,
 	description: string,
@@ -31,9 +26,9 @@ export type Event = {
 	approved: Approval,
 	status: Status,
 	owner: string,
-	date: EventDate,
+	date: Date,
 	isAdmin: bool,
-	expires: ?EventDate,
+	expires: ?Date,
 	minAtendees: ?number,
 	limitedRSVP: ?number,
 	invitees: Array<Invitee>,
@@ -43,6 +38,7 @@ const mock_invitee: Invitee = {
 	name: '',
 	image: 'https://facebook.github.io/react/img/logo_og.png',
 	approved: true,
+	admin: false,
 }
 
 export const INITIAL_STATE: Array<Event> = [
@@ -53,19 +49,16 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Pending',
 		status: 'Pending',
 		owner: 'You',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: false,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
+		limitedRSVP: 0,
 		invitees: [
 			{ ...mock_invitee, name: 'Moshe Abutbul' },
 			{ ...mock_invitee, name: 'Moshiko Balagan' },
 			{ ...mock_invitee, name: 'Kishkush Balabush', approved: false },
-		]
+		],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -74,15 +67,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Declined',
 		status: 'Cliqued',
 		owner: 'You',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: true,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -91,15 +81,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Approved',
 		status: 'Cliqued',
 		owner: 'You',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: true,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -108,15 +95,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Approved',
 		status: 'Cancelled',
 		owner: 'You',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: true,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -125,15 +109,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Approved',
 		status: 'Cancelled',
 		owner: 'him',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: false,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -142,15 +123,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Declined',
 		status: 'Cliqued',
 		owner: 'him',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: false,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -159,15 +137,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Declined',
 		status: 'Cliqued',
 		owner: 'him',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: false,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -176,15 +151,12 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Declined',
 		status: 'Pending',
 		owner: 'him',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: false,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
+		limitedRSVP: 0,
+		invitees: [],
 	},
 	{
 		'title': 'FIFA 17 SESSION',
@@ -193,15 +165,12 @@ export const INITIAL_STATE: Array<Event> = [
 		'approved': 'Approved',
 		'status': 'Cliqued',
 		'owner': 'him',
-		'date': {
-			'date': '14th Wed, December 2016',
-			'time': '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		'isAdmin': false,
-		'expires': '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		'minAtendees': 999,
-		'limitedRSVP': false,
-		'invitees': []
+		'limitedRSVP': 0,
+		'invitees': [],
 	},
 	{
 		title: 'FIFA 17 SESSION',
@@ -210,19 +179,16 @@ export const INITIAL_STATE: Array<Event> = [
 		approved: 'Approved',
 		status: 'Pending',
 		owner: 'him',
-		date: {
-			date: '14th Wed, December 2016',
-			time: '13:30'
-		},
+		date: new Date('14th Wed, December 2016 13:30'),
 		isAdmin: false,
-		expires: '8th Tue, November 19:00',
+		expires: new Date('8th Tue, November 19:00'),
 		minAtendees: 999,
-		limitedRSVP: false,
-		invitees: []
-	}
+		limitedRSVP: 0,
+		invitees: [],
+	},
 ]
 
-export const EventsReducer = (state = INITIAL_STATE, action: Action): Array<Event> => {
+export const EventsReducer = (state: Array<Event> = INITIAL_STATE, action: Action): Array<Event> => {
 	switch (action.type) {
 	default:
 		return state

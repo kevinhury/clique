@@ -1,11 +1,11 @@
 const INITIAL_STATE = {
-  phoneNumber: '',
-  countryCode: ''
+	phoneNumber: '',
+	countryCode: '',
 }
 
 export const LoginReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
+	switch (action.type) {
+	default:
+		return state
+	}
 }

@@ -7,14 +7,30 @@ import ContactList from '../components/Contacts/ContactList'
 import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
 import Dialog from '../components/Dialogs/Dialog'
-import { addContact, removeContact } from '../actions'
+import EventCreatePanel from '../components/EventCreatePanel'
+import {
+	addContact,
+	removeContact,
+	changeMinAtendees,
+	changeMaxAtendees,
+} from '../actions'
 
 class CreateEventPage3 extends Component {
+	minRSVPs = [ ...Array(50).keys()].map(x => {
+		return { value: x, label: `${x}` }
+	})
+	maxRSVPs = [ ...Array(50).keys()].map(x => {
+		return { value: x, label: `${x}` }
+	})
 	static propTypes = {
 		contacts: PropTypes.array.isRequired,
 		selectedContacts: PropTypes.array.isRequired,
+		minAtendees: PropTypes.number.isRequired,
+		maxAtendees: PropTypes.number.isRequired,
 		addContact: PropTypes.func.isRequired,
 		removeContact: PropTypes.func.isRequired,
+		changeMinAtendees: PropTypes.func.isRequired,
+		changeMaxAtendees: PropTypes.func.isRequired,
 	}
 
 	contactChanged(selected: boolean, contact: any) {
@@ -23,13 +39,19 @@ class CreateEventPage3 extends Component {
 	}
 
 	onMinRSVPToggle(value: boolean) {
-		console.log(value)
-		this.refs.minRSVPDialog.modal().open()
+		const modal = this.refs.minRSVPDialog.modal()
+		if (value)
+			modal.open()
+		else
+			modal.close()
 	}
 
 	onMaxRSVPToggle(value: boolean) {
-		console.log(value)
-		this.refs.maxRSVPDialog.modal().open()
+		const modal = this.refs.maxRSVPDialog.modal()
+		if (value)
+			modal.open()
+		else
+			modal.close()
 	}
 
 	render() {
@@ -39,6 +61,7 @@ class CreateEventPage3 extends Component {
         style={styles.page}
       >
         <CardView style={styles.card}>
+					<EventCreatePanel  stateIndex={2} style={styles.statePanel} />
           <ContactList
             contacts={this.props.contacts}
             selectedList={this.props.selectedContacts}
@@ -49,15 +72,23 @@ class CreateEventPage3 extends Component {
 						<View style={styles.rsvpCell}>
 							<Text>Min RSVP's:{' '}</Text>
 							<Switch
-								onValueChange={this.onMinRSVPToggle.bind(this)}
-								value={false}
+								onValueChange={(value) => {
+									if (value == false)
+										this.props.changeMinAtendees(0)
+									this.onMinRSVPToggle(value)
+								}}
+								value={this.props.minAtendees > 0}
 							/>
 						</View>
 						<View style={styles.rsvpCell}>
-							<Text>Min RSVP's:{' '}</Text>
+							<Text>Max RSVP's:{' '}</Text>
 							<Switch
-								onValueChange={this.onMaxRSVPToggle.bind(this)}
-								value={true}
+								onValueChange={(value) => {
+									if (value == false)
+										this.props.changeMaxAtendees(0)
+									this.onMaxRSVPToggle(value)
+								}}
+								value={this.props.maxAtendees > 0}
 							/>
 						</View>
           </View>
@@ -75,18 +106,22 @@ class CreateEventPage3 extends Component {
 				<Dialog
 					ref={'minRSVPDialog'}
 					title='By choosing this option your event will take place only with the minimum RSVPs that you define'
-					type={{ name:'picker', options: [ ...Array(50).keys()].map(x => x + 1) }}
+					type={{ name: 'picker', options: this.minRSVPs, onValueChange: (index) => {
+						this.props.changeMinAtendees(index)
+					}}}
 					buttonText='SET'
 					modalStyle={{ height: 280 }}
-					buttonCallback={() => console.log('set')}
+					buttonCallback={() => this.onMinRSVPToggle(false)}
 				/>
 				<Dialog
 					ref={'maxRSVPDialog'}
 					title='By choosing this option you will limit your event to a maximum number of participants'
-					type={{ name:'picker', options: [ ...Array(50).keys()].map(x => x + 1) }}
+					type={{ name: 'picker', options: this.maxRSVPs, onValueChange: (index) => {
+						this.props.changeMaxAtendees(index)
+					}}}
 					buttonText='SET'
 					modalStyle={{ height: 280 }}
-					buttonCallback={() => console.log('set')}
+					buttonCallback={() => this.onMaxRSVPToggle(false)}
 				/>
       </LinearGradient>
 		)
@@ -119,14 +154,22 @@ const styles = StyleSheet.create({
 		height: 50,
 		borderRadius: 15,
 	},
+	statePanel: {
+		margin: 5,
+		marginBottom: 15,
+	},
 })
 
 const mapStateToProps = state => {
 	const { contacts, form } = state
-	return { contacts, selectedContacts: form.contacts }
+	const selectedContacts = form.contacts
+	const { minAtendees, maxAtendees } = form
+	return { contacts, selectedContacts, minAtendees, maxAtendees }
 }
 
 export default connect(mapStateToProps, {
 	addContact,
 	removeContact,
+	changeMinAtendees,
+	changeMaxAtendees,
 })(CreateEventPage3)

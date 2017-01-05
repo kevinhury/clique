@@ -5,13 +5,13 @@ import {
 	Text,
 } from 'react-native'
 
-import type { Status, Approval } from '../../reducers/EventsReducer'
+import type { Status } from '../../reducers/EventsReducer'
 
 class BottomSection extends Component {
 	static propTypes = {
 		status: PropTypes.string.isRequired, // type "Status"
 		approved: PropTypes.string.isRequired, // type "Approval"
-		expires: PropTypes.string.isRequired,
+		expires: PropTypes.instanceOf(Date).isRequired,
 	}
 
 	statusText(): string {
@@ -31,7 +31,7 @@ class BottomSection extends Component {
 			return (<View />)
 		}
 		return (
-			<Text>Invite expires on: {this.props.expires}</Text>
+			<Text>Invite expires on: {this.props.expires.toString()}</Text>
 		)
 	}
 

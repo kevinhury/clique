@@ -2,20 +2,25 @@ import React, { Component, PropTypes } from 'react'
 import {
 	View,
 	Picker,
-	StyleSheet
+	StyleSheet,
 } from 'react-native'
-
 
 class PickerComponent extends Component {
 	static propTypes = {
 		options: PropTypes.array,
+		onValueChange: PropTypes.func,
+	}
+
+	constructor(props: any) {
+		super(props)
+		this.state = { selection: null }
 	}
 
 	renderItems() {
 		return this.props.options
-			.map((option, index) => {
+			.map((value, index) => {
 				return (
-					<Picker.Item label={`${option}`} value={`${option}`} key={index} />
+					<Picker.Item label={value['label']} value={value['value']} key={index} />
 				)
 			})
 	}
@@ -25,8 +30,11 @@ class PickerComponent extends Component {
 			<View style={styles.container}>
 				<Picker
 					style={styles.picker}
-					selectedValue={''}
-					onValueChange={() => console.log('change')}
+					selectedValue={this.state.selection}
+					onValueChange={(value, index) => {
+						this.props.onValueChange(index)
+						this.setState({ selection: value })
+					}}
 				>
 					{this.renderItems()}
 				</Picker>
@@ -44,7 +52,7 @@ const styles = StyleSheet.create({
 	picker: {
 		flex: 1,
 		width: 400,
-	}
+	},
 })
 
 export default PickerComponent

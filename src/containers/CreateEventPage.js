@@ -53,7 +53,8 @@ class CreateEventPage extends Component {
 							style={styles.inputStyle}
 						/>
 						<FormButton
-							text='Set location'
+							placeholder='Set location'
+							text={this.props.location}
 							onPress={() => Actions.setLocationPage()}
 							style={styles.locationButton}
 						/>
