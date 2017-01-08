@@ -38,6 +38,7 @@
 		30E3265D832A4D65A066CA29 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D54F935DC613434F91A934D9 /* libAirMaps.a */; };
 		F40F2842B15B4E189ED3A7D9 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8719C94CF54B6F8137515E /* libCodePush.a */; };
 		ECF53960784C4C5F84C233EC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 064965AC3FC94BFFABDCFE39 /* libz.tbd */; };
+		1C2BE8A546714BD4ACBB8EFF /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D049BB2160E487C95D36877 /* libRNI18n.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,8 @@
 		85AF5B440B8342AE9054D789 /* CodePush.xcodeproj */ = {isa = PBXFileReference; name = "CodePush.xcodeproj"; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		FD8719C94CF54B6F8137515E /* libCodePush.a */ = {isa = PBXFileReference; name = "libCodePush.a"; path = "libCodePush.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		064965AC3FC94BFFABDCFE39 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		4AF3F64BFA73407EBC83DDC3 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		8D049BB2160E487C95D36877 /* libRNI18n.a */ = {isa = PBXFileReference; name = "libRNI18n.a"; path = "libRNI18n.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,7 @@
 				30E3265D832A4D65A066CA29 /* libAirMaps.a in Frameworks */,
 				F40F2842B15B4E189ED3A7D9 /* libCodePush.a in Frameworks */,
 				ECF53960784C4C5F84C233EC /* libz.tbd in Frameworks */,
+				1C2BE8A546714BD4ACBB8EFF /* libRNI18n.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +350,7 @@
 				A1A9C93537A24798AEC1A865 /* RNVectorIcons.xcodeproj */,
 				CA907892609543E3A64FF490 /* AirMaps.xcodeproj */,
 				85AF5B440B8342AE9054D789 /* CodePush.xcodeproj */,
+				4AF3F64BFA73407EBC83DDC3 /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -719,6 +724,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -735,6 +741,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/clique.app/clique";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -822,6 +829,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -867,6 +875,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

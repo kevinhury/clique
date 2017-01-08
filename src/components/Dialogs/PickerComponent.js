@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import {
 	View,
-	Picker,
 	StyleSheet,
 } from 'react-native'
+import Picker from 'react-native-wheel-picker'
 
 class PickerComponent extends Component {
 	static propTypes = {

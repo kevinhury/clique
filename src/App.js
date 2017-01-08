@@ -6,8 +6,6 @@ import createLogger from 'redux-logger'
 import reducers from './reducers'
 import Router from './Router'
 
-
-
 class App extends Component {
 	render() {
 		const logger = createLogger()
