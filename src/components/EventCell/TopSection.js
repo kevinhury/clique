@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
 } from 'react-native'
+import I18n from 'react-native-i18n'
 
 class TopSection extends Component {
 	static propTypes = {
@@ -21,7 +22,7 @@ class TopSection extends Component {
         <View style={styles.topTitleSection}>
           <Text style={styles.nameText}>{title}</Text>
         </View>
-        <Text style={styles.creatorText}>Created by {owner}</Text>
+        <Text style={styles.creatorText}>{I18n.t('createdBy')} {owner}</Text>
         <Text style={styles.dateText}>{date}</Text>
       </View>
 		)

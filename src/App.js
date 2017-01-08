@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import reducers from './reducers'
 import Router from './Router'
+import './i18n/i18n'
 
 class App extends Component {
 	render() {

@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import Calendar from 'react-native-calendar'
+import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
@@ -96,7 +97,7 @@ class CreateEventPage2 extends Component {
 					<EventCreatePanel stateIndex={1} style={styles.statePanel} />
 					<View>
 						<FormButton
-							placeholder='Event length (days)'
+							placeholder={I18n.t('createFlow.lengthInput')}
 							text={`${this.props.length}`}
 							onPress={() => this.setDaysOnClick()}
 							style={styles.button}
@@ -116,13 +117,13 @@ class CreateEventPage2 extends Component {
 							/>
 						</View>
 						<FormButton
-							placeholder='Start time'
+							placeholder={I18n.t('createFlow.timeInput')}
 							text={`${this.props.startTime}`}
 							onPress={() => this.setTimeOnClick()}
 							style={styles.button}
 							/>
 						<FormButton
-							placeholder='RSVP deadline'
+							placeholder={I18n.t('createFlow.rsvpInput')}
 							text={`${this.props.deadline}`}
 							onPress={() => this.setDeadlineOnClick()}
 							style={styles.button}
@@ -133,7 +134,7 @@ class CreateEventPage2 extends Component {
 							large
 							raised
 							onPress={() => Actions.createEventPage3()}
-							title='Next'
+							title={I18n.t('next')}
 							backgroundColor='#01a836'
 							buttonStyle={styles.nextButton}
 							/>
@@ -141,34 +142,34 @@ class CreateEventPage2 extends Component {
 				</CardView>
 				<Dialog
 					ref={'numDaysDialog'}
-					title='How many days?'
+					title={I18n.t('dialogs.daysTitle')}
 					type={{ name: 'picker', options: this.days, onValueChange: (index) => {
 						const length = this.days[index]['value']
 						this.props.changeEventLength(length)
 					}}}
-					buttonText='SET'
+					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.refs.numDaysDialog.modal().close()}
 					/>
 				<Dialog
 					ref={'timeDialog'}
-					title='What time your event will start?'
+					title={I18n.t('dialogs.timeTitle')}
 					type={{ name: 'picker', options: this.hours, onValueChange: (index) => {
 						const startTime = this.hours[index]['value']
 						this.props.changeStartTime(startTime)
 					}}}
-					buttonText='SET'
+					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.refs.timeDialog.modal().close()}
 					/>
 				<Dialog
 					ref={'deadlineDialog'}
-					title='Invites ends in?'
+					title={I18n.t('dialogs.deadlineTitle')}
 					type={{ name: 'picker', options: this.deadlines, onValueChange: (index) => {
 						const deadline = this.deadlines[index]['value']
 						this.props.changeRSVPDeadline(deadline)
 					}}}
-					buttonText='SET'
+					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.refs.deadlineDialog.modal().close()}
 					/>

@@ -31,7 +31,7 @@ class EventCell extends Component {
 
 	render() {
 		const {
-			title, owner, date, approved, status, expires, invitees, isAdmin
+			title, owner, date, approved, status, expires, invitees, isAdmin,
 		} = this.props.event
 		return (
 			<LinearGradient
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 		marginLeft: 10,
 		marginRight: 10,
-	}
+	},
 })
 
 export default EventCell

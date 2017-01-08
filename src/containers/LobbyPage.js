@@ -6,8 +6,6 @@ import {
 	View,
 	StyleSheet,
 	TouchableOpacity,
-	Button,
-	Text,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
@@ -16,18 +14,18 @@ import { Icon } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
-import Dialog from '../components/Dialogs/Dialog'
 
-import type { Event, Invitee } from '../reducers/EventsReducer'
+import type { Event } from '../reducers/EventsReducer'
 
 class LobbyPage extends Component {
+	dataSource: any
 	static propTypes = {
-		events: PropTypes.array
+		events: PropTypes.array,
 	}
 
 	componentWillMount(): void {
 		const ds = new ListView.DataSource({
-			rowHasChanged: (r1, r2) => r1 !== r2
+			rowHasChanged: (r1, r2) => r1 !== r2,
 		})
 		this.dataSource = ds.cloneWithRows(this.props.events)
 	}

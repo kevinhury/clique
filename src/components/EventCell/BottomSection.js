@@ -4,6 +4,7 @@ import {
 	StyleSheet,
 	Text,
 } from 'react-native'
+import I18n from 'react-native-i18n'
 
 import type { Status } from '../../reducers/EventsReducer'
 
@@ -16,14 +17,19 @@ class BottomSection extends Component {
 
 	statusText(): string {
 		const status: Status = this.props.status
+		var state: string
 		switch (status) {
 		case 'Pending':
-			return 'Pending'
+			state = 'pending'
+			break
 		case 'Cancelled':
-			return 'Cancelled'
+			state = 'cancelled'
+			break
 		case 'Cliqued':
-			return 'Cliqued'
+			state = 'cliqued'
+			break
 		}
+		return I18n.t(state)
 	}
 
 	expirationText() {

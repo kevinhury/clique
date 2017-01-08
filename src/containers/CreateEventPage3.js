@@ -1,8 +1,11 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import { View, Text, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { Button } from 'react-native-elements'
+import I18n from 'react-native-i18n'
 import ContactList from '../components/Contacts/ContactList'
 import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
@@ -70,7 +73,7 @@ class CreateEventPage3 extends Component {
           />
           <View style={styles.rsvpSection}>
 						<View style={styles.rsvpCell}>
-							<Text>Min RSVP's:{' '}</Text>
+							<Text>{I18n.t('createFlow.minRSVP')}:{' '}</Text>
 							<Switch
 								onValueChange={(value) => {
 									if (value == false)
@@ -81,7 +84,7 @@ class CreateEventPage3 extends Component {
 							/>
 						</View>
 						<View style={styles.rsvpCell}>
-							<Text>Max RSVP's:{' '}</Text>
+							<Text>{I18n.t('createFlow.maxRSVP')}:{' '}</Text>
 							<Switch
 								onValueChange={(value) => {
 									if (value == false)
@@ -97,7 +100,7 @@ class CreateEventPage3 extends Component {
 							large
 							raised
 							onPress={() => console.log('xxx')}
-							title='Next'
+							title={I18n.t('next')}
 							backgroundColor='#01a836'
 							buttonStyle={styles.nextButton}
 						/>
@@ -105,21 +108,21 @@ class CreateEventPage3 extends Component {
         </CardView>
 				<Dialog
 					ref={'minRSVPDialog'}
-					title='By choosing this option your event will take place only with the minimum RSVPs that you define'
+					title={I18n.t('dialogs.minRSVPTitle')}
 					type={{ name: 'picker', options: this.minRSVPs, onValueChange: (index) => {
 						this.props.changeMinAtendees(index)
 					}}}
-					buttonText='SET'
+					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.onMinRSVPToggle(false)}
 				/>
 				<Dialog
 					ref={'maxRSVPDialog'}
-					title='By choosing this option you will limit your event to a maximum number of participants'
+					title={I18n.t('dialogs.maxRSVPTitle')}
 					type={{ name: 'picker', options: this.maxRSVPs, onValueChange: (index) => {
 						this.props.changeMaxAtendees(index)
 					}}}
-					buttonText='SET'
+					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.onMaxRSVPToggle(false)}
 				/>

@@ -1,5 +1,8 @@
+// @flow
+
 import React from 'react'
 import { Scene, Router, Actions } from 'react-native-router-flux'
+import I18n from 'react-native-i18n'
 
 // Screens
 import PhoneLoginPage from './containers/PhoneLoginPage'
@@ -14,17 +17,17 @@ import SetLocationPage from './containers/SetLocationPage'
 const RouterComponent = () => (
   <Router sceneStyle={{ paddingTop: 65 }}>
     <Scene key='auth'>
-      <Scene key='phoneLoginPage' component={PhoneLoginPage} title='Your Phone Number' />
-      <Scene key='phoneConfirmPage' component={PhoneConfirmPage} title='Code Confirmation' />
+      <Scene key='phoneLoginPage' component={PhoneLoginPage} title={I18n.t('navigation.phoneLoginTitle')} />
+      <Scene key='phoneConfirmPage' component={PhoneConfirmPage} title={I18n.t('navigation.phoneConfirmTitle')} />
     </Scene>
     <Scene key='main' initial>
-      <Scene key='lobbyPage' component={LobbyPage} title='Events' />
-      <Scene key='eventInfoPage' component={EventInfoPage} title='Event'/>
+      <Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
+      <Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')}/>
       <Scene key='createEvent' direction='vertical'>
-        <Scene key='createEventPage' component={CreateEventPage} title='Create Event' leftTitle='Cancel' onLeft={ () => Actions.pop()} />
-        <Scene key='createEventPage2' component={CreateEventPage2} title='Create Event' />
-        <Scene key='createEventPage3' component={CreateEventPage3} title='Create Event' />
-        <Scene key='setLocationPage' component={SetLocationPage} title='Set Location' />
+        <Scene key='createEventPage' component={CreateEventPage} title={I18n.t('navigation.createEventTitle')} leftTitle={I18n.t('cancel')} onLeft={ () => Actions.pop()} />
+        <Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
+        <Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
+        <Scene key='setLocationPage' component={SetLocationPage} title={I18n.t('navigation.setLocationTitle')} />
       </Scene>
     </Scene>
   </Router>

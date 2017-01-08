@@ -3,9 +3,10 @@ import {
 	View,
 	StyleSheet,
 	Text,
-	TouchableOpacity
+	TouchableOpacity,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import I18n from 'react-native-i18n'
 
 import type { Status, Approval } from '../../reducers/EventsReducer'
 
@@ -20,14 +21,17 @@ class TitleSection extends Component {
 	titleText(): string {
 		const status: Status = this.props.status
 		const approved: Approval = this.props.approved
+		var state: string
 		if (status === 'Pending' && approved === 'Approved')
-			return 'RSVP\'d'
+			state = 'cell.userRSVPd'
 		else if (approved === 'Approved')
-			return 'You\'re going!'
+			state = 'cell.userGoing'
 		else if (approved === 'Declined')
-			return 'Declined'
+			state = 'cell.userDeclined'
 		else
-			return 'Are you coming?'
+			state = 'cell.userNotApproved'
+
+		return I18n.t(state)
 	}
 
 	sectionColor() {
@@ -52,7 +56,7 @@ class TitleSection extends Component {
 				<Text style={styles.titleText}>{this.titleText()}</Text>
 				<TouchableOpacity onPress={this.props.onEditPress}>
 					<View style={styles.editButton}>
-						<Text style={styles.titleText}>Edit</Text>
+						<Text style={styles.titleText}>{I18n.t('edit')}</Text>
 						<Icon size={12} name='border-color' color='#fff' style={styles.editIcon} />
 					</View>
 				</TouchableOpacity>
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	titleText: {
-		color: '#fff'
+		color: '#fff',
 	},
 	editButton: {
 		margin: 2,
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
 	},
 	editIcon: {
 		marginLeft: 5,
-	}
+	},
 })
 
 export default TitleSection

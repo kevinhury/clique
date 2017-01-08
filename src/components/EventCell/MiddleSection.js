@@ -5,6 +5,7 @@ import {
 	Text,
 } from 'react-native'
 import { AtendeeBubbles, ChatButton } from '../Common'
+import I18n from 'react-native-i18n'
 
 class MiddleSection extends Component {
 	static propTypes = {
@@ -18,12 +19,12 @@ class MiddleSection extends Component {
 		if (invitees.length == 0)
 			return (
 				<View style={styles.noRSVPs}>
-					<Text>NO RSVP's at the moment</Text>
+					<Text>{I18n.t('no_rsvp')}</Text>
 				</View>
 			)
 		return (
 			<View style={styles.middleVerticalSection}>
-				<Text>Going:</Text>
+				<Text>{I18n.t('going')}:</Text>
 				<AtendeeBubbles
 					images={invitees.map(x => x.image)}
 					bubblesToShow={bubblesToShow}
@@ -36,10 +37,11 @@ class MiddleSection extends Component {
 	}
 
 	render() {
+		console.log(String.prototype.format)
 		return (
 			<View style={styles.middleSection}>
 					{this.renderBubbles()}
-				<Text style={styles.minText}>Minimum of {this.props.minAtendees} people</Text>
+				<Text style={styles.minText}>{I18n.t('min_people', { number: this.props.minAtendees})}</Text>
 			</View>
 		)
 	}

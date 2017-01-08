@@ -1,5 +1,8 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import I18n from 'react-native-i18n'
 
 class EventCreatePanel extends Component {
 	static propTypes = {
@@ -30,9 +33,11 @@ class EventCreatePanel extends Component {
 	}
 
 	render() {
+		const states = ['details', 'dates', 'invites', 'revise']
+			.map(state => I18n.t(state))
 		return (
 			<View style={[styles.panel, this.props.style]}>
-				{this.renderStates(['Details', 'Dates', 'Invites', 'Revise'], this.props.stateIndex)}
+				{this.renderStates(states, this.props.stateIndex)}
 			</View>
 		)
 	}

@@ -13,6 +13,7 @@ import {
 } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
+import I18n from 'react-native-i18n'
 
 class CreateEventPage extends Component {
 	static propTypes = {
@@ -36,27 +37,27 @@ class CreateEventPage extends Component {
 					<EventCreatePanel stateIndex={0} style={styles.statePanel} />
 					<View style={styles.inputContainer}>
 						<TextInput
-							placeholder='Type event name here...'
+							placeholder={I18n.t('createFlow.nameInput')}
 							onChangeText={this.props.changeEventName}
 							value={this.props.name}
 							style={styles.inputStyle}
 							autoFocus
 						/>
 						<TextInput
-							placeholder='Type event description...'
+							placeholder={I18n.t('createFlow.descriptionInput')}
 							onChangeText={this.props.changeEventDescription}
 							value={this.props.description}
 							style={[styles.inputStyle, { height: 100 }]}
 							multiline
 						/>
 						<TextInput
-							placeholder='Enter location name'
+							placeholder={I18n.t('createFlow.locationNameInput')}
 							onChangeText={this.props.changeLocationName}
 							value={this.props.locationName}
 							style={styles.inputStyle}
 						/>
 						<FormButton
-							placeholder='Set location'
+							placeholder={I18n.t('createFlow.locationInput')}
 							text={this.props.location}
 							onPress={() => Actions.setLocationPage()}
 							style={styles.locationButton}
@@ -67,7 +68,7 @@ class CreateEventPage extends Component {
 							large
 							raised
 							onPress={() => Actions.createEventPage2()}
-							title='Next'
+							title={I18n.t('next')}
 							backgroundColor='#01a836'
 							buttonStyle={styles.nextButton}
 						/>

@@ -24,6 +24,7 @@ class Input extends Component {
 					style={inputStyle}
 					value={value}
 					onChangeText={onChangeText}
+					underlineColorAndroid='transparent'
 				/>
 			</View>
 		)

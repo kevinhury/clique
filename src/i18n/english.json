@@ -1,0 +1,54 @@
+{
+  "edit": "Edit",
+  "createdBy": "Created by",
+  "no_rsvp": "NO RSVP's at the moment",
+  "going": "Going",
+  "min_people": "Minimum of {{number}} people",
+  "pending": "Pending",
+  "cancelled": "Cancelled",
+  "cliqued": "Cliqued",
+  "next": "Next",
+  "set": "SET",
+  "cancel": "Cancel",
+  "details": "Details",
+  "dates": "Dates",
+  "invites": "Invites",
+  "revise": "Revise",
+  "cell":
+  {
+    "userGoing": "You're going!",
+    "userDeclined": "Declined",
+    "userNotApproved": "Are you coming?",
+    "userRSVPd": "RSVP'd"
+  },
+  "createFlow":
+  {
+    "nameInput": "Type event name here...",
+    "descriptionInput": "Type event description...",
+    "locationNameInput": "Enter location name",
+    "locationInput": "Set location",
+    "addressInput": "Type street name here...",
+    "lengthInput": "Event length (days)",
+    "timeInput": "Start time",
+    "rsvpInput": "RSVP deadline",
+    "minRSVP": "Min RSVP's",
+    "maxRSVP": "Max RSVP's"
+  },
+  "dialogs":
+  {
+    "daysTitle": "How many days?",
+    "timeTitle": "What time your event will start?",
+    "deadlineTitle": "Invites ends in?",
+    "minRSVPTitle": "By choosing this option your event will take place only with the minimum RSVPs that you define",
+    "maxRSVPTitle": "By choosing this option you will limit your event to a maximum number of participants"
+  },
+  "navigation":
+  {
+    "phoneLoginTitle": "Your Phone Number",
+    "phoneConfirmTitle": "Code Confirmation",
+    "eventsTitle": "Events",
+    "eventTitle": "Event",
+    "createEventTitle": "Create Event",
+    "setLocationTitle": "Set Location"
+  }
+}

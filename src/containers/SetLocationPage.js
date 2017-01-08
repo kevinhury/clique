@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import MapView from 'react-native-maps'
+import I18n from 'react-native-i18n'
 import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
 import {
@@ -33,7 +34,7 @@ class SetLocationPage extends Component {
 					/>
 					<View style={styles.inputContainer}>
 						<TextInput
-							placeholder='Type street name here...'
+							placeholder={I18n.t('createFlow.addressInput')}
 							onChangeText={() => {}}
 							value={''}
 							style={styles.input}
