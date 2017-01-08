@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
 	},
 	locationText: {
 		textDecorationLine: 'underline',
-		color: '#50A5F9'
-	}
+		color: '#50A5F9',
+	},
 })
 
 export default InfoSection

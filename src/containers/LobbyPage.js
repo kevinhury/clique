@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		height: 1,
 		margin: 5,
-	}
+	},
 })
 
 const mapStateToProps = state => {

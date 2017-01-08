@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import { Button } from 'react-native-elements'
+import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
 import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
@@ -18,14 +19,17 @@ import Dialog from '../components/Dialogs/Dialog'
 
 class EventInfoPage extends Component {
 	static propTypes = {
+		createFlow: PropTypes.bool,
 		event: PropTypes.object,
 	}
 
 	renderBottomButton() {
+		if (!this.props.createFlow)
+			return <View />
 		return (
       <Button
         raised
-        title='INVITE & FINISH'
+        title={I18n.t('createFlow.finishSendInvites')}
         borderRadius={30}
         fontSize={20}
         backgroundColor='#289FFF'
@@ -36,7 +40,7 @@ class EventInfoPage extends Component {
 	minAtendeesText() {
 		const { minAtendees } = this.props.event
 		if (minAtendees == 0)
-			return (<Text>Not limited</Text>)
+			return (<Text>{I18n.t('notLimited')}</Text>)
 		return (
 			<Text style={styles.greenText}>{minAtendees}</Text>
 		)
@@ -45,7 +49,7 @@ class EventInfoPage extends Component {
 	maxAtendeesText() {
 		const { limitedRSVP } = this.props.event
 		if (limitedRSVP == 0)
-			return (<Text>Not limited</Text>)
+			return (<Text>{I18n.t('notLimited')}</Text>)
 		return (
 			<Text style={styles.greenText}>{limitedRSVP} / {limitedRSVP}</Text>
 		)
@@ -68,7 +72,7 @@ class EventInfoPage extends Component {
 	render() {
 		const {
 			title, description, location, approved, status, owner,
-			date, isAdmin, invitees
+			date, isAdmin, invitees,
 		} = this.props.event
 		return (
       <LinearGradient
@@ -90,14 +94,15 @@ class EventInfoPage extends Component {
             <Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
           </View>
           <Separator style={styles.separator} />
-          <InfoSection date={date.date} time={date.time} location={location} />
+          <InfoSection date={date.toLocaleDateString()} time={date.toLocaleTimeString()} location={location} />
           <Separator style={styles.separator} />
           <View style={styles.atendeesSection}>
-            <Text>People going:</Text>
+            <Text>{I18n.t('peopleGoing')}:</Text>
             <TouchableWithoutFeedback onPress={() => this.inviteesDialogToggle(true)}>
               <View style={styles.goingSection}>
                 <AtendeeBubbles images={invitees.map(x => x.image)} bubblesToShow={2} />
                 <ChatButton
+									title={I18n.t('chat')}
                   onPress={() => console.log('press')}
                 />
               </View>
@@ -105,24 +110,24 @@ class EventInfoPage extends Component {
           </View>
           <Separator style={styles.separator} />
           <View style={styles.numAtendeesSection}>
-            <Text>Minimum of RSVP's: {this.minAtendeesText()}</Text>
-            <Text>Maximum of RSVP's: {this.maxAtendeesText()}</Text>
+            <Text>{I18n.t('minRSVPs')}: {this.minAtendeesText()}</Text>
+            <Text>{I18n.t('maxRSVPs')}: {this.maxAtendeesText()}</Text>
           </View>
           <Separator style={styles.separator} />
           {this.renderBottomButton()}
         </CardView>
         <Dialog
           ref={'inviteesDialog'}
-          title='See you there!'
-          type={{ name:'invitees', invitees: this.props.event.invitees }}
+          title={I18n.t('dialogs.inviteesTitle')}
+          type={{ name: 'invitees', invitees: this.props.event.invitees }}
           buttonText='GREAT!'
           modalStyle={{ height: 280 }}
           buttonCallback={() => this.inviteesDialogToggle(false)}
         />
         <Dialog
 					ref={'cancelDialog'}
-					title='Wait a second...'
-					type={{ name: 'text', text: 'Are you sure you want to cancel this event?' }}
+					title={I18n.t('dialogs.cancelTitle')}
+					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
 					buttonText='YES'
 				/>
       </LinearGradient>

@@ -30,6 +30,7 @@ class MiddleSection extends Component {
 					bubblesToShow={bubblesToShow}
 				/>
 				<ChatButton
+					title={I18n.t('chat')}
 					onPress={() => console.log('press')}
 				/>
 			</View>

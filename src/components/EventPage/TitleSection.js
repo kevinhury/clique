@@ -8,8 +8,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import { Button } from 'react-native-elements'
-
-import type { Status, Approved } from '../../reducers/EventsReducer'
+import I18n from 'react-native-i18n'
 
 class TitleSection extends Component {
 	static propTypes = {
@@ -24,19 +23,29 @@ class TitleSection extends Component {
 	}
 
 	eventStatus(): string {
-		return this.props.status
+		const status = this.props.status
+		var state: string
+		if (status === 'Pending')
+			state = 'pending'
+		else if (status === 'Cancelled')
+			state = 'cancelled'
+		else if (status === 'Cliqued')
+			state = 'cliqued'
+		return I18n.t(state)
 	}
 
 	userStatus(): string {
 		const { approved, status } = this.props
+		var state: string
 		if (approved === 'Approved' && status === 'Cliqued')
-			return 'Going'
+			state = 'going'
 		else if (approved === 'Approved')
-			return 'RSVP\'d'
+			state = 'cell.userRSVPd'
 		else if (approved === 'Pending')
-			return 'Pending'
+			state = 'pending'
 		else
-			return 'Declined'
+			state = 'cell.userDeclined'
+		return I18n.t(state)
 	}
 
 	renderCancelButton() {
@@ -45,7 +54,7 @@ class TitleSection extends Component {
 		}
 		return (
 			<Button
-				title={'Cancel'}
+				title={I18n.t('cancel')}
 				raised
 				buttonStyle={styles.button}
 				backgroundColor='#b04549'
@@ -74,7 +83,7 @@ class TitleSection extends Component {
           />
         </View>
         <Text style={styles.eventStatus}>
-          Event status: {' '}
+					{I18n.t('eventStatus')}: {' '}
           <Text style={[styles.eventStatus, {fontWeight: 'bold'}]}>
             {this.eventStatus()}
           </Text>
@@ -102,7 +111,7 @@ const styles = StyleSheet.create({
 	creatorText: {
 		color: 'white',
 		marginBottom: 5,
-		fontSize: 12
+		fontSize: 12,
 	},
 	buttonContainer: {
 		flexDirection: 'row',
@@ -122,12 +131,12 @@ const styles = StyleSheet.create({
 		borderRadius: 22,
 		borderColor: '#fff',
 		borderWidth: 1,
-		alignSelf: 'center'
+		alignSelf: 'center',
 	},
 	eventStatus: {
 		color: 'white',
 		marginTop: 5,
-	}
+	},
 })
 
 export default TitleSection

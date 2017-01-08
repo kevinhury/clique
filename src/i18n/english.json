@@ -4,12 +4,18 @@
   "no_rsvp": "NO RSVP's at the moment",
   "going": "Going",
   "min_people": "Minimum of {{number}} people",
+  "minRSVPs": "Minimum of RSVP's",
+  "maxRSVPs": "Maximum of RSVP's",
   "pending": "Pending",
   "cancelled": "Cancelled",
   "cliqued": "Cliqued",
+  "notLimited": "Not limited",
+  "peopleGoing": "People going",
+  "eventStatus": "Event status",
   "next": "Next",
   "set": "SET",
   "cancel": "Cancel",
+  "chat": "Chat",
   "details": "Details",
   "dates": "Dates",
   "invites": "Invites",
@@ -32,7 +38,8 @@
     "timeInput": "Start time",
     "rsvpInput": "RSVP deadline",
     "minRSVP": "Min RSVP's",
-    "maxRSVP": "Max RSVP's"
+    "maxRSVP": "Max RSVP's",
+    "finishSendInvites": "Finish & Send Invites"
   },
   "dialogs":
   {
@@ -40,7 +47,10 @@
     "timeTitle": "What time your event will start?",
     "deadlineTitle": "Invites ends in?",
     "minRSVPTitle": "By choosing this option your event will take place only with the minimum RSVPs that you define",
-    "maxRSVPTitle": "By choosing this option you will limit your event to a maximum number of participants"
+    "maxRSVPTitle": "By choosing this option you will limit your event to a maximum number of participants",
+    "inviteesTitle": "See you there!",
+    "cancelTitle": "Wait a second...",
+    "cancelText": "Are you sure you want to cancel this event?"
   },
   "navigation":
   {
