@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
 		marginLeft: 5,
 		marginRight: 5,
 		margin: 8,
-	}
+	},
 })
 
 const mapStateToProps = state => {
