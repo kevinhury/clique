@@ -106,7 +106,7 @@ android {
         applicationId "com.clique.cliqueapp"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 3
+        versionCode 4
         versionName "1.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
