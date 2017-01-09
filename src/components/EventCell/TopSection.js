@@ -7,12 +7,13 @@ import {
   Text,
 } from 'react-native'
 import I18n from 'react-native-i18n'
+import moment from 'moment'
 
 class TopSection extends Component {
 	static propTypes = {
 		title: PropTypes.string.isRequired,
 		owner: PropTypes.string.isRequired,
-		date: PropTypes.string.isRequired,
+		date: PropTypes.instanceOf(Date),
 	}
 
 	render() {
@@ -23,7 +24,7 @@ class TopSection extends Component {
           <Text style={styles.nameText}>{title}</Text>
         </View>
         <Text style={styles.creatorText}>{I18n.t('createdBy')} {owner}</Text>
-        <Text style={styles.dateText}>{date}</Text>
+        <Text style={styles.dateText}>{moment(date).local().format('MMMM Do, H:MM')}</Text>
       </View>
 		)
 	}

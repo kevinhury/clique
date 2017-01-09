@@ -5,6 +5,7 @@ import {
 	Text,
 } from 'react-native'
 import I18n from 'react-native-i18n'
+import moment from 'moment'
 
 import type { Status } from '../../reducers/EventsReducer'
 
@@ -33,11 +34,12 @@ class BottomSection extends Component {
 	}
 
 	expirationText() {
-		if (this.props.status === 'Cliqued') {
+		const { expires, status } = this.props
+		if (status === 'Cliqued') {
 			return (<View />)
 		}
 		return (
-			<Text>Invite expires on: {this.props.expires.toString()}</Text>
+			<Text>{I18n.t('inviteExpiresOn')}: {moment(expires).local().format('MMMM Do, H:MM')}</Text>
 		)
 	}
 

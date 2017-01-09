@@ -45,7 +45,7 @@ class EventCell extends Component {
 					onEditPress={() => this.props.onEditPress(this.props.event)}
 				/>
 				<View style={styles.container}>
-					<TopSection title={title} owner={owner} date={date.getTime() + ' ' + date.getTime()} />
+					<TopSection title={title} owner={owner} date={date} />
 					<View style={styles.separator} />
 					<MiddleSection
 						invitees={invitees}
