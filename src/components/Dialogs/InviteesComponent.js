@@ -1,10 +1,13 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import {
 	View,
 	Text,
-	StyleSheet
+	StyleSheet,
 } from 'react-native'
 import { AtendeeBubbles } from '../Common'
+import I18n from 'react-native-i18n'
 
 class InviteesComponent extends Component {
 	static propTypes = {
@@ -14,19 +17,19 @@ class InviteesComponent extends Component {
 		const invitees = this.props.invitees
 		return (
 			<View style={styles.container}>
-				<Text style={styles.text}>Going:</Text>
+				<Text style={styles.text}>{I18n.t('going')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
 					images={invitees.map(x => x.image)}
 					bubblesToShow={2}
 				/>
-				<Text style={styles.text}>Pending:</Text>
+				<Text style={styles.text}>{I18n.t('pending')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
 					images={invitees.map(x => x.image)}
 					bubblesToShow={2}
 				/>
-				<Text style={styles.text}>Not going:</Text>
+				<Text style={styles.text}>{I18n.t('notGoing')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
 					images={invitees.map(x => x.image)}
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
 	bubbles: {
 		paddingLeft: 10,
 		marginBottom: 10,
-	}
+	},
 })
 
 export default InviteesComponent

@@ -69,9 +69,16 @@ class EventInfoPage extends Component {
       this.refs.inviteesDialog.modal().close()
 	}
 
+	mapDialogToggle(state: boolean) {
+		if (state)
+			this.refs.mapDialog.modal().open()
+		else
+			this.refs.mapDialog.modal().close()
+	}
+
 	render() {
 		const {
-			title, description, location, approved, status, owner,
+			title, description, location, locationName, approved, status, owner,
 			date, isAdmin, invitees,
 		} = this.props.event
 		return (
@@ -94,7 +101,12 @@ class EventInfoPage extends Component {
             <Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
           </View>
           <Separator style={styles.separator} />
-          <InfoSection date={date.toLocaleDateString()} time={date.toLocaleTimeString()} location={location} />
+          <InfoSection
+						date={date.toLocaleDateString()}
+						time={date.toLocaleTimeString()}
+						location={`${locationName} - ${location}`}
+						onLocationPress={() => this.mapDialogToggle(true)}
+						/>
           <Separator style={styles.separator} />
           <View style={styles.atendeesSection}>
             <Text>{I18n.t('peopleGoing')}:</Text>
@@ -120,7 +132,7 @@ class EventInfoPage extends Component {
           ref={'inviteesDialog'}
           title={I18n.t('dialogs.inviteesTitle')}
           type={{ name: 'invitees', invitees: this.props.event.invitees }}
-          buttonText='GREAT!'
+          buttonText={I18n.t('great!')}
           modalStyle={{ height: 280 }}
           buttonCallback={() => this.inviteesDialogToggle(false)}
         />
@@ -128,8 +140,16 @@ class EventInfoPage extends Component {
 					ref={'cancelDialog'}
 					title={I18n.t('dialogs.cancelTitle')}
 					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
-					buttonText='YES'
+					buttonText={I18n.t('yes')}
+					buttonCallback={() => {}}
 				/>
+        <Dialog
+					ref={'mapDialog'}
+					title={this.props.event.location}
+					type={{ name: 'map', locationName: '', description: '' }}
+					buttonText={I18n.t('takeMeThere')}
+					buttonCallback={() => {}}
+				/>				
       </LinearGradient>
 		)
 	}
@@ -144,7 +164,7 @@ const styles = StyleSheet.create({
 		paddingRight: 20,
 	},
 	descriptionText: {
-		textAlign: 'center'
+		textAlign: 'center',
 	},
 	separator: {
 		backgroundColor: '#F1CE81',
@@ -167,7 +187,7 @@ const styles = StyleSheet.create({
 	greenText: {
 		color: '#01a836',
 		fontWeight: 'bold',
-	}
+	},
 })
 
 const mapStateToProps = state => {

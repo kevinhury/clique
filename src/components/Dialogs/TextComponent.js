@@ -1,8 +1,10 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
 import {
 	View,
 	Text,
-	StyleSheet
+	StyleSheet,
 } from 'react-native'
 
 

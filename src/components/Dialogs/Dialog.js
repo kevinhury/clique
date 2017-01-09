@@ -10,6 +10,7 @@ import { Button } from 'react-native-elements'
 import TextComponent from './TextComponent'
 import InviteesComponent from './InviteesComponent'
 import PickerComponent from './PickerComponent'
+import MapComponent from './MapComponent'
 
 class Dialog extends Component {
 	static propTypes = {
@@ -57,6 +58,14 @@ class Dialog extends Component {
 				<PickerComponent
 					options={this.props.type.options}
 					onValueChange={this.props.type.onValueChange}
+				/>
+			)
+		case 'map':
+			return (
+				<MapComponent
+					location={this.props.type.location}
+					name={this.props.type.locationName}
+					description={this.props.type.description}
 				/>
 			)
 		default:

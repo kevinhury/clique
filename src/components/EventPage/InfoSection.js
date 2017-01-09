@@ -14,6 +14,7 @@ class InfoSection extends Component {
 		date: PropTypes.string.isRequired,
 		time: PropTypes.string.isRequired,
 		location: PropTypes.string.isRequired,
+		onLocationPress: PropTypes.func.isRequired,
 	}
 
 	render() {
@@ -30,7 +31,9 @@ class InfoSection extends Component {
         </View>
         <View style={styles.infoRow}>
           <Icon name='ios-pin-outline' size={20} style={styles.icon} />
-          <TouchableOpacity>
+          <TouchableOpacity
+						onPress={this.props.onLocationPress}
+					>
             <Text style={styles.locationText}>{location}</Text>
           </TouchableOpacity>
         </View>
