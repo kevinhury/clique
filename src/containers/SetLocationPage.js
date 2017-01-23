@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { View, StyleSheet, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
@@ -12,8 +12,9 @@ import {
 } from '../actions'
 
 class SetLocationPage extends Component {
-	static propTypes = {
 
+	onSetClick() {
+		Actions.pop()
 	}
 
 	render() {
@@ -21,7 +22,7 @@ class SetLocationPage extends Component {
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.page}
-			>
+				>
 				<CardView style={styles.card}>
 					<MapView
 						style={styles.map}
@@ -31,16 +32,24 @@ class SetLocationPage extends Component {
 							latitudeDelta: 0.015,
 							longitudeDelta: 0.0121,
 						}}
-					/>
+						/>
 					<View style={styles.inputContainer}>
 						<TextInput
 							placeholder={I18n.t('createFlow.addressInput')}
-							onChangeText={() => {}}
+							onChangeText={() => { } }
 							value={''}
 							style={styles.input}
 							autoFocus
-						/>
+							/>
 					</View>
+					<Button
+						large
+						raised
+						onPress={this.onSetClick.bind(this)}
+						title={I18n.t('set')}
+						backgroundColor='#01a836'
+						buttonStyle={styles.setButton}
+						/>
 				</CardView>
 			</LinearGradient>
 		)
@@ -76,6 +85,17 @@ const styles = StyleSheet.create({
 		margin: 10,
 		backgroundColor: '#fff',
 	},
+	setButton: {
+		height: 50,
+		borderRadius: 15,
+		bottom: 0,
+	},
 })
 
-export default SetLocationPage
+const mapStateToProps = state => {
+	return state
+}
+
+export default connect(mapStateToProps, {
+	
+})(SetLocationPage)

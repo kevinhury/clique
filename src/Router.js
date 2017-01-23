@@ -19,7 +19,7 @@ import SetLocationPage from './containers/SetLocationPage'
 // TODO: change padding top to Navigator.NavigationBar.Styles.General.TotalNavHeight
 const RouterComponent = () => (
 	<View style={styles.background}>
-		<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title}>
+		<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton}>
 			<Scene key='auth'>
 				<Scene key='phoneLoginPage' component={PhoneLoginPage} title={I18n.t('navigation.phoneLoginTitle')} />
 				<Scene key='phoneConfirmPage' component={PhoneConfirmPage} title={I18n.t('navigation.phoneConfirmTitle')} />
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: '#fff',
+	},
+	leftButton: {
+		tintColor: '#fff',
 	},
 })
 

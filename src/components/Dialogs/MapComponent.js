@@ -42,6 +42,7 @@ class MapComponent extends Component {
 		return (
 			<View style={styles.container}>
 				<MapView
+					style={styles.map}
 					region={this.state.region}
 					onRegionChange={this.onRegionChange.bind(this)}
 				>
@@ -62,6 +63,9 @@ MapComponent.defaultProps
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	map: {
+		...StyleSheet.absoluteFillObject,
 	},
 })
 

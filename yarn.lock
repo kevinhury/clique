@@ -3663,11 +3663,7 @@ mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@2.x.x, moment@>=2.10.3:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
-
-moment@^2.17.1:
+moment@2.x.x, moment@>=2.10.3, moment@^2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
@@ -4136,9 +4132,9 @@ react-native-code-push@^1.16.1-beta:
     inquirer "1.1.2"
     plist "1.2.0"
 
-react-native-contacts@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-0.5.2.tgz#04de37e3ee5db10cb5f61572b31ce18f20339bbb"
+react-native-contacts@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-0.7.1.tgz#8def335dc6c688987d2a2e2f9e7207e47acb3ea6"
 
 react-native-elements@^0.7.0:
   version "0.7.0"
@@ -4172,6 +4168,10 @@ react-native-maps@^0.12.2:
 react-native-modalbox@^1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/react-native-modalbox/-/react-native-modalbox-1.3.8.tgz#dc83bf90ded653288842a21153b5fca1af82e355"
+
+react-native-permissions@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-0.2.5.tgz#81c3adbb09d9edb6ae320d458ca9c021e03a5aba"
 
 react-native-router-flux@^3.37.0:
   version "3.37.0"

@@ -49,6 +49,12 @@
         </dict>
       </dict>
     </dict>
+    <key>CodePushDeploymentKey</key>
+    <string>deployment-key-here</string>
+    <key>NSContactsUsageDescription</key>
+    <string/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string/>
     <key>UIAppFonts</key>
     <array>
       <string>Entypo.ttf</string>
@@ -61,7 +67,5 @@
       <string>SimpleLineIcons.ttf</string>
       <string>Zocial.ttf</string>
     </array>
-    <key>CodePushDeploymentKey</key>
-    <string>4_Tpb3vKfVV_LGe3ZzZx8__7ZT3uV1zu0tPrG</string>
   </dict>
 </plist>

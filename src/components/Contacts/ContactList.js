@@ -99,13 +99,13 @@ class ContactList extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-
+		
 	},
 	separator: {
 		flex: 1,
 		height: StyleSheet.hairlineWidth,
 		backgroundColor: '#8E8E8E',
-	}
+	},
 })
 
 export default ContactList

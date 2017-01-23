@@ -1,53 +1,39 @@
 import {
-	CONTACTS_PERMISSION_REQUEST,
 	CONTACTS_PERMISSION_SUCCESS,
 	CONTACTS_PERMISSION_DENIED,
+	CONTACTS_LIST_FETCHED,
 } from '../actions/types'
 
 export type Contact = {
-	recordId: number,
+	recordID: number,
 	name: string,
 	phone: string,
 	thumnbail: string,
 }
 
+export type State = {
+	contacts: Contact[],
+	permission: Permission,
+}
 
-const INITIAL_STATE: Contact[] = [
-	{
-		recordId: 1,
-		name: 'Carl Jung',
-		phone: '(555) 555-5555',
-		thumbnail: 'https://static1.squarespace.com/static/555b6f0ae4b0fa93f36cc3df/555e469ae4b08ef1ebb4c65e/56a7c77457eb8db1213317bd/1454346716565/thumbnail.png?format=1000w',
-	},
-	{
-		recordId: 2,
-		name: 'John Young',
-		phone: '(444) 444-4444',
-		thumbnail: 'https://static1.squarespace.com/static/555b6f0ae4b0fa93f36cc3df/555e469ae4b08ef1ebb4c65e/56a7c77457eb8db1213317bd/1454346716565/thumbnail.png?format=1000w',
-	},
-	{
-		recordId: 3,
-		name: 'Scooby Doo',
-		phone: '(333) 333-3333',
-		thumbnail: 'https://static1.squarespace.com/static/555b6f0ae4b0fa93f36cc3df/555e469ae4b08ef1ebb4c65e/56a7c77457eb8db1213317bd/1454346716565/thumbnail.png?format=1000w',
-	},
-	{
-		recordId: 4,
-		name: 'Moshiko Balagan',
-		phone: '(222) 222-2222',
-		thumbnail: 'https://static1.squarespace.com/static/555b6f0ae4b0fa93f36cc3df/555e469ae4b08ef1ebb4c65e/56a7c77457eb8db1213317bd/1454346716565/thumbnail.png?format=1000w',
-	},
-]
+export type Permission = 
+		'undetermined'
+	| 'authorized'
+	| 'denied'
 
+const INITIAL_STATE: State = {
+	contacts: [],
+	permission: 'undetermined',
+}
 
 export const ContactsReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-	case CONTACTS_PERMISSION_REQUEST:
-		break
 	case CONTACTS_PERMISSION_SUCCESS:
-		break
+		return { ...state, permission: 'authorized' }
 	case CONTACTS_PERMISSION_DENIED:
-		break
+		return { ...state, permission: 'denied' }
+	case CONTACTS_LIST_FETCHED:
+		return { ...state, contacts: action.contacts }
 	default:
 		return state
 	}

@@ -4,13 +4,14 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.zyu.ReactNativeWheelPickerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.microsoft.codepush.react.CodePush;
-import com.airbnb.android.react.maps.MapsPackage;
-import com.rt2zz.reactnativecontacts.ReactNativeContacts;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -38,20 +39,21 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeWheelPickerPackage(),
-            new ReactNativeI18n(),
-            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
-            new MapsPackage(),
             new ReactNativeContacts(),
+            new ReactNativeWheelPickerPackage(),
+            new VectorIconsPackage(),
+            new ReactNativePermissionsPackage(),
+            new MapsPackage(),
             new LinearGradientPackage(),
-            new VectorIconsPackage()
+            new ReactNativeI18n(),
+            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
       );
     }
   };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
-      return mReactNativeHost;
+    return mReactNativeHost;
   }
 
   @Override

@@ -1,6 +1,4 @@
 <resources>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">WqPqwEctFBfOLRCoV0lQpDbo3xhbV1zu0tPrG</string>
-
-
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey"></string>
     <string name="app_name">clique</string>
 </resources>
