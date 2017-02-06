@@ -4,14 +4,13 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.zyu.ReactNativeWheelPickerPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
-import com.airbnb.android.react.maps.MapsPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.microsoft.codepush.react.CodePush;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -31,7 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     }
 
     @Override
-    protected boolean getUseDeveloperSupport() {
+    public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
 
@@ -39,14 +38,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeContacts(),
             new ReactNativeWheelPickerPackage(),
-            new VectorIconsPackage(),
             new ReactNativePermissionsPackage(),
-            new MapsPackage(),
-            new LinearGradientPackage(),
             new ReactNativeI18n(),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
+            new ReactNativeContacts(),
+            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
+            new LinearGradientPackage(),
+            new VectorIconsPackage()
       );
     }
   };

@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import MapView from 'react-native-maps'
+// import MapView from 'react-native-maps'
 import I18n from 'react-native-i18n'
 import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
@@ -24,7 +24,7 @@ class SetLocationPage extends Component {
 				style={styles.page}
 				>
 				<CardView style={styles.card}>
-					<MapView
+					{ /** <MapView
 						style={styles.map}
 						region={{
 							latitude: 37.78825,
@@ -32,7 +32,7 @@ class SetLocationPage extends Component {
 							latitudeDelta: 0.015,
 							longitudeDelta: 0.0121,
 						}}
-						/>
+						/> */}
 					<View style={styles.inputContainer}>
 						<TextInput
 							placeholder={I18n.t('createFlow.addressInput')}

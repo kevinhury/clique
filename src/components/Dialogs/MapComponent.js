@@ -5,7 +5,7 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native'
-import MapView from 'react-native-maps'
+// import MapView from 'react-native-maps'
 
 type Region = {
 	latitude: number,
@@ -41,19 +41,19 @@ class MapComponent extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<MapView
+				{/*<MapView
 					style={styles.map}
 					region={this.state.region}
 					onRegionChange={this.onRegionChange.bind(this)}
 				>
-				{/*
+				
 					<MapView.Marker
 						coordinate={this.state.location}
 						title={this.props.name}
 						description={this.props.description}
 					/>
-					*/}
 				</MapView>
+				*/}
 			</View>
 		)
 	}
