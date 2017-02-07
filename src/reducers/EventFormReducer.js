@@ -103,7 +103,12 @@ export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 		return { ...state, maxAtendees: action.atendees }
 	}
 	case LOCATION_CURRENT_USER_FETCHED: {
-		const location = { ...state.location, location: action.location }
+		const location = { 
+			...state.location,
+			latitude: action.location.latitude,
+			longitude: action.location.longitude,
+		}
+		console.log(location)
 		return { ...state, location }
 	}
 	default:

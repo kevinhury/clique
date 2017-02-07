@@ -16,10 +16,7 @@ class SetLocationPage extends Component {
 	props: any
 
 	componentWillMount() {
-		if (this.props.permission === 'authorized')
-			this.props.requestUserLocation()
-		else
-			this.props.requestLocationPermissions()
+		this.props.requestUserLocation()
 	}
 
 	onSetClick() {
@@ -34,7 +31,11 @@ class SetLocationPage extends Component {
 		return (
 			<MapView
 				style={styles.map}
-				region={this.props.location}
+				region={{
+					...this.props.location,
+					latitudeDelta: 0.0922,
+					longitudeDelta: 0.0421,
+				}}
 			/>
 		)
 	}

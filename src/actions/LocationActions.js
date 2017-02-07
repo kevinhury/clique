@@ -28,6 +28,9 @@ export const requestUserLocation = () => {
 			position => {
 				const location = { latitude: position.coords.latitude, longitude: position.coords.longitude }
 				dispatch({ type: LOCATION_CURRENT_USER_FETCHED, location })
+			},
+			() => {
+				dispatch({ type: LOCATION_PERMISSION_DENIED })
 			}
 		)
 	}
