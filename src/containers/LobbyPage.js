@@ -6,6 +6,7 @@ import {
 	View,
 	StyleSheet,
 	TouchableOpacity,
+	RefreshControl,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
@@ -14,20 +15,31 @@ import { Icon } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
+import { requestEvents } from '../actions'
 
 import type { Event } from '../reducers/EventsReducer'
 
 class LobbyPage extends Component {
 	dataSource: any
 	static propTypes = {
-		events: PropTypes.array,
+		events: PropTypes.object,
+		requestEvents: PropTypes.func,
 	}
 
 	componentWillMount(): void {
+		this.updateDataSource(this.props)
+		this.onRefresh()
+	}
+
+	componentWillReceiveProps(nextProps: any): void {
+		this.updateDataSource(nextProps)
+	}
+
+	updateDataSource(props: any): void {
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2,
 		})
-		this.dataSource = ds.cloneWithRows(this.props.events)
+		this.dataSource = ds.cloneWithRows(props.events.list)
 	}
 
 	onEditPress(event: Event): void {
@@ -36,6 +48,10 @@ class LobbyPage extends Component {
 
 	onChatPress(event: Event): void {
 		console.log(event)
+	}
+
+	onRefresh(): void {
+		this.props.requestEvents()
 	}
 
 	renderRow(event: Event) {
@@ -63,6 +79,7 @@ class LobbyPage extends Component {
 	}
 
 	render() {
+		console.log(`loading: ${this.props.events.loading}`)
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
@@ -70,11 +87,17 @@ class LobbyPage extends Component {
 				>
 				<CardView>
 					<ListView
+						refreshControl={
+							<RefreshControl
+								refreshing={this.props.events.loading}
+								onRefresh={this.onRefresh.bind(this)}
+							/>
+						}
 						enableEmptySections
 						dataSource={this.dataSource}
 						renderHeader={this.renderCalendar.bind(this)}
 						renderRow={this.renderRow.bind(this)}
-						/>
+					/>
 					<Icon
 						type='ionicon'
 						name='md-add'
@@ -111,6 +134,10 @@ const styles = StyleSheet.create({
 		height: 1,
 		margin: 5,
 	},
+	indicator: {
+		alignSelf: 'center',
+		justifyContent: 'center',
+	},
 })
 
 const mapStateToProps = state => {
@@ -118,4 +145,6 @@ const mapStateToProps = state => {
 	return { events }
 }
 
-export default connect(mapStateToProps, {})(LobbyPage)
+export default connect(mapStateToProps, {
+	requestEvents,
+})(LobbyPage)

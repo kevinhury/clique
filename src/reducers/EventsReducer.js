@@ -1,6 +1,10 @@
 // @flow
 
 import type { Action } from '../actions/types'
+import {
+	USER_EVENTS_REQUEST,
+	USER_EVENTS_REQUEST_SUCCESS,
+} from '../actions/types'
 
 export type Status =
 		'Pending'
@@ -35,172 +39,24 @@ export type Event = {
 	invitees: Array<Invitee>,
 }
 
-const mock_invitee: Invitee = {
-	name: '',
-	image: 'https://facebook.github.io/react/img/logo_og.png',
-	approved: true,
-	admin: false,
+export type State = {
+	loading: boolean,
+	error: boolean,
+	list: Array<Event>,
 }
 
-export const INITIAL_STATE: Array<Event> = [
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Pending',
-		status: 'Pending',
-		owner: 'You',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [
-			{ ...mock_invitee, name: 'Moshe Abutbul' },
-			{ ...mock_invitee, name: 'Moshiko Balagan' },
-			{ ...mock_invitee, name: 'Kishkush Balabush', approved: false },
-		],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Declined',
-		status: 'Cliqued',
-		owner: 'You',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: true,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Approved',
-		status: 'Cliqued',
-		owner: 'You',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: true,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Approved',
-		status: 'Cancelled',
-		owner: 'You',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: true,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Approved',
-		status: 'Cancelled',
-		owner: 'him',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Declined',
-		status: 'Cliqued',
-		owner: 'him',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Declined',
-		status: 'Cliqued',
-		owner: 'him',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Declined',
-		status: 'Pending',
-		owner: 'him',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
-		'title': 'FIFA 17 SESSION',
-		'description': 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		'approved': 'Approved',
-		'status': 'Cliqued',
-		'owner': 'him',
-		date: new Date('2011-04-11T10:20:30Z'),
-		'isAdmin': false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		'minAtendees': 999,
-		'limitedRSVP': 0,
-		'invitees': [],
-	},
-	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Approved',
-		status: 'Pending',
-		owner: 'him',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-]
+export const INITIAL_STATE: State = {
+	loading: false,
+	error: false,
+	list: [],
+}
 
-export const EventsReducer = (state: Array<Event> = INITIAL_STATE, action: Action): Array<Event> => {
+export const EventsReducer = (state: State = INITIAL_STATE, action: Action): State => {
 	switch (action.type) {
+	case USER_EVENTS_REQUEST:
+		return { ...state, loading: true, error: false }
+	case USER_EVENTS_REQUEST_SUCCESS:
+		return { ...state, list: action.list, loading: false, error: false }
 	default:
 		return state
 	}
