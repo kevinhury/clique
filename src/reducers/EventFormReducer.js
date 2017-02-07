@@ -13,17 +13,23 @@ import {
 	FORM_CHANGE_RSVP_DEADLINE,
 	FORM_CHANGE_MIN_ATENDEES,
 	FORM_CHANGE_MAX_ATENDEES,
+	LOCATION_CURRENT_USER_FETCHED,
 } from '../actions/types'
 
 export type Contact = {
 
 }
 
+export type Location = {
+	latitude: number,
+	longitude: number,
+}
+
 export type State = {
 	name: string,
 	description: string,
 	locationName: string,
-	location: string,
+	location: Location,
 	dates: Array<Date>,
 	minAtendees: number,
 	maxAtendees: number,
@@ -37,7 +43,7 @@ export const INITIAL_STATE: State = {
 	name: '',
 	description: '',
 	locationName: '',
-	location: '',
+	location: {},
 	dates: [],
 	minAtendees: 0,
 	maxAtendees: 0,
@@ -95,6 +101,10 @@ export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 	}
 	case FORM_CHANGE_MAX_ATENDEES: {
 		return { ...state, maxAtendees: action.atendees }
+	}
+	case LOCATION_CURRENT_USER_FETCHED: {
+		const location = { ...state.location, location: action.location }
+		return { ...state, location }
 	}
 	default:
 		return state

@@ -73,6 +73,7 @@
   },
   "globals": {
     "require": true,
+    "navigator": true,
     "console": true,
     "describe": true,
     "it": true,

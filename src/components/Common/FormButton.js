@@ -16,7 +16,7 @@ class FormButton extends Component {
 	}
 
 	render() {
-		const highlighted = this.props.text.length > 0
+		const highlighted = this.props.text && this.props.text.length > 0
 		const colorStyle = highlighted ? styles.highlighted : styles.normal
 		const textColor = highlighted ? undefined : styles.normalText
 		return (

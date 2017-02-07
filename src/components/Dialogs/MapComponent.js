@@ -41,24 +41,25 @@ class MapComponent extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				{/*<MapView
+			{/*
+				<MapView
 					style={styles.map}
 					region={this.state.region}
 					onRegionChange={this.onRegionChange.bind(this)}
 				>
-				
 					<MapView.Marker
 						coordinate={this.state.location}
 						title={this.props.name}
 						description={this.props.description}
 					/>
+					
 				</MapView>
 				*/}
 			</View>
 		)
 	}
 }
-MapComponent.defaultProps
+// MapComponent.defaultProps
 
 const styles = StyleSheet.create({
 	container: {

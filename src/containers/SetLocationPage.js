@@ -3,18 +3,40 @@ import { View, StyleSheet, TextInput } from 'react-native'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-// import MapView from 'react-native-maps'
+import MapView from 'react-native-maps'
 import I18n from 'react-native-i18n'
 import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
 import {
-
+	requestUserLocation,
+	requestLocationPermissions,
 } from '../actions'
 
 class SetLocationPage extends Component {
+	props: any
+
+	componentWillMount() {
+		if (this.props.permission === 'authorized')
+			this.props.requestUserLocation()
+		else
+			this.props.requestLocationPermissions()
+	}
 
 	onSetClick() {
 		Actions.pop()
+	}
+
+	renderMap() {
+		if (this.props.permission !== 'authorized') {
+			return <View />
+		}
+
+		return (
+			<MapView
+				style={styles.map}
+				region={this.props.location}
+			/>
+		)
 	}
 
 	render() {
@@ -22,34 +44,27 @@ class SetLocationPage extends Component {
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.page}
-				>
+			>
 				<CardView style={styles.card}>
-					{ /** <MapView
-						style={styles.map}
-						region={{
-							latitude: 37.78825,
-							longitude: -122.4324,
-							latitudeDelta: 0.015,
-							longitudeDelta: 0.0121,
-						}}
-						/> */}
+					{this.renderMap()}
 					<View style={styles.inputContainer}>
 						<TextInput
 							placeholder={I18n.t('createFlow.addressInput')}
-							onChangeText={() => { } }
+							onChangeText={() => { }}
 							value={''}
 							style={styles.input}
 							autoFocus
-							/>
+						/>
 					</View>
-					<Button
+					{/*<Button
 						large
 						raised
 						onPress={this.onSetClick.bind(this)}
 						title={I18n.t('set')}
 						backgroundColor='#01a836'
 						buttonStyle={styles.setButton}
-						/>
+					/>
+					*/}
 				</CardView>
 			</LinearGradient>
 		)
@@ -88,14 +103,14 @@ const styles = StyleSheet.create({
 	setButton: {
 		height: 50,
 		borderRadius: 15,
-		bottom: 0,
 	},
 })
 
-const mapStateToProps = state => {
-	return state
+const mapStateToProps = ({ permissions, form }) => {
+	return { permission: permissions.location, location: form.location }
 }
 
 export default connect(mapStateToProps, {
-	
+	requestUserLocation,
+	requestLocationPermissions,
 })(SetLocationPage)

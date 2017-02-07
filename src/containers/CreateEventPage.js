@@ -20,7 +20,7 @@ class CreateEventPage extends Component {
 		name: PropTypes.string.isRequired,
 		description: PropTypes.string.isRequired,
 		locationName: PropTypes.string.isRequired,
-		location: PropTypes.string.isRequired,
+		location: PropTypes.object.isRequired,
 		changeEventName: PropTypes.func.isRequired,
 		changeEventDescription: PropTypes.func.isRequired,
 		changeLocationName: PropTypes.func.isRequired,
@@ -58,7 +58,7 @@ class CreateEventPage extends Component {
 						/>
 						<FormButton
 							placeholder={I18n.t('createFlow.locationInput')}
-							text={this.props.location}
+							text={this.props.location.name}
 							onPress={() => Actions.setLocationPage()}
 							style={styles.locationButton}
 						/>

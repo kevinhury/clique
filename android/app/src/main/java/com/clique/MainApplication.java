@@ -4,11 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.zyu.ReactNativeWheelPickerPackage;
-import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
-import com.i18n.reactnativei18n.ReactNativeI18n;
-import com.rt2zz.reactnativecontacts.ReactNativeContacts;
-import com.microsoft.codepush.react.CodePush;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -23,12 +19,6 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-
-    @Override
-    protected String getJSBundleFile() {
-      return CodePush.getJSBundleFile();
-    }
-
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -38,11 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeWheelPickerPackage(),
-            new ReactNativePermissionsPackage(),
-            new ReactNativeI18n(),
-            new ReactNativeContacts(),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
+            new MapsPackage(),
             new LinearGradientPackage(),
             new VectorIconsPackage()
       );
