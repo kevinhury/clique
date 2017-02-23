@@ -29,7 +29,7 @@ class ContactList extends Component {
 
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2,
-			sectionHeaderHasChanged : (s1, s2) => s1 !== s2,
+			sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 			getSectionData,
 			getRowData,
 		})
@@ -46,19 +46,18 @@ class ContactList extends Component {
 		const rowIds = []
 
 		for (let sectionId = 0; sectionId < alphabet.length; sectionId++) {
+			if (data.length == 0) break
 			const currentChar = alphabet[sectionId]
 			const users = data.filter((user) => user.name.toUpperCase().indexOf(currentChar) === 0)
-			if (users.length > 0) {
-				sectionIds.push(sectionId)
-				dataBlob[sectionId] = { character: currentChar }
+			sectionIds.push(sectionId)
+			dataBlob[sectionId] = { character: currentChar }
 
-				rowIds.push([])
+			rowIds.push([])
 
-				for (let i = 0; i < users.length; i++) {
-					const rowId = `${sectionId}:${i}`
-					rowIds[rowIds.length - 1].push(rowId)
-					dataBlob[rowId] = users[i]
-				}
+			for (let i = 0; i < users.length; i++) {
+				const rowId = `${sectionId}:${i}`
+				rowIds[rowIds.length - 1].push(rowId)
+				dataBlob[rowId] = users[i]
 			}
 		}
 
@@ -76,7 +75,7 @@ class ContactList extends Component {
 		)
 	}
 
-	renderSeparator(sectionId, rowId) {
+	renderSeparator(sectionId: string, rowId: string) {
 		return (
       <View key={rowId} style={styles.separator} />
 		)

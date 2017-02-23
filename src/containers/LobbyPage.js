@@ -79,7 +79,6 @@ class LobbyPage extends Component {
 	}
 
 	render() {
-		console.log(`loading: ${this.props.events.loading}`)
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}

@@ -16,7 +16,7 @@ import {
 	removeContact,
 	changeMinAtendees,
 	changeMaxAtendees,
-	requestPermission,
+	requestContactList,
 } from '../actions'
 
 class CreateEventPage3 extends Component {
@@ -36,11 +36,11 @@ class CreateEventPage3 extends Component {
 		removeContact: PropTypes.func.isRequired,
 		changeMinAtendees: PropTypes.func.isRequired,
 		changeMaxAtendees: PropTypes.func.isRequired,
-		requestPermission: PropTypes.func.isRequired,
+		requestContactList: PropTypes.func.isRequired,
 	}
 
 	componentWillMount() {
-		this.props.requestPermission()
+		this.props.requestContactList()
 	}
 
 	contactChanged(selected: boolean, contact: any) {
@@ -188,9 +188,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	var { contacts, form } = state
-	const permission = contacts.permission
-	contacts = contacts.contacts
+	var { contacts, form, permissions } = state
+	console.log(`contacts: ${contacts}`)
+	const permission = permissions.contacts
 	const selectedContacts = form.contacts
 	const { minAtendees, maxAtendees } = form
 	return { contacts, permission, selectedContacts, minAtendees, maxAtendees }
@@ -201,5 +201,5 @@ export default connect(mapStateToProps, {
 	removeContact,
 	changeMinAtendees,
 	changeMaxAtendees,
-	requestPermission,
+	requestContactList,
 })(CreateEventPage3)

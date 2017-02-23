@@ -38,7 +38,6 @@ class MiddleSection extends Component {
 	}
 
 	render() {
-		console.log(String.prototype.format)
 		return (
 			<View style={styles.middleSection}>
 					{this.renderBubbles()}

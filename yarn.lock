@@ -3412,9 +3412,9 @@ react-native-calendar@^0.10.0:
   dependencies:
     moment ">=2.10.3"
 
-react-native-contacts@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-0.7.1.tgz#8def335dc6c688987d2a2e2f9e7207e47acb3ea6"
+react-native-contacts@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-0.8.0.tgz#dad1faf3419f113587e8b499d4186ad5ee65ed7b"
 
 react-native-elements@^0.9.5:
   version "0.9.5"

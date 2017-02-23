@@ -14,7 +14,7 @@ const INITIAL_STATE: Contact[] = []
 export const ContactsReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 	case CONTACTS_LIST_FETCHED:
-		return { ...state, contacts: action.contacts }
+		return action.contacts
 	default:
 		return state
 	}
