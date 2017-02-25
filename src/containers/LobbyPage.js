@@ -15,7 +15,7 @@ import { Icon } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
-import { requestEvents } from '../actions'
+import { requestEvents, selectEvent } from '../actions'
 
 import type { Event } from '../reducers/EventsReducer'
 
@@ -56,7 +56,10 @@ class LobbyPage extends Component {
 
 	renderRow(event: Event) {
 		return (
-			<TouchableOpacity onPress={() => Actions.eventInfoPage({event})}>
+			<TouchableOpacity onPress={() => {
+				this.props.selectEvent(event)
+				Actions.eventInfoPage()
+			}}>
 				<EventCell
 					event={event}
 					onEditPress={this.onEditPress.bind(this)}
@@ -146,4 +149,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
 	requestEvents,
+	selectEvent,
 })(LobbyPage)

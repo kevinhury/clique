@@ -1,6 +1,11 @@
 import {
-	USER_EVENTS_REQUEST,
-  USER_EVENTS_REQUEST_SUCCESS,
+USER_EVENTS_REQUEST,
+USER_EVENTS_REQUEST_SUCCESS,
+USER_EVENT_SELECTED,
+USER_EVENT_ATTENDANCES_MODIFIED,
+USER_EVENT_CANCEL,
+USER_EVENT_CREATE,
+USER_EVENT_MODIFY_FIELDS,
 } from './types'
 
 const mock_invitee: Invitee = {
@@ -10,16 +15,42 @@ const mock_invitee: Invitee = {
 	admin: false,
 }
 
-
 export const requestEvents = () => {
 	return (dispatch) => {
 		dispatch({ type: USER_EVENTS_REQUEST })
 		setTimeout(function() {
 			dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list: get_mocks() })
-		}, 3000)
+		}, 1000)
 	}
 }
 
+export const selectEvent = (selected) => {
+	return { type: USER_EVENT_SELECTED, selected }
+}
+
+export const modifyAttendances = (eventId, status) => {
+	return (dispatch) => {
+		dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, status })
+	}
+}
+
+export const cancelEvent = (eventId) => {
+	return (dispatch) => {
+		dispatch({ type: USER_EVENT_CANCEL, eventId })
+	}
+}
+
+export const createEvent = (event) => {
+	return (dispatch) => {
+		dispatch({ type: USER_EVENT_CREATE, event })
+	}
+}
+
+export const modifyEventFields = (fields) => {
+	return (dispatch) => {
+		dispatch({ type: USER_EVENT_MODIFY_FIELDS, fields })
+	}
+}
 
 const get_mocks = () => [
 	{

@@ -11,20 +11,27 @@ import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
+import { Actions } from 'react-native-router-flux'
 import CardView from '../components/CardView'
 import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
 import { Separator, AtendeeBubbles, ChatButton } from '../components/Common'
 import Dialog from '../components/Dialogs/Dialog'
+import {
+	modifyAttendances,
+	cancelEvent,
+} from '../actions'
 
 class EventInfoPage extends Component {
 	static propTypes = {
 		createFlow: PropTypes.bool,
 		event: PropTypes.object,
+		modifyAttendances: PropTypes.func,
+		cancelEvent: PropTypes.func,
 	}
 
 	renderBottomButton() {
-		if (!this.props.createFlow)
+		if (!this.props.event.createFlow)
 			return <View />
 		return (
       <Button
@@ -141,7 +148,10 @@ class EventInfoPage extends Component {
 					title={I18n.t('dialogs.cancelTitle')}
 					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
 					buttonText={I18n.t('yes')}
-					buttonCallback={() => {}}
+					buttonCallback={() => {
+						this.props.cancelEvent()
+						Actions.pop()
+					}}
 				/>
         <Dialog
 					ref={'mapDialog'}
@@ -191,9 +201,11 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	return state
+	const { events } = state
+	return { event: events.selected }
 }
 
 export default connect(mapStateToProps, {
-
+	modifyAttendances,
+	cancelEvent,
 })(EventInfoPage)
