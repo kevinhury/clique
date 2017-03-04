@@ -1,4 +1,6 @@
 import {
+	FORM_CREATE,
+	FORM_MODIFY,
 	FORM_CANCEL,
 	FORM_ADD_CONTACT,
 	FORM_REMOVE_CONTACT,
@@ -25,6 +27,10 @@ export type Location = {
 	longitude: number,
 }
 
+export type FormType = 
+		'CREATE'
+	| 'MODIFY'
+
 export type State = {
 	name: string,
 	description: string,
@@ -37,6 +43,7 @@ export type State = {
 	length: number,
 	startTime: string,
 	deadline: number,
+	type: FormType,
 }
 
 export const INITIAL_STATE: State = {
@@ -51,10 +58,25 @@ export const INITIAL_STATE: State = {
 	length: 0,
 	startTime: '',
 	deadline: 0,
+	type: 'CREATE',
 }
 
 export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 	switch (action.type) {
+	case FORM_CREATE: {
+		return { ...state, INITIAL_STATE }
+	}
+	case FORM_MODIFY: {
+		var event = {}
+		event.name = action.event.title
+		event.description = action.event.description
+		event.location = action.event.location
+		event.locationName = action.event.locationName
+		event.minAtendees = action.event.minAtendees
+		event.maxAtendees = action.event.limitedRSVPs
+		event.contacts = action.event.invitees
+		return { event, type: 'MODIFY' }
+	}
 	case FORM_CANCEL: {
 		return { ...state, INITIAL_STATE }
 	}

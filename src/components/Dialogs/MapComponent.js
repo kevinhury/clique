@@ -5,7 +5,7 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native'
-// import MapView from 'react-native-maps'
+import MapView from 'react-native-maps'
 
 type Region = {
 	latitude: number,
@@ -41,29 +41,25 @@ class MapComponent extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-			{/*
 				<MapView
 					style={styles.map}
 					region={this.state.region}
 					onRegionChange={this.onRegionChange.bind(this)}
 				>
 					<MapView.Marker
-						coordinate={this.state.location}
+						coordinate={this.state.region}
 						title={this.props.name}
 						description={this.props.description}
 					/>
-					
 				</MapView>
-				*/}
 			</View>
 		)
 	}
 }
-// MapComponent.defaultProps
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		...StyleSheet.absoluteFillObject,
 	},
 	map: {
 		...StyleSheet.absoluteFillObject,

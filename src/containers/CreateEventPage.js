@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, StyleSheet, TextInput } from 'react-native'
-import { Button } from 'react-native-elements'
+import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
@@ -13,6 +12,8 @@ import {
 } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
+import NextButton from '../components/NextButton'
+import CommonInput from '../components/CommonInput'
 import I18n from 'react-native-i18n'
 
 class CreateEventPage extends Component {
@@ -36,25 +37,21 @@ class CreateEventPage extends Component {
 				<CardView style={styles.card}>
 					<EventCreatePanel stateIndex={0} style={styles.statePanel} />
 					<View style={styles.inputContainer}>
-						<TextInput
-							placeholder={I18n.t('createFlow.nameInput')}
+						<CommonInput
+							placeholder={I18n.t('createFlow.titleInput')}
 							onChangeText={this.props.changeEventName}
 							value={this.props.name}
-							style={styles.inputStyle}
-							autoFocus
 						/>
-						<TextInput
+						<CommonInput
 							placeholder={I18n.t('createFlow.descriptionInput')}
 							onChangeText={this.props.changeEventDescription}
 							value={this.props.description}
-							style={[styles.inputStyle, { height: 100 }]}
-							multiline
+							style={{ height: 100 }}
 						/>
-						<TextInput
+						<CommonInput
 							placeholder={I18n.t('createFlow.locationNameInput')}
 							onChangeText={this.props.changeLocationName}
 							value={this.props.locationName}
-							style={styles.inputStyle}
 						/>
 						<FormButton
 							placeholder={I18n.t('createFlow.locationInput')}
@@ -64,14 +61,7 @@ class CreateEventPage extends Component {
 						/>
 					</View>
 					<View style={styles.buttonContainer}>
-						<Button
-							large
-							raised
-							onPress={() => Actions.createEventPage2()}
-							title={I18n.t('next')}
-							backgroundColor='#01a836'
-							buttonStyle={styles.nextButton}
-						/>
+						<NextButton onPress={() => Actions.createEventPage2()} />
 					</View>
 				</CardView>
 			</LinearGradient>
@@ -96,22 +86,6 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flex: 2,
 		justifyContent: 'flex-end',
-	},
-	nextButton: {
-		height: 50,
-		borderRadius: 15,
-	},
-	inputStyle: {
-		color: '#000',
-		paddingRight: 5,
-		paddingLeft: 5,
-		fontSize: 18,
-		lineHeight: 23,
-		borderRadius: 20,
-		borderWidth: 1,
-		borderColor: '#31A5FD',
-		height: 40,
-		margin: 8,
 	},
 	locationButton: {
 		height: 40,

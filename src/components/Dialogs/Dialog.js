@@ -78,7 +78,7 @@ class Dialog extends Component {
 			<Modal style={[styles.modal, this.props.modalStyle]} ref={'modal'} position='bottom'>
 				<View style={styles.container}>
 					<Text style={styles.titleText}>{this.props.title}</Text>
-					<Separator style={styles.separator} />
+					<Separator color='#F1CE81' />
 					{this.renderComponent()}
 					{this.renderButton()}
 				</View>
@@ -94,18 +94,13 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	titleText: {
 		color: '#31A5FD',
 		fontSize: 20,
 		fontWeight: 'bold',
 		margin: 10,
-	},
-	separator: {
-		backgroundColor: '#F1CE81',
-		marginLeft: 40,
-		marginRight: 40,
 	},
 	button: {
 		position: 'absolute',

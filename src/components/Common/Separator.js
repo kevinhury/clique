@@ -1,17 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-class Separator extends Component {
-	static propTypes = {
-		style: PropTypes.any,
-	}
-
-	render() {
-		return (
-      <View style={[styles.separator, this.props.style]}/>
-		)
-	}
+type SeparatorProps = {
+	color: string
 }
+
+const Separator = (props: SeparatorProps) =>
+	<View style={[styles.separator, { 'backgroundColor': props.color }]} />
 
 const styles = StyleSheet.create({
 	separator: {

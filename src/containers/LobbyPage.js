@@ -11,11 +11,11 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Calendar from 'react-native-calendar'
-import { Icon } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
-import { requestEvents, selectEvent } from '../actions'
+import PlusButton from '../components/PlusButton'
+import { requestEvents, selectEvent, createForm, modifyForm } from '../actions'
 
 import type { Event } from '../reducers/EventsReducer'
 
@@ -42,14 +42,6 @@ class LobbyPage extends Component {
 		this.dataSource = ds.cloneWithRows(props.events.list)
 	}
 
-	onEditPress(event: Event): void {
-		console.log(event)
-	}
-
-	onChatPress(event: Event): void {
-		console.log(event)
-	}
-
 	onRefresh(): void {
 		this.props.requestEvents()
 	}
@@ -62,8 +54,11 @@ class LobbyPage extends Component {
 			}}>
 				<EventCell
 					event={event}
-					onEditPress={this.onEditPress.bind(this)}
-					onChatPress={this.onChatPress.bind(this)}
+					onEditPress={() => {
+						this.props.modifyForm(event)
+						Actions.createEvent()
+					}}
+					onChatPress={() => {}}
 					/>
 			</TouchableOpacity>
 		)
@@ -100,15 +95,10 @@ class LobbyPage extends Component {
 						renderHeader={this.renderCalendar.bind(this)}
 						renderRow={this.renderRow.bind(this)}
 					/>
-					<Icon
-						type='ionicon'
-						name='md-add'
-						color='#F2AB2A'
-						raised
-						reverse
-						onPress={() => Actions.createEvent()}
-						containerStyle={styles.plusButton}
-						/>
+					<PlusButton onPress={() => {
+						this.props.createForm()
+						Actions.createEvent()
+					}}/>
 				</CardView>
 			</LinearGradient>
 		)
@@ -121,14 +111,6 @@ const styles = StyleSheet.create({
 	},
 	calendar: {
 		backgroundColor: 'transparent',
-	},
-	plusButton: {
-		position: 'absolute',
-		bottom: 5,
-		right: 5,
-		shadowColor: '#000',
-		shadowOpacity: 0.8,
-		shadowRadius: 3,
 	},
 	separator: {
 		backgroundColor: 'rgba(254, 193, 51, 0.5)',
@@ -148,6 +130,8 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
+	createForm,
+	modifyForm,
 	requestEvents,
 	selectEvent,
 })(LobbyPage)

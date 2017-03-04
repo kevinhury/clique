@@ -3,7 +3,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import ContactList from '../components/Contacts/ContactList'
@@ -11,6 +10,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
 import Dialog from '../components/Dialogs/Dialog'
 import EventCreatePanel from '../components/EventCreatePanel'
+import NextButton from '../components/NextButton'
 import {
 	addContact,
 	removeContact,
@@ -100,14 +100,7 @@ class CreateEventPage3 extends Component {
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>
-					<Button
-						large
-						raised
-						onPress={() => console.log('xxx')}
-						title={I18n.t('next')}
-						backgroundColor='#01a836'
-						buttonStyle={styles.nextButton}
-						/>
+					<NextButton onPress={() => {}} />
 				</View>
 			</View>
 		)
@@ -129,7 +122,7 @@ class CreateEventPage3 extends Component {
 					type={{
 						name: 'picker', options: this.minRSVPs, onValueChange: (index) => {
 							this.props.changeMinAtendees(index)
-						}
+						},
 					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
@@ -141,7 +134,7 @@ class CreateEventPage3 extends Component {
 					type={{
 						name: 'picker', options: this.maxRSVPs, onValueChange: (index) => {
 							this.props.changeMaxAtendees(index)
-						}
+						},
 					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
@@ -176,10 +169,6 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flex: 2,
 		justifyContent: 'flex-end',
-	},
-	nextButton: {
-		height: 50,
-		borderRadius: 15,
 	},
 	statePanel: {
 		margin: 5,

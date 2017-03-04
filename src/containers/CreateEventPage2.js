@@ -5,7 +5,6 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native'
-import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
@@ -15,6 +14,7 @@ import CardView from '../components/CardView'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
 import Dialog from '../components/Dialogs/Dialog'
+import NextButton from '../components/NextButton'
 import {
 	changeEventLength,
 	changeStartTime,
@@ -130,14 +130,7 @@ class CreateEventPage2 extends Component {
 							/>
 					</View>
 					<View style={styles.buttonContainer}>
-						<Button
-							large
-							raised
-							onPress={() => Actions.createEventPage3()}
-							title={I18n.t('next')}
-							backgroundColor='#01a836'
-							buttonStyle={styles.nextButton}
-							/>
+						<NextButton onPress={() => Actions.createEventPage3()} />
 					</View>
 				</CardView>
 				<Dialog
@@ -198,10 +191,6 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flex: 2,
 		justifyContent: 'flex-end',
-	},
-	nextButton: {
-		height: 50,
-		borderRadius: 15,
 	},
 	calendarContainer: {
 		borderWidth: 1,

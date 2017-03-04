@@ -34,7 +34,7 @@
   },
   "createFlow":
   {
-    "nameInput": "Type event name here...",
+    "titleInput": "Type event name here...",
     "descriptionInput": "Type event description...",
     "locationNameInput": "Enter location name",
     "locationInput": "Set location",
