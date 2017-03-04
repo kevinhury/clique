@@ -1,4 +1,6 @@
 // Create Event Form
+export const FORM_CREATE = 'FORM_CREATE'
+export const FORM_MODIFY = 'FORM_MODIFY'
 export const FORM_CANCEL = 'FORM_CANCEL'
 export const FORM_ADD_CONTACT = 'FORM_ADD_CONTACT'
 export const FORM_REMOVE_CONTACT = 'FORM_REMOVE_CONTACT'

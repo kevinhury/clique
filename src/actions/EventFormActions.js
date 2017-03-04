@@ -1,4 +1,6 @@
 import {
+	FORM_CREATE,
+	FORM_MODIFY,
 	FORM_CANCEL,
 	FORM_ADD_CONTACT,
 	FORM_REMOVE_CONTACT,
@@ -14,6 +16,19 @@ import {
 	FORM_CHANGE_MIN_ATENDEES,
 	FORM_CHANGE_MAX_ATENDEES,
 } from './types'
+
+export const createForm = () => {
+	return {
+		type: FORM_CREATE,
+	}
+}
+
+export const modifyForm = (event) => {
+	return {
+		type: FORM_MODIFY,
+		event,
+	}
+}
 
 export const cancelForm = () => {
 	return {
