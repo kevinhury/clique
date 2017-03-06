@@ -1,12 +1,7 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import {
-	View,
-	Text,
-	StyleSheet,
-	TouchableWithoutFeedback,
-} from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import { Button } from 'react-native-elements'
@@ -15,12 +10,10 @@ import { Actions } from 'react-native-router-flux'
 import CardView from '../components/CardView'
 import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
-import { Separator, AtendeeBubbles, ChatButton } from '../components/Common'
+import { Separator } from '../components/Common'
+import { EventAtendeesSection } from '../components/EventInfo'
 import Dialog from '../components/Dialogs/Dialog'
-import {
-	modifyAttendances,
-	cancelEvent,
-} from '../actions'
+import { modifyAttendances, cancelEvent } from '../actions'
 
 class EventInfoPage extends Component {
 	static propTypes = {
@@ -115,18 +108,7 @@ class EventInfoPage extends Component {
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>
 					<Separator color='#F1CE81' />
-					<View style={styles.atendeesSection}>
-						<Text>{I18n.t('peopleGoing')}:</Text>
-						<TouchableWithoutFeedback onPress={() => this.inviteesDialogToggle(true)}>
-							<View style={styles.goingSection}>
-								<AtendeeBubbles images={invitees.map(x => x.image)} bubblesToShow={2} />
-								<ChatButton
-									title={I18n.t('chat')}
-									onPress={() => console.log('press')}
-								/>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
+					<EventAtendeesSection invitees={invitees} style={styles.atendeesSection} />
 					<Separator color='#F1CE81' />
 					<View style={styles.numAtendeesSection}>
 						<Text>{I18n.t('minRSVPs')}: {this.minAtendeesText()}</Text>
@@ -179,13 +161,6 @@ const styles = StyleSheet.create({
 	atendeesSection: {
 		paddingLeft: 20,
 		paddingRight: 20,
-	},
-	goingSection: {
-		marginTop: 10,
-		paddingLeft: 10,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
 	},
 	numAtendeesSection: {
 		paddingLeft: 20,
