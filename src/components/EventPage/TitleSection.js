@@ -22,8 +22,7 @@ class TitleSection extends Component {
 		onCancelPress: PropTypes.func,
 	}
 
-	eventStatus(): string {
-		const status = this.props.status
+	eventStatus(status: string): string {
 		var state: string
 		if (status === 'Pending')
 			state = 'pending'
@@ -34,8 +33,7 @@ class TitleSection extends Component {
 		return I18n.t(state)
 	}
 
-	userStatus(): string {
-		const { approved, status } = this.props
+	userStatus(approved: string, status: string): string {
 		var state: string
 		if (approved === 'Approved' && status === 'Cliqued')
 			state = 'going'
@@ -48,8 +46,8 @@ class TitleSection extends Component {
 		return I18n.t(state)
 	}
 
-	renderCancelButton() {
-		if (this.props.isAdmin == false) {
+	renderCancelButton(isAdmin: boolean) {
+		if (isAdmin == false) {
 			return (<View />)
 		}
 		return (
@@ -64,28 +62,29 @@ class TitleSection extends Component {
 	}
 
 	render() {
-		const { title, creator, image } = this.props
+		const { title, creator, image, approved, status, isAdmin } = this.props
 		return (
       <View style={styles.titleSection}>
         <Text style={styles.titleText}>{title}</Text>
         <Text style={styles.creatorText}>by {creator}</Text>
         <View style={styles.buttonContainer}>
-          {this.renderCancelButton()}
+          {this.renderCancelButton(isAdmin)}
           <Image
             source={{ uri: image }}
             style={styles.image}
           />
           <Button
-            title={this.userStatus()}
+            title={this.userStatus(approved, status)}
             raised
             buttonStyle={styles.button}
             backgroundColor='#01a836'
+						onPress={this.props.onStatusPress}
           />
         </View>
         <Text style={styles.eventStatus}>
 					{I18n.t('eventStatus')}: {' '}
           <Text style={[styles.eventStatus, {fontWeight: 'bold'}]}>
-            {this.eventStatus()}
+            {this.eventStatus(status)}
           </Text>
         </Text>
       </View>

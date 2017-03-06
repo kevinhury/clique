@@ -5,6 +5,7 @@ import {
 	USER_EVENTS_REQUEST,
 	USER_EVENTS_REQUEST_SUCCESS,
 	USER_EVENT_SELECTED,
+	USER_EVENT_ATTENDANCES_MODIFIED,
 } from '../actions/types'
 
 export type Status =
@@ -25,6 +26,7 @@ export type Invitee = {
 }
 
 export type Event = {
+	id: string,
 	title: string,
 	description: string,
 	location: string,
@@ -62,7 +64,14 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 		return { ...state, list: action.list, loading: false, error: false, selected: null }
 	case USER_EVENT_SELECTED:
 		return { ...state, selected: action.selected }
-	default:
+	case USER_EVENT_ATTENDANCES_MODIFIED: {
+		const list = [ ...state.list ]
+		let selected = list.filter((x) => x.id === action.eventId)[0]
+		const index = list.indexOf(selected)
+		selected = { ...selected, approved: action.status }
+		list[index] = selected
+		return { ...state, list, selected }
+	} default:
 		return state
 	}
 }

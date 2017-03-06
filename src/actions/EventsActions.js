@@ -30,7 +30,7 @@ export const selectEvent = (selected) => {
 
 export const modifyAttendances = (eventId, status) => {
 	return (dispatch) => {
-		dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, status })
+		dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, eventId, status })
 	}
 }
 
@@ -54,6 +54,7 @@ export const modifyEventFields = (fields) => {
 
 const get_mocks = () => [
 	{
+		id: '1',
 		title: 'FIFA 17 SESSION',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
 		location: '72 LA GUARDIA ST.',
@@ -73,6 +74,7 @@ const get_mocks = () => [
 		],
 	},
 	{
+		id: '2',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',
@@ -88,6 +90,7 @@ const get_mocks = () => [
 		invitees: [],
 	},
 	{
+		id: '3',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',
@@ -103,27 +106,29 @@ const get_mocks = () => [
 		invitees: [],
 	},
 	{
-		title: 'FIFA 17 SESSION',
-		description: 'string',
-		location: '72 LA GUARDIA ST.',
-		locationName: 'RAMI\'S PLACE',
-		approved: 'Approved',
-		status: 'Cancelled',
-		owner: 'You',
-		date: new Date('2011-04-11T10:20:30Z'),
-		isAdmin: true,
-		expires: new Date('2011-04-11T10:20:30Z'),
-		minAtendees: 999,
-		limitedRSVP: 0,
-		invitees: [],
-	},
-	{
+		id: '4',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',
 		locationName: 'RAMI\'S PLACE',
 		approved: 'Approved',
 		status: 'Cancelled',
+		owner: 'You',
+		date: new Date('2011-04-11T10:20:30Z'),
+		isAdmin: true,
+		expires: new Date('2011-04-11T10:20:30Z'),
+		minAtendees: 999,
+		limitedRSVP: 0,
+		invitees: [],
+	},
+	{
+		id: '5',
+		title: 'FIFA 17 SESSION',
+		description: 'string',
+		location: '72 LA GUARDIA ST.',
+		locationName: 'RAMI\'S PLACE',
+		approved: 'Approved',
+		status: 'Cancelled',
 		owner: 'him',
 		date: new Date('2011-04-11T10:20:30Z'),
 		isAdmin: false,
@@ -133,6 +138,7 @@ const get_mocks = () => [
 		invitees: [],
 	},
 	{
+		id: '6',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',
@@ -148,6 +154,7 @@ const get_mocks = () => [
 		invitees: [],
 	},
 	{
+		id: '7',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',
@@ -163,6 +170,7 @@ const get_mocks = () => [
 		invitees: [],
 	},
 	{
+		id: '8',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',
@@ -178,6 +186,7 @@ const get_mocks = () => [
 		invitees: [],
 	},
 	{
+		id: '9',
 		'title': 'FIFA 17 SESSION',
 		'description': 'string',
 		location: '72 LA GUARDIA ST.',
@@ -193,6 +202,7 @@ const get_mocks = () => [
 		'invitees': [],
 	},
 	{
+		id: '10',
 		title: 'FIFA 17 SESSION',
 		description: 'string',
 		location: '72 LA GUARDIA ST.',

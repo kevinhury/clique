@@ -37,6 +37,11 @@ class EventInfoPage extends Component {
 		)
 	}
 
+	toggleAtendence(status: Status) {
+		const obj = { Pending: 'Approved', Approved: 'Declined' , Declined: 'Approved' }
+		return obj[status]
+	}
+
 	cancelDialogToggle(state: boolean) {
 		if (state)
 			this.refs.cancelDialog.modal().open()
@@ -60,7 +65,7 @@ class EventInfoPage extends Component {
 
 	render() {
 		const {
-			title, description, location, locationName, approved, status, owner,
+			id, title, description, location, locationName, approved, status, owner,
 			date, isAdmin, invitees, minAtendees, limitedRSVP,
 		} = this.props.event
 		return (
@@ -76,7 +81,11 @@ class EventInfoPage extends Component {
 						image={'https://facebook.github.io/react/img/logo_og.png'}
 						approved={approved}
 						status={status}
-						onStatusPress={() => { }}
+						onStatusPress={() => {
+							const eventId = id
+							const newApproval = this.toggleAtendence(approved)
+							this.props.modifyAttendances(eventId, newApproval)
+						}}
 						onCancelPress={() => this.cancelDialogToggle(true)}
 					/>
 					<View style={styles.descriptionSection}>
@@ -156,7 +165,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
 	const { events } = state
-	return { event: events.selected }
+	const { selected } = events
+	return { event: selected }
 }
 
 export default connect(mapStateToProps, {
