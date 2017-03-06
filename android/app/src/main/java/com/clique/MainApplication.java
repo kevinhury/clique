@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.RNGooglePlacePickerPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGooglePlacePickerPackage(),
             new ReactNativeContacts(),
             new MapsPackage(),
             new LinearGradientPackage(),
