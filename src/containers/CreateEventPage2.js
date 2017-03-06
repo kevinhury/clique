@@ -112,6 +112,7 @@ class CreateEventPage2 extends Component {
 									calendarContainer: styles.calendar,
 									eventIndicator: styles.eventIndicator,
 									hasEventCircle: styles.hasEventCircle,
+									hasEventDaySelectedCircle: styles.hasEventCircle,
 								}}
 								onDateSelect={this.dateOnClick.bind(this)}
 							/>

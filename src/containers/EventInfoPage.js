@@ -8,10 +8,8 @@ import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { Actions } from 'react-native-router-flux'
 import CardView from '../components/CardView'
-import TitleSection from '../components/EventPage/TitleSection'
-import InfoSection from '../components/EventPage/InfoSection'
 import { Separator } from '../components/Common'
-import { EventAtendeesSection, NumAtendeesSection } from '../components/EventInfo'
+import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
 import { modifyAttendances, cancelEvent } from '../actions'
 
@@ -99,7 +97,7 @@ class EventInfoPage extends Component {
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>
 					<Separator color='#F1CE81' />
-					<EventAtendeesSection
+					<AtendeesSection
 						invitees={invitees}
 						style={styles.atendeesSection}
 					/>

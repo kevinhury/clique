@@ -8,7 +8,7 @@ type EventAtendeesSectionProps = {
 	style: any,
 }
 
-const EventAtendeesSection = (props: EventAtendeesSectionProps) =>
+const AtendeesSection = (props: EventAtendeesSectionProps) =>
 	<View style={props.style}>
 		<Text>{I18n.t('peopleGoing')}:</Text>
 		<TouchableWithoutFeedback onPress={() => this.inviteesDialogToggle(true)}>
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
 	},	
 })
 
-export { EventAtendeesSection }
+export { AtendeesSection }

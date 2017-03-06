@@ -138,4 +138,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default TitleSection
+export { TitleSection }
