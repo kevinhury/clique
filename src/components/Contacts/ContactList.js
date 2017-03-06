@@ -49,9 +49,10 @@ class ContactList extends Component {
 			if (data.length == 0) break
 			const currentChar = alphabet[sectionId]
 			const users = data.filter((user) => user.name.toUpperCase().indexOf(currentChar) === 0)
+			if (users.length === 0) continue
+
 			sectionIds.push(sectionId)
 			dataBlob[sectionId] = { character: currentChar }
-
 			rowIds.push([])
 
 			for (let i = 0; i < users.length; i++) {
@@ -60,7 +61,7 @@ class ContactList extends Component {
 				dataBlob[rowId] = users[i]
 			}
 		}
-
+		console.log(`datablob is ${JSON.stringify(dataBlob)} and section ids are ${sectionIds} and row ids are ${rowIds}`)
 		return { dataBlob, sectionIds, rowIds }
 	}
 
@@ -84,7 +85,6 @@ class ContactList extends Component {
 	render() {
 		return (
       <ListView
-        enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow.bind(this)}
         renderSeparator={this.renderSeparator.bind(this)}
