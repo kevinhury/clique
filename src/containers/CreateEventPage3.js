@@ -72,7 +72,6 @@ class CreateEventPage3 extends Component {
 						contacts={this.props.contacts}
 						selectedList={this.props.selectedContacts}
 						onValueChange={this.contactChanged.bind(this)}
-						style={{ flex: 6 }}
 					/>
 				</View>
 				<View style={styles.rsvpSection}>
@@ -153,7 +152,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 	},
 	list: {
-		height: 440,
+		flex: 14,
+		borderColor: 'gray',
+		borderWidth: 1,
 	},
 	rsvpSection: {
 		flexDirection: 'row',

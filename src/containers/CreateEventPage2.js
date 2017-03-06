@@ -23,7 +23,7 @@ import {
 	removeEventDate,
 } from '../actions'
 
-function generateTimeFormat(): Array<string> {
+const generateTimeFormat = (): Array<string> => {
 	const interval = 15
 	return Array.from({
 		length: 24 * 60 / interval,
@@ -98,7 +98,7 @@ class CreateEventPage2 extends Component {
 					<View>
 						<FormButton
 							placeholder={I18n.t('createFlow.lengthInput')}
-							text={`${this.props.length}`}
+							text={`${this.props.length > 0 ? this.props.length : ''}`}
 							onPress={() => this.setDaysOnClick()}
 							style={styles.button}
 							/>
@@ -125,7 +125,7 @@ class CreateEventPage2 extends Component {
 							/>
 						<FormButton
 							placeholder={I18n.t('createFlow.rsvpInput')}
-							text={`${this.props.deadline}`}
+							text={`${this.props.deadline > 0 ? this.props.deadline : ''}`}
 							onPress={() => this.setDeadlineOnClick()}
 							style={styles.button}
 							/>
