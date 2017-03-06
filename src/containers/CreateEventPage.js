@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
+import RNGooglePlacePicker from 'react-native-google-place-picker'
 import CardView from '../components/CardView'
 import {
 	changeEventName,
@@ -55,8 +56,17 @@ class CreateEventPage extends Component {
 						/>
 						<FormButton
 							placeholder={I18n.t('createFlow.locationInput')}
-							text={this.props.location.name}
-							onPress={() => Actions.setLocationPage()}
+							text={this.props.location.address}
+							onPress={() => {
+								RNGooglePlacePicker.show((response) => {
+									if (response.didCancel || response.error) return
+									this.props.changeEventLocation({
+										longitude: response.longitude,
+										latitude: response.latitude,
+										address: response.address,
+									})
+								})
+							}}
 							style={styles.locationButton}
 						/>
 					</View>

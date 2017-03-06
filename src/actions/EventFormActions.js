@@ -71,7 +71,7 @@ export const changeLocationName = (locationName: string) => {
 	}
 }
 
-export const changeEventLocation = (location: string) => {
+export const changeEventLocation = (location: any) => {
 	return {
 		type: FORM_CHANGE_LOCATION,
 		location,

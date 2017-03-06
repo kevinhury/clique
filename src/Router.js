@@ -13,7 +13,6 @@ import CreateEventPage from './containers/CreateEventPage'
 import CreateEventPage2 from './containers/CreateEventPage2'
 import CreateEventPage3 from './containers/CreateEventPage3'
 import EventInfoPage from './containers/EventInfoPage'
-import SetLocationPage from './containers/SetLocationPage'
 
 
 // TODO: change padding top to Navigator.NavigationBar.Styles.General.TotalNavHeight
@@ -31,7 +30,6 @@ const RouterComponent = () => (
 					<Scene key='createEventPage' component={CreateEventPage} title={I18n.t('navigation.createEventTitle')} leftTitle={I18n.t('cancel')} onLeft={() => Actions.pop()} />
 					<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
 					<Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
-					<Scene key='setLocationPage' component={SetLocationPage} title={I18n.t('navigation.setLocationTitle')} />
 				</Scene>
 			</Scene>
 		</Router>
