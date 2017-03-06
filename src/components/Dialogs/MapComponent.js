@@ -1,10 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-	View,
-	StyleSheet,
-} from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import MapView from 'react-native-maps'
 
 type Region = {
@@ -21,17 +18,18 @@ type Props = {
 }
 
 class MapComponent extends Component {
-	state: {
-		region: Region
-	}
 	props: Props
-
 	constructor(props: any) {
 		super(props)
 		this.props = props
-		this.state = {
-			region: { latitude: 0, longitude: 0, latitudeDelta: 0, longitudeDelta: 0 },
-		}
+		const init = { latitude: 0, longitude: 0, latitudeDelta: 0.0043, longitudeDelta: 0.0043 }
+		this.state = { marker: init, region: { ...init } }
+	}
+
+	componentWillMount() {
+		const { latitude, longitude } = this.props.location
+		const region = { ...this.state.region, latitude, longitude }
+		this.setState({ region, marker: {... region } })
 	}
 
 	onRegionChange(region: Region) {
@@ -47,7 +45,7 @@ class MapComponent extends Component {
 					onRegionChange={this.onRegionChange.bind(this)}
 				>
 					<MapView.Marker
-						coordinate={this.state.region}
+						coordinate={this.state.marker}
 						title={this.props.name}
 						description={this.props.description}
 					/>

@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import { Button } from 'react-native-elements'
@@ -95,7 +95,7 @@ class EventInfoPage extends Component {
 					<InfoSection
 						date={date.toLocaleDateString()}
 						time={date.toLocaleTimeString()}
-						location={`${locationName} - ${location}`}
+						location={`${locationName} - ${location.address}`}
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>
 					<Separator color='#F1CE81' />
@@ -132,10 +132,16 @@ class EventInfoPage extends Component {
 				/>
 				<Dialog
 					ref={'mapDialog'}
-					title={this.props.event.location}
-					type={{ name: 'map', locationName: '', description: '' }}
+					title={this.props.event.location.address}
+					type={{ name: 'map', locationName, description: location.address, location }}
 					buttonText={I18n.t('takeMeThere')}
-					buttonCallback={() => { }}
+					buttonCallback={() => {
+						const url = `http://maps.apple.com/?ll=${location.latitude},${location.longitude}&q=${location.address}`
+						Linking.canOpenURL(url).then((supported) =>{
+							if (!supported) return
+							Linking.openURL(url)
+						})
+					}}
 				/>
 			</LinearGradient>
 		)
