@@ -11,7 +11,7 @@ import CardView from '../components/CardView'
 import TitleSection from '../components/EventPage/TitleSection'
 import InfoSection from '../components/EventPage/InfoSection'
 import { Separator } from '../components/Common'
-import { EventAtendeesSection } from '../components/EventInfo'
+import { EventAtendeesSection, NumAtendeesSection } from '../components/EventInfo'
 import Dialog from '../components/Dialogs/Dialog'
 import { modifyAttendances, cancelEvent } from '../actions'
 
@@ -34,24 +34,6 @@ class EventInfoPage extends Component {
 				fontSize={20}
 				backgroundColor='#289FFF'
 			/>
-		)
-	}
-
-	minAtendeesText() {
-		const { minAtendees } = this.props.event
-		if (minAtendees == 0)
-			return (<Text>{I18n.t('notLimited')}</Text>)
-		return (
-			<Text style={styles.greenText}>{minAtendees}</Text>
-		)
-	}
-
-	maxAtendeesText() {
-		const { limitedRSVP } = this.props.event
-		if (limitedRSVP == 0)
-			return (<Text>{I18n.t('notLimited')}</Text>)
-		return (
-			<Text style={styles.greenText}>{limitedRSVP} / {limitedRSVP}</Text>
 		)
 	}
 
@@ -79,7 +61,7 @@ class EventInfoPage extends Component {
 	render() {
 		const {
 			title, description, location, locationName, approved, status, owner,
-			date, isAdmin, invitees,
+			date, isAdmin, invitees, minAtendees, limitedRSVP,
 		} = this.props.event
 		return (
 			<LinearGradient
@@ -108,12 +90,16 @@ class EventInfoPage extends Component {
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>
 					<Separator color='#F1CE81' />
-					<EventAtendeesSection invitees={invitees} style={styles.atendeesSection} />
+					<EventAtendeesSection
+						invitees={invitees}
+						style={styles.atendeesSection}
+					/>
 					<Separator color='#F1CE81' />
-					<View style={styles.numAtendeesSection}>
-						<Text>{I18n.t('minRSVPs')}: {this.minAtendeesText()}</Text>
-						<Text>{I18n.t('maxRSVPs')}: {this.maxAtendeesText()}</Text>
-					</View>
+					<NumAtendeesSection
+						style={styles.numAtendeesSection}
+						limitedRSVP={limitedRSVP}
+						minAtendees={minAtendees}
+					/>
 					<Separator color='#F1CE81' />
 					{this.renderBottomButton()}
 				</CardView>
@@ -165,10 +151,6 @@ const styles = StyleSheet.create({
 	numAtendeesSection: {
 		paddingLeft: 20,
 		paddingRight: 20,
-	},
-	greenText: {
-		color: '#01a836',
-		fontWeight: 'bold',
 	},
 })
 
