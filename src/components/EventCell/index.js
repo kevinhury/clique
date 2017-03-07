@@ -50,7 +50,7 @@ class EventCell extends Component {
 					<MiddleSection
 						invitees={invitees}
 						minAtendees={5}
-						bubblesToShow={2}
+						bubblesToShow={3}
 					/>
 					<View style={styles.separator} />
 					<BottomSection

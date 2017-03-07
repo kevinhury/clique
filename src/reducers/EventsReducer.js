@@ -21,7 +21,7 @@ export type Approval =
 export type Invitee = {
 	name: string,
 	image: string,
-	approved: bool,
+	approved: Approval,
 	admin: bool,
 }
 

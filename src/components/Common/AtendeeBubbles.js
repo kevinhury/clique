@@ -13,24 +13,35 @@ class AtendeeBubbles extends Component {
 		bubblesToShow: PropTypes.number,
 	}
 
-	renderBubble(uri: string) {
+	renderBubble(uri: string, key: number) {
 		return (
       <UserBubble
         style={styles.bubble}
         image={{ uri }}
+				key={key}
       />
 		)
 	}
 
-	renderMoreBubble() {
-		const { images, bubblesToShow } = this.props
-		const diff = images.length - bubblesToShow
-		if (diff <= 0) {
-			return (<View />)
+	renderBubbles(images: Array<string>, count: number) {
+		if (images.length === 0)
+			return <View style={styles.bubble}/>
+		const bubbles = []
+		var index = 0
+		const min = Math.min(count, images.length)
+		for (; index < min; index++) {
+			const element = images[index]
+			bubbles.push(this.renderBubble(element, index))
 		}
+		if (min < images.length)
+			bubbles.push(this.renderMoreBubble(images.length - min, ++index))
+		return bubbles
+	}
+
+	renderMoreBubble(bubbles: number, key: number) {
 		return (
-      <View style={styles.moreBubble}>
-        <Text style={styles.text}>+{diff}</Text>
+      <View style={styles.moreBubble} key={key}>
+        <Text style={styles.text}>+{bubbles}</Text>
       </View>
 		)
 	}
@@ -38,9 +49,7 @@ class AtendeeBubbles extends Component {
 	render() {
 		return (
       <View style={[styles.container, this.props.style]}>
-				{this.renderBubble(this.props.images[0])}
-				{this.renderBubble(this.props.images[1])}
-				{this.renderMoreBubble()}
+				{this.renderBubbles(this.props.images, this.props.bubblesToShow)}
       </View>
 		)
 	}
@@ -61,7 +70,7 @@ const styles = StyleSheet.create({
 		width: 20,
 		height: 20,
 		borderRadius: 30,
-		alignItems: 'flex-start',
+		alignItems: 'center',
 		justifyContent: 'center',
 		padding: 1,
 	},

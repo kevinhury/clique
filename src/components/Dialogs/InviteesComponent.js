@@ -15,25 +15,26 @@ class InviteesComponent extends Component {
 	}
 	render() {
 		const invitees = this.props.invitees
+		const bubblesToShow = 3
 		return (
 			<View style={styles.container}>
 				<Text style={styles.text}>{I18n.t('going')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
-					images={invitees.map(x => x.image)}
-					bubblesToShow={2}
+					images={invitees.filter(x => x.approved === 'Approved').map(x => x.image)}
+					bubblesToShow={bubblesToShow}
 				/>
 				<Text style={styles.text}>{I18n.t('pending')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
-					images={invitees.map(x => x.image)}
-					bubblesToShow={2}
+					images={invitees.filter(x =>x.approved === 'Pending').map(x => x.image)}
+					bubblesToShow={bubblesToShow}
 				/>
 				<Text style={styles.text}>{I18n.t('notGoing')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
-					images={invitees.map(x => x.image)}
-					bubblesToShow={2}
+					images={invitees.filter(x => x.approved === 'Declined').map(x => x.image)}
+					bubblesToShow={bubblesToShow}
 				/>
 			</View>
 		)

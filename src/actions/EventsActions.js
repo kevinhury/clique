@@ -11,7 +11,7 @@ USER_EVENT_MODIFY_FIELDS,
 const mock_invitee: Invitee = {
 	name: '',
 	image: 'https://facebook.github.io/react/img/logo_og.png',
-	approved: true,
+	approved: 'Approved',
 	admin: false,
 }
 
@@ -70,7 +70,11 @@ const get_mocks = () => [
 		invitees: [
 			{ ...mock_invitee, name: 'Moshe Abutbul' },
 			{ ...mock_invitee, name: 'Moshiko Balagan' },
-			{ ...mock_invitee, name: 'Kishkush Balabush', approved: false },
+			{ ...mock_invitee, name: 'Kishkush Balabush', approved: 'Pending' },
+			{ ...mock_invitee, name: 'Lynne Hury', approved: 'Pending' },
+			{ ...mock_invitee, name: 'Jordan Hury', approved: 'Declined' },
+			{ ...mock_invitee, name: 'Kevin Hury', approved: 'Declined' },
+			{ ...mock_invitee, name: 'Netanel Hury' },
 		],
 	},
 	{
