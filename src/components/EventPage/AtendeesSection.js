@@ -6,12 +6,13 @@ import { AtendeeBubbles, ChatButton } from '../Common'
 type EventAtendeesSectionProps = {
 	invitees: any,
 	style: any,
+	onPress: () => void,
 }
 
 const AtendeesSection = (props: EventAtendeesSectionProps) =>
 	<View style={props.style}>
 		<Text>{I18n.t('peopleGoing')}:</Text>
-		<TouchableWithoutFeedback onPress={() => this.inviteesDialogToggle(true)}>
+		<TouchableWithoutFeedback onPress={props.onPress}>
 			<View style={styles.goingSection}>
 				<AtendeeBubbles images={props.invitees.map(x => x.image)} bubblesToShow={2} />
 				<ChatButton

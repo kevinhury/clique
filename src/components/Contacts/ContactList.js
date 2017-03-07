@@ -61,7 +61,6 @@ class ContactList extends Component {
 				dataBlob[rowId] = users[i]
 			}
 		}
-		console.log(`datablob is ${JSON.stringify(dataBlob)} and section ids are ${sectionIds} and row ids are ${rowIds}`)
 		return { dataBlob, sectionIds, rowIds }
 	}
 

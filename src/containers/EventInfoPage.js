@@ -100,6 +100,7 @@ class EventInfoPage extends Component {
 					<AtendeesSection
 						invitees={invitees}
 						style={styles.atendeesSection}
+						onPress={() => this.inviteesDialogToggle(true)}
 					/>
 					<Separator color='#F1CE81' />
 					<NumAtendeesSection
