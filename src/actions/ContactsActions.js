@@ -45,7 +45,7 @@ const requestContacts = (dispatch) => {
 				recordId: x.recordID,
 				name: `${x.givenName} ${x.familyName}`,
 				phone: x.phoneNumbers[0].number,
-				thumnbail: x.thumbnailPath,
+				thumbnail: x.thumbnailPath,
 			}
 		})
 		dispatch({ type: CONTACTS_LIST_FETCHED, contacts })

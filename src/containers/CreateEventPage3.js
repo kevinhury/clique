@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react'
 import { View, Text, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Button } from 'react-native-elements'
+import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import ContactList from '../components/Contacts/ContactList'
 import LinearGradient from 'react-native-linear-gradient'
@@ -99,7 +99,7 @@ class CreateEventPage3 extends Component {
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>
-					<NextButton onPress={() => {}} />
+					<NextButton onPress={() => Actions.eventInfoPage()} />
 				</View>
 			</View>
 		)
@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
 	var { contacts, form, permissions } = state
-	console.log(`contacts: ${contacts}`)
 	const permission = permissions.contacts
 	const selectedContacts = form.contacts
 	const { minAtendees, maxAtendees } = form

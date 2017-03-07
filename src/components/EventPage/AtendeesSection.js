@@ -6,7 +6,20 @@ import { AtendeeBubbles, ChatButton } from '../Common'
 type EventAtendeesSectionProps = {
 	invitees: any,
 	style: any,
+	createFlow: boolean,
 	onPress: () => void,
+}
+
+const renderChatButton = (createFlow) => {
+	if (createFlow)
+		return <View />
+	else
+		return (
+			<ChatButton
+				title={I18n.t('chat')}
+				onPress={() => console.log('press')}
+			/>			
+		)
 }
 
 const AtendeesSection = (props: EventAtendeesSectionProps) =>
@@ -15,10 +28,7 @@ const AtendeesSection = (props: EventAtendeesSectionProps) =>
 		<TouchableWithoutFeedback onPress={props.onPress}>
 			<View style={styles.goingSection}>
 				<AtendeeBubbles images={props.invitees.map(x => x.image)} bubblesToShow={2} />
-				<ChatButton
-					title={I18n.t('chat')}
-					onPress={() => console.log('press')}
-				/>
+				{renderChatButton(props.createFlow)}
 			</View>
 		</TouchableWithoutFeedback>
 	</View>

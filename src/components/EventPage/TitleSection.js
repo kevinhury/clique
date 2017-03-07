@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		alignSelf: 'flex-end',
 	},
 	button: {
 		borderRadius: 30,

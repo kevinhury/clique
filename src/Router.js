@@ -30,6 +30,7 @@ const RouterComponent = () => (
 					<Scene key='createEventPage' component={CreateEventPage} title={I18n.t('navigation.createEventTitle')} leftTitle={I18n.t('cancel')} onLeft={() => Actions.pop()} />
 					<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
 					<Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
+					<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
 				</Scene>
 			</Scene>
 		</Router>

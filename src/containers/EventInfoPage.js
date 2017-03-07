@@ -22,7 +22,7 @@ class EventInfoPage extends Component {
 	}
 
 	renderBottomButton() {
-		if (!this.props.event.createFlow)
+		if (!this.props.createFlow)
 			return <View />
 		return (
 			<Button
@@ -101,6 +101,7 @@ class EventInfoPage extends Component {
 						invitees={invitees}
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
+						createFlow={this.props.createFlow}
 					/>
 					<Separator color='#F1CE81' />
 					<NumAtendeesSection
@@ -171,7 +172,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
 	const { events } = state
 	const { selected } = events
-	return { event: selected }
+	const createFlow = selected.type === 'CREATE'
+	return { event: selected, createFlow }
 }
 
 export default connect(mapStateToProps, {
