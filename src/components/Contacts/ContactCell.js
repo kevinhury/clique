@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	View,
 	Text,
@@ -7,12 +7,14 @@ import {
 	Switch,
 } from 'react-native'
 
+type Props = {
+	contact: any,
+	selected: boolean,
+	onValueChange: () => void,
+}
+
 class ContactCell extends Component {
-	static propTypes = {
-		contact: PropTypes.object.isRequired,
-		selected: PropTypes.bool.isRequired,
-		onValueChange: PropTypes.func.isRequired,
-	}
+	props: Props
 
 	render() {
 		const { contact, selected, onValueChange } = this.props
@@ -38,10 +40,10 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		padding: 12,
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
 	},
 	leftView: {
-		flexDirection: 'row'
+		flexDirection: 'row',
 	},
 	textsView: {
 		marginLeft: 12,
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
 		width: 40,
 		height: 40,
 		borderRadius: 20,
-	}
+	},
 })
 
 export default ContactCell
