@@ -23,7 +23,7 @@ class FormButton extends Component {
 			<TouchableOpacity onPress={this.props.onPress}>
 				<View style={[styles.button, this.props.style, colorStyle]}>
 					<Text style={[styles.text, this.props.textStyle, textColor]}>
-						{this.props.text || this.props.placeholder }
+						{this.props.text || this.props.placeholder}
 					</Text>
 				</View>
 			</TouchableOpacity>

@@ -15,7 +15,7 @@ export const requestLocationPermissions = () => {
 				if (permission === 'authorized') {
 					dispatch({ type: LOCATION_PERMISSION_AUTHORIZED })
 				} else if (permission === 'denied') {
-					dispatch({ type: LOCATION_PERMISSION_DENIED})
+					dispatch({ type: LOCATION_PERMISSION_DENIED })
 				}
 			}
 		)

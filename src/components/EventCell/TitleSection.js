@@ -37,22 +37,22 @@ class TitleSection extends Component {
 	sectionColor() {
 		var backgroundColor: string
 		switch (this.props.approved) {
-		case 'Approved':
-			backgroundColor = '#01a836'
-			break
-		case 'Pending':
-			backgroundColor = '#3c9bfd'
-			break
-		case 'Declined':
-			backgroundColor = '#999'
-			break
+			case 'Approved':
+				backgroundColor = '#01a836'
+				break
+			case 'Pending':
+				backgroundColor = '#3c9bfd'
+				break
+			case 'Declined':
+				backgroundColor = '#999'
+				break
 		}
 		return { backgroundColor }
 	}
 
 	adminState() {
 		return (
-			<View style={[styles.content, {justifyContent: 'space-between'}]}>
+			<View style={[styles.content, { justifyContent: 'space-between' }]}>
 				<Text style={styles.titleText}>{this.titleText()}</Text>
 				<TouchableOpacity onPress={this.props.onEditPress}>
 					<View style={styles.editButton}>
@@ -66,7 +66,7 @@ class TitleSection extends Component {
 
 	inviteeState() {
 		return (
-			<View style={[styles.content, {justifyContent: 'flex-end'}]}>
+			<View style={[styles.content, { justifyContent: 'flex-end' }]}>
 				<Text style={styles.titleText}>{this.titleText()}</Text>
 			</View>
 		)
@@ -75,7 +75,7 @@ class TitleSection extends Component {
 	render() {
 		return (
 			<View style={[styles.titleSection, this.sectionColor()]}>
-				{ this.props.isAdmin ? this.adminState() : this.inviteeState() }
+				{this.props.isAdmin ? this.adminState() : this.inviteeState()}
 			</View>
 		)
 	}

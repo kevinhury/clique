@@ -13,10 +13,10 @@ const ChatButton = ({ onPress, title }) => (
 		backgroundColor='#31A5FD'
 		onPress={onPress}
 		buttonStyle={styles.chatButton}
-		/>
+	/>
 )
 ChatButton.propTypes = {
-	title: PropTypes.string,	
+	title: PropTypes.string,
 	onPress: PropTypes.func,
 }
 

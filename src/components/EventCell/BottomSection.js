@@ -20,15 +20,15 @@ class BottomSection extends Component {
 		const status: Status = this.props.status
 		var state: string
 		switch (status) {
-		case 'Pending':
-			state = 'pending'
-			break
-		case 'Cancelled':
-			state = 'cancelled'
-			break
-		case 'Cliqued':
-			state = 'cliqued'
-			break
+			case 'Pending':
+				state = 'pending'
+				break
+			case 'Cancelled':
+				state = 'cancelled'
+				break
+			case 'Cliqued':
+				state = 'cliqued'
+				break
 		}
 		return I18n.t(state)
 	}
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 	},
 	statusText: {
 		fontWeight: 'bold',
-	}
+	},
 })
 
 export default BottomSection

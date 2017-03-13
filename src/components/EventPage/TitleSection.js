@@ -2,10 +2,10 @@
 
 import React, { Component, PropTypes } from 'react'
 import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
+	View,
+	Text,
+	Image,
+	StyleSheet,
 } from 'react-native'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
@@ -56,7 +56,7 @@ class TitleSection extends Component {
 				raised
 				buttonStyle={styles.button}
 				backgroundColor='#b04549'
-        onPress={this.props.onCancelPress}
+				onPress={this.props.onCancelPress}
 			/>
 		)
 	}
@@ -64,30 +64,30 @@ class TitleSection extends Component {
 	render() {
 		const { title, creator, image, approved, status, isAdmin } = this.props
 		return (
-      <View style={styles.titleSection}>
-        <Text style={styles.titleText}>{title}</Text>
-        <Text style={styles.creatorText}>by {creator}</Text>
-        <View style={styles.buttonContainer}>
-          {this.renderCancelButton(isAdmin)}
-          <Image
-            source={{ uri: image }}
-            style={styles.image}
-          />
-          <Button
-            title={this.userStatus(approved, status)}
-            raised
-            buttonStyle={styles.button}
-            backgroundColor='#01a836'
+			<View style={styles.titleSection}>
+				<Text style={styles.titleText}>{title}</Text>
+				<Text style={styles.creatorText}>by {creator}</Text>
+				<View style={styles.buttonContainer}>
+					{this.renderCancelButton(isAdmin)}
+					<Image
+						source={{ uri: image }}
+						style={styles.image}
+					/>
+					<Button
+						title={this.userStatus(approved, status)}
+						raised
+						buttonStyle={styles.button}
+						backgroundColor='#01a836'
 						onPress={this.props.onStatusPress}
-          />
-        </View>
-        <Text style={styles.eventStatus}>
+					/>
+				</View>
+				<Text style={styles.eventStatus}>
 					{I18n.t('eventStatus')}: {' '}
-          <Text style={[styles.eventStatus, {fontWeight: 'bold'}]}>
-            {this.eventStatus(status)}
-          </Text>
-        </Text>
-      </View>
+					<Text style={[styles.eventStatus, { fontWeight: 'bold' }]}>
+						{this.eventStatus(status)}
+					</Text>
+				</Text>
+			</View>
 		)
 	}
 }

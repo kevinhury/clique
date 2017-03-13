@@ -43,7 +43,7 @@ class CreateEventPage2 extends Component {
 	deadlines: Array<any> = [1, 2, 3, 7, 12, 24, 48, 72].map(x => {
 		return { value: x, label: `${x} Hours` }
 	})
-	days: Array<any> = [ ...Array(10).keys()].map(x => x + 1).map(x => {
+	days: Array<any> = [...Array(10).keys()].map(x => x + 1).map(x => {
 		return { value: x, label: `${x}` }
 	})
 	hours: Array<any>
@@ -92,7 +92,7 @@ class CreateEventPage2 extends Component {
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.page}
-				>
+			>
 				<CardView style={styles.card}>
 					<EventCreatePanel stateIndex={1} style={styles.statePanel} />
 					<View>
@@ -101,12 +101,12 @@ class CreateEventPage2 extends Component {
 							text={`${this.props.length > 0 ? this.props.length : ''}`}
 							onPress={() => this.setDaysOnClick()}
 							style={styles.button}
-							/>
+						/>
 						<View style={styles.calendarContainer}>
 							<Calendar
 								scrollEnabled
 								dayHeadings={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
-								events={this.props.dates.map(x => { return { date: x }})}
+								events={this.props.dates.map(x => { return { date: x } })}
 								showEventIndicators
 								customStyle={{
 									calendarContainer: styles.calendar,
@@ -122,13 +122,13 @@ class CreateEventPage2 extends Component {
 							text={`${this.props.startTime}`}
 							onPress={() => this.setTimeOnClick()}
 							style={styles.button}
-							/>
+						/>
 						<FormButton
 							placeholder={I18n.t('createFlow.rsvpInput')}
 							text={`${this.props.deadline > 0 ? this.props.deadline : ''}`}
 							onPress={() => this.setDeadlineOnClick()}
 							style={styles.button}
-							/>
+						/>
 					</View>
 					<View style={styles.buttonContainer}>
 						<NextButton onPress={() => Actions.createEventPage3()} />
@@ -137,36 +137,42 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					ref={'numDaysDialog'}
 					title={I18n.t('dialogs.daysTitle')}
-					type={{ name: 'picker', options: this.days, onValueChange: (index) => {
-						const length = this.days[index]['value']
-						this.props.changeEventLength(length)
-					}}}
+					type={{
+						name: 'picker', options: this.days, onValueChange: (index) => {
+							const length = this.days[index]['value']
+							this.props.changeEventLength(length)
+						},
+					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.refs.numDaysDialog.modal().close()}
-					/>
+				/>
 				<Dialog
 					ref={'timeDialog'}
 					title={I18n.t('dialogs.timeTitle')}
-					type={{ name: 'picker', options: this.hours, onValueChange: (index) => {
-						const startTime = this.hours[index]['value']
-						this.props.changeStartTime(startTime)
-					}}}
+					type={{
+						name: 'picker', options: this.hours, onValueChange: (index) => {
+							const startTime = this.hours[index]['value']
+							this.props.changeStartTime(startTime)
+						},
+					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.refs.timeDialog.modal().close()}
-					/>
+				/>
 				<Dialog
 					ref={'deadlineDialog'}
 					title={I18n.t('dialogs.deadlineTitle')}
-					type={{ name: 'picker', options: this.deadlines, onValueChange: (index) => {
-						const deadline = this.deadlines[index]['value']
-						this.props.changeRSVPDeadline(deadline)
-					}}}
+					type={{
+						name: 'picker', options: this.deadlines, onValueChange: (index) => {
+							const deadline = this.deadlines[index]['value']
+							this.props.changeRSVPDeadline(deadline)
+						},
+					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.refs.deadlineDialog.modal().close()}
-					/>
+				/>
 			</LinearGradient>
 		)
 	}

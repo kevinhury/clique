@@ -71872,23 +71872,15 @@ var _reactNativeRouterFlux=require(456                       ); // 456 = react-n
 var _reactNativeI18n=require(503                );var _reactNativeI18n2=babelHelpers.interopRequireDefault(_reactNativeI18n); // 503 = react-native-i18n
 
 
-var _PhoneLoginPage=require(505                          );var _PhoneLoginPage2=babelHelpers.interopRequireDefault(_PhoneLoginPage); // 505 = ./containers/PhoneLoginPage
-var _PhoneConfirmPage=require(506                            );var _PhoneConfirmPage2=babelHelpers.interopRequireDefault(_PhoneConfirmPage); // 506 = ./containers/PhoneConfirmPage
 var _LobbyPage=require(507                     );var _LobbyPage2=babelHelpers.interopRequireDefault(_LobbyPage); // 507 = ./containers/LobbyPage
 var _CreateEventPage=require(744                           );var _CreateEventPage2=babelHelpers.interopRequireDefault(_CreateEventPage); // 744 = ./containers/CreateEventPage
 var _CreateEventPage3=require(749                            );var _CreateEventPage4=babelHelpers.interopRequireDefault(_CreateEventPage3); // 749 = ./containers/CreateEventPage2
 var _CreateEventPage5=require(769                            );var _CreateEventPage6=babelHelpers.interopRequireDefault(_CreateEventPage5); // 769 = ./containers/CreateEventPage3
 var _EventInfoPage=require(774                         );var _EventInfoPage2=babelHelpers.interopRequireDefault(_EventInfoPage); // 774 = ./containers/EventInfoPage
 
-
-
 var RouterComponent=function RouterComponent(){return(
 _react2.default.createElement(_reactNative.View,{style:styles.background},
 _react2.default.createElement(_reactNativeRouterFlux.Router,{sceneStyle:styles.scene,navigationBarStyle:styles.navbar,titleStyle:styles.title,leftButtonIconStyle:styles.leftButton},
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'auth'},
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'phoneLoginPage',component:_PhoneLoginPage2.default,title:_reactNativeI18n2.default.t('navigation.phoneLoginTitle')}),
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'phoneConfirmPage',component:_PhoneConfirmPage2.default,title:_reactNativeI18n2.default.t('navigation.phoneConfirmTitle')})),
-
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'main',initial:true},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lobbyPage',component:_LobbyPage2.default,title:_reactNativeI18n2.default.t('navigation.eventsTitle')}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'eventInfoPage',component:_EventInfoPage2.default,title:_reactNativeI18n2.default.t('navigation.eventTitle')}),
@@ -71896,7 +71888,6 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'createEvent',di
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'createEventPage',component:_CreateEventPage2.default,title:_reactNativeI18n2.default.t('navigation.createEventTitle'),leftTitle:_reactNativeI18n2.default.t('cancel'),onLeft:function onLeft(){return _reactNativeRouterFlux.Actions.pop();}}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'createEventPage2',component:_CreateEventPage4.default,title:_reactNativeI18n2.default.t('navigation.createEventTitle')}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'createEventPage3',component:_CreateEventPage6.default,title:_reactNativeI18n2.default.t('navigation.createEventTitle')}))))));};
-
 
 
 
@@ -78398,132 +78389,6 @@ I18n.p=I18n.pluralize;
 return I18n;
 });
 }, 504, null, "react-native-i18n/vendor/i18n.js");
-__d(/* clique/src/containers/PhoneLoginPage.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
-var _reactNative=require(12            ); // 12 = react-native
-
-
-
-
-
-
-var _reactRedux=require(404          );var // 404 = react-redux
-
-PhoneLoginPage=function(_Component){babelHelpers.inherits(PhoneLoginPage,_Component);function PhoneLoginPage(){babelHelpers.classCallCheck(this,PhoneLoginPage);return babelHelpers.possibleConstructorReturn(this,(PhoneLoginPage.__proto__||Object.getPrototypeOf(PhoneLoginPage)).apply(this,arguments));}babelHelpers.createClass(PhoneLoginPage,[{key:'render',value:function render()
-{
-return(
-_react2.default.createElement(_reactNative.View,{style:styles.main},
-_react2.default.createElement(_reactNative.Text,{style:styles.textStyle},'Please confirm your country code and enter your phone number'),
-
-
-_react2.default.createElement(_reactNative.TouchableHighlight,null,
-_react2.default.createElement(_reactNative.Text,null,'United States')),
-
-
-
-_react2.default.createElement(_reactNative.View,{style:styles.verticalStyle},
-_react2.default.createElement(_reactNative.Text,null,'+1'),
-_react2.default.createElement(_reactNative.TextInput,{
-style:styles.inputStyle,
-keyboardType:'phone-pad',
-placeholder:'your phone number'}))));
-
-
-
-
-}}]);return PhoneLoginPage;}(_react.Component);
-
-
-var styles=_reactNative.StyleSheet.create({
-main:{
-flex:1,
-alignItems:'center'},
-
-textStyle:{
-textAlign:'center',
-paddingLeft:15,
-paddingRight:15,
-paddingTop:65},
-
-verticalStyle:{
-flexDirection:'row',
-alignItems:'center'},
-
-inputStyle:{
-color:'#000',
-paddingRight:5,
-paddingLeft:5,
-fontSize:18,
-lineHeight:23,
-flex:6}});exports.default=
-
-
-
-(0,_reactRedux.connect)(null,{})(PhoneLoginPage);
-}, 505, null, "clique/src/containers/PhoneLoginPage.js");
-__d(/* clique/src/containers/PhoneConfirmPage.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
-var _reactNative=require(12            ); // 12 = react-native
-
-
-
-
-
-
-var _reactRedux=require(404          );var // 404 = react-redux
-
-PhoneConfirmPage=function(_Component){babelHelpers.inherits(PhoneConfirmPage,_Component);function PhoneConfirmPage(){babelHelpers.classCallCheck(this,PhoneConfirmPage);return babelHelpers.possibleConstructorReturn(this,(PhoneConfirmPage.__proto__||Object.getPrototypeOf(PhoneConfirmPage)).apply(this,arguments));}babelHelpers.createClass(PhoneConfirmPage,[{key:'render',value:function render()
-{
-return(
-_react2.default.createElement(_reactNative.View,{style:{flex:1}},
-_react2.default.createElement(_reactNative.Text,{style:styles.textStyle},'We have sent you an SMS with a code to the number above.'),
-
-
-_react2.default.createElement(_reactNative.Text,{style:styles.textStyle},'To complete your phone number verification, please enter the 6-digit activation code.'),
-
-
-_react2.default.createElement(_reactNative.TextInput,{style:styles.inputStyle}),
-_react2.default.createElement(_reactNative.View,{style:styles.buttonsView},
-_react2.default.createElement(_reactNative.TouchableOpacity,null,
-_react2.default.createElement(_reactNative.Text,{style:styles.buttonTextStyle},'Resend Code')),
-
-
-
-_react2.default.createElement(_reactNative.TouchableOpacity,null,
-_react2.default.createElement(_reactNative.Text,{style:styles.buttonTextStyle},'Call Me')))));
-
-
-
-
-
-
-}}]);return PhoneConfirmPage;}(_react.Component);
-
-
-var styles=_reactNative.StyleSheet.create({
-textStyle:{
-textAlign:'center',
-flex:1,
-margin:30},
-
-inputStyle:{},
-
-
-buttonTextStyle:{
-color:'#007aff'},
-
-buttonsView:{
-flexDirection:'row',
-alignItems:'stretch',
-justifyContent:'space-around',
-flex:5}});
-
-
-
-var mapStateToProps=function mapStateToProps(state){
-return state;
-};exports.default=
-
-(0,_reactRedux.connect)(mapStateToProps,{})(PhoneConfirmPage);
-}, 506, null, "clique/src/containers/PhoneConfirmPage.js");
 __d(/* clique/src/containers/LobbyPage.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react

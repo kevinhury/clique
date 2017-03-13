@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 	x: {
 		fontSize: 12,
 		backgroundColor: 'transparent',
-	}
+	},
 })
 
 export { CancelButton }

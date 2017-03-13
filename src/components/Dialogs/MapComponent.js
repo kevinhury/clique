@@ -29,7 +29,7 @@ class MapComponent extends Component {
 	componentWillMount() {
 		const { latitude, longitude } = this.props.location
 		const region = { ...this.state.region, latitude, longitude }
-		this.setState({ region, marker: {... region } })
+		this.setState({ region, marker: { ...region } })
 	}
 
 	onRegionChange(region: Region) {

@@ -27,7 +27,7 @@ class InviteesComponent extends Component {
 				<Text style={styles.text}>{I18n.t('pending')}:</Text>
 				<AtendeeBubbles
 					style={styles.bubbles}
-					images={invitees.filter(x =>x.approved === 'Pending').map(x => x.image)}
+					images={invitees.filter(x => x.approved === 'Pending').map(x => x.image)}
 					bubblesToShow={bubblesToShow}
 				/>
 				<Text style={styles.text}>{I18n.t('notGoing')}:</Text>

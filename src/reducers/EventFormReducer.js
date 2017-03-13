@@ -28,8 +28,8 @@ export type Location = {
 	address: string,
 }
 
-export type FormType = 
-		'CREATE'
+export type FormType =
+	'CREATE'
 	| 'MODIFY'
 
 export type State = {
@@ -64,77 +64,77 @@ export const INITIAL_STATE: State = {
 
 export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 	switch (action.type) {
-	case FORM_CREATE: {
-		return { ...state, INITIAL_STATE }
-	}
-	case FORM_MODIFY: {
-		var event = {}
-		event.name = action.event.title
-		event.description = action.event.description
-		event.location = action.event.location
-		event.locationName = action.event.locationName
-		event.minAtendees = action.event.minAtendees
-		event.maxAtendees = action.event.limitedRSVPs
-		event.contacts = action.event.invitees
-		return { event, type: 'MODIFY' }
-	}
-	case FORM_CANCEL: {
-		return { ...state, INITIAL_STATE }
-	}
-	case FORM_ADD_CONTACT: {
-		const contacts = [...state.contacts, action.contactId]
-		return { ...state, contacts }
-	}
-	case FORM_REMOVE_CONTACT: {
-		const contacts = state.contacts.filter(c => c !== action.contactId)
-		return { ...state, contacts }
-	}
-	case FORM_CHANGE_NAME:
-		return { ...state, name: action.name }
-	case FORM_CHANGE_DESCRIPTION: {
-		return { ...state, description: action.description }
-	}
-	case FORM_CHANGE_LOCATION_NAME: {
-		return { ...state, locationName: action.locationName }
-	}
-	case FORM_CHANGE_LOCATION: {
-		return { ...state, location: action.location }
-	}
-	case FORM_ADD_DATE: {
-		const dates = [...state.dates, action.date]
-		return { ...state, dates }
-	}
-	case FORM_REMOVE_DATE: {
-		const dates = state.dates.filter(d => {
-			return d.getTime() !== action.date.getTime()
-		})
-		return { ...state, dates }
-	}
-	case FORM_CHANGE_LENGTH: {
-		return { ...state, length: action.length }
-	}
-	case FORM_CHANGE_START_TIME: {
-		return { ...state, startTime: action.startTime }
-	}
-	case FORM_CHANGE_RSVP_DEADLINE: {
-		return { ...state, deadline: action.deadline }
-	}
-	case FORM_CHANGE_MIN_ATENDEES: {
-		return { ...state, minAtendees: action.atendees }
-	}
-	case FORM_CHANGE_MAX_ATENDEES: {
-		return { ...state, maxAtendees: action.atendees }
-	}
-	case LOCATION_CURRENT_USER_FETCHED: {
-		const location = { 
-			...state.location,
-			latitude: action.location.latitude,
-			longitude: action.location.longitude,
+		case FORM_CREATE: {
+			return { ...state, INITIAL_STATE }
 		}
-		console.log(location)
-		return { ...state, location }
-	}
-	default:
-		return state
+		case FORM_MODIFY: {
+			var event = {}
+			event.name = action.event.title
+			event.description = action.event.description
+			event.location = action.event.location
+			event.locationName = action.event.locationName
+			event.minAtendees = action.event.minAtendees
+			event.maxAtendees = action.event.limitedRSVPs
+			event.contacts = action.event.invitees
+			return { event, type: 'MODIFY' }
+		}
+		case FORM_CANCEL: {
+			return { ...state, INITIAL_STATE }
+		}
+		case FORM_ADD_CONTACT: {
+			const contacts = [...state.contacts, action.contactId]
+			return { ...state, contacts }
+		}
+		case FORM_REMOVE_CONTACT: {
+			const contacts = state.contacts.filter(c => c !== action.contactId)
+			return { ...state, contacts }
+		}
+		case FORM_CHANGE_NAME:
+			return { ...state, name: action.name }
+		case FORM_CHANGE_DESCRIPTION: {
+			return { ...state, description: action.description }
+		}
+		case FORM_CHANGE_LOCATION_NAME: {
+			return { ...state, locationName: action.locationName }
+		}
+		case FORM_CHANGE_LOCATION: {
+			return { ...state, location: action.location }
+		}
+		case FORM_ADD_DATE: {
+			const dates = [...state.dates, action.date]
+			return { ...state, dates }
+		}
+		case FORM_REMOVE_DATE: {
+			const dates = state.dates.filter(d => {
+				return d.getTime() !== action.date.getTime()
+			})
+			return { ...state, dates }
+		}
+		case FORM_CHANGE_LENGTH: {
+			return { ...state, length: action.length }
+		}
+		case FORM_CHANGE_START_TIME: {
+			return { ...state, startTime: action.startTime }
+		}
+		case FORM_CHANGE_RSVP_DEADLINE: {
+			return { ...state, deadline: action.deadline }
+		}
+		case FORM_CHANGE_MIN_ATENDEES: {
+			return { ...state, minAtendees: action.atendees }
+		}
+		case FORM_CHANGE_MAX_ATENDEES: {
+			return { ...state, maxAtendees: action.atendees }
+		}
+		case LOCATION_CURRENT_USER_FETCHED: {
+			const location = {
+				...state.location,
+				latitude: action.location.latitude,
+				longitude: action.location.longitude,
+			}
+			console.log(location)
+			return { ...state, location }
+		}
+		default:
+			return state
 	}
 }

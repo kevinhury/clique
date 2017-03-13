@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import {
-  View,
-  ListView,
-  StyleSheet,
+	View,
+	ListView,
+	StyleSheet,
 } from 'react-native'
 import ContactCell from './ContactCell'
 import SectionHeader from './SectionHeader'
@@ -23,7 +23,7 @@ class ContactList extends Component {
 		this.createDataSource(nextProps)
 	}
 
-	createDataSource({ contacts }) {
+	createDataSource({ contacts }: any) {
 		const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId]
 		const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`]
 
@@ -67,37 +67,37 @@ class ContactList extends Component {
 	renderRow(contact: any) {
 		const selected = this.props.selectedList.includes(contact.recordId)
 		return (
-      <ContactCell
-        contact={contact}
-        selected={selected}
-        onValueChange={value => this.props.onValueChange(value, contact)}
-      />
+			<ContactCell
+				contact={contact}
+				selected={selected}
+				onValueChange={value => this.props.onValueChange(value, contact)}
+			/>
 		)
 	}
 
 	renderSeparator(sectionId: string, rowId: string) {
 		return (
-      <View key={rowId} style={styles.separator} />
+			<View key={rowId} style={styles.separator} />
 		)
 	}
 
 	render() {
 		return (
-      <ListView
-        dataSource={this.dataSource}
-        renderRow={this.renderRow.bind(this)}
-        renderSeparator={this.renderSeparator.bind(this)}
-        style={styles.container}
-        renderHeader={() => <Header />}
-        renderSectionHeader={(sectionData) => <SectionHeader { ...sectionData} />}
-      />
+			<ListView
+				dataSource={this.dataSource}
+				renderRow={this.renderRow.bind(this)}
+				renderSeparator={this.renderSeparator.bind(this)}
+				style={styles.container}
+				renderHeader={() => <Header />}
+				renderSectionHeader={(sectionData) => <SectionHeader { ...sectionData} />}
+			/>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		
+
 	},
 	separator: {
 		flex: 1,

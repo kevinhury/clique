@@ -7,8 +7,8 @@ type PlusButtonProps = {
 }
 
 const PlusButton = (props: PlusButtonProps) =>
-  <Icon
-    type='ionicon'
+	<Icon
+		type='ionicon'
 		name='md-add'
 		color='#F2AB2A'
 		raised

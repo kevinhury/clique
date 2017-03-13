@@ -9,14 +9,14 @@ import {
 } from '../actions/types'
 
 export type Status =
-		'Pending'
+	'Pending'
 	| 'Cancelled'
 	| 'Cliqued'
 
 export type Approval =
-		'Pending'
+	'Pending'
 	| 'Declined'
-	|	'Approved'
+	| 'Approved'
 
 export type Invitee = {
 	name: string,
@@ -58,20 +58,20 @@ export const INITIAL_STATE: State = {
 
 export const EventsReducer = (state: State = INITIAL_STATE, action: Action): State => {
 	switch (action.type) {
-	case USER_EVENTS_REQUEST:
-		return { ...state, loading: true, error: false, selected: null }
-	case USER_EVENTS_REQUEST_SUCCESS:
-		return { ...state, list: action.list, loading: false, error: false, selected: null }
-	case USER_EVENT_SELECTED:
-		return { ...state, selected: action.selected }
-	case USER_EVENT_ATTENDANCES_MODIFIED: {
-		const list = [ ...state.list ]
-		let selected = list.filter((x) => x.id === action.eventId)[0]
-		const index = list.indexOf(selected)
-		selected = { ...selected, approved: action.status }
-		list[index] = selected
-		return { ...state, list, selected }
-	} default:
-		return state
+		case USER_EVENTS_REQUEST:
+			return { ...state, loading: true, error: false, selected: null }
+		case USER_EVENTS_REQUEST_SUCCESS:
+			return { ...state, list: action.list, loading: false, error: false, selected: null }
+		case USER_EVENT_SELECTED:
+			return { ...state, selected: action.selected }
+		case USER_EVENT_ATTENDANCES_MODIFIED: {
+			const list = [...state.list]
+			let selected = list.filter((x) => x.id === action.eventId)[0]
+			const index = list.indexOf(selected)
+			selected = { ...selected, approved: action.status }
+			list[index] = selected
+			return { ...state, list, selected }
+		} default:
+			return state
 	}
 }

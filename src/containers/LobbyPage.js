@@ -58,8 +58,8 @@ class LobbyPage extends Component {
 						this.props.modifyForm(event)
 						Actions.createEvent()
 					}}
-					onChatPress={() => {}}
-					/>
+					onChatPress={() => { }}
+				/>
 			</TouchableOpacity>
 		)
 	}
@@ -70,7 +70,7 @@ class LobbyPage extends Component {
 				<Calendar
 					scrollEnabled
 					customStyle={{ calendarContainer: styles.calendar }}
-					/>
+				/>
 				<View style={styles.separator} />
 			</View>
 		)
@@ -81,7 +81,7 @@ class LobbyPage extends Component {
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.container}
-				>
+			>
 				<CardView>
 					<ListView
 						refreshControl={
@@ -98,7 +98,7 @@ class LobbyPage extends Component {
 					<PlusButton onPress={() => {
 						this.props.createForm()
 						Actions.createEvent()
-					}}/>
+					}} />
 				</CardView>
 			</LinearGradient>
 		)

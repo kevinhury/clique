@@ -8,7 +8,7 @@ type NextButtonProps = {
 }
 
 const NextButton = (props: NextButtonProps) =>
-  <Button
+	<Button
 		large
 		raised
 		onPress={props.onPress}

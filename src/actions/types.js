@@ -42,8 +42,8 @@ export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 export type Contact = Object
 
 export type Action =
-    { type: 'FORM_ADD_CONTACT', contact: Contact }
+  { type: 'FORM_ADD_CONTACT', contact: Contact }
   | { type: 'FORM_REMOVE_CONTACT', contact: Contact }
-  | { type: 'CONTACTS_PERMISSION_REQUEST'}
+  | { type: 'CONTACTS_PERMISSION_REQUEST' }
   | { type: 'CONTACTS_PERMISSION_SUCCESS', contacts: Array<Contact> }
   | { type: 'CONTACTS_PERMISSION_DENIED', error: string }

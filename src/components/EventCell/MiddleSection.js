@@ -40,8 +40,8 @@ class MiddleSection extends Component {
 	render() {
 		return (
 			<View style={styles.middleSection}>
-					{this.renderBubbles()}
-				<Text style={styles.minText}>{I18n.t('min_people', { number: this.props.minAtendees})}</Text>
+				{this.renderBubbles()}
+				<Text style={styles.minText}>{I18n.t('min_people', { number: this.props.minAtendees })}</Text>
 			</View>
 		)
 	}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 	noRSVPs: {
 		justifyContent: 'center',
 		alignItems: 'center',
-	}
+	},
 })
 
 export default MiddleSection

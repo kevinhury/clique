@@ -82,9 +82,9 @@ class CreateEventPage3 extends Component {
 								if (value == false)
 									this.props.changeMinAtendees(0)
 								this.onMinRSVPToggle(value)
-							} }
+							}}
 							value={this.props.minAtendees > 0}
-							/>
+						/>
 					</View>
 					<View style={styles.rsvpCell}>
 						<Text>{I18n.t('createFlow.maxRSVP')}:{' '}</Text>
@@ -93,9 +93,9 @@ class CreateEventPage3 extends Component {
 								if (value == false)
 									this.props.changeMaxAtendees(0)
 								this.onMaxRSVPToggle(value)
-							} }
+							}}
 							value={this.props.maxAtendees > 0}
-							/>
+						/>
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>
@@ -110,7 +110,7 @@ class CreateEventPage3 extends Component {
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
 				style={styles.page}
-				>
+			>
 				<CardView style={styles.card}>
 					<EventCreatePanel stateIndex={2} style={styles.statePanel} />
 					{this.renderList()}
@@ -126,7 +126,7 @@ class CreateEventPage3 extends Component {
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.onMinRSVPToggle(false)}
-					/>
+				/>
 				<Dialog
 					ref={'maxRSVPDialog'}
 					title={I18n.t('dialogs.maxRSVPTitle')}
@@ -138,7 +138,7 @@ class CreateEventPage3 extends Component {
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.onMaxRSVPToggle(false)}
-					/>
+				/>
 			</LinearGradient>
 		)
 	}

@@ -45,31 +45,31 @@ class Dialog extends Component {
 
 	renderComponent() {
 		switch (this.props.type.name) {
-		case 'text':
-			return (
-				<TextComponent text={this.props.type.text}/>
-			)
-		case 'invitees':
-			return (
-				<InviteesComponent invitees={this.props.type.invitees} />
-			)
-		case 'picker':
-			return (
-				<PickerComponent
-					options={this.props.type.options}
-					onValueChange={this.props.type.onValueChange}
-				/>
-			)
-		case 'map':
-			return (
-				<MapComponent
-					location={this.props.type.location}
-					name={this.props.type.locationName}
-					description={this.props.type.description}
-				/>
-			)
-		default:
-			return (<View />)
+			case 'text':
+				return (
+					<TextComponent text={this.props.type.text} />
+				)
+			case 'invitees':
+				return (
+					<InviteesComponent invitees={this.props.type.invitees} />
+				)
+			case 'picker':
+				return (
+					<PickerComponent
+						options={this.props.type.options}
+						onValueChange={this.props.type.onValueChange}
+					/>
+				)
+			case 'map':
+				return (
+					<MapComponent
+						location={this.props.type.location}
+						name={this.props.type.locationName}
+						description={this.props.type.description}
+					/>
+				)
+			default:
+				return (<View />)
 		}
 	}
 
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 		left: 40,
 		right: 40,
 		alignSelf: 'stretch',
-	}
+	},
 })
 
 export default Dialog

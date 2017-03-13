@@ -2,9 +2,9 @@
 
 import React, { Component, PropTypes } from 'react'
 import {
-  View,
-  StyleSheet,
-  Text,
+	View,
+	StyleSheet,
+	Text,
 } from 'react-native'
 import I18n from 'react-native-i18n'
 import moment from 'moment'
@@ -19,13 +19,13 @@ class TopSection extends Component {
 	render() {
 		const { title, owner, date } = this.props
 		return (
-      <View style={styles.topSection}>
-        <View style={styles.topTitleSection}>
-          <Text style={styles.nameText}>{title}</Text>
-        </View>
-        <Text style={styles.creatorText}>{I18n.t('createdBy')} {owner}</Text>
-        <Text style={styles.dateText}>{moment(date).local().format('MMMM Do, H:MM')}</Text>
-      </View>
+			<View style={styles.topSection}>
+				<View style={styles.topTitleSection}>
+					<Text style={styles.nameText}>{title}</Text>
+				</View>
+				<Text style={styles.creatorText}>{I18n.t('createdBy')} {owner}</Text>
+				<Text style={styles.dateText}>{moment(date).local().format('MMMM Do, H:MM')}</Text>
+			</View>
 		)
 	}
 }

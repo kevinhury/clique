@@ -36,7 +36,7 @@ class EventInfoPage extends Component {
 	}
 
 	toggleAtendence(status: Status) {
-		const obj = { Pending: 'Approved', Approved: 'Declined' , Declined: 'Approved' }
+		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
 		return obj[status]
 	}
 
@@ -137,7 +137,7 @@ class EventInfoPage extends Component {
 					buttonText={I18n.t('takeMeThere')}
 					buttonCallback={() => {
 						const url = `http://maps.apple.com/?ll=${location.latitude},${location.longitude}&q=${location.address}`
-						Linking.canOpenURL(url).then((supported) =>{
+						Linking.canOpenURL(url).then((supported) => {
 							if (!supported) return
 							Linking.openURL(url)
 						})

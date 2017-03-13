@@ -18,7 +18,7 @@ const renderChatButton = (createFlow) => {
 			<ChatButton
 				title={I18n.t('chat')}
 				onPress={() => console.log('press')}
-			/>			
+			/>
 		)
 }
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-	},	
+	},
 })
 
 export { AtendeesSection }

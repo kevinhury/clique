@@ -37,12 +37,12 @@ const styles = {
 		paddingLeft: 5,
 		fontSize: 18,
 		lineHeight: 23,
-		flex: 2
+		flex: 2,
 	},
 	labelStyle: {
 		fontSize: 18,
 		paddingLeft: 20,
-		flex: 1
+		flex: 1,
 	},
 	containerStyle: {
 		height: 40,
@@ -51,8 +51,8 @@ const styles = {
 		alignItems: 'center',
 		borderRadius: 15,
 		borderWidth: 1,
-		borderColor: '#000'
-	}
+		borderColor: '#000',
+	},
 }
 
 export { Input }

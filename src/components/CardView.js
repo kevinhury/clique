@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {
-  View,
-  StyleSheet
+	View,
+	StyleSheet,
 } from 'react-native'
 
 class CardView extends Component {
@@ -11,9 +11,9 @@ class CardView extends Component {
 	}
 	render() {
 		return (
-      <View style={[styles.card, this.props.style]}>
-        {this.props.children}
-      </View>
+			<View style={[styles.card, this.props.style]}>
+				{this.props.children}
+			</View>
 		)
 	}
 }

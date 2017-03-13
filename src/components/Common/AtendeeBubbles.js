@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
+	View,
+	Text,
+	StyleSheet,
 } from 'react-native'
 import UserBubble from './UserBubble'
 
@@ -15,17 +15,17 @@ class AtendeeBubbles extends Component {
 
 	renderBubble(uri: string, key: number) {
 		return (
-      <UserBubble
-        style={styles.bubble}
-        image={{ uri }}
+			<UserBubble
+				style={styles.bubble}
+				image={{ uri }}
 				key={key}
-      />
+			/>
 		)
 	}
 
 	renderBubbles(images: Array<string>, count: number) {
 		if (images.length === 0)
-			return <View style={styles.bubble}/>
+			return <View style={styles.bubble} />
 		const bubbles = []
 		var index = 0
 		const min = Math.min(count, images.length)
@@ -40,17 +40,17 @@ class AtendeeBubbles extends Component {
 
 	renderMoreBubble(bubbles: number, key: number) {
 		return (
-      <View style={styles.moreBubble} key={key}>
-        <Text style={styles.text}>+{bubbles}</Text>
-      </View>
+			<View style={styles.moreBubble} key={key}>
+				<Text style={styles.text}>+{bubbles}</Text>
+			</View>
 		)
 	}
 
 	render() {
 		return (
-      <View style={[styles.container, this.props.style]}>
+			<View style={[styles.container, this.props.style]}>
 				{this.renderBubbles(this.props.images, this.props.bubblesToShow)}
-      </View>
+			</View>
 		)
 	}
 }
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'transparent',
 		color: '#fff',
 		fontSize: 10,
-	}
+	},
 })
 
 export { AtendeeBubbles }

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 
 export const LoginReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-	default:
-		return state
+		default:
+			return state
 	}
 }

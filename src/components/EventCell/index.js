@@ -19,12 +19,12 @@ class EventCell extends Component {
 	cellGradient(): Array<string> {
 		const status: Status = this.props.event.status
 		switch (status) {
-		case 'Pending':
-			return ['#31A5FD', '#fff']
-		case 'Cancelled':
-			return ['#999999', '#fff']
-		case 'Cliqued':
-			return ['#01a836', '#fff']
+			case 'Pending':
+				return ['#31A5FD', '#fff']
+			case 'Cancelled':
+				return ['#999999', '#fff']
+			case 'Cliqued':
+				return ['#01a836', '#fff']
 		}
 		return []
 	}

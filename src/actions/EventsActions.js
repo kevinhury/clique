@@ -1,11 +1,11 @@
 import {
-USER_EVENTS_REQUEST,
-USER_EVENTS_REQUEST_SUCCESS,
-USER_EVENT_SELECTED,
-USER_EVENT_ATTENDANCES_MODIFIED,
-USER_EVENT_CANCEL,
-USER_EVENT_CREATE,
-USER_EVENT_MODIFY_FIELDS,
+	USER_EVENTS_REQUEST,
+	USER_EVENTS_REQUEST_SUCCESS,
+	USER_EVENT_SELECTED,
+	USER_EVENT_ATTENDANCES_MODIFIED,
+	USER_EVENT_CANCEL,
+	USER_EVENT_CREATE,
+	USER_EVENT_MODIFY_FIELDS,
 } from './types'
 
 const mock_invitee: Invitee = {
@@ -18,7 +18,7 @@ const mock_invitee: Invitee = {
 export const requestEvents = () => {
 	return (dispatch) => {
 		dispatch({ type: USER_EVENTS_REQUEST })
-		setTimeout(function() {
+		setTimeout(() => {
 			dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list: get_mocks() })
 		}, 1000)
 	}

@@ -28,21 +28,21 @@ const INITIAL_STATE: State = {
 
 export const PermissionsReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-	case LOCATION_PERMISSION_REQUEST:
-	case LOCATION_PERMISSION_CHECK:
-		return { ...state, location: 'undetermined' }
-	case LOCATION_CURRENT_USER_FETCHED:
-	case LOCATION_PERMISSION_AUTHORIZED:
-		return { ...state, location: 'authorized' }
-	case LOCATION_PERMISSION_DENIED:
-		return { ...state, location: 'denied' }
-	case CONTACTS_PERMISSION_CHECK | CONTACTS_PERMISSION_REQUEST:
-		return { ...state, contacts: 'undetermined' }
-	case CONTACTS_PERMISSION_SUCCESS:
-		return { ...state, contacts: 'authorized' }
-	case CONTACTS_PERMISSION_DENIED:
-		return { ...state, contacts: 'denied' }
-	default:
-		return state
+		case LOCATION_PERMISSION_REQUEST:
+		case LOCATION_PERMISSION_CHECK:
+			return { ...state, location: 'undetermined' }
+		case LOCATION_CURRENT_USER_FETCHED:
+		case LOCATION_PERMISSION_AUTHORIZED:
+			return { ...state, location: 'authorized' }
+		case LOCATION_PERMISSION_DENIED:
+			return { ...state, location: 'denied' }
+		case CONTACTS_PERMISSION_CHECK | CONTACTS_PERMISSION_REQUEST:
+			return { ...state, contacts: 'undetermined' }
+		case CONTACTS_PERMISSION_SUCCESS:
+			return { ...state, contacts: 'authorized' }
+		case CONTACTS_PERMISSION_DENIED:
+			return { ...state, contacts: 'denied' }
+		default:
+			return state
 	}
 }
