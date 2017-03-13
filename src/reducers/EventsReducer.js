@@ -18,6 +18,12 @@ export type Approval =
 	| 'Declined'
 	| 'Approved'
 
+export type Location = {
+	latitude: number,
+	longitude: number,
+	address: string,
+}
+
 export type Invitee = {
 	name: string,
 	image: string,
@@ -29,12 +35,13 @@ export type Event = {
 	id: string,
 	title: string,
 	description: string,
-	location: string,
+	location: Location,
 	locationName: string,
+	lengthInDays: number,
 	approved: Approval,
 	status: Status,
 	owner: string,
-	date: Date,
+	dates: Array<Date>,
 	isAdmin: bool,
 	expires: ?Date,
 	minAtendees: ?number,
@@ -42,7 +49,7 @@ export type Event = {
 	invitees: Array<Invitee>,
 }
 
-export type State = {
+type State = {
 	loading: boolean,
 	error: boolean,
 	list: Array<Event>,

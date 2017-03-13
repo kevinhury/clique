@@ -64,7 +64,7 @@ class EventInfoPage extends Component {
 	render() {
 		const {
 			id, title, description, location, locationName, approved, status, owner,
-			date, isAdmin, invitees, minAtendees, limitedRSVP,
+			dates, isAdmin, invitees, minAtendees, limitedRSVP,
 		} = this.props.event
 		return (
 			<LinearGradient
@@ -91,8 +91,8 @@ class EventInfoPage extends Component {
 					</View>
 					<Separator color='#F1CE81' />
 					<InfoSection
-						date={date.toLocaleDateString()}
-						time={date.toLocaleTimeString()}
+						date={dates[0].toLocaleDateString()}
+						time={dates[0].toLocaleTimeString()}
 						location={`${locationName} - ${location.address}`}
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>

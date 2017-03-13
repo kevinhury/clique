@@ -1,3 +1,6 @@
+// @flow
+
+import moment from 'moment'
 import {
 	FORM_CREATE,
 	FORM_MODIFY,
@@ -17,10 +20,10 @@ import {
 	FORM_CHANGE_MAX_ATENDEES,
 	LOCATION_CURRENT_USER_FETCHED,
 } from '../actions/types'
+import type { Event } from './EventsReducer'
 
-export type Contact = {
 
-}
+export type Contact = any
 
 export type Location = {
 	latitude: number,
@@ -32,7 +35,7 @@ export type FormType =
 	'CREATE'
 	| 'MODIFY'
 
-export type State = {
+export type EventForm = {
 	name: string,
 	description: string,
 	locationName: string,
@@ -47,7 +50,7 @@ export type State = {
 	type: FormType,
 }
 
-export const INITIAL_STATE: State = {
+export const INITIAL_STATE: EventForm = {
 	name: '',
 	description: '',
 	locationName: '',
@@ -62,21 +65,14 @@ export const INITIAL_STATE: State = {
 	type: 'CREATE',
 }
 
-export const EventFormReducer = (state = INITIAL_STATE, action): State => {
+export const EventFormReducer = (state = INITIAL_STATE, action): EventForm => {
 	switch (action.type) {
 		case FORM_CREATE: {
 			return { ...state, INITIAL_STATE }
 		}
 		case FORM_MODIFY: {
-			var event = {}
-			event.name = action.event.title
-			event.description = action.event.description
-			event.location = action.event.location
-			event.locationName = action.event.locationName
-			event.minAtendees = action.event.minAtendees
-			event.maxAtendees = action.event.limitedRSVPs
-			event.contacts = action.event.invitees
-			return { event, type: 'MODIFY' }
+			const event = mapEventToEventForm(action.event)
+			return { ...event, type: 'MODIFY' }
 		}
 		case FORM_CANCEL: {
 			return { ...state, INITIAL_STATE }
@@ -131,10 +127,25 @@ export const EventFormReducer = (state = INITIAL_STATE, action): State => {
 				latitude: action.location.latitude,
 				longitude: action.location.longitude,
 			}
-			console.log(location)
 			return { ...state, location }
 		}
 		default:
 			return state
 	}
+}
+
+
+const mapEventToEventForm = (event: Event): EventForm => {
+	var form: EventForm = {}
+	form.name = event.title
+	form.description = event.description
+	form.location = event.location
+	form.locationName = event.locationName
+	form.minAtendees = event.minAtendees
+	form.maxAtendees = event.limitedRSVPs
+	form.contacts = event.invitees
+	form.dates = event.dates
+	form.startTime = moment(event.dates[0]).format('HH:mm')
+	form.length = event.lengthInDays
+	return form
 }
