@@ -71663,11 +71663,25 @@ form.maxAtendees=event.limitedRSVP;
 form.contacts=event.invitees;
 form.length=event.lengthInDays;
 form.startTime=(0,_moment2.default)(event.dates[0]).format('HH:mm');
-form.deadline=event.expires;
+form.deadline=''+((0,_moment2.default)(event.expires).format('HH')-form.startTime);
 form.type='CREATE';
-var eventForm=form;
+var eventForm=babelHelpers.extends({},form);
 return eventForm;
 };
+
+var mock_initial_state={
+name:'On the fire',
+description:'We\'re going to have a great time!!',
+locationName:'My Place',
+location:{address:'Malkat shva, Ashdod',latitude:0,longitude:0},
+dates:[new Date()],
+minAtendees:3,
+maxAtendees:10,
+contacts:[],
+length:1,
+startTime:'14:30',
+deadline:4,
+type:'CREATE'};
 }, 450, null, "clique/src/reducers/EventFormReducer.js");
 __d(/* moment/moment.js */function(global, require, module, exports) {
 
@@ -75990,6 +76004,7 @@ var FORM_CHANGE_START_TIME=exports.FORM_CHANGE_START_TIME='FORM_CHANGE_START_TIM
 var FORM_CHANGE_RSVP_DEADLINE=exports.FORM_CHANGE_RSVP_DEADLINE='FORM_CHANGE_RSVP_DEADLINE';
 var FORM_CHANGE_MIN_ATENDEES=exports.FORM_CHANGE_MIN_ATENDEES='FORM_CHANGE_MIN_ATENDEES';
 var FORM_CHANGE_MAX_ATENDEES=exports.FORM_CHANGE_MAX_ATENDEES='FORM_CHANGE_MAX_ATENDEES';
+var FORM_SELECT_TO_REVIEW=exports.FORM_SELECT_TO_REVIEW='FORM_SELECT_TO_REVIEW';
 
 
 var CONTACTS_PERMISSION_CHECK=exports.CONTACTS_PERMISSION_CHECK='CONTACTS_PERMISSION_CHECK';
@@ -76034,8 +76049,10 @@ return state;}
 }, 453, null, "clique/src/reducers/ContactsReducer.js");
 __d(/* clique/src/reducers/EventsReducer.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.EventsReducer=exports.INITIAL_STATE=undefined;
 
+var _moment=require(451     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 451 = moment
 
 var _types=require(452               ); // 452 = ../actions/types
+
 
 
 
@@ -76064,6 +76081,8 @@ case _types.USER_EVENTS_REQUEST_SUCCESS:
 return babelHelpers.extends({},state,{list:action.list,loading:false,error:false,selected:null});
 case _types.USER_EVENT_SELECTED:
 return babelHelpers.extends({},state,{selected:action.selected});
+case _types.FORM_SELECT_TO_REVIEW:
+return babelHelpers.extends({},state,{selected:mapEventFormToEvent(action.form)});
 case _types.USER_EVENT_ATTENDANCES_MODIFIED:{
 var _list=[].concat(babelHelpers.toConsumableArray(state.list));
 var _selected=_list.filter(function(x){return x.id===action.eventId;})[0];
@@ -76074,6 +76093,26 @@ return babelHelpers.extends({},state,{list:_list,selected:_selected});
 }default:
 return state;}
 
+};
+
+var mapEventFormToEvent=function mapEventFormToEvent(form){
+var event={};
+event.title=form.name;
+event.description=form.description;
+event.locationName=form.locationName;
+event.location=form.location;
+event.dates=form.dates;
+event.minAtendees=form.minAtendees;
+event.limitedRSVP=form.maxAtendees;
+event.invitees=form.contacts;
+event.lengthInDays=form.length;
+event.expires=(0,_moment2.default)(form.dates[0]).add(form.deadline,'hours');
+event.approved='Pending';
+event.status='Pending';
+event.owner='You';
+event.isAdmin=false;
+var userEvent=event;
+return userEvent;
 };
 }, 454, null, "clique/src/reducers/EventsReducer.js");
 __d(/* clique/src/reducers/PermissionsReducer.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.PermissionsReducer=undefined;
@@ -76139,7 +76178,7 @@ var _EventInfoPage=require(772                         );var _EventInfoPage2=bab
 
 var RouterComponent=function RouterComponent(){return(
 _react2.default.createElement(_reactNative.View,{style:styles.background},
-_react2.default.createElement(_reactNativeRouterFlux.Router,{sceneStyle:styles.scene,navigationBarStyle:styles.navbar,titleStyle:styles.title,leftButtonIconStyle:styles.leftButton},
+_react2.default.createElement(_reactNativeRouterFlux.Router,{sceneStyle:styles.scene,navigationBarStyle:styles.navbar,titleStyle:styles.title,leftButtonIconStyle:styles.leftButton,leftButtonTextStyle:styles.title},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'main',initial:true},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lobbyPage',component:_LobbyPage2.default,title:_reactNativeI18n2.default.t('navigation.eventsTitle')}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'eventInfoPage',component:_EventInfoPage2.default,title:_reactNativeI18n2.default.t('navigation.eventTitle')}),
@@ -102937,7 +102976,8 @@ Object.keys(_ContactsActions).forEach(function(key){if(key==="default"||key==="_
 Object.keys(_LocationActions).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _LocationActions[key];}});});var _EventsActions=require(741              ); // 741 = ./EventsActions
 Object.keys(_EventsActions).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _EventsActions[key];}});});
 }, 735, null, "clique/src/actions/index.js");
-__d(/* clique/src/actions/EventFormActions.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.changeMaxAtendees=exports.changeMinAtendees=exports.changeRSVPDeadline=exports.changeStartTime=exports.changeEventLength=exports.removeEventDate=exports.addEventDate=exports.changeEventLocation=exports.changeLocationName=exports.changeEventDescription=exports.changeEventName=exports.removeContact=exports.addContact=exports.cancelForm=exports.modifyForm=exports.createForm=undefined;var _types=require(452      ); // 452 = ./types
+__d(/* clique/src/actions/EventFormActions.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.selectFormToReview=exports.changeMaxAtendees=exports.changeMinAtendees=exports.changeRSVPDeadline=exports.changeStartTime=exports.changeEventLength=exports.removeEventDate=exports.addEventDate=exports.changeEventLocation=exports.changeLocationName=exports.changeEventDescription=exports.changeEventName=exports.removeContact=exports.addContact=exports.cancelForm=exports.modifyForm=exports.createForm=undefined;var _types=require(452      ); // 452 = ./types
+
 
 
 
@@ -103063,6 +103103,13 @@ var changeMaxAtendees=exports.changeMaxAtendees=function changeMaxAtendees(atend
 return{
 type:_types.FORM_CHANGE_MAX_ATENDEES,
 atendees:atendees};
+
+};
+
+var selectFormToReview=exports.selectFormToReview=function selectFormToReview(form){
+return{
+type:_types.FORM_SELECT_TO_REVIEW,
+form:form};
 
 };
 }, 736, null, "clique/src/actions/EventFormActions.js");
@@ -103282,6 +103329,7 @@ __d(/* clique/src/actions/EventsActions.js */function(global, require, module, e
 
 
 
+
 var mock_invitee={
 name:'',
 image:'https://facebook.github.io/react/img/logo_og.png',
@@ -103337,8 +103385,8 @@ approved:'Pending',
 status:'Pending',
 owner:'You',
 dates:[new Date('2011-04-11T10:20:30Z'),new Date('2011-04-11T10:20:30Z')],
-isAdmin:false,
-expires:new Date('2011-04-11T10:20:30Z'),
+isAdmin:true,
+expires:new Date('2011-04-11T14:20:30Z'),
 minAtendees:999,
 limitedRSVP:0,
 invitees:[babelHelpers.extends({},
@@ -103852,7 +103900,7 @@ style:styles.page},
 
 _react2.default.createElement(_CardView2.default,{style:styles.card},
 _react2.default.createElement(_EventCreatePanel2.default,{stateIndex:1,style:styles.statePanel}),
-_react2.default.createElement(_reactNative.View,null,
+_react2.default.createElement(_reactNative.View,{style:styles.card},
 _react2.default.createElement(_Common.FormButton,{
 placeholder:_reactNativeI18n2.default.t('createFlow.lengthInput'),
 text:''+(this.props.length>0?this.props.length:''),
@@ -103874,6 +103922,7 @@ hasEventDaySelectedCircle:styles.hasEventCircle},
 onDateSelect:this.dateOnClick.bind(this)})),
 
 
+_react2.default.createElement(_reactNative.View,{style:styles.buttonContainer},
 _react2.default.createElement(_Common.FormButton,{
 placeholder:_reactNativeI18n2.default.t('createFlow.timeInput'),
 text:''+this.props.startTime,
@@ -103884,11 +103933,10 @@ _react2.default.createElement(_Common.FormButton,{
 placeholder:_reactNativeI18n2.default.t('createFlow.rsvpInput'),
 text:''+(this.props.deadline>0?this.props.deadline:''),
 onPress:function onPress(){return _this2.setDeadlineOnClick();},
-style:styles.button})),
+style:styles.button}),
 
+_react2.default.createElement(_NextButton2.default,{onPress:function onPress(){return _reactNativeRouterFlux.Actions.createEventPage3();}})))),
 
-_react2.default.createElement(_reactNative.View,{style:styles.buttonContainer},
-_react2.default.createElement(_NextButton2.default,{onPress:function onPress(){return _reactNativeRouterFlux.Actions.createEventPage3();}}))),
 
 
 _react2.default.createElement(_Dialog2.default,{
@@ -103940,6 +103988,7 @@ page:{
 flex:1},
 
 card:{
+flex:1,
 justifyContent:'flex-start'},
 
 statePanel:{
@@ -103950,13 +103999,13 @@ button:{
 height:40,
 marginLeft:5,
 marginRight:5,
-margin:8},
+margin:6},
 
 buttonContainer:{
-flex:2,
-justifyContent:'flex-end'},
+flex:1},
 
 calendarContainer:{
+flex:2,
 borderWidth:1,
 borderRadius:15,
 borderColor:'#31A5FD',
@@ -106599,6 +106648,7 @@ var _actions=require(735         );var // 735 = ../actions
 
 
 
+
 CreateEventPage3=function(_Component){babelHelpers.inherits(CreateEventPage3,_Component);function CreateEventPage3(){var _ref;var _temp,_this,_ret;babelHelpers.classCallCheck(this,CreateEventPage3);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=babelHelpers.possibleConstructorReturn(this,(_ref=CreateEventPage3.__proto__||Object.getPrototypeOf(CreateEventPage3)).call.apply(_ref,[this].concat(args))),_this),_this.
 minRSVPs=[].concat(babelHelpers.toConsumableArray(Array(50).keys())).map(function(x){
 return{value:x,label:''+x};
@@ -106606,6 +106656,8 @@ return{value:x,label:''+x};
 maxRSVPs=[].concat(babelHelpers.toConsumableArray(Array(50).keys())).map(function(x){
 return{value:x,label:''+x};
 }),_temp),babelHelpers.possibleConstructorReturn(_this,_ret);}babelHelpers.createClass(CreateEventPage3,[{key:'componentWillMount',value:function componentWillMount()
+
+
 
 
 
@@ -106679,7 +106731,10 @@ value:this.props.maxAtendees>0}))),
 
 
 _react2.default.createElement(_reactNative.View,{style:styles.buttonContainer},
-_react2.default.createElement(_NextButton2.default,{onPress:function onPress(){return _reactNativeRouterFlux.Actions.eventInfoPage();}}))));
+_react2.default.createElement(_NextButton2.default,{onPress:function onPress(){
+_this2.props.selectFormToReview(_this2.props.form);
+_reactNativeRouterFlux.Actions.eventInfoPage();
+}}))));
 
 
 
@@ -106721,7 +106776,7 @@ buttonCallback:function buttonCallback(){return _this3.onMaxRSVPToggle(false);}}
 
 
 
-}}]);return CreateEventPage3;}(_react.Component);CreateEventPage3.propTypes={permission:_react.PropTypes.string.isRequired,contacts:_react.PropTypes.array.isRequired,selectedContacts:_react.PropTypes.array.isRequired,minAtendees:_react.PropTypes.number.isRequired,maxAtendees:_react.PropTypes.number.isRequired,addContact:_react.PropTypes.func.isRequired,removeContact:_react.PropTypes.func.isRequired,changeMinAtendees:_react.PropTypes.func.isRequired,changeMaxAtendees:_react.PropTypes.func.isRequired,requestContactList:_react.PropTypes.func.isRequired};
+}}]);return CreateEventPage3;}(_react.Component);CreateEventPage3.propTypes={permission:_react.PropTypes.string.isRequired,contacts:_react.PropTypes.array.isRequired,selectedContacts:_react.PropTypes.array.isRequired,minAtendees:_react.PropTypes.number.isRequired,maxAtendees:_react.PropTypes.number.isRequired,addContact:_react.PropTypes.func.isRequired,removeContact:_react.PropTypes.func.isRequired,changeMinAtendees:_react.PropTypes.func.isRequired,changeMaxAtendees:_react.PropTypes.func.isRequired,requestContactList:_react.PropTypes.func.isRequired,selectFormToReview:_react.PropTypes.func.isRequired,form:_react.PropTypes.any};
 
 
 var styles=_reactNative.StyleSheet.create({
@@ -106762,7 +106817,7 @@ contacts=state.contacts,form=state.form,permissions=state.permissions;
 var permission=permissions.contacts;
 var selectedContacts=form.contacts;var
 minAtendees=form.minAtendees,maxAtendees=form.maxAtendees;
-return{contacts:contacts,permission:permission,selectedContacts:selectedContacts,minAtendees:minAtendees,maxAtendees:maxAtendees};
+return{contacts:contacts,permission:permission,selectedContacts:selectedContacts,minAtendees:minAtendees,maxAtendees:maxAtendees,form:form};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,{
@@ -106770,7 +106825,8 @@ addContact:_actions.addContact,
 removeContact:_actions.removeContact,
 changeMinAtendees:_actions.changeMinAtendees,
 changeMaxAtendees:_actions.changeMaxAtendees,
-requestContactList:_actions.requestContactList})(
+requestContactList:_actions.requestContactList,
+selectFormToReview:_actions.selectFormToReview})(
 CreateEventPage3);
 }, 767, null, "clique/src/containers/CreateEventPage3.js");
 __d(/* clique/src/components/Contacts/ContactList.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -107043,7 +107099,9 @@ EventInfoPage=function(_Component){babelHelpers.inherits(EventInfoPage,_Componen
 
 
 
-{
+
+
+{var _this2=this;
 if(!this.props.createFlow)
 return _react2.default.createElement(_reactNative.View,null);
 return(
@@ -107052,7 +107110,11 @@ raised:true,
 title:_reactNativeI18n2.default.t('createFlow.finishSendInvites'),
 borderRadius:30,
 fontSize:20,
-backgroundColor:'#289FFF'}));
+backgroundColor:'#289FFF',
+onPress:function onPress(){
+_this2.props.createEvent(_this2.props.form);
+_reactNativeRouterFlux.Actions.popTo('main');
+}}));
 
 
 }},{key:'toggleAtendence',value:function toggleAtendence(
@@ -107083,7 +107145,7 @@ this.refs.mapDialog.modal().open();else
 this.refs.mapDialog.modal().close();
 }},{key:'render',value:function render()
 
-{var _this2=this;var _props$event=
+{var _this3=this;var _props$event=
 
 
 
@@ -107102,11 +107164,12 @@ image:'https://facebook.github.io/react/img/logo_og.png',
 approved:approved,
 status:status,
 onStatusPress:function onStatusPress(){
+if(_this3.props.createFlow)return;
 var eventId=id;
-var newApproval=_this2.toggleAtendence(approved);
-_this2.props.modifyAttendances(eventId,newApproval);
+var newApproval=_this3.toggleAtendence(approved);
+_this3.props.modifyAttendances(eventId,newApproval);
 },
-onCancelPress:function onCancelPress(){return _this2.cancelDialogToggle(true);}}),
+onCancelPress:function onCancelPress(){return _this3.cancelDialogToggle(true);}}),
 
 _react2.default.createElement(_reactNative.View,{style:styles.descriptionSection},
 _react2.default.createElement(_reactNative.Text,{style:styles.descriptionText,numberOfLines:3},description)),
@@ -107116,13 +107179,13 @@ _react2.default.createElement(_EventPage.InfoSection,{
 date:dates[0].toLocaleDateString(),
 time:dates[0].toLocaleTimeString(),
 location:locationName+' - '+location.address,
-onLocationPress:function onLocationPress(){return _this2.mapDialogToggle(true);}}),
+onLocationPress:function onLocationPress(){return _this3.mapDialogToggle(true);}}),
 
 _react2.default.createElement(_Common.Separator,{color:'#F1CE81'}),
 _react2.default.createElement(_EventPage.AtendeesSection,{
 invitees:invitees,
 style:styles.atendeesSection,
-onPress:function onPress(){return _this2.inviteesDialogToggle(true);},
+onPress:function onPress(){return _this3.inviteesDialogToggle(true);},
 createFlow:this.props.createFlow}),
 
 _react2.default.createElement(_Common.Separator,{color:'#F1CE81'}),
@@ -107140,7 +107203,7 @@ title:_reactNativeI18n2.default.t('dialogs.inviteesTitle'),
 type:{name:'invitees',invitees:this.props.event.invitees},
 buttonText:_reactNativeI18n2.default.t('great!'),
 modalStyle:{height:280},
-buttonCallback:function buttonCallback(){return _this2.inviteesDialogToggle(false);}}),
+buttonCallback:function buttonCallback(){return _this3.inviteesDialogToggle(false);}}),
 
 _react2.default.createElement(_Dialog2.default,{
 ref:'cancelDialog',
@@ -107148,7 +107211,7 @@ title:_reactNativeI18n2.default.t('dialogs.cancelTitle'),
 type:{name:'text',text:_reactNativeI18n2.default.t('dialogs.cancelText')},
 buttonText:_reactNativeI18n2.default.t('yes'),
 buttonCallback:function buttonCallback(){
-_this2.props.cancelEvent();
+_this3.props.cancelEvent();
 _reactNativeRouterFlux.Actions.pop();
 }}),
 
@@ -107167,7 +107230,7 @@ _reactNative.Linking.openURL(url);
 
 
 
-}}]);return EventInfoPage;}(_react.Component);EventInfoPage.propTypes={createFlow:_react.PropTypes.bool,event:_react.PropTypes.object,modifyAttendances:_react.PropTypes.func,cancelEvent:_react.PropTypes.func};
+}}]);return EventInfoPage;}(_react.Component);EventInfoPage.propTypes={createFlow:_react.PropTypes.bool,event:_react.PropTypes.object,modifyAttendances:_react.PropTypes.func,cancelEvent:_react.PropTypes.func,createEvent:_react.PropTypes.func,form:_react.PropTypes.any};
 
 
 var styles=_reactNative.StyleSheet.create({
@@ -107192,15 +107255,16 @@ paddingRight:20}});
 
 
 var mapStateToProps=function mapStateToProps(state){var
-events=state.events;var
+events=state.events,form=state.form;var
 selected=events.selected;
-var createFlow=selected.type==='CREATE';
-return{event:selected,createFlow:createFlow};
+var createFlow=form.type==='CREATE';
+return{event:selected,createFlow:createFlow,form:form};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,{
 modifyAttendances:_actions.modifyAttendances,
-cancelEvent:_actions.cancelEvent})(
+cancelEvent:_actions.cancelEvent,
+createEvent:_actions.createEvent})(
 EventInfoPage);
 }, 772, null, "clique/src/containers/EventInfoPage.js");
 __d(/* clique/src/components/EventPage/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _AtendeesSection=require(774                );Object.keys(_AtendeesSection).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _AtendeesSection[key];}});});var _InfoSection=require(775            ); // 775 = ./InfoSection // 774 = ./AtendeesSection
