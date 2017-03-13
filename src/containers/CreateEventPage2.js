@@ -95,7 +95,7 @@ class CreateEventPage2 extends Component {
 			>
 				<CardView style={styles.card}>
 					<EventCreatePanel stateIndex={1} style={styles.statePanel} />
-					<View>
+					<View style={styles.card}>
 						<FormButton
 							placeholder={I18n.t('createFlow.lengthInput')}
 							text={`${this.props.length > 0 ? this.props.length : ''}`}
@@ -117,21 +117,21 @@ class CreateEventPage2 extends Component {
 								onDateSelect={this.dateOnClick.bind(this)}
 							/>
 						</View>
-						<FormButton
-							placeholder={I18n.t('createFlow.timeInput')}
-							text={`${this.props.startTime}`}
-							onPress={() => this.setTimeOnClick()}
-							style={styles.button}
-						/>
-						<FormButton
-							placeholder={I18n.t('createFlow.rsvpInput')}
-							text={`${this.props.deadline > 0 ? this.props.deadline : ''}`}
-							onPress={() => this.setDeadlineOnClick()}
-							style={styles.button}
-						/>
-					</View>
-					<View style={styles.buttonContainer}>
-						<NextButton onPress={() => Actions.createEventPage3()} />
+						<View style={styles.buttonContainer}>
+							<FormButton
+								placeholder={I18n.t('createFlow.timeInput')}
+								text={`${this.props.startTime}`}
+								onPress={() => this.setTimeOnClick()}
+								style={styles.button}
+							/>
+							<FormButton
+								placeholder={I18n.t('createFlow.rsvpInput')}
+								text={`${this.props.deadline > 0 ? this.props.deadline : ''}`}
+								onPress={() => this.setDeadlineOnClick()}
+								style={styles.button}
+							/>
+							<NextButton onPress={() => Actions.createEventPage3()} />
+						</View>
 					</View>
 				</CardView>
 				<Dialog
@@ -183,6 +183,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	card: {
+		flex: 1,
 		justifyContent: 'flex-start',
 	},
 	statePanel: {
@@ -193,13 +194,13 @@ const styles = StyleSheet.create({
 		height: 40,
 		marginLeft: 5,
 		marginRight: 5,
-		margin: 8,
+		margin: 6,
 	},
 	buttonContainer: {
-		flex: 2,
-		justifyContent: 'flex-end',
+		flex: 1,
 	},
 	calendarContainer: {
+		flex: 2,
 		borderWidth: 1,
 		borderRadius: 15,
 		borderColor: '#31A5FD',
