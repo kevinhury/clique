@@ -17,6 +17,7 @@ import {
 	changeMinAtendees,
 	changeMaxAtendees,
 	requestContactList,
+	selectFormToReview,
 } from '../actions'
 
 type Label = {
@@ -42,6 +43,8 @@ class CreateEventPage3 extends Component {
 		changeMinAtendees: PropTypes.func.isRequired,
 		changeMaxAtendees: PropTypes.func.isRequired,
 		requestContactList: PropTypes.func.isRequired,
+		selectFormToReview: PropTypes.func.isRequired,
+		form: PropTypes.any,
 	}
 
 	componentWillMount() {
@@ -104,7 +107,10 @@ class CreateEventPage3 extends Component {
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>
-					<NextButton onPress={() => Actions.eventInfoPage()} />
+					<NextButton onPress={() => {
+						this.props.selectFormToReview(this.props.form)
+						Actions.eventInfoPage()
+					}} />
 				</View>
 			</View>
 		)
@@ -187,7 +193,7 @@ const mapStateToProps = state => {
 	const permission = permissions.contacts
 	const selectedContacts = form.contacts
 	const { minAtendees, maxAtendees } = form
-	return { contacts, permission, selectedContacts, minAtendees, maxAtendees }
+	return { contacts, permission, selectedContacts, minAtendees, maxAtendees, form }
 }
 
 export default connect(mapStateToProps, {
@@ -196,4 +202,5 @@ export default connect(mapStateToProps, {
 	changeMinAtendees,
 	changeMaxAtendees,
 	requestContactList,
+	selectFormToReview,
 })(CreateEventPage3)

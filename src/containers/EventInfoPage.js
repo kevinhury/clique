@@ -11,7 +11,7 @@ import CardView from '../components/CardView'
 import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
-import { modifyAttendances, cancelEvent } from '../actions'
+import { modifyAttendances, cancelEvent, createEvent } from '../actions'
 
 import type { Approval } from '../actions/types'
 
@@ -21,6 +21,8 @@ class EventInfoPage extends Component {
 		event: PropTypes.object,
 		modifyAttendances: PropTypes.func,
 		cancelEvent: PropTypes.func,
+		createEvent: PropTypes.func,
+		form: PropTypes.any,
 	}
 
 	renderBottomButton() {
@@ -33,6 +35,10 @@ class EventInfoPage extends Component {
 				borderRadius={30}
 				fontSize={20}
 				backgroundColor='#289FFF'
+				onPress={() => {
+					this.props.createEvent(this.props.form)
+					Actions.popTo('main')
+				}}
 			/>
 		)
 	}
@@ -82,6 +88,7 @@ class EventInfoPage extends Component {
 						approved={approved}
 						status={status}
 						onStatusPress={() => {
+							if (this.props.createFlow) return
 							const eventId = id
 							const newApproval = this.toggleAtendence(approved)
 							this.props.modifyAttendances(eventId, newApproval)
@@ -172,13 +179,14 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { events } = state
+	const { events, form } = state
 	const { selected } = events
-	const createFlow = selected.type === 'CREATE'
-	return { event: selected, createFlow }
+	const createFlow = form.type === 'CREATE'
+	return { event: selected, createFlow, form }
 }
 
 export default connect(mapStateToProps, {
 	modifyAttendances,
 	cancelEvent,
+	createEvent,
 })(EventInfoPage)

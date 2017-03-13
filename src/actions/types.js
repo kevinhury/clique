@@ -17,6 +17,7 @@ export const FORM_CHANGE_START_TIME = 'FORM_CHANGE_START_TIME'
 export const FORM_CHANGE_RSVP_DEADLINE = 'FORM_CHANGE_RSVP_DEADLINE'
 export const FORM_CHANGE_MIN_ATENDEES = 'FORM_CHANGE_MIN_ATENDEES'
 export const FORM_CHANGE_MAX_ATENDEES = 'FORM_CHANGE_MAX_ATENDEES'
+export const FORM_SELECT_TO_REVIEW = 'FORM_SELECT_TO_REVIEW'
 
 // Contacts
 export const CONTACTS_PERMISSION_CHECK = 'CONTACTS_PERMISSION_CHECK'
@@ -130,6 +131,7 @@ export type Action =
   | { type: 'FORM_CHANGE_RSVP_DEADLINE', deadline: number }
   | { type: 'FORM_CHANGE_MIN_ATENDEES', atendees: number }
   | { type: 'FORM_CHANGE_MAX_ATENDEES', atendees: number }
+  | { type: 'FORM_SELECT_TO_REVIEW', form: EventForm }
   | { type: 'CONTACTS_PERMISSION_CHECK' }
   | { type: 'CONTACTS_PERMISSION_REQUEST' }
   | { type: 'CONTACTS_PERMISSION_AUTHORIZED' }

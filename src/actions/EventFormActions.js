@@ -15,6 +15,7 @@ import {
 	FORM_CHANGE_RSVP_DEADLINE,
 	FORM_CHANGE_MIN_ATENDEES,
 	FORM_CHANGE_MAX_ATENDEES,
+	FORM_SELECT_TO_REVIEW,
 } from './types'
 import type { UserEvent, Location } from './types'
 
@@ -124,5 +125,12 @@ export const changeMaxAtendees = (atendees: number) => {
 	return {
 		type: FORM_CHANGE_MAX_ATENDEES,
 		atendees,
+	}
+}
+
+export const selectFormToReview = (form: EventForm) => {
+	return {
+		type: FORM_SELECT_TO_REVIEW,
+		form,
 	}
 }

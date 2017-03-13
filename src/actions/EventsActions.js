@@ -7,6 +7,7 @@ import {
 	USER_EVENT_CREATE,
 	USER_EVENT_MODIFY_FIELDS,
 } from './types'
+import type { Invitee, Approval, UserEvent } from './types'
 
 const mock_invitee: Invitee = {
 	name: '',
@@ -24,35 +25,35 @@ export const requestEvents = () => {
 	}
 }
 
-export const selectEvent = (selected) => {
+export const selectEvent = (selected: UserEvent) => {
 	return { type: USER_EVENT_SELECTED, selected }
 }
 
-export const modifyAttendances = (eventId, status) => {
+export const modifyAttendances = (eventId: string, status: Approval) => {
 	return (dispatch) => {
 		dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, eventId, status })
 	}
 }
 
-export const cancelEvent = (eventId) => {
+export const cancelEvent = (eventId: string) => {
 	return (dispatch) => {
 		dispatch({ type: USER_EVENT_CANCEL, eventId })
 	}
 }
 
-export const createEvent = (event) => {
+export const createEvent = (event: EventForm) => {
 	return (dispatch) => {
 		dispatch({ type: USER_EVENT_CREATE, event })
 	}
 }
 
-export const modifyEventFields = (fields) => {
+export const modifyEventFields = (fields: any) => {
 	return (dispatch) => {
 		dispatch({ type: USER_EVENT_MODIFY_FIELDS, fields })
 	}
 }
 
-const get_mocks = (): Array<Event> => [
+const get_mocks = (): Array<UserEvent> => [
 	{
 		id: '1',
 		title: 'FIFA 17 SESSION',
@@ -63,8 +64,8 @@ const get_mocks = (): Array<Event> => [
 		status: 'Pending',
 		owner: 'You',
 		dates: [new Date('2011-04-11T10:20:30Z'), new Date('2011-04-11T10:20:30Z')],
-		isAdmin: false,
-		expires: new Date('2011-04-11T10:20:30Z'),
+		isAdmin: true,
+		expires: new Date('2011-04-11T14:20:30Z'),
 		minAtendees: 999,
 		limitedRSVP: 0,
 		invitees: [
