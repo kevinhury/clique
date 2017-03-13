@@ -19,11 +19,16 @@ import {
 	requestContactList,
 } from '../actions'
 
+type Label = {
+	value: any,
+	label: string,
+}
+
 class CreateEventPage3 extends Component {
-	minRSVPs = [...Array(50).keys()].map(x => {
+	minRSVPs: Label[] = [...Array(50).keys()].map(x => {
 		return { value: x, label: `${x}` }
 	})
-	maxRSVPs = [...Array(50).keys()].map(x => {
+	maxRSVPs: Label[] = [...Array(50).keys()].map(x => {
 		return { value: x, label: `${x}` }
 	})
 	static propTypes = {

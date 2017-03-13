@@ -17,8 +17,14 @@ type Props = {
 	description: string,
 }
 
+type State = {
+	marker: Region,
+	region: Region,
+}
+
 class MapComponent extends Component {
 	props: Props
+	state: State
 	constructor(props: any) {
 		super(props)
 		this.props = props

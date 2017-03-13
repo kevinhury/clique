@@ -16,6 +16,7 @@ import {
 	FORM_CHANGE_MIN_ATENDEES,
 	FORM_CHANGE_MAX_ATENDEES,
 } from './types'
+import type { UserEvent, Location } from './types'
 
 export const createForm = () => {
 	return {
@@ -23,7 +24,7 @@ export const createForm = () => {
 	}
 }
 
-export const modifyForm = (event) => {
+export const modifyForm = (event: UserEvent) => {
 	return {
 		type: FORM_MODIFY,
 		event,
@@ -71,7 +72,7 @@ export const changeLocationName = (locationName: string) => {
 	}
 }
 
-export const changeEventLocation = (location: any) => {
+export const changeEventLocation = (location: Location) => {
 	return {
 		type: FORM_CHANGE_LOCATION,
 		location,

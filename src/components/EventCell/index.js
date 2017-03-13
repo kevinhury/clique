@@ -8,7 +8,7 @@ import TopSection from './TopSection'
 import MiddleSection from './MiddleSection'
 import BottomSection from './BottomSection'
 
-import type { Status } from '../../reducers/EventsReducer'
+import type { Status } from '../../actions/types'
 
 class EventCell extends Component {
 	static propTypes = {

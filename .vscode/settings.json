@@ -17,5 +17,6 @@
 		"**/bower_components": true,
 		"**/ios": true,
 		"**/android": true
-	}
+	},
+	"flow.path": "./node_modules/.bin/flow"
 }

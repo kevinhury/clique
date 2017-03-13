@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	View,
 	Text,
@@ -8,11 +8,15 @@ import {
 } from 'react-native'
 import { AtendeeBubbles } from '../Common'
 import I18n from 'react-native-i18n'
+import type { Invitee } from '../../actions/types'
+
+type Props = {
+	invitees: Invitee[],
+}
 
 class InviteesComponent extends Component {
-	static propTypes = {
-		invitees: PropTypes.array,
-	}
+	props: Props
+
 	render() {
 		const invitees = this.props.invitees
 		const bubblesToShow = 3

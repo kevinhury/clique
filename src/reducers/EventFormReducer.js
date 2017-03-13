@@ -20,41 +20,14 @@ import {
 	FORM_CHANGE_MAX_ATENDEES,
 	LOCATION_CURRENT_USER_FETCHED,
 } from '../actions/types'
-import type { Event } from './EventsReducer'
+import type { UserEvent, EventForm, Action } from '../actions/types'
 
-
-export type Contact = any
-
-export type Location = {
-	latitude: number,
-	longitude: number,
-	address: string,
-}
-
-export type FormType =
-	'CREATE'
-	| 'MODIFY'
-
-export type EventForm = {
-	name: string,
-	description: string,
-	locationName: string,
-	location: Location,
-	dates: Array<Date>,
-	minAtendees: number,
-	maxAtendees: number,
-	contacts: Array<Contact>,
-	length: number,
-	startTime: string,
-	deadline: number,
-	type: FormType,
-}
 
 export const INITIAL_STATE: EventForm = {
 	name: '',
 	description: '',
 	locationName: '',
-	location: {},
+	location: { address: '', latitude: 0, longitude: 0 },
 	dates: [],
 	minAtendees: 0,
 	maxAtendees: 0,
@@ -65,7 +38,7 @@ export const INITIAL_STATE: EventForm = {
 	type: 'CREATE',
 }
 
-export const EventFormReducer = (state = INITIAL_STATE, action): EventForm => {
+export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Action): EventForm => {
 	switch (action.type) {
 		case FORM_CREATE: {
 			return { ...state, INITIAL_STATE }
@@ -134,18 +107,20 @@ export const EventFormReducer = (state = INITIAL_STATE, action): EventForm => {
 	}
 }
 
-
-const mapEventToEventForm = (event: Event): EventForm => {
-	var form: EventForm = {}
+const mapEventToEventForm = (event: UserEvent): EventForm => {
+	var form = {}
 	form.name = event.title
 	form.description = event.description
-	form.location = event.location
 	form.locationName = event.locationName
-	form.minAtendees = event.minAtendees
-	form.maxAtendees = event.limitedRSVPs
-	form.contacts = event.invitees
+	form.location = event.location
 	form.dates = event.dates
-	form.startTime = moment(event.dates[0]).format('HH:mm')
+	form.minAtendees = event.minAtendees
+	form.maxAtendees = event.limitedRSVP
+	form.contacts = event.invitees
 	form.length = event.lengthInDays
-	return form
+	form.startTime = moment(event.dates[0]).format('HH:mm')
+	form.deadline = event.expires
+	form.type = 'CREATE'
+	const eventForm: EventForm = form
+	return eventForm
 }

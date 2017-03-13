@@ -17,7 +17,7 @@ import CardView from '../components/CardView'
 import PlusButton from '../components/PlusButton'
 import { requestEvents, selectEvent, createForm, modifyForm } from '../actions'
 
-import type { Event } from '../reducers/EventsReducer'
+import type { UserEvent } from '../actions/types'
 
 class LobbyPage extends Component {
 	dataSource: any
@@ -46,7 +46,7 @@ class LobbyPage extends Component {
 		this.props.requestEvents()
 	}
 
-	renderRow(event: Event) {
+	renderRow(event: UserEvent) {
 		return (
 			<TouchableOpacity onPress={() => {
 				this.props.selectEvent(event)

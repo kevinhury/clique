@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
@@ -38,8 +38,20 @@ const generateTimeFormat = (): Array<string> => {
 	})
 }
 
+type Props = {
+	length: number,
+	startTime: string,
+	deadline: number,
+	dates: Date[],
+	changeEventLength: () => void,
+	changeStartTime: () => void,
+	changeRSVPDeadline: () => void,
+	addEventDate: () => void,
+	removeEventDate: () => void,
+}
 
 class CreateEventPage2 extends Component {
+	props: Props
 	deadlines: Array<any> = [1, 2, 3, 7, 12, 24, 48, 72].map(x => {
 		return { value: x, label: `${x} Hours` }
 	})
@@ -47,18 +59,6 @@ class CreateEventPage2 extends Component {
 		return { value: x, label: `${x}` }
 	})
 	hours: Array<any>
-
-	static propTypes = {
-		length: PropTypes.number,
-		startTime: PropTypes.string,
-		deadline: PropTypes.number,
-		dates: PropTypes.arrayOf(Date),
-		changeEventLength: PropTypes.func,
-		changeStartTime: PropTypes.func,
-		changeRSVPDeadline: PropTypes.func,
-		addEventDate: PropTypes.func,
-		removeEventDate: PropTypes.func,
-	}
 
 	componentWillMount() {
 		this.hours = generateTimeFormat().map(x => {

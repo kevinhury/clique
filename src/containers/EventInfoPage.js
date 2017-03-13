@@ -13,6 +13,8 @@ import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '
 import Dialog from '../components/Dialogs/Dialog'
 import { modifyAttendances, cancelEvent } from '../actions'
 
+import type { Approval } from '../actions/types'
+
 class EventInfoPage extends Component {
 	static propTypes = {
 		createFlow: PropTypes.bool,
@@ -35,7 +37,7 @@ class EventInfoPage extends Component {
 		)
 	}
 
-	toggleAtendence(status: Status) {
+	toggleAtendence(status: Approval) {
 		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
 		return obj[status]
 	}

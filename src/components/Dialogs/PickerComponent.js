@@ -1,17 +1,24 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
 } from 'react-native'
 import Picker from 'react-native-wheel-picker'
 
+type Props = {
+	options: any[],
+	onValueChange: () => void,
+}
+
+type State = {
+	selection: ?string,
+}
+
 class PickerComponent extends Component {
-	static propTypes = {
-		options: PropTypes.array,
-		onValueChange: PropTypes.func,
-	}
+	props: Props
+	state: State
 
 	constructor(props: any) {
 		super(props)

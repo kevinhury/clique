@@ -1,3 +1,5 @@
+// @flow
+
 // Create Event Form
 export const FORM_CREATE = 'FORM_CREATE'
 export const FORM_MODIFY = 'FORM_MODIFY'
@@ -39,11 +41,110 @@ export const USER_EVENT_CANCEL = 'USER_EVENT_CANCEL'
 export const USER_EVENT_CREATE = 'USER_EVENT_CREATE'
 export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 
-export type Contact = Object
+export type Status =
+  'Pending'
+  | 'Cancelled'
+  | 'Cliqued'
+
+export type Approval =
+  'Pending'
+  | 'Declined'
+  | 'Approved'
+
+export type Location = {
+  latitude: number,
+  longitude: number,
+  address: string,
+}
+
+export type Invitee = {
+  name: string,
+  image: string,
+  approved: Approval,
+  admin: bool,
+}
+
+export type UserEvent = {
+  id: string,
+  title: string,
+  description: string,
+  location: Location,
+  locationName: string,
+  lengthInDays: number,
+  approved: Approval,
+  status: Status,
+  owner: string,
+  dates: Array<Date>,
+  isAdmin: bool,
+  expires: ?Date,
+  minAtendees: ?number,
+  limitedRSVP: ?number,
+  invitees: Array<Invitee>,
+}
+
+export type Permission =
+  'undetermined'
+  | 'authorized'
+  | 'denied'
+
+export type Contact = {
+  recordID: number,
+  name: string,
+  phone: string,
+  thumnbail: string,
+}
+
+export type FormType =
+  'CREATE'
+  | 'MODIFY'
+
+export type EventForm = {
+  name: string,
+  description: string,
+  locationName: string,
+  location: Location,
+  dates: Array<Date>,
+  minAtendees: number,
+  maxAtendees: number,
+  contacts: Array<Contact>,
+  length: number,
+  startTime: string,
+  deadline: number,
+  type: FormType,
+}
 
 export type Action =
-  { type: 'FORM_ADD_CONTACT', contact: Contact }
+  { type: 'FORM_CREATE' }
+  | { type: 'FORM_MODIFY', event: UserEvent }
+  | { type: 'FORM_CANCEL' }
+  | { type: 'FORM_ADD_CONTACT', contact: Contact }
   | { type: 'FORM_REMOVE_CONTACT', contact: Contact }
+  | { type: 'FORM_CHANGE_NAME', name: string }
+  | { type: 'FORM_CHANGE_DESCRIPTION', description: string }
+  | { type: 'FORM_CHANGE_LOCATION_NAME', locationName: string }
+  | { type: 'FORM_CHANGE_LOCATION', location: Location }
+  | { type: 'FORM_ADD_DATE', date: Date }
+  | { type: 'FORM_REMOVE_DATE', date: Date }
+  | { type: 'FORM_CHANGE_LENGTH', length: number }
+  | { type: 'FORM_CHANGE_START_TIME', startTime: string }
+  | { type: 'FORM_CHANGE_RSVP_DEADLINE', deadline: number }
+  | { type: 'FORM_CHANGE_MIN_ATENDEES', atendees: number }
+  | { type: 'FORM_CHANGE_MAX_ATENDEES', atendees: number }
+  | { type: 'CONTACTS_PERMISSION_CHECK' }
   | { type: 'CONTACTS_PERMISSION_REQUEST' }
-  | { type: 'CONTACTS_PERMISSION_SUCCESS', contacts: Array<Contact> }
-  | { type: 'CONTACTS_PERMISSION_DENIED', error: string }
+  | { type: 'CONTACTS_PERMISSION_AUTHORIZED' }
+  | { type: 'CONTACTS_PERMISSION_DENIED' }
+  | { type: 'CONTACTS_LIST_FETCHED', contacts: Contact[] }
+  | { type: 'LOCATION_PERMISSION_CHECK' }
+  | { type: 'LOCATION_PERMISSION_REQUEST' }
+  | { type: 'LOCATION_PERMISSION_AUTHORIZED' }
+  | { type: 'LOCATION_PERMISSION_DENIED' }
+  | { type: 'LOCATION_CURRENT_USER_FETCHED', location: Location }
+  | { type: 'USER_EVENTS_REQUEST' }
+  | { type: 'USER_EVENTS_REQUEST_SUCCESS', list: UserEvent[] }
+  | { type: 'USER_EVENT_SELECTED', selected: UserEvent }
+  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED', eventId: string, status: Approval }
+  | { type: 'USER_EVENT_CANCEL', eventId: string }
+  | { type: 'USER_EVENT_CREATE', event: UserEvent }
+  | { type: 'USER_EVENT_MODIFY_FIELDS', fields: any }
+

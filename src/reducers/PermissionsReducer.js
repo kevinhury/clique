@@ -1,3 +1,6 @@
+// @flow
+
+import type { Permission, Action } from '../actions/types'
 import {
 	LOCATION_PERMISSION_CHECK,
 	LOCATION_PERMISSION_REQUEST,
@@ -6,14 +9,9 @@ import {
 	LOCATION_CURRENT_USER_FETCHED,
 	CONTACTS_PERMISSION_CHECK,
 	CONTACTS_PERMISSION_REQUEST,
-	CONTACTS_PERMISSION_SUCCESS,
+	CONTACTS_PERMISSION_AUTHORIZED,
 	CONTACTS_PERMISSION_DENIED,
 } from '../actions/types'
-
-export type Permission =
-	'undetermined'
-	| 'authorized'
-	| 'denied'
 
 type State = {
 	contacts: Permission,
@@ -26,7 +24,7 @@ const INITIAL_STATE: State = {
 }
 
 
-export const PermissionsReducer = (state = INITIAL_STATE, action) => {
+export const PermissionsReducer = (state: State = INITIAL_STATE, action: Action) => {
 	switch (action.type) {
 		case LOCATION_PERMISSION_REQUEST:
 		case LOCATION_PERMISSION_CHECK:
@@ -38,7 +36,7 @@ export const PermissionsReducer = (state = INITIAL_STATE, action) => {
 			return { ...state, location: 'denied' }
 		case CONTACTS_PERMISSION_CHECK | CONTACTS_PERMISSION_REQUEST:
 			return { ...state, contacts: 'undetermined' }
-		case CONTACTS_PERMISSION_SUCCESS:
+		case CONTACTS_PERMISSION_AUTHORIZED:
 			return { ...state, contacts: 'authorized' }
 		case CONTACTS_PERMISSION_DENIED:
 			return { ...state, contacts: 'denied' }
