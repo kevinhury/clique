@@ -38,7 +38,9 @@ export const USER_EVENTS_REQUEST = 'USER_EVENTS_REQUEST'
 export const USER_EVENTS_REQUEST_SUCCESS = 'USER_EVENTS_REQUEST_SUCCESS'
 export const USER_EVENT_SELECTED = 'USER_EVENT_SELECTED'
 export const USER_EVENT_ATTENDANCES_MODIFIED = 'USER_EVENT_ATTENDANCES_MODIFIED'
+export const USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE = 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE'
 export const USER_EVENT_CANCEL = 'USER_EVENT_CANCEL'
+export const USER_EVENT_CANCEL_RESPONSE = 'USER_EVENT_CANCEL_RESPONSE'
 export const USER_EVENT_CREATE = 'USER_EVENT_CREATE'
 export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 
@@ -161,9 +163,11 @@ export type Action =
   | { type: 'USER_EVENTS_REQUEST_SUCCESS', list: UserEvent[] }
   | { type: 'USER_EVENT_SELECTED', selected: UserEvent }
   | { type: 'USER_EVENT_ATTENDANCES_MODIFIED', eventId: string, status: Approval }
+  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE', userId: string, eventId: string, status: Approval }
   | { type: 'USER_EVENT_CANCEL', eventId: string }
-  | { type: 'USER_EVENT_CREATE', event: UserEvent }
-  | { type: 'USER_EVENT_MODIFY_FIELDS', fields: any }
+  | { type: 'USER_EVENT_CANCEL_RESPONSE', eventId: string, success: boolean }
+  | { type: 'USER_EVENT_CREATE', eventId: string, success: boolean }
+  | { type: 'USER_EVENT_MODIFY_FIELDS', event: UserEvent, success: boolean }
   | { type: 'LOGIN_CHANGE_COUNTRY', country: CountryCode }
   | { type: 'LOGIN_CHANGE_NUMBER', number: string }
   | { type: 'LOGIN_SUBMIT_PHONE', number: string, country: CountryCode }
