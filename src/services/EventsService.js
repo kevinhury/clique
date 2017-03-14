@@ -1,9 +1,8 @@
 // @flow
 
 // TODO: Replace these
-// import * as API from '../api/EventsAPI'
-import * as API from '../api/FixtureAPI'
-import type {  } from '../api/FixtureAPI'
+// import * as API from '../api/epoch/EventsAPI'
+import * as API from '../api/epoch/FixtureAPI'
 import type { EventForm, Approval } from '../actions/types'
 
 

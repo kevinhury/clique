@@ -1,4 +1,8 @@
-import { get_event_mocks } from '../fixtures/events'
+// @flow
+
+import { get_event_mocks } from '../../fixtures/events'
+import type { EventForm, Approval } from '../../actions/types'
+import type { PhoneLoginResponse, AuthCodeResponse } from './LoginAPI'
 
 export const phoneLoginAPICall = (phone: string, country: string): Promise<PhoneLoginResponse> => {
 	console.log(`PHONE LOGIN API CALL with params: phone ${phone} country ${country}`)
@@ -46,7 +50,7 @@ export const cancelEventAPICall = (userId: string, accessToken: string, eventId:
 }
 
 export const createEventAPICall = (userId: string, accessToken: string, form: EventForm) => {
-	console.log(`CREATE EVENT API CALL with params: ${userId} ${accessToken} ${form}`)
+	console.log(`CREATE EVENT API CALL with params: ${userId} ${accessToken} ${JSON.stringify(form)}`)
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve({})
@@ -55,7 +59,7 @@ export const createEventAPICall = (userId: string, accessToken: string, form: Ev
 }
 
 export const modifyEventFieldsAPICall = (userId: string, accessToken: string, eventId: string, fields: any) => {
-	console.log(`MOD EVENT API CALL with params: ${userId} ${accessToken} ${eventId} ${fields}`)
+	console.log(`MOD EVENT API CALL with params: ${userId} ${accessToken} ${eventId} ${JSON.stringify(fields)}`)
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve({})

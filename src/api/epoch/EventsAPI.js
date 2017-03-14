@@ -2,7 +2,7 @@
 
 import BaseAPI from './BaseAPI'
 import type { Response } from './BaseAPI'
-import type { EventForm, Approval } from '../actions/types'
+import type { EventForm, Approval } from '../../actions/types'
 
 export const requestEventsAPICall = (userId: string, accessToken: string) => {
 	return BaseAPI

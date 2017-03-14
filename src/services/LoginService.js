@@ -1,9 +1,9 @@
 // @flow
 
 // TODO: replace these
-// import * as API from '../api/LoginAPI'
-import * as API from '../api/FixtureAPI'
-import type { PhoneLoginResponse, AuthCodeResponse } from '../api/LoginAPI'
+// import * as API from '../api/epoch/LoginAPI'
+import * as API from '../api/epoch/FixtureAPI'
+import type { PhoneLoginResponse, AuthCodeResponse } from '../api/epoch/LoginAPI'
 
 
 export default {
