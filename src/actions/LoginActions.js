@@ -1,8 +1,12 @@
+import { loginWithPhone, authenticatePhoneCode } from '../services/LoginService'
 import {
 	LOGIN_CHANGE_COUNTRY,
 	LOGIN_CHANGE_NUMBER,
 	LOGIN_SUBMIT_PHONE,
+	LOGIN_SUBMIT_PHONE_BACK,
+	LOGIN_SUBMIT_RESPONSE,
 	LOGIN_SUBMIT_VERIFICATION,
+	LOGIN_SUBMIT_VERIFICATION_RESPONSE,
 } from './types'
 import type { CountryCode } from './types'
 
@@ -20,17 +24,33 @@ export const changeLoginNumber = (number: string) => {
 	}
 }
 
-export const submitLogin = (country: CountryCode, number: string) => {
-	return {
-		type: LOGIN_SUBMIT_PHONE,
-		number,
+export const submitLogin = (number: string, country: CountryCode) => {
+	return (dispatch) => {
+		dispatch({ type: LOGIN_SUBMIT_PHONE, country, number })
+		loginWithPhone(number, country)
+			.then(({ success }) => {
+				dispatch({ type: LOGIN_SUBMIT_RESPONSE, success })
+			})
+			.catch(() => {
+				dispatch({ type: LOGIN_SUBMIT_RESPONSE, success: false })
+			})
 	}
 }
 
+export const submitLoginBack = () => {
+	return { type: LOGIN_SUBMIT_PHONE_BACK }
+}
+
 export const submitVerificationCode = (code: string) => {
-	return {
-		type: LOGIN_SUBMIT_VERIFICATION,
-		code,
+	return (dispatch) => {
+		dispatch({ type: LOGIN_SUBMIT_VERIFICATION, code })
+		authenticatePhoneCode(code)
+			.then(({ success }) => {
+				dispatch({ type: LOGIN_SUBMIT_VERIFICATION_RESPONSE, success })
+			})
+			.catch(() => {
+				dispatch({ type: LOGIN_SUBMIT_VERIFICATION_RESPONSE, success: false })
+			})
 	}
 }
 

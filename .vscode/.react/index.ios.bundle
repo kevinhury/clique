@@ -71529,12 +71529,21 @@ var _types=require(452               ); // 452 = ../actions/types
 
 
 
+
+
+
+
+
 var INITIAL_STATE={
 phoneNumber:'',
 countryCode:{
 cca2:'US',
 callingCode:'1',
-name:'United States'}};
+name:'United States'},
+
+loginStage:'PHONE',
+loading:false};
+
 
 
 
@@ -71549,6 +71558,16 @@ case _types.LOGIN_CHANGE_COUNTRY:
 return babelHelpers.extends({},state,{countryCode:action.country});
 case _types.LOGIN_CHANGE_NUMBER:
 return babelHelpers.extends({},state,{phoneNumber:action.number});
+case _types.LOGIN_SUBMIT_PHONE:
+return babelHelpers.extends({},state,{loading:true});
+case _types.LOGIN_SUBMIT_PHONE_BACK:
+return babelHelpers.extends({},state,{loginStage:'PHONE',loading:false});
+case _types.LOGIN_SUBMIT_RESPONSE:
+return babelHelpers.extends({},state,{loginStage:'CODE',loading:false});
+case _types.LOGIN_SUBMIT_VERIFICATION:
+return babelHelpers.extends({},state,{loading:true});
+case _types.LOGIN_SUBMIT_VERIFICATION_RESPONSE:
+return babelHelpers.extends({},state,{loginStage:'DONE',loading:false});
 default:
 return state;}
 
@@ -71602,7 +71621,10 @@ var USER_EVENT_MODIFY_FIELDS=exports.USER_EVENT_MODIFY_FIELDS='USER_EVENT_MODIFY
 var LOGIN_CHANGE_COUNTRY=exports.LOGIN_CHANGE_COUNTRY='LOGIN_CHANGE_COUNTRY';
 var LOGIN_CHANGE_NUMBER=exports.LOGIN_CHANGE_NUMBER='LOGIN_CHANGE_NUMBER';
 var LOGIN_SUBMIT_PHONE=exports.LOGIN_SUBMIT_PHONE='LOGIN_SUBMIT_PHONE';
+var LOGIN_SUBMIT_PHONE_BACK=exports.LOGIN_SUBMIT_PHONE_BACK='LOGIN_SUBMIT_PHONE_BACK';
+var LOGIN_SUBMIT_RESPONSE=exports.LOGIN_SUBMIT_RESPONSE='LOGIN_SUBMIT_RESPONSE';
 var LOGIN_SUBMIT_VERIFICATION=exports.LOGIN_SUBMIT_VERIFICATION='LOGIN_SUBMIT_VERIFICATION';
+var LOGIN_SUBMIT_VERIFICATION_RESPONSE=exports.LOGIN_SUBMIT_VERIFICATION_RESPONSE='LOGIN_SUBMIT_VERIFICATION_RESPONSE';
 }, 452, null, "clique/src/actions/types.js");
 __d(/* clique/src/reducers/EventFormReducer.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.EventFormReducer=exports.INITIAL_STATE=undefined;
 
@@ -103573,7 +103595,11 @@ minAtendees:999,
 limitedRSVP:0,
 invitees:[]}];};
 }, 741, null, "clique/src/actions/EventsActions.js");
-__d(/* clique/src/actions/LoginActions.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.submitVerificationCode=exports.submitLogin=exports.changeLoginNumber=exports.changeLoginCountry=undefined;var _types=require(452      ); // 452 = ./types
+__d(/* clique/src/actions/LoginActions.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.submitVerificationCode=exports.submitLoginBack=exports.submitLogin=exports.changeLoginNumber=exports.changeLoginCountry=undefined;var _LoginService=require(836                       ); // 836 = ../services/LoginService
+var _types=require(452      ); // 452 = ./types
+
+
+
 
 
 
@@ -103595,20 +103621,69 @@ number:number};
 
 };
 
-var submitLogin=exports.submitLogin=function submitLogin(country,number){
-return{
-type:_types.LOGIN_SUBMIT_PHONE,
-number:number};
+var submitLogin=exports.submitLogin=function submitLogin(number,country){
+return function(dispatch){
+dispatch({type:_types.LOGIN_SUBMIT_PHONE,country:country,number:number});
+(0,_LoginService.loginWithPhone)(number,country).
+then(function(_ref){var success=_ref.success;
+dispatch({type:_types.LOGIN_SUBMIT_RESPONSE,success:success});
+}).
+catch(function(){
+dispatch({type:_types.LOGIN_SUBMIT_RESPONSE,success:false});
+});
+};
+};
 
+var submitLoginBack=exports.submitLoginBack=function submitLoginBack(){
+return{type:_types.LOGIN_SUBMIT_PHONE_BACK};
 };
 
 var submitVerificationCode=exports.submitVerificationCode=function submitVerificationCode(code){
-return{
-type:_types.LOGIN_SUBMIT_VERIFICATION,
-code:code};
-
+return function(dispatch){
+dispatch({type:_types.LOGIN_SUBMIT_VERIFICATION,code:code});
+(0,_LoginService.authenticatePhoneCode)(code).
+then(function(_ref2){var success=_ref2.success;
+dispatch({type:_types.LOGIN_SUBMIT_VERIFICATION_RESPONSE,success:success});
+}).
+catch(function(){
+dispatch({type:_types.LOGIN_SUBMIT_VERIFICATION_RESPONSE,success:false});
+});
+};
 };
 }, 835, null, "clique/src/actions/LoginActions.js");
+__d(/* clique/src/services/LoginService.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.authenticatePhoneCode=exports.loginWithPhone=undefined;
+
+
+
+var _FixtureAPI=require(1268               ); // 1268 = ../api/FixtureAPI
+
+
+var loginWithPhone=exports.loginWithPhone=function loginWithPhone(phone,country){
+return(0,_FixtureAPI.phoneLoginAPICall)(phone,country);
+};
+
+var authenticatePhoneCode=exports.authenticatePhoneCode=function authenticatePhoneCode(code){
+return(0,_FixtureAPI.authenticateCodeAPICall)(code);
+};
+}, 836, null, "clique/src/services/LoginService.js");
+__d(/* clique/src/api/FixtureAPI.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var phoneLoginAPICall=exports.phoneLoginAPICall=function phoneLoginAPICall(phone,country){
+console.log("PHONE LOGIN API CALL with params: phone "+phone+" country "+country);
+return new Promise(function(resolve){
+setTimeout(function(){
+resolve({success:true});
+},1000);
+});
+};
+
+var authenticateCodeAPICall=exports.authenticateCodeAPICall=function authenticateCodeAPICall(code){
+console.log("AUTH CODE API CALL with params: code "+code);
+return new Promise(function(resolve){
+setTimeout(function(){
+resolve({success:true});
+},1000);
+});
+};
+}, 1268, null, "clique/src/api/FixtureAPI.js");
 __d(/* clique/src/containers/CreateEventPage.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _reactRedux=require(404          ); // 404 = react-redux
@@ -107656,64 +107731,55 @@ VerificationPage=function(_Component){babelHelpers.inherits(VerificationPage,_Co
 
 function VerificationPage(props){babelHelpers.classCallCheck(this,VerificationPage);var _this=babelHelpers.possibleConstructorReturn(this,(VerificationPage.__proto__||Object.getPrototypeOf(VerificationPage)).call(this,
 props));
-_this.state={
-enterCode:false,
-spinner:false,
-code:''};return _this;
+_this.state={code:''};return _this;
+}babelHelpers.createClass(VerificationPage,[{key:'componentWillReceiveProps',value:function componentWillReceiveProps(
 
-}babelHelpers.createClass(VerificationPage,[{key:'_changeCountry',value:function _changeCountry(
+nextProps){var _this2=this;
+if(nextProps.loginStage==='CODE'&&!nextProps.loading){
+_reactNative.Alert.alert('Sent!',"We've sent you a verification code",[{
+text:'OK',
+onPress:function onPress(){return _this2.refs.textInput.focus();}}]);
+
+}else if(nextProps.loginStage==='DONE'){
+_reactNative.Alert.alert('Success!','You have successfully verified your phone number',[{
+text:'OK',
+onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'replace'});}}]);
+
+}
+}},{key:'_isCodeStage',value:function _isCodeStage()
+
+{
+return this.props.loginStage==='CODE'||this.props.loginStage==='DONE';
+}},{key:'_changeCountry',value:function _changeCountry(
 
 country){
 this.props.changeLoginCountry(country);
 }},{key:'_getSubmitAction',value:function _getSubmitAction()
 
 {
-if(this.state.enterCode)
+if(this._isCodeStage())
 this._verifyCode();else
 
 this._getCode();
 }},{key:'_verifyCode',value:function _verifyCode()
 
-{var _this2=this;
-if(this.state.spinner)return;
-this.setState({spinner:true});
-
-setTimeout(function(){
-_reactNative.Alert.alert('Success!','You have successfully verified your phone number',[{
-text:'OK',
-onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'replace'});}}]);
-
-_this2.setState({spinner:false});
-},1000);
+{
+if(this.props.loading)return;
+this.props.submitVerificationCode(this.state.code);
 }},{key:'_getCode',value:function _getCode()
 
-{var _this3=this;
-if(this.state.spinner)return;
-this.setState({spinner:true});
-
-this.props.submitLogin();
-
-setTimeout(function(){
-_this3.setState({
-spinner:false,
-enterCode:true});
-
-
-_reactNative.Alert.alert('Sent!',"We've sent you a verification code",[{
-text:'OK',
-onPress:function onPress(){return _this3.refs.textInput.focus();}}]);
-
-
-},1000);
+{
+if(this.props.loading)return;
+this.props.submitLogin(this.props.phoneNumber,this.props.countryCode);
 }},{key:'_tryAgain',value:function _tryAgain()
 
 {
-this.setState({enterCode:false});
 this.props.changeLoginNumber('');
+this.props.submitLoginBack();
 }},{key:'_renderFooter',value:function _renderFooter()
 
 {
-if(this.state.enterCode)
+if(this._isCodeStage())
 return(
 _react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.Text,{style:styles.wrongNumberText,onPress:this._tryAgain.bind(this)},'Enter the wrong number or need a new code?')));
@@ -107732,7 +107798,7 @@ _react2.default.createElement(_reactNative.Text,{style:styles.disclaimerText},'B
 }},{key:'_renderCountryPicker',value:function _renderCountryPicker()
 
 {
-if(this.state.enterCode)
+if(this._isCodeStage())
 return _react2.default.createElement(_reactNative.View,null);
 
 return(
@@ -107747,7 +107813,7 @@ translation:'eng'}));
 }},{key:'_renderCallingCode',value:function _renderCallingCode()
 
 {
-if(this.state.enterCode)
+if(this._isCodeStage())
 return _react2.default.createElement(_reactNative.View,null);
 
 return(
@@ -107758,15 +107824,15 @@ _react2.default.createElement(_reactNative.Text,{style:styles.callingCodeText},'
 }},{key:'_renderSpinner',value:function _renderSpinner()
 
 {
-if(!this.state.spinner)
+if(!this.props.loading)
 return _react2.default.createElement(_reactNative.View,null);
 return _react2.default.createElement(_reactNative.ActivityIndicator,{size:'small'});
 }},{key:'render',value:function render()
 
-{var _this4=this;
-var headerText='What\'s your '+(this.state.enterCode?'verification code':'phone number')+'?';
-var buttonText=this.state.enterCode?'Verify confirmation code':'Send confirmation code';
-var textStyle=this.state.enterCode?{
+{var _this3=this;
+var headerText='What\'s your '+(this._isCodeStage()?'verification code':'phone number')+'?';
+var buttonText=this._isCodeStage()?'Verify confirmation code':'Send confirmation code';
+var textStyle=this._isCodeStage()?{
 height:50,
 textAlign:'center',
 fontSize:40,
@@ -107781,23 +107847,23 @@ _react2.default.createElement(_reactNative.View,{style:{flexDirection:'row'}},
 this._renderCountryPicker(),
 this._renderCallingCode(),
 _react2.default.createElement(_reactNative.TextInput,{
-name:this.state.enterCode?'code':'phoneNumber',
+name:this._isCodeStage()?'code':'phoneNumber',
 ref:'textInput',
 type:'TextInput',
 underlineColorAndroid:'transparent',
 autoCapitalize:'none',
 autoCorrect:false,
-placeholder:this.state.enterCode?'_ _ _ _ _ _':'Phone Number',
+placeholder:this._isCodeStage()?'_ _ _ _ _ _':'Phone Number',
 keyboardType:_reactNative.Platform.OS==='ios'?'number-pad':'numeric',
 style:[styles.textInput,textStyle],
 autoFocus:true,
 placeholderTextColor:brandColor,
 selectionColor:brandColor,
-maxLength:this.state.enterCode?6:20,
+maxLength:this._isCodeStage()?6:20,
 onSubmitEditing:this._getSubmitAction.bind(this),
-value:this.state.enterCode?this.state.code:this.props.phoneNumber,
+value:this._isCodeStage()?this.state.code:this.props.phoneNumber,
 onChangeText:function onChangeText(text){
-_this4.state.enterCode?_this4.setState({code:text}):_this4.props.changeLoginNumber(text);
+_this3._isCodeStage()?_this3.setState({code:text}):_this3.props.changeLoginNumber(text);
 }})),
 
 
@@ -107880,6 +107946,7 @@ return login;
 changeLoginCountry:_actions.changeLoginCountry,
 changeLoginNumber:_actions.changeLoginNumber,
 submitLogin:_actions.submitLogin,
+submitLoginBack:_actions.submitLoginBack,
 submitVerificationCode:_actions.submitVerificationCode})(
 VerificationPage);
 }, 820, null, "clique/src/containers/VerificationPage.js");

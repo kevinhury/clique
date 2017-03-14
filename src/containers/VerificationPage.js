@@ -5,22 +5,22 @@ import { View, Text, TextInput, Platform, TouchableOpacity, ActivityIndicator, A
 import CountryPicker from 'react-native-country-picker-modal'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import { changeLoginCountry, changeLoginNumber, submitLogin, submitVerificationCode } from '../actions'
+import { changeLoginCountry, changeLoginNumber, submitLogin, submitLoginBack, submitVerificationCode } from '../actions'
 import type { CountryCode } from '../actions/types'
 
-
 type State = {
-	enterCode: boolean,
-	spinner: boolean,
 	code: string,
 }
 
 type Props = {
 	phoneNumber: string,
 	countryCode: CountryCode,
+	loginStage: string,
+	loading: false,
 	changeLoginCountry: (CountryCode) => void,
 	changeLoginNumber: (string) => void,
 	submitLogin: () => void,
+	submitLoginBack: () => void,
 	submitVerificationCode: () => void,
 }
 
@@ -29,11 +29,25 @@ class VerificationPage extends Component {
 	state: State
 	constructor(props: any) {
 		super(props)
-		this.state = {
-			enterCode: false,
-			spinner: false,
-			code: '',
+		this.state = { code: '' }
+	}
+
+	componentWillReceiveProps(nextProps: Props) {
+		if (nextProps.loginStage === 'CODE' && !nextProps.loading) {
+			Alert.alert('Sent!', "We've sent you a verification code", [{
+				text: 'OK',
+				onPress: () => this.refs.textInput.focus(),
+			}])
+		} else if (nextProps.loginStage === 'DONE') {
+			Alert.alert('Success!', 'You have successfully verified your phone number', [{
+				text: 'OK',
+				onPress: () => Actions.main({ type: 'replace' }),
+			}])
 		}
+	}
+
+	_isCodeStage(): boolean {
+		return this.props.loginStage === 'CODE' || this.props.loginStage === 'DONE'
 	}
 
 	_changeCountry(country: any) {
@@ -41,52 +55,29 @@ class VerificationPage extends Component {
 	}
 
 	_getSubmitAction() {
-		if (this.state.enterCode)
+		if (this._isCodeStage())
 			this._verifyCode()
 		else
 			this._getCode()
 	}
 
 	_verifyCode() {
-		if (this.state.spinner) return
-		this.setState({ spinner: true })
-
-		setTimeout(() => {
-			Alert.alert('Success!', 'You have successfully verified your phone number', [{
-				text: 'OK',
-				onPress: () => Actions.main({ type: 'replace' }),
-			}])
-			this.setState({ spinner: false })
-		}, 1000)
+		if (this.props.loading) return
+		this.props.submitVerificationCode(this.state.code)
 	}
 
 	_getCode() {
-		if (this.state.spinner) return
-		this.setState({ spinner: true })
-
-		this.props.submitLogin()
-
-		setTimeout(() => {
-			this.setState({
-				spinner: false,
-				enterCode: true,
-			})
-
-			Alert.alert('Sent!', "We've sent you a verification code", [{
-				text: 'OK',
-				onPress: () => this.refs.textInput.focus(),
-			}])
-
-		}, 1000)
+		if (this.props.loading) return
+		this.props.submitLogin(this.props.phoneNumber, this.props.countryCode)
 	}
 
 	_tryAgain() {
-		this.setState({ enterCode: false })
 		this.props.changeLoginNumber('')
+		this.props.submitLoginBack()
 	}
 
 	_renderFooter() {
-		if (this.state.enterCode)
+		if (this._isCodeStage())
 			return (
 				<View>
 					<Text style={styles.wrongNumberText} onPress={this._tryAgain.bind(this)}>
@@ -105,7 +96,7 @@ class VerificationPage extends Component {
 	}
 
 	_renderCountryPicker() {
-		if (this.state.enterCode)
+		if (this._isCodeStage())
 			return (<View />)
 
 		return (
@@ -120,7 +111,7 @@ class VerificationPage extends Component {
 	}
 
 	_renderCallingCode() {
-		if (this.state.enterCode)
+		if (this._isCodeStage())
 			return (<View />)
 
 		return (
@@ -131,15 +122,15 @@ class VerificationPage extends Component {
 	}
 
 	_renderSpinner() {
-		if (!this.state.spinner)
+		if (!this.props.loading)
 			return (<View />)
 		return (<ActivityIndicator size='small' />)
 	}
 
 	render() {
-		const headerText = `What's your ${this.state.enterCode ? 'verification code' : 'phone number'}?`
-		const buttonText = this.state.enterCode ? 'Verify confirmation code' : 'Send confirmation code'
-		const textStyle = this.state.enterCode ? {
+		const headerText = `What's your ${this._isCodeStage() ? 'verification code' : 'phone number'}?`
+		const buttonText = this._isCodeStage() ? 'Verify confirmation code' : 'Send confirmation code'
+		const textStyle = this._isCodeStage() ? {
 			height: 50,
 			textAlign: 'center',
 			fontSize: 40,
@@ -154,23 +145,23 @@ class VerificationPage extends Component {
 					{this._renderCountryPicker()}
 					{this._renderCallingCode()}
 					<TextInput
-						name={this.state.enterCode ? 'code' : 'phoneNumber'}
+						name={this._isCodeStage() ? 'code' : 'phoneNumber'}
 						ref={'textInput'}
 						type={'TextInput'}
 						underlineColorAndroid={'transparent'}
 						autoCapitalize={'none'}
 						autoCorrect={false}
-						placeholder={this.state.enterCode ? '_ _ _ _ _ _' : 'Phone Number'}
+						placeholder={this._isCodeStage() ? '_ _ _ _ _ _' : 'Phone Number'}
 						keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
 						style={[styles.textInput, textStyle]}
 						autoFocus
 						placeholderTextColor={brandColor}
 						selectionColor={brandColor}
-						maxLength={this.state.enterCode ? 6 : 20}
+						maxLength={this._isCodeStage() ? 6 : 20}
 						onSubmitEditing={this._getSubmitAction.bind(this)}
-						value={this.state.enterCode ? this.state.code : this.props.phoneNumber}
+						value={this._isCodeStage() ? this.state.code : this.props.phoneNumber}
 						onChangeText={(text) => {
-							this.state.enterCode ? this.setState({ code: text }) : this.props.changeLoginNumber(text)
+							this._isCodeStage() ? this.setState({ code: text }) : this.props.changeLoginNumber(text)
 						}}
 					/>
 				</View>
@@ -253,5 +244,6 @@ export default connect(mapStateToProps, {
 	changeLoginCountry,
 	changeLoginNumber,
 	submitLogin,
+	submitLoginBack,
 	submitVerificationCode,
 })(VerificationPage)
