@@ -11,11 +11,13 @@ import CreateEventPage from './containers/CreateEventPage'
 import CreateEventPage2 from './containers/CreateEventPage2'
 import CreateEventPage3 from './containers/CreateEventPage3'
 import EventInfoPage from './containers/EventInfoPage'
+import VerificationPage from './containers/VerificationPage'
 
 const RouterComponent = () => (
 	<View style={styles.background}>
 		<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
-			<Scene key='main' initial>
+			<Scene key='verificationPage' component={VerificationPage} hideNavBar initial />
+			<Scene key='main'>
 				<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 				<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
 				<Scene key='createEvent' direction='vertical'>
