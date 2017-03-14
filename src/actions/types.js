@@ -164,4 +164,11 @@ export type Action =
   | { type: 'USER_EVENT_CANCEL', eventId: string }
   | { type: 'USER_EVENT_CREATE', event: UserEvent }
   | { type: 'USER_EVENT_MODIFY_FIELDS', fields: any }
+  | { type: 'LOGIN_CHANGE_COUNTRY', country: CountryCode }
+  | { type: 'LOGIN_CHANGE_NUMBER', number: string }
+  | { type: 'LOGIN_SUBMIT_PHONE', number: string, country: CountryCode }
+  | { type: 'LOGIN_SUBMIT_PHONE_BACK' }
+  | { type: 'LOGIN_SUBMIT_RESPONSE', success: boolean }
+  | { type: 'LOGIN_SUBMIT_VERIFICATION', code: string }
+  | { type: 'LOGIN_SUBMIT_VERIFICATION_RESPONSE', success: boolean }
 
