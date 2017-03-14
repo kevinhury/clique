@@ -1,4 +1,4 @@
-import { loginWithPhone, authenticatePhoneCode } from '../services/LoginService'
+import LoginService from '../services/LoginService'
 import {
 	LOGIN_CHANGE_COUNTRY,
 	LOGIN_CHANGE_NUMBER,
@@ -27,7 +27,8 @@ export const changeLoginNumber = (number: string) => {
 export const submitLogin = (number: string, country: CountryCode) => {
 	return (dispatch) => {
 		dispatch({ type: LOGIN_SUBMIT_PHONE, country, number })
-		loginWithPhone(number, country)
+		LoginService
+			.loginWithPhone(number, country)
 			.then(({ success }) => {
 				dispatch({ type: LOGIN_SUBMIT_RESPONSE, success })
 			})
@@ -44,7 +45,8 @@ export const submitLoginBack = () => {
 export const submitVerificationCode = (code: string) => {
 	return (dispatch) => {
 		dispatch({ type: LOGIN_SUBMIT_VERIFICATION, code })
-		authenticatePhoneCode(code)
+		LoginService
+			.authenticatePhoneCode(code)
 			.then(({ success }) => {
 				dispatch({ type: LOGIN_SUBMIT_VERIFICATION_RESPONSE, success })
 			})
