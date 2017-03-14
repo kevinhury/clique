@@ -42,6 +42,12 @@ export const USER_EVENT_CANCEL = 'USER_EVENT_CANCEL'
 export const USER_EVENT_CREATE = 'USER_EVENT_CREATE'
 export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 
+// Login
+export const LOGIN_CHANGE_COUNTRY = 'LOGIN_CHANGE_COUNTRY'
+export const LOGIN_CHANGE_NUMBER = 'LOGIN_CHANGE_NUMBER'
+export const LOGIN_SUBMIT_PHONE = 'LOGIN_SUBMIT_PHONE'
+export const LOGIN_SUBMIT_VERIFICATION = 'LOGIN_SUBMIT_VERIFICATION'
+
 export type Status =
   'Pending'
   | 'Cancelled'
@@ -112,6 +118,12 @@ export type EventForm = {
   startTime: string,
   deadline: number,
   type: FormType,
+}
+
+export type CountryCode = {
+  cca2: string,
+  callingCode: string,
+  name: string,
 }
 
 export type Action =
