@@ -37,7 +37,8 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			return { ...state, selected: action.selected }
 		case FORM_SELECT_TO_REVIEW:
 			return { ...state, selected: mapEventFormToEvent(action.form) }
-		case USER_EVENT_ATTENDANCES_MODIFIED || USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE: {
+		case USER_EVENT_ATTENDANCES_MODIFIED:
+		case USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE: {
 			const list = [...state.list]
 			let selected = list.filter((x) => x.id === action.eventId)[0]
 			const index = list.indexOf(selected)
@@ -45,7 +46,8 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			list[index] = selected
 			return { ...state, list, selected }
 		}
-		case USER_EVENT_CANCEL || USER_EVENT_CANCEL_RESPONSE:
+		case USER_EVENT_CANCEL:
+		case USER_EVENT_CANCEL_RESPONSE:
 			return { ...state } // TODO: remove event from list
 		default:
 			return state

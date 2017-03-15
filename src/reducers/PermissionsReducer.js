@@ -34,7 +34,8 @@ export const PermissionsReducer = (state: State = INITIAL_STATE, action: Action)
 			return { ...state, location: 'authorized' }
 		case LOCATION_PERMISSION_DENIED:
 			return { ...state, location: 'denied' }
-		case CONTACTS_PERMISSION_CHECK || CONTACTS_PERMISSION_REQUEST:
+		case CONTACTS_PERMISSION_CHECK:
+		case CONTACTS_PERMISSION_REQUEST:
 			return { ...state, contacts: 'undetermined' }
 		case CONTACTS_PERMISSION_AUTHORIZED:
 			return { ...state, contacts: 'authorized' }
