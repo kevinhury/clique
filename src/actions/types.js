@@ -107,7 +107,8 @@ export type Contact = {
 }
 
 export type FormType =
-  'CREATE'
+  'INACTIVE'
+  | 'CREATE'
   | 'MODIFY'
 
 export type EventForm = {

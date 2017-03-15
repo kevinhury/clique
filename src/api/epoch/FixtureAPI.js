@@ -35,7 +35,8 @@ export const modifyAttendancesAPICall = (userId: string, accessToken: string, ev
 	console.log(`MODIFY ATT API CALL with params: ${userId} ${accessToken} ${eventId} ${status}`)
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			resolve({})
+			const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
+			resolve({ userId, eventId, status: obj[status] })
 		}, 1000)
 	})
 }

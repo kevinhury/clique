@@ -31,7 +31,13 @@ export const selectEvent = (selected: UserEvent) => {
 
 export const modifyAttendances = (eventId: string, status: Approval) => {
 	return (dispatch: any) => {
-		dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, eventId, status })
+		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
+		dispatch({
+			type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
+			userId: 'userId', // TODO: Pass user id
+			eventId,
+			status: obj[status],
+		})
 		EventsService
 			.changeAttendances('userId', 'accessToken', eventId, status)
 			.then((response: any) => {
