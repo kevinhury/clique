@@ -43,11 +43,6 @@ class EventInfoPage extends Component {
 		)
 	}
 
-	toggleAtendence(status: Approval) {
-		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
-		return obj[status]
-	}
-
 	cancelDialogToggle(state: boolean) {
 		if (state)
 			this.refs.cancelDialog.modal().open()
@@ -90,8 +85,7 @@ class EventInfoPage extends Component {
 						onStatusPress={() => {
 							if (this.props.createFlow) return
 							const eventId = id
-							const newApproval = this.toggleAtendence(approved)
-							this.props.modifyAttendances(eventId, newApproval)
+							this.props.modifyAttendances(eventId, approved)
 						}}
 						onCancelPress={() => this.cancelDialogToggle(true)}
 					/>

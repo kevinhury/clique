@@ -1,14 +1,18 @@
 // @flow
 
 // TODO: replace these
-// import { phoneLoginAPICall, authenticateCodeAPICall } from '../api/LoginAPI'
-import { phoneLoginAPICall, authenticateCodeAPICall } from '../api/FixtureAPI'
-import type { PhoneLoginResponse, AuthCodeResponse } from '../api/LoginAPI'
+// import * as API from '../api/epoch/LoginAPI'
+import * as API from '../api/epoch/FixtureAPI'
+import type { PhoneLoginResponse, AuthCodeResponse } from '../api/epoch/LoginAPI'
 
-export const loginWithPhone = (phone: string, country: string): Promise<PhoneLoginResponse> => {
-	return phoneLoginAPICall(phone, country)
-}
 
-export const authenticatePhoneCode = (code: string): Promise<AuthCodeResponse> => {
-	return authenticateCodeAPICall(code)
+export default {
+	loginWithPhone: (phone: string, country: string): Promise<PhoneLoginResponse> => {
+		return API
+			.phoneLoginAPICall(phone, country)
+	},
+	authenticatePhoneCode: (code: string): Promise<AuthCodeResponse> => {
+		return API
+			.authenticateCodeAPICall(code)
+	},
 }

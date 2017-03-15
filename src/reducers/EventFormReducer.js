@@ -35,20 +35,20 @@ export const INITIAL_STATE: EventForm = {
 	length: 0,
 	startTime: '',
 	deadline: 0,
-	type: 'CREATE',
+	type: 'INACTIVE',
 }
 
 export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Action): EventForm => {
 	switch (action.type) {
 		case FORM_CREATE: {
-			return { ...state, INITIAL_STATE }
+			return { ...state, INITIAL_STATE, type: 'CREATE' }
 		}
 		case FORM_MODIFY: {
 			const event = mapEventToEventForm(action.event)
 			return { ...event, type: 'MODIFY' }
 		}
 		case FORM_CANCEL: {
-			return { ...state, INITIAL_STATE }
+			return { ...state, INITIAL_STATE, type: 'INACTIVE' }
 		}
 		case FORM_ADD_CONTACT: {
 			const contacts = [...state.contacts, action.contactId]
