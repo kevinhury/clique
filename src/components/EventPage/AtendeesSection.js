@@ -7,7 +7,7 @@ import { AtendeeBubbles, ChatButton } from '../Common'
 
 type EventAtendeesSectionProps = {
 	invitees: any,
-	style: any,
+	style?: any,
 	createFlow: boolean,
 	onPress: () => void,
 }

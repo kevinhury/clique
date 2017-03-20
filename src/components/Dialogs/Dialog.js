@@ -17,9 +17,9 @@ import MapComponent from './MapComponent'
 type DialogProps = {
 	title: string,
 	type: Object,
-	modalStyle: Object,
+	modalStyle?: Object,
 	buttonText: string,
-	buttonStyle: Object,
+	buttonStyle?: Object,
 	buttonCallback: () => void,
 }
 

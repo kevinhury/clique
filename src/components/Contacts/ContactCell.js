@@ -12,7 +12,7 @@ import {
 type ContactCellProps = {
 	contact: any,
 	selected: boolean,
-	onValueChange: () => void,
+	onValueChange: (boolean) => void,
 }
 
 class ContactCell extends Component {

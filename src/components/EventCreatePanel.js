@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
 
 type EventCreatePanelProps = {
-	style: Object,
+	style?: Object,
 	stateIndex: number,
 }
 

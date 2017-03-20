@@ -51,11 +51,12 @@ export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Actio
 			return { ...state, INITIAL_STATE, type: 'INACTIVE' }
 		}
 		case FORM_ADD_CONTACT: {
-			const contacts = [...state.contacts, action.contactId]
+			const contacts = [...state.contacts, action.contact]
 			return { ...state, contacts }
 		}
 		case FORM_REMOVE_CONTACT: {
-			const contacts = state.contacts.filter(c => c !== action.contactId)
+			const contact = action.contact
+			const contacts = state.contacts.filter(c => c !== contact)
 			return { ...state, contacts }
 		}
 		case FORM_CHANGE_NAME:
@@ -74,8 +75,9 @@ export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Actio
 			return { ...state, dates }
 		}
 		case FORM_REMOVE_DATE: {
+			const date = action.date
 			const dates = state.dates.filter(d => {
-				return d.getTime() !== action.date.getTime()
+				return d.getTime() !== date.getTime()
 			})
 			return { ...state, dates }
 		}
@@ -107,7 +109,7 @@ export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Actio
 	}
 }
 
-const mapEventToEventForm = (event: UserEvent): EventForm => {
+const mapEventToEventForm = (event: UserEvent): any => {
 	var form = {}
 	form.name = event.title
 	form.description = event.description
@@ -121,10 +123,10 @@ const mapEventToEventForm = (event: UserEvent): EventForm => {
 	form.startTime = moment(event.dates[0]).format('HH:mm')
 	form.deadline = `${moment(event.expires).format('HH') - form.startTime}`
 	form.type = 'CREATE'
-	const eventForm: EventForm = { ...form }
-	return eventForm
+	return form
 }
 
+/*
 const mock_initial_state = {
 	name: 'On the fire',
 	description: 'We\'re going to have a great time!!',
@@ -139,3 +141,4 @@ const mock_initial_state = {
 	deadline: 4,
 	type: 'CREATE',
 }
+*/

@@ -9,7 +9,7 @@ import {
 import UserBubble from './UserBubble'
 
 type AtendeeBubblesProps = {
-	style: Object,
+	style?: Object,
 	images: string[],
 	bubblesToShow: number,
 }
@@ -21,7 +21,7 @@ class AtendeeBubbles extends Component {
 		return (
 			<UserBubble
 				style={styles.bubble}
-				image={{ uri }}
+				image={uri}
 				key={key}
 			/>
 		)

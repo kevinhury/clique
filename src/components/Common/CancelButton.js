@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
 type CancelButtonpProps = {
-	style: Object,
+	style?: Object,
 	onPress: () => void,
 }
 

@@ -12,8 +12,8 @@ type FormButtonProps = {
 	text: string,
 	placeholder: string,
 	onPress: () => void,
-	style: Object,
-	textStyle: Object,
+	style?: Object,
+	textStyle?: Object,
 }
 
 class FormButton extends Component {

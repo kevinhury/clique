@@ -1,14 +1,12 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-	View,
-	StyleSheet,
-} from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import type { Children } from 'react'
 
 type CardViewProps = {
-	children: any,
-	style: Object,
+	children?: Children,
+	style?: Object,
 }
 
 class CardView extends Component {

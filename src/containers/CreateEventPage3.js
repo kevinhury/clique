@@ -43,10 +43,10 @@ type CreateEventPage3Props = {
 
 class CreateEventPage3 extends Component {
 	props: CreateEventPage3Props
-	minRSVPs: Label[] = [...Array(50).keys()].map(x => {
+	minRSVPs: Label[] = Array.from(Array(50).keys()).map(x => {
 		return { value: x, label: `${x}` }
 	})
-	maxRSVPs: Label[] = [...Array(50).keys()].map(x => {
+	maxRSVPs: Label[] = Array.from(Array(50).keys()).map(x => {
 		return { value: x, label: `${x}` }
 	})
 

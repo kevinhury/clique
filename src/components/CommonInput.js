@@ -7,7 +7,7 @@ type CommonInputProps = {
 	placeholder: string,
 	onChangeText: (string) => void,
 	value: string,
-	style: ?any,
+	style?: Object,
 }
 
 const CommonInput = (props: CommonInputProps) =>

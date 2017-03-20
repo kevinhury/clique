@@ -39,8 +39,9 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			return { ...state, selected: mapEventFormToEvent(action.form) }
 		case USER_EVENT_ATTENDANCES_MODIFIED:
 		case USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE: {
+			const eventId = action.eventId
 			const list = [...state.list]
-			let selected = list.filter((x) => x.id === action.eventId)[0]
+			let selected = list.filter((x) => x.id === eventId)[0]
 			const index = list.indexOf(selected)
 			selected = { ...selected, approved: action.status }
 			list[index] = selected
@@ -54,7 +55,7 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 	}
 }
 
-const mapEventFormToEvent = (form: EventForm): UserEvent => {
+const mapEventFormToEvent = (form: EventForm): any => {
 	var event = {}
 	event.title = form.name
 	event.description = form.description
@@ -70,6 +71,5 @@ const mapEventFormToEvent = (form: EventForm): UserEvent => {
 	event.status = 'Pending'
 	event.owner = 'You'
 	event.isAdmin = false
-	const userEvent: UserEvent = event
-	return userEvent
+	return event
 }

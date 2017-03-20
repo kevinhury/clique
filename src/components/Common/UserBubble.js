@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 
 type UserBubbleProps = {
-	style: Object,
+	style?: Object,
 	image: string,
 }
 

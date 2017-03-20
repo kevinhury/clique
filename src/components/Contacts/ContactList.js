@@ -14,7 +14,7 @@ import type { Contact } from '../../actions/types'
 type ContactListProps = {
 	contacts: Contact[],
 	selectedList: Contact[],
-	onValueChange: () => void,
+	onValueChange: (boolean, Contact) => void,
 }
 
 class ContactList extends Component {
