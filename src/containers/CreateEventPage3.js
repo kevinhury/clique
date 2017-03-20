@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { View, Text, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
@@ -19,33 +19,36 @@ import {
 	requestContactList,
 	selectFormToReview,
 } from '../actions'
+import type { Contact, EventForm } from '../actions/types'
 
 type Label = {
 	value: any,
 	label: string,
 }
 
+type CreateEventPage3Props = {
+	permission: string,
+	contacts: Contact[],
+	selectedContacts: Contact[],
+	minAtendees: number,
+	maxAtendees: number,
+	addContact: () => void,
+	removeContact: () => void,
+	changeMinAtendees: () => void,
+	changeMaxAtendees: () => void,
+	requestContactList: () => void,
+	selectFormToReview: () => void,
+	form: EventForm,
+}
+
 class CreateEventPage3 extends Component {
-	minRSVPs: Label[] = [...Array(50).keys()].map(x => {
+	props: CreateEventPage3Props
+	minRSVPs: Label[] = Array.from(Array(50).keys()).map(x => {
 		return { value: x, label: `${x}` }
 	})
-	maxRSVPs: Label[] = [...Array(50).keys()].map(x => {
+	maxRSVPs: Label[] = Array.from(Array(50).keys()).map(x => {
 		return { value: x, label: `${x}` }
 	})
-	static propTypes = {
-		permission: PropTypes.string.isRequired,
-		contacts: PropTypes.array.isRequired,
-		selectedContacts: PropTypes.array.isRequired,
-		minAtendees: PropTypes.number.isRequired,
-		maxAtendees: PropTypes.number.isRequired,
-		addContact: PropTypes.func.isRequired,
-		removeContact: PropTypes.func.isRequired,
-		changeMinAtendees: PropTypes.func.isRequired,
-		changeMaxAtendees: PropTypes.func.isRequired,
-		requestContactList: PropTypes.func.isRequired,
-		selectFormToReview: PropTypes.func.isRequired,
-		form: PropTypes.any,
-	}
 
 	componentWillMount() {
 		this.props.requestContactList()

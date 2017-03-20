@@ -1,8 +1,10 @@
+// @flow
+
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 type SeparatorProps = {
-	color: string
+	color: string,
 }
 
 const Separator = (props: SeparatorProps) =>

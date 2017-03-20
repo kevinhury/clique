@@ -1,18 +1,19 @@
-import React, { Component, PropTypes } from 'react'
-import {
-	View,
-	StyleSheet,
-	Text,
-} from 'react-native'
+// @flow
+
+import React, { Component } from 'react'
+import { View, StyleSheet, Text } from 'react-native'
 import { AtendeeBubbles, ChatButton } from '../Common'
 import I18n from 'react-native-i18n'
+import type { Invitee } from '../../actions/types'
+
+type MiddleSectionProps = {
+	invitees: Invitee[],
+	minAtendees: number,
+	bubblesToShow: number,
+}
 
 class MiddleSection extends Component {
-	static propTypes = {
-		invitees: PropTypes.array.isRequired,
-		minAtendees: PropTypes.number.isRequired,
-		bubblesToShow: PropTypes.number.isRequired,
-	}
+	props: MiddleSectionProps
 
 	renderBubbles() {
 		const { invitees, bubblesToShow } = this.props

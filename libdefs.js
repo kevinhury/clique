@@ -1,0 +1,17 @@
+declare module 'moment' { declare var exports: any; }
+declare module 'react-native' { declare var exports: any; }
+declare module 'react-redux' { declare var exports: any; }
+declare module 'react-native-router-flux' { declare var exports: any; }
+declare module 'react-native-linear-gradient' { declare var exports: any; }
+declare module 'react-native-google-place-picker' { declare var exports: any; }
+declare module 'react-native-i18n' { declare var exports: any; }
+declare module 'react-native-calendar' { declare var exports: any; }
+declare module 'react-native-elements' { declare var exports: any; }
+declare module 'react-native-country-picker-modal' { declare var exports: any; }
+declare module 'react-native-modalbox' { declare var exports: any; }
+declare module 'react-native-maps' { declare var exports: any; }
+declare module 'react-native-wheel-picker' { declare var exports: any; }
+declare module 'react-native-vector-icons' { declare var exports: any; }
+declare module 'react-native-vector-icons/Ionicons' { declare var exports: any; }
+declare module 'react-native-vector-icons/MaterialIcons' { declare var exports: any; }
+declare module 'apisauce' { declare var exports: any; }

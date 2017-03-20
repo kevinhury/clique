@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	Text,
@@ -12,15 +14,17 @@ import InviteesComponent from './InviteesComponent'
 import PickerComponent from './PickerComponent'
 import MapComponent from './MapComponent'
 
+type DialogProps = {
+	title: string,
+	type: Object,
+	modalStyle?: Object,
+	buttonText: string,
+	buttonStyle?: Object,
+	buttonCallback: () => void,
+}
+
 class Dialog extends Component {
-	static propTypes = {
-		title: PropTypes.string,
-		type: PropTypes.object,
-		modalStyle: PropTypes.any,
-		buttonText: PropTypes.string,
-		buttonStyle: PropTypes.any,
-		buttonCallback: PropTypes.func,
-	}
+	props: DialogProps
 
 	modal() {
 		return this.refs.modal

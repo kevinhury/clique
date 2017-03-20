@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
@@ -7,14 +9,16 @@ import {
 import I18n from 'react-native-i18n'
 import moment from 'moment'
 
-import type { Status } from '../../reducers/EventsReducer'
+import type { Status, Approval } from '../../actions/types'
+
+type BottomSectionProps = {
+	status: Status,
+	approved: Approval,
+	expires: ?Date
+}
 
 class BottomSection extends Component {
-	static propTypes = {
-		status: PropTypes.string.isRequired, // type "Status"
-		approved: PropTypes.string.isRequired, // type "Approval"
-		expires: PropTypes.instanceOf(Date).isRequired,
-	}
+	props: BottomSectionProps
 
 	statusText(): string {
 		const status: Status = this.props.status

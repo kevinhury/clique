@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
@@ -7,16 +9,17 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import I18n from 'react-native-i18n'
+import type { Status, Approval } from '../../actions/types'
 
-import type { Status, Approval } from '../../reducers/EventsReducer'
+type TitleSectionProps = {
+	approved: Approval,
+	status: Status,
+	isAdmin: boolean,
+	onEditPress: () => void,
+}
 
 class TitleSection extends Component {
-	static propTypes = {
-		approved: PropTypes.string.isRequired,
-		status: PropTypes.string.isRequired,
-		isAdmin: PropTypes.bool.isRequired,
-		onEditPress: PropTypes.func.isRequired,
-	}
+	props: TitleSectionProps
 
 	titleText(): string {
 		const status: Status = this.props.status

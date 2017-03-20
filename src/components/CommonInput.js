@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native'
 
@@ -5,7 +7,7 @@ type CommonInputProps = {
 	placeholder: string,
 	onChangeText: (string) => void,
 	value: string,
-	style: ?any,
+	style?: Object,
 }
 
 const CommonInput = (props: CommonInputProps) =>

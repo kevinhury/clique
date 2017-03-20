@@ -1,17 +1,15 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
-import {
-	View,
-	Text,
-	StyleSheet,
-} from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
+type TextComponentProps = {
+	text: string,
+}
 
 class TextComponent extends Component {
-	static propTypes = {
-		text: PropTypes.string.isRequired,
-	}
+	props: TextComponentProps
+
 	render() {
 		return (
 			<View style={styles.container}>

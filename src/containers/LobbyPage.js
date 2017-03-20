@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	ListView,
 	View,
@@ -19,12 +19,17 @@ import { requestEvents, selectEvent, createForm, modifyForm } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
+type LobbyPageProps = {
+	events: any,
+	requestEvents: () => void,
+	selectEvent: () => void,
+	modifyForm: () => void,
+	createForm: () => void,
+}
+
 class LobbyPage extends Component {
 	dataSource: any
-	static propTypes = {
-		events: PropTypes.object,
-		requestEvents: PropTypes.func,
-	}
+	props: LobbyPageProps
 
 	componentWillMount(): void {
 		this.updateDataSource(this.props)

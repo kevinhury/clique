@@ -1,15 +1,18 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import { TextInput, View, Text } from 'react-native'
 
+type InputProps = {
+	label: string,
+	value: string,
+	onChangeText: () => void,
+	placeholder: string,
+	secureTextEntry: boolean,
+}
 
 class Input extends Component {
-	static propTypes = {
-		label: PropTypes.string,
-		value: PropTypes.string,
-		onChangeText: PropTypes.func,
-		placeholder: PropTypes.string,
-		secureTextEntry: PropTypes.bool,
-	}
+	props: InputProps
 
 	render() {
 		const { inputStyle, labelStyle, containerStyle } = styles

@@ -55,7 +55,7 @@ class CreateEventPage2 extends Component {
 	deadlines: Array<any> = [1, 2, 3, 7, 12, 24, 48, 72].map(x => {
 		return { value: x, label: `${x} Hours` }
 	})
-	days: Array<any> = [...Array(10).keys()].map(x => x + 1).map(x => {
+	days: Array<any> = Array.from(Array(10).keys()).map(x => x + 1).map(x => {
 		return { value: x, label: `${x}` }
 	})
 	hours: Array<any>

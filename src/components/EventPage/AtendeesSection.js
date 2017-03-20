@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
@@ -5,7 +7,7 @@ import { AtendeeBubbles, ChatButton } from '../Common'
 
 type EventAtendeesSectionProps = {
 	invitees: any,
-	style: any,
+	style?: any,
 	createFlow: boolean,
 	onPress: () => void,
 }

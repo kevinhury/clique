@@ -7,18 +7,18 @@ import {
 } from 'react-native'
 import Picker from 'react-native-wheel-picker'
 
-type Props = {
+type PickerComponentProps = {
 	options: any[],
 	onValueChange: () => void,
 }
 
-type State = {
+type PickerComponentState = {
 	selection: ?string,
 }
 
 class PickerComponent extends Component {
-	props: Props
-	state: State
+	props: PickerComponentProps
+	state: PickerComponentState
 
 	constructor(props: any) {
 		super(props)

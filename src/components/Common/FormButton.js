@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
@@ -6,14 +8,16 @@ import {
 	Text,
 } from 'react-native'
 
+type FormButtonProps = {
+	text: string,
+	placeholder: string,
+	onPress: () => void,
+	style?: Object,
+	textStyle?: Object,
+}
+
 class FormButton extends Component {
-	static propTypes = {
-		text: PropTypes.string,
-		placeholder: PropTypes.string,
-		onPress: PropTypes.func,
-		style: PropTypes.any,
-		textStyle: PropTypes.any,
-	}
+	props: FormButtonProps
 
 	render() {
 		const highlighted = this.props.text && this.props.text.length > 0
