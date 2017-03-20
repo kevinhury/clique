@@ -1,14 +1,19 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
 } from 'react-native'
 
+type CardViewProps = {
+	children: any,
+	style: Object,
+}
+
 class CardView extends Component {
-	static propTypes = {
-		children: PropTypes.any,
-		style: PropTypes.any,
-	}
+	props: CardViewProps
+
 	render() {
 		return (
 			<View style={[styles.card, this.props.style]}>

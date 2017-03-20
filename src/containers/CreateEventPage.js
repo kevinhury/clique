@@ -1,33 +1,34 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import RNGooglePlacePicker from 'react-native-google-place-picker'
 import CardView from '../components/CardView'
-import {
-	changeEventName,
-	changeEventDescription,
-	changeLocationName,
-	changeEventLocation,
-} from '../actions'
+import { changeEventName, changeEventDescription, changeLocationName, changeEventLocation } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
 import NextButton from '../components/NextButton'
 import CommonInput from '../components/CommonInput'
 import I18n from 'react-native-i18n'
 
+import type { Location } from '../actions/types'
+
+type CreateEventPageProps = {
+	name: string,
+	description: string,
+	locationName: string,
+	location: Object,
+	changeEventName: (string) => void,
+	changeEventDescription: (string) => void,
+	changeLocationName: (string) => void,
+	changeEventLocation: (Location) => void,
+}
+
 class CreateEventPage extends Component {
-	static propTypes = {
-		name: PropTypes.string.isRequired,
-		description: PropTypes.string.isRequired,
-		locationName: PropTypes.string.isRequired,
-		location: PropTypes.object.isRequired,
-		changeEventName: PropTypes.func.isRequired,
-		changeEventDescription: PropTypes.func.isRequired,
-		changeLocationName: PropTypes.func.isRequired,
-		changeEventLocation: PropTypes.func.isRequired,
-	}
+	props: CreateEventPageProps
 
 	render() {
 		return (

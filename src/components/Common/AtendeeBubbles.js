@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	Text,
@@ -6,12 +8,14 @@ import {
 } from 'react-native'
 import UserBubble from './UserBubble'
 
+type AtendeeBubblesProps = {
+	style: Object,
+	images: string[],
+	bubblesToShow: number,
+}
+
 class AtendeeBubbles extends Component {
-	static propTypes = {
-		style: PropTypes.any,
-		images: PropTypes.array,
-		bubblesToShow: PropTypes.number,
-	}
+	props: AtendeeBubblesProps
 
 	renderBubble(uri: string, key: number) {
 		return (

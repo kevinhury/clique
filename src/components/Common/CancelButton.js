@@ -1,11 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
+type CancelButtonpProps = {
+	style: Object,
+	onPress: () => void,
+}
+
 class CancelButton extends Component {
-	static propTypes = {
-		style: PropTypes.any,
-		onPress: PropTypes.func,
-	}
+	props: CancelButtonpProps
 
 	render() {
 		return (

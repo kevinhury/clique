@@ -1,14 +1,16 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
 
+type EventCreatePanelProps = {
+	style: Object,
+	stateIndex: number,
+}
+
 class EventCreatePanel extends Component {
-	static propTypes = {
-		style: PropTypes.any,
-		stateIndex: PropTypes.number.isRequired,
-	}
+	props: EventCreatePanelProps
 
 	showUnderlay(index: number, selectedIndex: number) {
 		if (selectedIndex === index) {

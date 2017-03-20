@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	ListView,
@@ -7,13 +9,17 @@ import {
 import ContactCell from './ContactCell'
 import SectionHeader from './SectionHeader'
 import Header from './Header'
+import type { Contact } from '../../actions/types'
+
+type ContactListProps = {
+	contacts: Contact[],
+	selectedList: Contact[],
+	onValueChange: () => void,
+}
 
 class ContactList extends Component {
-	static propTypes = {
-		contacts: PropTypes.array.isRequired,
-		selectedList: PropTypes.array.isRequired,
-		onValueChange: PropTypes.func.isRequired,
-	}
+	props: ContactListProps
+	dataSource: any
 
 	componentWillMount() {
 		this.createDataSource(this.props)

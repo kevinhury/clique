@@ -1,10 +1,14 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+type SectionHeaderProps = {
+	character: string,
+}
+
 class SectionHeader extends Component {
-	static propTypes = {
-		character: PropTypes.string.isRequired,
-	}
+	props: SectionHeaderProps
 
 	render() {
 		return (

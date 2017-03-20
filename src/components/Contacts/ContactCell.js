@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'
 import {
 	View,
@@ -7,14 +9,14 @@ import {
 	Switch,
 } from 'react-native'
 
-type Props = {
+type ContactCellProps = {
 	contact: any,
 	selected: boolean,
 	onValueChange: () => void,
 }
 
 class ContactCell extends Component {
-	props: Props
+	props: ContactCellProps
 
 	render() {
 		const { contact, selected, onValueChange } = this.props

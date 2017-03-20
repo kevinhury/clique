@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
@@ -9,12 +9,14 @@ import {
 import I18n from 'react-native-i18n'
 import moment from 'moment'
 
+type TopSectionProps = {
+	title: string,
+	owner: string,
+	date: Date,
+}
+
 class TopSection extends Component {
-	static propTypes = {
-		title: PropTypes.string.isRequired,
-		owner: PropTypes.string.isRequired,
-		date: PropTypes.instanceOf(Date),
-	}
+	props: TopSectionProps
 
 	render() {
 		const { title, owner, date } = this.props

@@ -10,12 +10,12 @@ import { AtendeeBubbles } from '../Common'
 import I18n from 'react-native-i18n'
 import type { Invitee } from '../../actions/types'
 
-type Props = {
+type InviteesComponentProps = {
 	invitees: Invitee[],
 }
 
 class InviteesComponent extends Component {
-	props: Props
+	props: InviteesComponentProps
 
 	render() {
 		const invitees = this.props.invitees

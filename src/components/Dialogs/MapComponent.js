@@ -11,20 +11,20 @@ type Region = {
 	longitudeDelta: number,
 }
 
-type Props = {
+type MapComponentProps = {
 	location: Region,
 	name: string,
 	description: string,
 }
 
-type State = {
+type MapComponentState = {
 	marker: Region,
 	region: Region,
 }
 
 class MapComponent extends Component {
-	props: Props
-	state: State
+	props: MapComponentProps
+	state: MapComponentState
 	constructor(props: any) {
 		super(props)
 		this.props = props

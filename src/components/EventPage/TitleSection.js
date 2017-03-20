@@ -1,26 +1,24 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
-import {
-	View,
-	Text,
-	Image,
-	StyleSheet,
-} from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
+import type { Approval, Status } from '../../actions/types'
+
+type TitleSectionProps = {
+	isAdmin: boolean,
+	title: string,
+	creator: string,
+	image: string,
+	approved: Approval,
+	status: Status,
+	onStatusPress: () => void,
+	onCancelPress: () => void,
+}
 
 class TitleSection extends Component {
-	static propTypes = {
-		isAdmin: PropTypes.bool.isRequired,
-		title: PropTypes.string.isRequired,
-		creator: PropTypes.string.isRequired,
-		image: PropTypes.string.isRequired,
-		approved: PropTypes.string.isRequired, // type "Approval"
-		status: PropTypes.string.isRequired, // type "Status"
-		onStatusPress: PropTypes.func,
-		onCancelPress: PropTypes.func,
-	}
+	props: TitleSectionProps
 
 	eventStatus(status: string): string {
 		var state: string

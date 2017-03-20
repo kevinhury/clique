@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react'
-import {
-	View,
-	ScrollView,
-	StyleSheet,
-} from 'react-native'
+// @flow
+
+import React, { Component } from 'react'
+import { View, ScrollView, StyleSheet } from 'react-native'
+
+type UsersPanelProps = {
+	users: any[]
+}
 
 class UsersPanel extends Component {
-	static propTypes = {
-		users: PropTypes.array.isRequired,
-	}
+	props: UsersPanelProps
 
 	render() {
 		return (

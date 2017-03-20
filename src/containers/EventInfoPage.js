@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { View, Text, StyleSheet, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
@@ -13,17 +13,19 @@ import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '
 import Dialog from '../components/Dialogs/Dialog'
 import { modifyAttendances, cancelEvent, createEvent } from '../actions'
 
-import type { Approval } from '../actions/types'
+import type { UserEvent } from '../actions/types'
+
+type EventInfoPageProps = {
+	createFlow: boolean,
+	event: UserEvent,
+	modifyAttendances: () => void,
+	cancelEvent: () => void,
+	createEvent: () => void,
+	form: () => void,
+}
 
 class EventInfoPage extends Component {
-	static propTypes = {
-		createFlow: PropTypes.bool,
-		event: PropTypes.object,
-		modifyAttendances: PropTypes.func,
-		cancelEvent: PropTypes.func,
-		createEvent: PropTypes.func,
-		form: PropTypes.any,
-	}
+	props: EventInfoPageProps
 
 	renderBottomButton() {
 		if (!this.props.createFlow)

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	View,
 	Text,
@@ -9,13 +9,15 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
+type InfoSectionProps = {
+	date: string,
+	time: string,
+	location: string,
+	onLocationPress: () => void,
+}
+
 class InfoSection extends Component {
-	static propTypes = {
-		date: PropTypes.string.isRequired,
-		time: PropTypes.string.isRequired,
-		location: PropTypes.string.isRequired,
-		onLocationPress: PropTypes.func.isRequired,
-	}
+	props: InfoSectionProps
 
 	render() {
 		const { date, time, location } = this.props

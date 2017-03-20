@@ -1,15 +1,20 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+
+import React, { Component } from 'react'
 import {
 	View,
 	StyleSheet,
 	Image,
 } from 'react-native'
 
+type UserBubbleProps = {
+	style: Object,
+	image: string,
+}
+
 class UserBubble extends Component {
-	static propTypes = {
-		style: PropTypes.any,
-		image: PropTypes.any,
-	}
+	props: UserBubbleProps
+
 	render() {
 		const { style, image } = this.props
 		return (

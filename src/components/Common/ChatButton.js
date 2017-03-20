@@ -1,24 +1,27 @@
+// @flow
+
 import React, { PropTypes } from 'react'
 import {
 	StyleSheet,
 } from 'react-native'
 import { Button } from 'react-native-elements'
 
-const ChatButton = ({ onPress, title }) => (
+type ChatButtonProps = {
+	title: string,
+	onPress: () => void,
+}
+
+const ChatButton = (props: ChatButtonProps) => (
 	<Button
 		small
 		icon={{ name: 'md-chatboxes', type: 'ionicon' }}
-		title={title}
+		title={props.title}
 		iconRight
 		backgroundColor='#31A5FD'
-		onPress={onPress}
+		onPress={props.onPress}
 		buttonStyle={styles.chatButton}
 	/>
 )
-ChatButton.propTypes = {
-	title: PropTypes.string,
-	onPress: PropTypes.func,
-}
 
 const styles = StyleSheet.create({
 	chatButton: {

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import TitleSection from './TitleSection'
@@ -8,13 +8,15 @@ import TopSection from './TopSection'
 import MiddleSection from './MiddleSection'
 import BottomSection from './BottomSection'
 
-import type { Status } from '../../actions/types'
+import type { Status, UserEvent } from '../../actions/types'
+
+type EventCellProps = {
+	event: UserEvent,
+	onEditPress: () => void,
+}
 
 class EventCell extends Component {
-	static propTypes = {
-		event: PropTypes.object.isRequired,
-		onEditPress: PropTypes.func.isRequired,
-	}
+	props: EventCellProps
 
 	cellGradient(): Array<string> {
 		const status: Status = this.props.event.status
@@ -31,7 +33,7 @@ class EventCell extends Component {
 
 	render() {
 		const {
-			title, owner, date, approved, status, expires, invitees, isAdmin,
+			title, owner, dates, approved, status, expires, invitees, isAdmin,
 		} = this.props.event
 		return (
 			<LinearGradient
@@ -45,7 +47,7 @@ class EventCell extends Component {
 					onEditPress={() => this.props.onEditPress(this.props.event)}
 				/>
 				<View style={styles.container}>
-					<TopSection title={title} owner={owner} date={date} />
+					<TopSection title={title} owner={owner} date={dates[0]} />
 					<View style={styles.separator} />
 					<MiddleSection
 						invitees={invitees}
