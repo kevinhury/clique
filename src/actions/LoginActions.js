@@ -1,4 +1,9 @@
-import LoginService from '../services/LoginService'
+// @flow
+
+// TODO: replace these
+// import * as API from '../api/epoch/LoginAPI'
+import * as API from '../api/epoch/FixtureAPI'
+import LoginServiceGenerate from '../services/LoginService'
 import {
 	LOGIN_CHANGE_COUNTRY,
 	LOGIN_CHANGE_NUMBER,
@@ -9,6 +14,8 @@ import {
 	LOGIN_SUBMIT_VERIFICATION_RESPONSE,
 } from './types'
 import type { CountryCode } from './types'
+
+const LoginService = LoginServiceGenerate(API)
 
 export const changeLoginCountry = (country: CountryCode) => {
 	return {

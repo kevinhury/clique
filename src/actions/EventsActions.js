@@ -1,6 +1,9 @@
 // @flow
 
-import EventsService from '../services/EventsService'
+// TODO: Replace these
+// import * as API from '../api/epoch/EventsAPI'
+import * as API from '../api/epoch/FixtureAPI'
+import EventsServiceGenerate from '../services/EventsService'
 import {
 	USER_EVENTS_REQUEST,
 	USER_EVENTS_REQUEST_SUCCESS,
@@ -13,6 +16,8 @@ import {
 	USER_EVENT_MODIFY_FIELDS,
 } from './types'
 import type { Approval, UserEvent, EventForm } from './types'
+
+const EventsService = EventsServiceGenerate(API)
 
 export const requestEvents = () => {
 	return (dispatch: any) => {
@@ -33,7 +38,7 @@ export const modifyAttendances = (eventId: string, status: Approval) => {
 	return (dispatch: any) => {
 		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
 		dispatch({
-			type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
+			type: USER_EVENT_ATTENDANCES_MODIFIED,
 			userId: 'userId', // TODO: Pass user id
 			eventId,
 			status: obj[status],
