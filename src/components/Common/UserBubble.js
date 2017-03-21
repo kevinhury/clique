@@ -19,7 +19,7 @@ class UserBubble extends Component {
 		const { style, image } = this.props
 		return (
 			<View style={[styles.container, style]}>
-				<Image source={image} style={styles.image} resizeMode='cover' />
+				<Image source={{ uri: image }} style={styles.image} resizeMode='cover' />
 			</View>
 		)
 	}
