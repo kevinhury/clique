@@ -18,7 +18,7 @@ type State = {
 	location: Permission,
 }
 
-const INITIAL_STATE: State = {
+export const INITIAL_STATE: State = {
 	contacts: 'undetermined',
 	location: 'undetermined',
 }

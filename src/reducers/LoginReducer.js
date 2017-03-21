@@ -11,7 +11,7 @@ import {
 	LOGIN_SUBMIT_VERIFICATION_RESPONSE,
 } from '../actions/types'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE: State = {
 	phoneNumber: '',
 	countryCode: {
 		cca2: 'US',
