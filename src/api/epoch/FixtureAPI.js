@@ -27,7 +27,7 @@ export const requestEventsAPICall = (userId: string, accessToken: string) => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(get_event_mocks())
-		}, 1000)
+		}, 0)
 	})
 }
 

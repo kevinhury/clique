@@ -119,7 +119,7 @@ export type EventForm = {
   dates: Array<Date>,
   minAtendees: number,
   maxAtendees: number,
-  contacts: Array<Contact>,
+  contacts: Array<number>,
   length: number,
   startTime: string,
   deadline: number,
@@ -136,8 +136,8 @@ export type Action =
   { type: 'FORM_CREATE' }
   | { type: 'FORM_MODIFY', event: UserEvent }
   | { type: 'FORM_CANCEL' }
-  | { type: 'FORM_ADD_CONTACT', contact: Contact }
-  | { type: 'FORM_REMOVE_CONTACT', contact: Contact }
+  | { type: 'FORM_ADD_CONTACT', contactId: number }
+  | { type: 'FORM_REMOVE_CONTACT', contactId: number }
   | { type: 'FORM_CHANGE_NAME', name: string }
   | { type: 'FORM_CHANGE_DESCRIPTION', description: string }
   | { type: 'FORM_CHANGE_LOCATION_NAME', locationName: string }
