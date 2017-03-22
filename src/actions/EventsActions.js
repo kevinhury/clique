@@ -19,8 +19,8 @@ import type { Approval, UserEvent, EventForm } from './types'
 
 const EventsService = EventsServiceGenerate(API)
 
-export const requestEvents = () => {
-	return (dispatch: any) => {
+export const requestEvents = () =>
+	(dispatch: (Object) => void) => {
 		dispatch({ type: USER_EVENTS_REQUEST })
 		EventsService
 			.getLatestEvents('userId', 'accessToken')
@@ -28,14 +28,13 @@ export const requestEvents = () => {
 				dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list })
 			})
 	}
-}
 
 export const selectEvent = (selected: UserEvent) => {
 	return { type: USER_EVENT_SELECTED, selected }
 }
 
-export const modifyAttendances = (eventId: string, status: Approval) => {
-	return (dispatch: any) => {
+export const modifyAttendances = (eventId: string, status: Approval) =>
+	(dispatch: (Object) => void) => {
 		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
 		dispatch({
 			type: USER_EVENT_ATTENDANCES_MODIFIED,
@@ -54,10 +53,9 @@ export const modifyAttendances = (eventId: string, status: Approval) => {
 				})
 			})
 	}
-}
 
-export const cancelEvent = (eventId: string) => {
-	return (dispatch: any) => {
+export const cancelEvent = (eventId: string) =>
+	(dispatch: (Object) => void) => {
 		dispatch({ type: USER_EVENT_CANCEL, eventId })
 		EventsService
 			.cancelEventById('userId', 'accessToken', eventId)
@@ -69,10 +67,9 @@ export const cancelEvent = (eventId: string) => {
 				})
 			})
 	}
-}
 
-export const createEvent = (event: EventForm) => {
-	return (dispatch: any) => {
+export const createEvent = (event: EventForm) =>
+	(dispatch: (Object) => void) => {
 		EventsService
 			.createEventWithForm('userId', 'accessToken', event)
 			.then((response: any) => {
@@ -83,14 +80,12 @@ export const createEvent = (event: EventForm) => {
 				})
 			})
 	}
-}
 
-export const modifyEventFields = (fields: any) => {
-	return (dispatch: any) => {
+export const modifyEventFields = (fields: any) =>
+	(dispatch: (Object) => void) => {
 		EventsService
 			.changeEventFields('userId', 'accessToken', 'eventId', fields)
 			.then((response: any) => {
 				dispatch({ type: USER_EVENT_MODIFY_FIELDS, success: response.success, event: response.event })
 			})
 	}
-}

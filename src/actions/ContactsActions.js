@@ -7,11 +7,10 @@ import {
 	CONTACTS_LIST_FETCHED,
 } from './types'
 
-export const requestContactList = () => {
-	return (dispatch) => {
+export const requestContactList = () =>
+	(dispatch: (Object) => void) => {
 		checkPermission(dispatch)
 	}
-}
 
 const checkPermission = (dispatch) => {
 	dispatch({ type: CONTACTS_PERMISSION_CHECK })

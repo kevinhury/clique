@@ -7,8 +7,8 @@ import {
 	LOCATION_PERMISSION_DENIED,
 } from './types'
 
-export const requestLocationPermissions = () => {
-	return (dispatch) => {
+export const requestLocationPermissions = () =>
+	(dispatch: (Object) => void) => {
 		dispatch({ type: LOCATION_PERMISSION_REQUEST })
 		Permissions.requestPermission('location').then(
 			permission => {
@@ -20,10 +20,9 @@ export const requestLocationPermissions = () => {
 			}
 		)
 	}
-}
 
-export const requestUserLocation = () => {
-	return (dispatch) => {
+export const requestUserLocation = () =>
+	(dispatch: (Object) => void) => {
 		navigator.geolocation.getCurrentPosition(
 			position => {
 				const location = { latitude: position.coords.latitude, longitude: position.coords.longitude }
@@ -34,4 +33,3 @@ export const requestUserLocation = () => {
 			}
 		)
 	}
-}

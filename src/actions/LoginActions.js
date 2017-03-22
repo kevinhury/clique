@@ -31,8 +31,8 @@ export const changeLoginNumber = (number: string) => {
 	}
 }
 
-export const submitLogin = (number: string, country: CountryCode) => {
-	return (dispatch) => {
+export const submitLogin = (number: string, country: CountryCode) =>
+	(dispatch: (Object) => void) => {
 		dispatch({ type: LOGIN_SUBMIT_PHONE, country, number })
 		LoginService
 			.loginWithPhone(number, country)
@@ -43,14 +43,13 @@ export const submitLogin = (number: string, country: CountryCode) => {
 				dispatch({ type: LOGIN_SUBMIT_RESPONSE, success: false })
 			})
 	}
-}
 
 export const submitLoginBack = () => {
 	return { type: LOGIN_SUBMIT_PHONE_BACK }
 }
 
-export const submitVerificationCode = (code: string) => {
-	return (dispatch) => {
+export const submitVerificationCode = (code: string) =>
+	(dispatch: (Object) => void) => {
 		dispatch({ type: LOGIN_SUBMIT_VERIFICATION, code })
 		LoginService
 			.authenticatePhoneCode(code)
@@ -61,5 +60,4 @@ export const submitVerificationCode = (code: string) => {
 				dispatch({ type: LOGIN_SUBMIT_VERIFICATION_RESPONSE, success: false })
 			})
 	}
-}
 
