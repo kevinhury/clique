@@ -35,7 +35,7 @@ export const submitLogin = (number: string, country: CountryCode) =>
 	(dispatch: (Object) => void) => {
 		dispatch({ type: LOGIN_SUBMIT_PHONE, country, number })
 		LoginService
-			.loginWithPhone(number, country)
+			.loginWithPhone(number, country.callingCode)
 			.then(({ success }) => {
 				dispatch({ type: LOGIN_SUBMIT_RESPONSE, success })
 			})

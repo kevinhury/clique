@@ -1,8 +1,8 @@
 // @flow
 
-import type { PhoneLoginResponse, AuthCodeResponse } from '../api/epoch/LoginAPI'
+import type { PhoneLoginResponse, AuthCodeResponse, ILoginAPI } from '../api/epoch/LoginAPI'
 
-export default (API: any) => {
+export default (API: ILoginAPI) => {
 	return {
 		loginWithPhone: (phone: string, country: string): Promise<PhoneLoginResponse> => {
 			return API

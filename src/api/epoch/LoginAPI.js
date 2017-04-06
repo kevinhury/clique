@@ -11,20 +11,26 @@ export type AuthCodeResponse = {
 	success: boolean,
 }
 
-export const phoneLoginAPICall = (phone: string, country: string): Promise<PhoneLoginResponse> => {
-	return BaseAPI
-		.get('/login/phone', { phone, country })
-		.then((response: Response) => {
-			console.log(response)
-			return response
-		})
+export type ILoginAPI = {
+	phoneLoginAPICall(phone: string, country: string): Promise<PhoneLoginResponse>,
+	authenticateCodeAPICall(code: string): Promise<AuthCodeResponse>,
 }
 
-export const authenticateCodeAPICall = (code: string): Promise<AuthCodeResponse> => {
-	return BaseAPI
-		.get('/login/code', { q: code })
-		.then((response: Response) => {
-			console.log(response)
-			return response
-		})
+export const LoginAPI: ILoginAPI = {
+	phoneLoginAPICall(phone: string, country: string): Promise<PhoneLoginResponse> {
+		return BaseAPI
+			.get('/login/phone', { phone, country })
+			.then((response: Response) => {
+				console.log(response)
+				return response
+			})
+	},
+	authenticateCodeAPICall(code: string): Promise<AuthCodeResponse> {
+		return BaseAPI
+			.get('/login/code', { q: code })
+			.then((response: Response) => {
+				console.log(response)
+				return response
+			})
+	},
 }

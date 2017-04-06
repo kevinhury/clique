@@ -1,8 +1,9 @@
 // @flow
 
 import type { EventForm, Approval } from '../actions/types'
+import type { IEventsAPI } from '../api/epoch/EventsAPI'
 
-export default (API: any) => {
+export default (API: IEventsAPI) => {
 	return {
 		getLatestEvents: (userId: string, accessToken: string) => {
 			return API
