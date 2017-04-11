@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -52,6 +51,11 @@
 		C8CD164D9AF14182B87B7167 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 106BA72644784F9788CCD5CD /* MaterialIcons.ttf */; };
 		D02F10D035E5451290C5C05F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B81F7F9466DA4B95B3E82421 /* SimpleLineIcons.ttf */; };
 		EB5A51AC3A324CBF8FAEE5CB /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBB8DD69B894F01AF11F3DD /* libAirMaps.a */; };
+		33D62085CB7E4283ABB09C6E /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F92BBF5CDE45168E12917C /* libReact.a */; };
+		68357D5F4B15419F9541D542 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE631D4E49F44554B21A37CA /* libyoga.a */; };
+		820C0A67F15C4AA897540DF9 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AA32404C594442A4B302A3 /* libcxxreact.a */; };
+		FD61CF9713E445B8B97FBA82 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 387038FF8EF041F89DC1C799 /* libjschelpers.a */; };
+		1357C15C69F148FC9375C8BD /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E52E1F9C0A540F6ABA173D4 /* libReactNativePermissions.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,6 +332,13 @@
 		DDBB8DD69B894F01AF11F3DD /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		E696EF18CA514A97BC2532AD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		EA4E07140826EB1F6344B052 /* Pods-clique.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clique.debug.xcconfig"; path = "Pods/Target Support Files/Pods-clique/Pods-clique.debug.xcconfig"; sourceTree = "<group>"; };
+		F5F346D6730445F3983612C5 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		28F92BBF5CDE45168E12917C /* libReact.a */ = {isa = PBXFileReference; name = "libReact.a"; path = "libReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AE631D4E49F44554B21A37CA /* libyoga.a */ = {isa = PBXFileReference; name = "libyoga.a"; path = "libyoga.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		83AA32404C594442A4B302A3 /* libcxxreact.a */ = {isa = PBXFileReference; name = "libcxxreact.a"; path = "libcxxreact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		387038FF8EF041F89DC1C799 /* libjschelpers.a */ = {isa = PBXFileReference; name = "libjschelpers.a"; path = "libjschelpers.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		29D09E2F999F4BCABB9D6D4E /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativePermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		4E52E1F9C0A540F6ABA173D4 /* libReactNativePermissions.a */ = {isa = PBXFileReference; name = "libReactNativePermissions.a"; path = "libReactNativePermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +371,11 @@
 				EB5A51AC3A324CBF8FAEE5CB /* libAirMaps.a in Frameworks */,
 				06B2F16C45114BFCBD094E5B /* libRCTContacts.a in Frameworks */,
 				6E5E29BCD0B2B601AFC22472 /* libPods-clique.a in Frameworks */,
+				33D62085CB7E4283ABB09C6E /* libReact.a in Frameworks */,
+				68357D5F4B15419F9541D542 /* libyoga.a in Frameworks */,
+				820C0A67F15C4AA897540DF9 /* libcxxreact.a in Frameworks */,
+				FD61CF9713E445B8B97FBA82 /* libjschelpers.a in Frameworks */,
+				1357C15C69F148FC9375C8BD /* libReactNativePermissions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +556,8 @@
 				24A9B85E8DD9441C9A7DE32B /* BVLinearGradient.xcodeproj */,
 				DD2C2D89D6224B83A47C948C /* AirMaps.xcodeproj */,
 				BE1D18658F7441D59FFAB633 /* RCTContacts.xcodeproj */,
+				F5F346D6730445F3983612C5 /* RNI18n.xcodeproj */,
+				29D09E2F999F4BCABB9D6D4E /* ReactNativePermissions.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1243,6 +1261,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1263,6 +1286,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1328,6 +1356,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1358,6 +1391,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1387,6 +1425,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.clique-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1411,6 +1454,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.clique-tvOSTests";

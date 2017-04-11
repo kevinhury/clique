@@ -18,5 +18,5 @@
 		"**/ios": true,
 		"**/android": true
 	},
-	"flow.path": "/Users/kevinhury/repos/clique/node_modules/.bin/flow"
+	"flow.path": "./node_modules/.bin/flow"
 }

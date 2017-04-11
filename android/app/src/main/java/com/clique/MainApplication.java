@@ -4,6 +4,9 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.zyu.ReactNativeWheelPickerPackage;
+import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
+import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.reactlibrary.RNGooglePlacePickerPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -30,6 +33,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeWheelPickerPackage(),
+            new ReactNativePermissionsPackage(),
+            new ReactNativeI18n(),
             new RNGooglePlacePickerPackage(),
             new ReactNativeContacts(),
             new MapsPackage(),
