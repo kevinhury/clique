@@ -53,6 +53,11 @@ export const LOGIN_SUBMIT_RESPONSE = 'LOGIN_SUBMIT_RESPONSE'
 export const LOGIN_SUBMIT_VERIFICATION = 'LOGIN_SUBMIT_VERIFICATION'
 export const LOGIN_SUBMIT_VERIFICATION_RESPONSE = 'LOGIN_SUBMIT_VERIFICATION_RESPONSE'
 
+// Session
+export const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST'
+export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS'
+export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE'
+
 export type Status =
   'Pending'
   | 'Cancelled'
@@ -176,4 +181,7 @@ export type Action =
   | { type: 'LOGIN_SUBMIT_RESPONSE', success: boolean }
   | { type: 'LOGIN_SUBMIT_VERIFICATION', code: string }
   | { type: 'LOGIN_SUBMIT_VERIFICATION_RESPONSE', success: boolean }
+  | { type: 'AUTHENTICATION_REQUEST' }
+  | { type: 'AUTHENTICATION_SUCCESS', accessToken: string, username: string, pid: string }
+  | { type: 'AUTHENTICATION_FAILURE' }
 
