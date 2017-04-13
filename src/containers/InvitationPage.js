@@ -1,9 +1,10 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Linking } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { ProfileIcon, Separator, AddressBarItem } from '../components/Common'
+import { Button } from 'react-native-elements'
+import { ProfileIcon, Separator, AddressBarItem, CommonCalendar } from '../components/Common'
 
 type InvitationPageProps = {
 
@@ -35,18 +36,20 @@ class InvitationPage extends Component {
 					</View>
 					<View style={[styles.calendar, styles.center]}>
 						<Text style={styles.fontSmall}>Please select your availability from the dates below:</Text>
+						<CommonCalendar />
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
 						<Text style={styles.fontMedium}>Event start time: 10:35</Text>
 					</View>
 					<View style={[styles.notice, styles.center]}>
-						<Text style={styles.noticeText}>Max RSVP's is on! First 20 RSVP's will enter the event.{'\n'}Be quick and RSVP now.</Text>
+						<Text style={[styles.noticeText, styles.fontSmall]}>Max RSVP's is on! First 20 RSVP's will enter the event.{'\n'}Be quick and RSVP now.</Text>
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
 						<Text>Invite expires in 02d 15h 46m</Text>
 					</View>
 					<View style={styles.buttons}>
-
+						<Button title='Decline' backgroundColor='#C55755' />
+						<Button title='Accept' backgroundColor='#01A836' />
 					</View>
 				</View>
 			</View>
@@ -107,20 +110,29 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 	calendar: {
-
+		flex: 16,
+		borderWidth: 1,
+		borderRadius: 15,
+		borderColor: '#31A5FD',
+		margin: 5,
 	},
 	bottomTextContainer: {
-
+		flex: 1,
+		margin: 5,
 	},
 	notice: {
 		backgroundColor: '#31A5FD',
+		flex: 2,
+		padding: 5,
 	},
 	noticeText: {
 		color: 'white',
 		textAlign: 'center',
 	},
 	buttons: {
-
+		flexDirection: 'row',
+		justifyContent: 'center',
+		padding: 5,
 	},
 })
 

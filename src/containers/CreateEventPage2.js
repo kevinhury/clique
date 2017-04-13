@@ -8,11 +8,10 @@ import {
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
-import Calendar from 'react-native-calendar'
 import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
 import EventCreatePanel from '../components/EventCreatePanel'
-import { FormButton } from '../components/Common'
+import { FormButton, CommonCalendar } from '../components/Common'
 import Dialog from '../components/Dialogs/Dialog'
 import NextButton from '../components/NextButton'
 import {
@@ -103,17 +102,8 @@ class CreateEventPage2 extends Component {
 							style={styles.button}
 						/>
 						<View style={styles.calendarContainer}>
-							<Calendar
-								scrollEnabled
-								dayHeadings={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
+							<CommonCalendar
 								events={this.props.dates.map(x => { return { date: x } })}
-								showEventIndicators
-								customStyle={{
-									calendarContainer: styles.calendar,
-									eventIndicator: styles.eventIndicator,
-									hasEventCircle: styles.hasEventCircle,
-									hasEventDaySelectedCircle: styles.hasEventCircle,
-								}}
 								onDateSelect={this.dateOnClick.bind(this)}
 							/>
 						</View>
@@ -207,17 +197,6 @@ const styles = StyleSheet.create({
 		margin: 8,
 		marginLeft: 5,
 		marginRight: 5,
-	},
-	calendar: {
-		backgroundColor: 'transparent',
-	},
-	eventIndicator: {
-		backgroundColor: '#31A5FD',
-		width: 5,
-		height: 5,
-	},
-	hasEventCircle: {
-		backgroundColor: '#31A5FD',
 	},
 })
 
