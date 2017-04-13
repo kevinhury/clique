@@ -82,7 +82,7 @@ class Dialog extends Component {
 			<Modal style={[styles.modal, this.props.modalStyle]} ref={'modal'} position='bottom'>
 				<View style={styles.container}>
 					<Text style={styles.titleText}>{this.props.title}</Text>
-					<Separator color='#F1CE81' />
+					<Separator />
 					{this.renderComponent()}
 					{this.renderButton()}
 				</View>

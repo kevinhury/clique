@@ -94,27 +94,27 @@ class EventInfoPage extends Component {
 					<View style={styles.descriptionSection}>
 						<Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
 					</View>
-					<Separator color='#F1CE81' />
+					<Separator />
 					<InfoSection
 						date={dates[0].toLocaleDateString()}
 						time={dates[0].toLocaleTimeString()}
 						location={`${locationName} - ${location.address}`}
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>
-					<Separator color='#F1CE81' />
+					<Separator />
 					<AtendeesSection
 						invitees={invitees}
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
 						createFlow={this.props.createFlow}
 					/>
-					<Separator color='#F1CE81' />
+					<Separator />
 					<NumAtendeesSection
 						style={styles.numAtendeesSection}
 						limitedRSVP={limitedRSVP}
 						minAtendees={minAtendees}
 					/>
-					<Separator color='#F1CE81' />
+					<Separator />
 					{this.renderBottomButton()}
 				</CardView>
 				<Dialog
