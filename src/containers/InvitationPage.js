@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Button } from 'react-native-elements'
+import I18n from 'react-native-i18n'
 import { ProfileIcon, Separator, AddressBarItem, CommonCalendar } from '../components/Common'
 
 type InvitationPageProps = {
@@ -18,7 +19,7 @@ class InvitationPage extends Component {
 			<View style={styles.container}>
 				<View style={styles.header}>
 					<View style={styles.headerBackground}>
-						<Text style={styles.title}>FIFA 17 SESSION</Text>
+						<Text style={[styles.title, styles.boldText]}>FIFA 17 SESSION</Text>
 					</View>
 					<View style={styles.headerSpace}></View>
 					<View style={[styles.profilePicture, styles.center]}>
@@ -27,7 +28,7 @@ class InvitationPage extends Component {
 				</View>
 				<View style={styles.content}>
 					<View style={[styles.contentTitle, styles.center]}>
-						<Text style={styles.fontSmall}>Yossi Kerman has invited you to:</Text>
+						<Text style={styles.fontSmall}>{I18n.t('invitation.title', { string: 'Yossi Kerman' })}</Text>
 						<Text style={styles.fontMedium}>FIFA SESSION 17</Text>
 						<AddressBarItem text={'Kevin\'s place - 6 Malkat Shva'} />
 					</View>
@@ -35,21 +36,21 @@ class InvitationPage extends Component {
 					<View style={styles.contentInfo}>
 					</View>
 					<View style={[styles.calendar, styles.center]}>
-						<Text style={styles.fontSmall}>Please select your availability from the dates below:</Text>
+						<Text style={styles.fontSmall}>{I18n.t('invitation.selectDate')}</Text>
 						<CommonCalendar />
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
-						<Text style={styles.fontMedium}>Event start time: 10:35</Text>
+						<Text style={styles.fontMedium}>{I18n.t('invitation.startTime')} 10:35</Text>
 					</View>
 					<View style={[styles.notice, styles.center]}>
-						<Text style={[styles.noticeText, styles.fontSmall]}>Max RSVP's is on! First 20 RSVP's will enter the event.{'\n'}Be quick and RSVP now.</Text>
+						<Text style={[styles.noticeText, styles.fontSmall]}>{I18n.t('invitation.rsvpNotice', { number: 20 })}</Text>
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
-						<Text>Invite expires in 02d 15h 46m</Text>
+						<Text style={styles.boldText}>{I18n.t('invitation.expires')} 02d 15h 46m</Text>
 					</View>
 					<View style={styles.buttons}>
-						<Button title='Decline' backgroundColor='#C55755' />
-						<Button title='Accept' backgroundColor='#01A836' />
+						<Button title={I18n.t('invitation.declineButton')} backgroundColor='#C55755' />
+						<Button title={I18n.t('invitation.acceptButton')} backgroundColor='#01A836' />
 					</View>
 				</View>
 			</View>
@@ -65,6 +66,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	boldText: {
+		fontWeight: 'bold',
+	},
 	header: {
 		flex: 1,
 	},
@@ -77,7 +81,6 @@ const styles = StyleSheet.create({
 	title: {
 		color: 'white',
 		fontSize: 18,
-		fontWeight: 'bold',
 		bottom: 10,
 	},
 	headerSpace: {

@@ -25,15 +25,13 @@
   "dates": "Dates",
   "invites": "Invites",
   "revise": "Revise",
-  "cell":
-  {
+  "cell": {
     "userGoing": "You're going!",
     "userDeclined": "Declined",
     "userNotApproved": "Are you coming?",
     "userRSVPd": "RSVP'd"
   },
-  "createFlow":
-  {
+  "createFlow": {
     "titleInput": "Type event name here...",
     "descriptionInput": "Type event description...",
     "locationNameInput": "Enter location name",
@@ -46,8 +44,7 @@
     "maxRSVP": "Max RSVP's",
     "finishSendInvites": "Finish & Send Invites"
   },
-  "dialogs":
-  {
+  "dialogs": {
     "daysTitle": "How many days?",
     "timeTitle": "What time your event will start?",
     "deadlineTitle": "Invites ends in?",
@@ -57,13 +54,21 @@
     "cancelTitle": "Wait a second...",
     "cancelText": "Are you sure you want to cancel this event?"
   },
-  "navigation":
-  {
+  "navigation": {
     "phoneLoginTitle": "Your Phone Number",
     "phoneConfirmTitle": "Code Confirmation",
     "eventsTitle": "Events",
     "eventTitle": "Event",
     "createEventTitle": "Create Event",
     "setLocationTitle": "Set Location"
+  },
+  "invitation": {
+    "title": "{{string}} has invited you to:",
+    "selectDate": "Please select your availability from the dates below:",
+    "startTime": "Event start time:",
+    "rsvpNotice": "Max RSVP's is on! First {{number}} RSVP's will enter the event.\nBe quick and RSVP now.",
+    "expires": "Invite expires in",
+    "declineButton": "Decline",
+    "acceptButton": "Accept"
   }
 }

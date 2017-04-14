@@ -18,24 +18,45 @@ const CommonCalendar = (props: CommonCalendarProps) =>
     customStyle=
 		{{
 			calendarContainer: styles.calendar,
+			currentDayCircle: styles.commonBackgroundColor,
+			currentDayText: styles.commonColor,
 			eventIndicator: styles.eventIndicator,
 			hasEventCircle: styles.hasEventCircle,
-			hasEventDaySelectedCircle: styles.hasEventCircle,
+			hasEventDaySelectedCircle: styles.commonBackgroundColor,
+			dayHeading: styles.commonColor,
+			weekendHeading: styles.commonColor,
+			selectedDayCircle: styles.hasEventCircle,
+			selectedDayText: styles.commonText,
+			title: [styles.commonColor, styles.boldText],
 		}}
     onDateSelect={props.onDateSelect}
   />
 
+const primaryColor = '#31A5FD'
+const secondaryColor = '#01a836'
 const styles = StyleSheet.create({
 	calendar: {
 		backgroundColor: 'transparent',
 	},
 	eventIndicator: {
-		backgroundColor: '#31A5FD',
+		backgroundColor: secondaryColor,
 		width: 5,
 		height: 5,
 	},
 	hasEventCircle: {
-		backgroundColor: '#31A5FD',
+		backgroundColor: secondaryColor,
+	},
+	commonColor: {
+		color: primaryColor,
+	},
+	commonBackgroundColor: {
+		backgroundColor: primaryColor,
+	},
+	commonText: {
+		color: '#fff',
+	},
+	boldText: {
+		fontWeight: 'bold',
 	},
 })
 
