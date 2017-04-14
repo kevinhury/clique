@@ -44,6 +44,9 @@ export const USER_EVENT_CANCEL_RESPONSE = 'USER_EVENT_CANCEL_RESPONSE'
 export const USER_EVENT_CREATE = 'USER_EVENT_CREATE'
 export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 
+// Invitation
+export const INVITATION_MODIFY_DATES = 'INVITATION_MODIFY_DATES'
+
 // Login
 export const LOGIN_CHANGE_COUNTRY = 'LOGIN_CHANGE_COUNTRY'
 export const LOGIN_CHANGE_NUMBER = 'LOGIN_CHANGE_NUMBER'
@@ -176,4 +179,5 @@ export type Action =
   | { type: 'LOGIN_SUBMIT_RESPONSE', success: boolean }
   | { type: 'LOGIN_SUBMIT_VERIFICATION', code: string }
   | { type: 'LOGIN_SUBMIT_VERIFICATION_RESPONSE', success: boolean }
+  | { type: 'INVITATION_MODIFY_DATES', dates: Date[] }
 

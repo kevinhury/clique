@@ -5,48 +5,78 @@ import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
+import moment from 'moment'
 import { ProfileIcon, Separator, AddressBarItem, CommonCalendar } from '../components/Common'
+import { invitationChooseDates } from '../actions'
 
 type InvitationPageProps = {
+	inviter: string,
+	invitationChooseDates: () => void,
+	dates: Date[],
+}
 
+const mock = {
+	inviter: 'Yossi Kerman',
+	title: 'FIFA SESSION 17',
+	inviterImage: 'https://facebook.github.io/react/img/logo_og.png',
+	location: 'Kevin\'s place - 6 Malkat Shva',
+	startTime: '10:35',
+	expires: '02d 15h 46m',
+	maxRSVPs: 20,
+	// dates: [{ date: '2017-04-18'}, { date: '2017-04-20'}, { date: '2017-04-19'}],
 }
 
 class InvitationPage extends Component {
 	props: InvitationPageProps
 
+	dateOnClick(datestr: string) {
+		const date = new Date(datestr)
+		const dates = this.props.dates
+		const index = dates.map(x => x.getTime()).indexOf(date.getTime())
+		if (index > -1)
+			this.props.invitationChooseDates([ ...dates.slice(0, index), ...dates.slice(index + 1) ])
+		else if (this.props.dates.length < 3)
+			this.props.invitationChooseDates([ ...dates, date])
+	}
+
 	render() {
+		const { inviter, title, inviterImage, location, startTime, expires, maxRSVPs } = mock
+		const { dates } = this.props
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}>
 					<View style={styles.headerBackground}>
-						<Text style={[styles.title, styles.boldText]}>FIFA 17 SESSION</Text>
+						<Text style={[styles.title, styles.boldText]}>{title}</Text>
 					</View>
 					<View style={styles.headerSpace}></View>
 					<View style={[styles.profilePicture, styles.center]}>
-						<ProfileIcon image={'https://facebook.github.io/react/img/logo_og.png'} size={40} borderColor={'white'} />
+						<ProfileIcon image={inviterImage} size={40} borderColor={'white'} />
 					</View>
 				</View>
 				<View style={styles.content}>
 					<View style={[styles.contentTitle, styles.center]}>
-						<Text style={styles.fontSmall}>{I18n.t('invitation.title', { string: 'Yossi Kerman' })}</Text>
-						<Text style={styles.fontMedium}>FIFA SESSION 17</Text>
-						<AddressBarItem text={'Kevin\'s place - 6 Malkat Shva'} />
+						<Text style={styles.fontSmall}>{I18n.t('invitation.title', { string: inviter })}</Text>
+						<Text style={styles.fontMedium}>{title}</Text>
+						<AddressBarItem text={location} />
 					</View>
 					<Separator />
 					<View style={styles.contentInfo}>
 					</View>
 					<View style={[styles.calendar, styles.center]}>
 						<Text style={styles.fontSmall}>{I18n.t('invitation.selectDate')}</Text>
-						<CommonCalendar />
+						<CommonCalendar
+							onDateSelect={this.dateOnClick.bind(this)}
+							events={dates}
+						/>
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
-						<Text style={styles.fontMedium}>{I18n.t('invitation.startTime')} 10:35</Text>
+						<Text style={styles.fontMedium}>{I18n.t('invitation.startTime')} {startTime}</Text>
 					</View>
 					<View style={[styles.notice, styles.center]}>
-						<Text style={[styles.noticeText, styles.fontSmall]}>{I18n.t('invitation.rsvpNotice', { number: 20 })}</Text>
+						<Text style={[styles.noticeText, styles.fontSmall]}>{I18n.t('invitation.rsvpNotice', { number: maxRSVPs })}</Text>
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
-						<Text style={styles.boldText}>{I18n.t('invitation.expires')} 02d 15h 46m</Text>
+						<Text style={styles.boldText}>{I18n.t('invitation.expires')} {expires}</Text>
 					</View>
 					<View style={styles.buttons}>
 						<Button title={I18n.t('invitation.declineButton')} backgroundColor='#C55755' />
@@ -140,9 +170,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	return state
+	return state.invitation
 }
 
 export default connect(mapStateToProps, {
-
+	invitationChooseDates,
 })(InvitationPage)
