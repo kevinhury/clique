@@ -1,13 +1,9 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-	View,
-	Text,
-	StyleSheet,
-	TouchableOpacity,
-} from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { AddressBarItem } from '../Common'
 
 type InfoSectionProps = {
 	date: string,
@@ -31,14 +27,7 @@ class InfoSection extends Component {
 					<Icon name='ios-clock-outline' size={20} style={styles.icon} />
 					<Text>{time}</Text>
 				</View>
-				<View style={styles.infoRow}>
-					<Icon name='ios-pin-outline' size={20} style={styles.icon} />
-					<TouchableOpacity
-						onPress={this.props.onLocationPress}
-					>
-						<Text style={styles.locationText}>{location}</Text>
-					</TouchableOpacity>
-				</View>
+				<AddressBarItem onPress={this.props.onLocationPress} text={location} />
 			</View>
 		)
 	}
@@ -57,10 +46,6 @@ const styles = StyleSheet.create({
 	icon: {
 		margin: 2,
 		marginRight: 8,
-	},
-	locationText: {
-		textDecorationLine: 'underline',
-		color: '#50A5F9',
 	},
 })
 

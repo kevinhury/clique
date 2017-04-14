@@ -11,14 +11,14 @@ import CardView from '../components/CardView'
 import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
-import { modifyAttendances, cancelEvent, createEvent } from '../actions'
+import { cancelEvent, createEvent, openInvitation } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
 type EventInfoPageProps = {
 	createFlow: boolean,
 	event: UserEvent,
-	modifyAttendances: () => void,
+	openInvitation: () => void,
 	cancelEvent: () => void,
 	createEvent: () => void,
 	form: () => void,
@@ -68,7 +68,7 @@ class EventInfoPage extends Component {
 
 	render() {
 		const {
-			id, title, description, location, locationName, approved, status, owner,
+			title, description, location, locationName, approved, status, owner,
 			dates, isAdmin, invitees, minAtendees, limitedRSVP,
 		} = this.props.event
 		return (
@@ -86,35 +86,35 @@ class EventInfoPage extends Component {
 						status={status}
 						onStatusPress={() => {
 							if (this.props.createFlow) return
-							const eventId = id
-							this.props.modifyAttendances(eventId, approved)
+							this.props.openInvitation()
+							Actions.invitationPage()
 						}}
 						onCancelPress={() => this.cancelDialogToggle(true)}
 					/>
 					<View style={styles.descriptionSection}>
 						<Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
 					</View>
-					<Separator color='#F1CE81' />
+					<Separator />
 					<InfoSection
 						date={dates[0].toLocaleDateString()}
 						time={dates[0].toLocaleTimeString()}
 						location={`${locationName} - ${location.address}`}
 						onLocationPress={() => this.mapDialogToggle(true)}
 					/>
-					<Separator color='#F1CE81' />
+					<Separator />
 					<AtendeesSection
 						invitees={invitees}
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
 						createFlow={this.props.createFlow}
 					/>
-					<Separator color='#F1CE81' />
+					<Separator />
 					<NumAtendeesSection
 						style={styles.numAtendeesSection}
 						limitedRSVP={limitedRSVP}
 						minAtendees={minAtendees}
 					/>
-					<Separator color='#F1CE81' />
+					<Separator />
 					{this.renderBottomButton()}
 				</CardView>
 				<Dialog
@@ -182,7 +182,7 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
-	modifyAttendances,
+	openInvitation,
 	cancelEvent,
 	createEvent,
 })(EventInfoPage)

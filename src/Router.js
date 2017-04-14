@@ -14,6 +14,7 @@ import CreateEventPage2 from './containers/CreateEventPage2'
 import CreateEventPage3 from './containers/CreateEventPage3'
 import EventInfoPage from './containers/EventInfoPage'
 import VerificationPage from './containers/VerificationPage'
+import InvitationPage from './containers/InvitationPage'
 
 type RouterProps = {
 	cancelForm: () => void,
@@ -26,7 +27,7 @@ class RouterComponent extends Component {
 		return (
 			<View style={styles.background}>
 				<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
-					<Scene key='verificationPage' component={VerificationPage} hideNavBar />
+					<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' />
 					<Scene key='main' initial>
 						<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 						<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
@@ -35,6 +36,7 @@ class RouterComponent extends Component {
 							<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
 							<Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
 						</Scene>
+						<Scene key='invitationPage' component={InvitationPage} hideNavBar direction='vertical' />
 					</Scene>
 				</Router>
 			</View>
