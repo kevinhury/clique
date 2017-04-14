@@ -3,7 +3,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import { Button } from 'react-native-elements'
+import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { ProfileIcon, Separator, AddressBarItem, CommonCalendar } from '../components/Common'
 import { invitationChooseDates, invitationAttendance } from '../actions'
@@ -22,17 +24,17 @@ type InvitationPageProps = {
 	invitationAttendance: () => void,
 }
 
-const mock = {
-	owner: 'Yossi Kerman',
-	title: 'FIFA SESSION 17',
-	location: { address: '6 Malkat Shva' },
-	locationName: 'Kevin\'s place',
-	startTime: '10:35',
-	expires: '02d 15h 46m',
-	limitedRSVP: 20,
-	selectedDates: [],
-	dates: [new Date()],
-}
+// const mock = {
+// 	owner: 'Yossi Kerman',
+// 	title: 'FIFA SESSION 17',
+// 	location: { address: '6 Malkat Shva' },
+// 	locationName: 'Kevin\'s place',
+// 	startTime: '10:35',
+// 	expires: '02d 15h 46m',
+// 	limitedRSVP: 20,
+// 	selectedDates: [],
+// 	dates: [new Date()],
+// }
 
 class InvitationPage extends Component {
 	props: InvitationPageProps
@@ -50,6 +52,7 @@ class InvitationPage extends Component {
 	render() {
 		const { selectedDates, owner, title, location, locationName, expires, limitedRSVP } = this.props
 		const startTime = this.props.dates[0].toLocaleTimeString()
+		console.log(`expires in ${moment(expires).format()}`)
 		const inviterImage = 'https://facebook.github.io/react/img/logo_og.png'
 		return (
 			<View style={styles.container}>
@@ -85,11 +88,23 @@ class InvitationPage extends Component {
 						<Text style={[styles.noticeText, styles.fontSmall]}>{I18n.t('invitation.rsvpNotice', { number: limitedRSVP })}</Text>
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
-						<Text style={styles.boldText}>{I18n.t('invitation.expires')} {expires}</Text>
+						<Text style={styles.boldText}>{I18n.t('invitation.expires')} {moment(expires).fromNow()}</Text>
 					</View>
 					<View style={styles.buttons}>
-						<Button title={I18n.t('invitation.declineButton')} backgroundColor='#C55755' onPress={() => {this.props.invitationAttendance('Approved')}}/>
-						<Button title={I18n.t('invitation.acceptButton')} backgroundColor='#01A836' onPress={() => this.props.invitationAttendance('Declined')}/>
+						<Button
+							title={I18n.t('invitation.declineButton')}
+							backgroundColor='#C55755'
+							onPress={() => {
+								this.props.invitationAttendance('Approved')
+								Actions.pop()
+							}}/>
+						<Button
+							title={I18n.t('invitation.acceptButton')}
+							backgroundColor='#01A836'
+							onPress={() => {
+								this.props.invitationAttendance('Declined')
+								Actions.pop()
+							}}/>
 					</View>
 				</View>
 			</View>
@@ -179,10 +194,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	// const { selected } = state.events
-	// const { selectedDates } = state.invitation
-	// return { ...selected, selectedDates }
-	return mock
+	const { selected } = state.events
+	const { selectedDates } = state.invitation
+	return { ...selected, selectedDates }
 }
 
 export default connect(mapStateToProps, {

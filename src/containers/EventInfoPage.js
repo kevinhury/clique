@@ -11,14 +11,14 @@ import CardView from '../components/CardView'
 import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
-import { modifyAttendances, cancelEvent, createEvent } from '../actions'
+import { cancelEvent, createEvent, openInvitation } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
 type EventInfoPageProps = {
 	createFlow: boolean,
 	event: UserEvent,
-	modifyAttendances: () => void,
+	openInvitation: () => void,
 	cancelEvent: () => void,
 	createEvent: () => void,
 	form: () => void,
@@ -68,7 +68,7 @@ class EventInfoPage extends Component {
 
 	render() {
 		const {
-			id, title, description, location, locationName, approved, status, owner,
+			title, description, location, locationName, approved, status, owner,
 			dates, isAdmin, invitees, minAtendees, limitedRSVP,
 		} = this.props.event
 		return (
@@ -86,8 +86,8 @@ class EventInfoPage extends Component {
 						status={status}
 						onStatusPress={() => {
 							if (this.props.createFlow) return
-							const eventId = id
-							this.props.modifyAttendances(eventId, approved)
+							this.props.openInvitation()
+							Actions.invitationPage()
 						}}
 						onCancelPress={() => this.cancelDialogToggle(true)}
 					/>
@@ -182,7 +182,7 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
-	modifyAttendances,
+	openInvitation,
 	cancelEvent,
 	createEvent,
 })(EventInfoPage)

@@ -67,7 +67,7 @@
     "selectDate": "Please select your availability from the dates below:",
     "startTime": "Event start time:",
     "rsvpNotice": "Max RSVP's is on! First {{number}} RSVP's will enter the event.\nBe quick and RSVP now.",
-    "expires": "Invite expires in",
+    "expires": "Invite expires",
     "declineButton": "Decline",
     "acceptButton": "Accept"
   }

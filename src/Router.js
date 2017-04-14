@@ -26,10 +26,9 @@ class RouterComponent extends Component {
 	render() {
 		return (
 			<View style={styles.background}>
-				<Router navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
+				<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
 					<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' />
-					<Scene key='main' initial sceneStyle={styles.scene}>
-						<Scene key='invitationPage' component={InvitationPage} hideNavBar />
+					<Scene key='main' initial>
 						<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 						<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
 						<Scene key='createEvent' direction='vertical'>
@@ -37,6 +36,7 @@ class RouterComponent extends Component {
 							<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
 							<Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
 						</Scene>
+						<Scene key='invitationPage' component={InvitationPage} hideNavBar direction='vertical' />
 					</Scene>
 				</Router>
 			</View>
