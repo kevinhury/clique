@@ -14,7 +14,6 @@ import {
 	USER_EVENT_CANCEL_RESPONSE,
 	USER_EVENT_CREATE,
 	USER_EVENT_MODIFY_FIELDS,
-	INVITATION_MODIFY_DATES,
 } from './types'
 import type { Approval, UserEvent, EventForm } from './types'
 
@@ -90,7 +89,3 @@ export const modifyEventFields = (fields: any) =>
 				dispatch({ type: USER_EVENT_MODIFY_FIELDS, success: response.success, event: response.event })
 			})
 	}
-
-export const invitationChooseDates = (dates: Date[]) => {
-	return { type: INVITATION_MODIFY_DATES, dates }
-}

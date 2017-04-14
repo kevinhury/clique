@@ -9,9 +9,9 @@ export default (API: IEventsAPI) => {
 			return API
 				.requestEventsAPICall(userId, accessToken)
 		},
-		changeAttendances: (userId: string, accessToken: string, eventId: string, status: Approval) => {
+		changeAttendances: (userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]) => {
 			return API
-				.modifyAttendancesAPICall(userId, accessToken, eventId, status)
+				.modifyAttendancesAPICall(userId, accessToken, eventId, status, dates)
 		},
 		cancelEventById: (userId: string, accessToken: string, eventId: string) => {
 			return API

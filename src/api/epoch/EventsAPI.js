@@ -6,7 +6,7 @@ import type { EventForm, Approval } from '../../actions/types'
 
 export type IEventsAPI = {
 	requestEventsAPICall(userId: string, accessToken: string): any,
-	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval): any,
+	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]): any,
 	cancelEventAPICall(userId: string, accessToken: string, eventId: string): any,
 	createEventAPICall(userId: string, accessToken: string, form: EventForm): any,
 	modifyEventFieldsAPICall(userId: string, accessToken: string, eventId: string, fields: any): any,
@@ -21,9 +21,9 @@ export const EventsAPI: IEventsAPI = {
 				return response
 			})
 	},
-	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval) {
+	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]) {
 		return BaseAPI
-			.get('/event/:id/modify', { userId, accessToken, eventId, status })
+			.get('/event/:id/modify', { userId, accessToken, eventId, status, dates })
 			.then((response: Response) => {
 				console.log(response)
 				return response
