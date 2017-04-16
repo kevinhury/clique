@@ -4,6 +4,7 @@ import { EventFormReducer as form } from './EventFormReducer'
 import { ContactsReducer as contacts } from './ContactsReducer'
 import { EventsReducer as events } from './EventsReducer'
 import { PermissionsReducer as permissions } from './PermissionsReducer'
+import { InvitationReducer as invitation } from './InvitationReducer'
 
 export default combineReducers({
 	login,
@@ -11,4 +12,5 @@ export default combineReducers({
 	contacts,
 	events,
 	permissions,
+	invitation,
 })
