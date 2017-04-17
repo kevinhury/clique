@@ -3,9 +3,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import { Scene, Router, Actions } from 'react-native-router-flux'
-import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-import { cancelForm, getCredentialsFromStorage } from './actions'
 
 // Screens
 import LobbyPage from './containers/LobbyPage'
@@ -17,25 +15,14 @@ import VerificationPage from './containers/VerificationPage'
 import InvitationPage from './containers/InvitationPage'
 import LoaderPage from './containers/LoaderPage'
 
-type RouterProps = {
-	cancelForm: () => void,
-	initializing: boolean,
-	authenticating: boolean,
-	authenticated: boolean,
-	getCredentialsFromStorage: () => void,
-}
 
 class RouterComponent extends Component {
-	props: RouterProps
-
 	render() {
-		const { authenticating, authenticated } = this.props
-		console.log(`authenticated ${authenticated.toString()} authenticating ${authenticating.toString()}`)
 		return (
 			<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
-				<Scene key='loaderPage' component={LoaderPage} initial={authenticating} />
-				<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' initial={!authenticating && !authenticated} />
-				<Scene key='main' initial={!authenticating && authenticated}>
+				<Scene key='loaderPage' component={LoaderPage} initial />
+				<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' />
+				<Scene key='main' type='place'>
 					<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 					<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
 					<Scene key='createEvent' direction='vertical'>
@@ -70,12 +57,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-const mapStateToProps = state => {
-	const { session } = state
-	return { ...session }
-}
-
-export default connect(mapStateToProps, {
-	cancelForm,
-	getCredentialsFromStorage,
-})(RouterComponent)
+export default RouterComponent

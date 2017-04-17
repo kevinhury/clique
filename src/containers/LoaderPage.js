@@ -4,10 +4,11 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { startAuthentication } from '../actions'
+import { Actions } from 'react-native-router-flux'
 
 type LoaderProps = {
-	initializing: boolean,
-	credentialsExist: boolean,
+	authenticating: boolean,
+	authenticated: boolean,
 	startAuthentication: () => void,
 }
 
@@ -16,6 +17,15 @@ class LoaderPage extends Component {
 
 	componentDidMount() {
 		this.props.startAuthentication()
+	}
+
+	componentWillReceiveProps(nextProps: LoaderProps) {
+		console.log(nextProps)
+		if (nextProps.authenticated) {
+			Actions.main()
+		} else if (!nextProps.authenticating) {
+			Actions.verificationPage()
+		}
 	}
 
 	render() {
