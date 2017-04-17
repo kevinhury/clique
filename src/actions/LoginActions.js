@@ -31,11 +31,11 @@ export const changeLoginNumber = (number: string) => {
 	}
 }
 
-export const submitLogin = (number: string, country: CountryCode) =>
+export const submitLogin = (number: string, country: CountryCode, password: string) =>
 	(dispatch: (Object) => void) => {
 		dispatch({ type: LOGIN_SUBMIT_PHONE, country, number })
 		LoginService
-			.loginWithPhone(number, country.callingCode)
+			.register(number, country.callingCode, password)
 			.then(({ success }) => {
 				dispatch({ type: LOGIN_SUBMIT_RESPONSE, success })
 			})
@@ -48,11 +48,11 @@ export const submitLoginBack = () => {
 	return { type: LOGIN_SUBMIT_PHONE_BACK }
 }
 
-export const submitVerificationCode = (code: string) =>
+export const submitVerificationCode = (number: string, country: CountryCode, password: string, token: string) =>
 	(dispatch: (Object) => void) => {
-		dispatch({ type: LOGIN_SUBMIT_VERIFICATION, code })
+		dispatch({ type: LOGIN_SUBMIT_VERIFICATION, token })
 		LoginService
-			.authenticatePhoneCode(code)
+			.verifyRegister(number, country.callingCode, password, token)
 			.then(({ success }) => {
 				dispatch({ type: LOGIN_SUBMIT_VERIFICATION_RESPONSE, success })
 			})

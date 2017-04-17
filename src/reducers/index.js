@@ -5,6 +5,7 @@ import { ContactsReducer as contacts } from './ContactsReducer'
 import { EventsReducer as events } from './EventsReducer'
 import { PermissionsReducer as permissions } from './PermissionsReducer'
 import { InvitationReducer as invitation } from './InvitationReducer'
+import { SessionReducer as session } from './SessionReducer'
 
 export default combineReducers({
 	login,
@@ -13,4 +14,5 @@ export default combineReducers({
 	events,
 	permissions,
 	invitation,
+	session,
 })

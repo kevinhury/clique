@@ -2,10 +2,10 @@
 
 import { get_event_mocks } from '../../fixtures/events'
 import type { EventForm, Approval } from '../../actions/types'
-import type { PhoneLoginResponse, AuthCodeResponse } from './LoginAPI'
+import type { RegisterResponse, VerifyRegisterResponse, LoginResponse } from './LoginAPI'
 
-export const phoneLoginAPICall = (phone: string, country: string): Promise<PhoneLoginResponse> => {
-	console.log(`PHONE LOGIN API CALL with params: phone ${phone} country ${country}`)
+export const register = (phoneNumber: string, password: string): Promise<RegisterResponse> => {
+	console.log(`PHONE LOGIN API CALL with params: phone ${phoneNumber} password ${password}`)
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve({ success: true })
@@ -13,11 +13,20 @@ export const phoneLoginAPICall = (phone: string, country: string): Promise<Phone
 	})
 }
 
-export const authenticateCodeAPICall = (code: string): Promise<AuthCodeResponse> => {
-	console.log(`AUTH CODE API CALL with params: code ${code}`)
+export const verifyRegister = (phoneNumber: string, password: string, token: string): Promise<VerifyRegisterResponse> => {
+	console.log(`AUTH CODE API CALL with params: code ${phoneNumber} password ${password} token ${token}`)
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			resolve({ success: true })
+			resolve({ success: true, pid: '123', accessToken: '123' })
+		}, 1000)
+	})
+}
+
+export const login = (pid: string, password: string): Promise<LoginResponse> => {
+	console.log(`LOGIN API CALL with params: pid ${pid} password: ${password}`)
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve({ success: true, accessToken: '123' })
 		}, 1000)
 	})
 }

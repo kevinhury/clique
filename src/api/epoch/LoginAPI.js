@@ -3,34 +3,50 @@
 import BaseAPI from './BaseAPI'
 import type { Response } from './BaseAPI'
 
-export type PhoneLoginResponse = {
+export type RegisterResponse = {
 	success: boolean,
 }
 
-export type AuthCodeResponse = {
+export type VerifyRegisterResponse = {
 	success: boolean,
+	pid: string,
+	accessToken: string,
+}
+
+export type LoginResponse = {
+	success: boolean,
+	accessToken: string,
 }
 
 export type ILoginAPI = {
-	phoneLoginAPICall(phone: string, country: string): Promise<PhoneLoginResponse>,
-	authenticateCodeAPICall(code: string): Promise<AuthCodeResponse>,
+	register(phone: string, password: string): Promise<RegisterResponse>,
+	verifyRegister(phone: string, password: string, token: string): Promise<VerifyRegisterResponse>,
+	login(pid: string, password: string): Promise<LoginResponse>,
 }
 
 export const LoginAPI: ILoginAPI = {
-	phoneLoginAPICall(phone: string, country: string): Promise<PhoneLoginResponse> {
+	register(phone: string, password: string): Promise<RegisterResponse> {
 		return BaseAPI
-			.get('/login/phone', { phone, country })
+			.get('/accounts/register', { phone, password })
 			.then((response: Response) => {
 				console.log(response)
 				return response
 			})
 	},
-	authenticateCodeAPICall(code: string): Promise<AuthCodeResponse> {
+	verifyRegister(phone: string, password: string, token: string): Promise<VerifyRegisterResponse> {
 		return BaseAPI
-			.get('/login/code', { q: code })
+			.get('/accounts/verifyRegister', { phone, password, token })
 			.then((response: Response) => {
 				console.log(response)
 				return response
 			})
 	},
+	login(pid: string, password: string): Promise<LoginResponse> {
+		return BaseAPI
+			.get('/accounts/authenticate', { pid, password })
+			.then((response: Response) => {
+				console.log(response)
+				return response
+			})
+	}
 }
