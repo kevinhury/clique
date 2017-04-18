@@ -22,7 +22,7 @@ class RouterComponent extends Component {
 			<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
 				<Scene key='loaderPage' component={LoaderPage} initial />
 				<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' />
-				<Scene key='main' type='place'>
+				<Scene key='main'>
 					<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 					<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
 					<Scene key='createEvent' direction='vertical'>

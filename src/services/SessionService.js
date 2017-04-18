@@ -26,13 +26,19 @@ export const setCredentialsToStorage = (credentials: any): Promise<any> => {
 		promises.push(AsyncStorage.setItem(storageConfig.accessToken, accessToken))
 	}
 	return Promise.all(promises)
-		.then((results) => {
-			console.log('set results')
-			console.log(results)
-		})
-		.catch((err) => {
-			console.log('set results err')
-			console.log(err)
+}
+
+export const getUserPassword = (): Promise<any> => {
+	return AsyncStorage.getItem(storageConfig.password)
+		.then((result) => {
+			if (!result) {
+				const password = generatePassword()
+				return setCredentialsToStorage({ password })
+					.then(() => {
+						return password
+					})
+			}
+			return result
 		})
 }
 

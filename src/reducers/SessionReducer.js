@@ -29,6 +29,8 @@ export const SessionReducer = (state: SessionState = INITIAL_STATE, action: Acti
 			return { ...INITIAL_STATE, authenticating: false, authenticated: true, accessToken: action.accessToken }
 		case ActionTypes.AUTHENTICATION_FAILURE:
 			return { ...INITIAL_STATE }
+		case ActionTypes.LOGIN_SUBMIT_VERIFICATION_SUCCESS:
+			return { ...INITIAL_STATE, authenticating: false, authenticated: true, accessToken: action.accessToken, pid: action.pid }
 		default:
 			return state
 	}

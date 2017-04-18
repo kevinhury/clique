@@ -7,8 +7,9 @@ import {
 	LOGIN_SUBMIT_PHONE,
 	LOGIN_SUBMIT_PHONE_BACK,
 	LOGIN_SUBMIT_RESPONSE,
-	LOGIN_SUBMIT_VERIFICATION,
-	LOGIN_SUBMIT_VERIFICATION_RESPONSE,
+	LOGIN_SUBMIT_VERIFICATION_REQUEST,
+	LOGIN_SUBMIT_VERIFICATION_SUCCESS,
+	LOGIN_SUBMIT_VERIFICATION_FAILURE,
 } from '../actions/types'
 
 export const INITIAL_STATE: State = {
@@ -41,10 +42,12 @@ export const LoginReducer = (state: State = INITIAL_STATE, action: Action) => {
 			return { ...state, loginStage: 'PHONE', loading: false }
 		case LOGIN_SUBMIT_RESPONSE:
 			return { ...state, loginStage: 'CODE', loading: false }
-		case LOGIN_SUBMIT_VERIFICATION:
+		case LOGIN_SUBMIT_VERIFICATION_REQUEST:
 			return { ...state, loading: true }
-		case LOGIN_SUBMIT_VERIFICATION_RESPONSE:
+		case LOGIN_SUBMIT_VERIFICATION_SUCCESS:
 			return { ...state, loginStage: 'DONE', loading: false }
+		case LOGIN_SUBMIT_VERIFICATION_FAILURE:
+			return { ...state, loginStage: 'PHONE', loading: false }
 		default:
 			return state
 	}

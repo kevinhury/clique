@@ -19,9 +19,9 @@ type Props = {
 	loading: false,
 	changeLoginCountry: (CountryCode) => void,
 	changeLoginNumber: (string) => void,
-	submitLogin: () => void,
+	submitLogin: (string, CountryCode) => void,
 	submitLoginBack: () => void,
-	submitVerificationCode: () => void,
+	submitVerificationCode: (string, CountryCode, string) => void,
 }
 
 class VerificationPage extends Component {
@@ -63,7 +63,7 @@ class VerificationPage extends Component {
 
 	_verifyCode() {
 		if (this.props.loading) return
-		this.props.submitVerificationCode(this.state.code)
+		this.props.submitVerificationCode(this.props.phoneNumber, this.props.countryCode, this.state.code)
 	}
 
 	_getCode() {
