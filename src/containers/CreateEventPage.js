@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import RNGooglePlacePicker from 'react-native-google-place-picker'
 import CardView from '../components/CardView'
-import { changeEventName, changeEventDescription, changeLocationName, changeEventLocation } from '../actions'
+import { changeEventName, changeEventDescription, changeLocationName, changeEventLocation, cancelForm } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
 import NextButton from '../components/NextButton'
@@ -25,10 +25,20 @@ type CreateEventPageProps = {
 	changeEventDescription: (string) => void,
 	changeLocationName: (string) => void,
 	changeEventLocation: (Location) => void,
+	cancelForm: () => void,
+	onLeft: () => void,
 }
 
 class CreateEventPage extends Component {
 	props: CreateEventPageProps
+
+	componentDidMount() {
+		const onLeft = () => {
+			this.props.cancelForm()
+			Actions.pop()
+		}
+		Actions.refresh({ leftTitle: I18n.t('cancel'), onLeft })
+	}
 
 	render() {
 		return (
@@ -116,4 +126,5 @@ export default connect(mapStateToProps, {
 	changeEventDescription,
 	changeLocationName,
 	changeEventLocation,
+	cancelForm,
 })(CreateEventPage)
