@@ -67,6 +67,11 @@ export const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST'
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS'
 export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE'
 
+// Messages
+export const MESSAGES_NEW_SENT = 'MESSAGES_NEW_SENT'
+export const MESSAGES_NEW_RECEIVED = 'MESSAGES_NEW_RECEIVED'
+export const MESSAGES_TEXT_INPUT_CHANGED = 'MESSAGES_TEXT_INPUT_CHANGED'
+
 export type Status =
   'Pending'
   | 'Cancelled'
@@ -196,4 +201,6 @@ export type Action =
   | { type: 'AUTHENTICATION_REQUEST' }
   | { type: 'AUTHENTICATION_SUCCESS', accessToken: string }
   | { type: 'AUTHENTICATION_FAILURE' }
-
+  | { type: 'MESSAGES_NEW_SENT', messages: any[] }
+  | { type: 'MESSAGES_NEW_RECEIVED', message: any }
+  | { type: 'MESSAGES_TEXT_INPUT_CHANGED', text: string }

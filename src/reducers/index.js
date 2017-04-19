@@ -6,6 +6,7 @@ import { EventsReducer as events } from './EventsReducer'
 import { PermissionsReducer as permissions } from './PermissionsReducer'
 import { InvitationReducer as invitation } from './InvitationReducer'
 import { SessionReducer as session } from './SessionReducer'
+import { ChatReducer as chat } from './ChatReducer'
 
 export default combineReducers({
 	login,
@@ -15,4 +16,5 @@ export default combineReducers({
 	permissions,
 	invitation,
 	session,
+	chat,
 })

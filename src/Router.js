@@ -14,13 +14,14 @@ import EventInfoPage from './containers/EventInfoPage'
 import VerificationPage from './containers/VerificationPage'
 import InvitationPage from './containers/InvitationPage'
 import LoaderPage from './containers/LoaderPage'
-
+import ChatPage from './containers/ChatPage'
 
 class RouterComponent extends Component {
 	render() {
 		return (
 			<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
-				<Scene key='loaderPage' component={LoaderPage} initial />
+				<Scene key='chatPage' component={ChatPage} initial />
+				<Scene key='loaderPage' component={LoaderPage} />
 				<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' />
 				<Scene key='main' type="replace">
 					<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
