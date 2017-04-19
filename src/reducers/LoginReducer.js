@@ -41,7 +41,7 @@ export const LoginReducer = (state: State = INITIAL_STATE, action: Action) => {
 		case LOGIN_SUBMIT_PHONE_BACK:
 			return { ...state, loginStage: 'PHONE', loading: false }
 		case LOGIN_SUBMIT_RESPONSE:
-			return { ...state, loginStage: 'CODE', loading: false }
+			return { ...state, loginStage: action.success ? 'CODE' : 'PHONE', loading: false }
 		case LOGIN_SUBMIT_VERIFICATION_REQUEST:
 			return { ...state, loading: true }
 		case LOGIN_SUBMIT_VERIFICATION_SUCCESS:

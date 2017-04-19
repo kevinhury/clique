@@ -1,8 +1,8 @@
 // @flow
 
 // TODO: replace these
-// import * as API from '../api/epoch/LoginAPI'
-import * as API from '../api/epoch/FixtureAPI'
+import { LoginAPI } from '../api/epoch/LoginAPI'
+// import * as LoginAPI from '../api/epoch/FixtureAPI'
 import LoginServiceGenerate from '../services/LoginService'
 import * as SessionService from '../services/SessionService'
 import {
@@ -17,7 +17,7 @@ import {
 } from './types'
 import type { CountryCode } from './types'
 
-const LoginService = LoginServiceGenerate(API)
+const LoginService = LoginServiceGenerate(LoginAPI)
 
 export const changeLoginCountry = (country: CountryCode) => {
 	return {

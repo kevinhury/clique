@@ -9,7 +9,8 @@ export default (API: ILoginAPI) => {
 			return API
 				.register(phone, password)
 		},
-		verifyRegister: (phone: string, password: string, token: string): Promise<VerifyRegisterResponse> => {
+		verifyRegister: (phoneNumber: string, country: string, password: string, token: string): Promise<VerifyRegisterResponse> => {
+			const phone = country + phoneNumber
 			return API
 				.verifyRegister(phone, password, token)
 		},

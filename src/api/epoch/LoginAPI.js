@@ -27,26 +27,29 @@ export type ILoginAPI = {
 export const LoginAPI: ILoginAPI = {
 	register(phone: string, password: string): Promise<RegisterResponse> {
 		return BaseAPI
-			.get('/accounts/register', { phone, password })
+			.post('/accounts/register', { phone, password })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response }
+				const { success } = response.data
+				return { success }
 			})
 	},
 	verifyRegister(phone: string, password: string, token: string): Promise<VerifyRegisterResponse> {
 		return BaseAPI
-			.get('/accounts/verifyRegister', { phone, password, token })
+			.post('/accounts/verifyRegister', { phone, password, token })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response }
+				const { success, pid, accessToken } = response.data
+				return { success, pid, accessToken }
 			})
 	},
 	login(pid: string, password: string): Promise<LoginResponse> {
 		return BaseAPI
-			.get('/accounts/authenticate', { pid, password })
+			.post('/accounts/authenticate', { pid, password })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response}
+				const { success, accessToken } = response.data
+				return { success, accessToken }
 			})
-	}
+	},
 }
