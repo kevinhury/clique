@@ -5,6 +5,7 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { startAuthentication } from '../actions'
 import { Actions } from 'react-native-router-flux'
+// import * as DebugTests from '../fixtures/debugtests'
 
 type LoaderProps = {
 	authenticating: boolean,
@@ -20,7 +21,6 @@ class LoaderPage extends Component {
 	}
 
 	componentWillReceiveProps(nextProps: LoaderProps) {
-		console.log(nextProps)
 		if (nextProps.authenticated) {
 			Actions.main()
 		} else if (!nextProps.authenticating) {
