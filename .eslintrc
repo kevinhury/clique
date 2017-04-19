@@ -97,7 +97,8 @@
     "describe": true,
     "it": true,
     "beforeEach": true,
-    "expect": true
+    "expect": true,
+    "Promise": true,
   },
   "settings": {
     "flowtype": {
