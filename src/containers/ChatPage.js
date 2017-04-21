@@ -6,6 +6,8 @@ import { GiftedChat } from 'react-native-gifted-chat'
 import { onMessageSent } from '../actions'
 
 type ChatPageProps = {
+	chatRoomId: string,
+	loadingMessages: boolean,
 	messages: [],
 	onMessageSent: (any[]) => void,
 }

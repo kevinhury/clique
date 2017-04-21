@@ -4,15 +4,17 @@ import * as ActionTypes from '../actions/types'
 import type { Action } from '../actions/types'
 
 export const INITIAL_STATE: ChatReducerState = {
+	chatRoomId: null,
+	loadingMessages: false,
 	textInput: '',
 	messages: [],
-	loading: false,
 }
 
 export type ChatReducerState = {
+	chatRoomId: ?string,
+	loadingMessages: boolean,
 	textInput: string,
 	messages: any[],
-	loading: boolean,
 }
 
 export const ChatReducer = (state: ChatReducerState = INITIAL_STATE, action: Action): ChatReducerState => {
