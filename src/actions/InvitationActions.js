@@ -24,13 +24,13 @@ export const invitationChooseDates = (dates: Date[]) => {
 }
 
 export const invitationAttendance = (attendance: Approval, eventId: string, dates: ?Date[]) =>
-(dispatch: (Object) => void) => {
-	dispatch({ type: INVITATION_ATTENDANCE_REQUEST, attendance })
-	EventsService.changeAttendances('userId', 'accessToken', eventId, attendance, dates)
-		.then(() => {
-			dispatch({ type: INVITATION_ATTENDANCE_SUCCESS })
-		})
-		.catch(() => {
-			dispatch({ type: INVITATION_ATTENDANCE_FAILURE })
-		})
-}
+	(dispatch: (Object) => void) => {
+		dispatch({ type: INVITATION_ATTENDANCE_REQUEST, attendance })
+		EventsService.changeAttendances('userId', 'accessToken', eventId, attendance, dates)
+			.then(() => {
+				dispatch({ type: INVITATION_ATTENDANCE_SUCCESS })
+			})
+			.catch(() => {
+				dispatch({ type: INVITATION_ATTENDANCE_FAILURE })
+			})
+	}

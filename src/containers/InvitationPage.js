@@ -108,7 +108,7 @@ class InvitationPage extends Component {
 							}} />
 					</View>
 				</View>
-			</View >
+			</View>
 		)
 	}
 }
@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'center',
+		alignItems: 'center',
 		padding: 5,
 	},
 	button: {
