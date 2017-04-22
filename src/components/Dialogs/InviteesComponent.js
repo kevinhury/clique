@@ -47,17 +47,16 @@ class InviteesComponent extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		alignItems: 'flex-start',
+		alignItems: 'center',
 		margin: 5,
-		paddingLeft: 20,
 		flex: 1,
 		alignSelf: 'stretch',
 	},
 	text: {
 		color: '#000',
+		marginBottom: 4,
 	},
 	bubbles: {
-		paddingLeft: 10,
 		marginBottom: 10,
 	},
 })

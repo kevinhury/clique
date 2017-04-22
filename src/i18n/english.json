@@ -63,6 +63,7 @@
     "setLocationTitle": "Set Location"
   },
   "invitation": {
+    "navigationTitle": "Invitation",
     "title": "{{string}} has invited you to:",
     "selectDate": "Please select your availability from the dates below:",
     "startTime": "Event start time:",

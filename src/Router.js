@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import { Scene, Router, Actions } from 'react-native-router-flux'
+import { Scene, Router } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 
 // Screens
@@ -30,7 +30,7 @@ class RouterComponent extends Component {
 						<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
 						<Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
 					</Scene>
-					<Scene key='invitationPage' component={InvitationPage} hideNavBar direction='vertical' />
+					<Scene key='invitationPage' component={InvitationPage} direction='vertical' />
 				</Scene>
 			</Router>
 		)

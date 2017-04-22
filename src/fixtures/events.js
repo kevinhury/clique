@@ -19,7 +19,7 @@ export const get_event_mocks = (): Array<UserEvent> => [
 		approved: 'Pending',
 		status: 'Pending',
 		owner: 'You',
-		dates: [new Date('2017-04-30T10:20:30Z'), new Date('2017-04-30T10:20:30Z')],
+		dates: [new Date('2017-04-28T10:20:30Z'), new Date('2017-04-29T10:20:30Z'), new Date('2017-04-30T10:20:30Z')],
 		isAdmin: true,
 		expires: new Date('2017-04-30T14:20:30Z'),
 		minAtendees: 999,
