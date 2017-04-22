@@ -20,7 +20,10 @@ import { requestEvents, selectEvent, createForm, modifyForm } from '../actions'
 import type { UserEvent } from '../actions/types'
 
 type LobbyPageProps = {
-	events: any,
+	pid: string,
+	accessToken: string,
+	loading: boolean,
+	list: any,
 	requestEvents: () => void,
 	selectEvent: () => void,
 	modifyForm: () => void,
@@ -36,19 +39,19 @@ class LobbyPage extends Component {
 		this.onRefresh()
 	}
 
-	componentWillReceiveProps(nextProps: any): void {
+	componentWillReceiveProps(nextProps: LobbyPageProps): void {
 		this.updateDataSource(nextProps)
 	}
 
-	updateDataSource(props: any): void {
+	updateDataSource(props: LobbyPageProps): void {
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2,
 		})
-		this.dataSource = ds.cloneWithRows(props.events.list)
+		this.dataSource = ds.cloneWithRows(props.list)
 	}
 
 	onRefresh(): void {
-		this.props.requestEvents()
+		this.props.requestEvents(this.props.pid, this.props.accessToken)
 	}
 
 	renderRow(event: UserEvent) {
@@ -91,7 +94,7 @@ class LobbyPage extends Component {
 					<ListView
 						refreshControl={
 							<RefreshControl
-								refreshing={this.props.events.loading}
+								refreshing={this.props.loading}
 								onRefresh={this.onRefresh.bind(this)}
 							/>
 						}
@@ -130,8 +133,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { events } = state
-	return { events }
+	const { events, session } = state
+	return { ...events, pid: session.pid, accessToken: session.accessToken }
 }
 
 export default connect(mapStateToProps, {

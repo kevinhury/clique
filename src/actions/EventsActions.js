@@ -1,8 +1,8 @@
 // @flow
 
 // TODO: Replace these
-// import * as API from '../api/epoch/EventsAPI'
-import * as API from '../api/epoch/FixtureAPI'
+import { EventsAPI } from '../api/epoch/EventsAPI'
+// import * as API from '../api/epoch/FixtureAPI'
 import EventsServiceGenerate from '../services/EventsService'
 import {
 	USER_EVENTS_REQUEST,
@@ -17,15 +17,18 @@ import {
 } from './types'
 import type { Approval, UserEvent, EventForm } from './types'
 
-const EventsService = EventsServiceGenerate(API)
+const EventsService = EventsServiceGenerate(EventsAPI)
 
-export const requestEvents = () =>
+export const requestEvents = (pid: string, accessToken: string) =>
 	(dispatch: (Object) => void) => {
 		dispatch({ type: USER_EVENTS_REQUEST })
 		EventsService
-			.getLatestEvents('userId', 'accessToken')
+			.getLatestEvents(pid, accessToken)
 			.then((list) => {
 				dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list })
+			})
+			.catch(() => {
+				dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list: [] })
 			})
 	}
 

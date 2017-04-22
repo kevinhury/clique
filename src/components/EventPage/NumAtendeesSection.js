@@ -22,7 +22,7 @@ const maxAtendeesText = (limitedRSVP: number) => {
 	if (limitedRSVP == 0)
 		return (<Text>{I18n.t('notLimited')}</Text>)
 	return (
-		<Text style={styles.greenText}>{limitedRSVP} / {limitedRSVP}</Text>
+		<Text style={styles.greenText}>{limitedRSVP}</Text>
 	)
 }
 

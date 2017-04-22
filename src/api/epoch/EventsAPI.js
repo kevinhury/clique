@@ -15,10 +15,10 @@ export type IEventsAPI = {
 export const EventsAPI: IEventsAPI = {
 	requestEventsAPICall(userId: string, accessToken: string) {
 		return BaseAPI
-			.get('/events', { userId, accessToken })
+			.get(`/events/account/${userId}`, { userId, accessToken })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response }
+				return response.data
 			})
 	},
 	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]) {

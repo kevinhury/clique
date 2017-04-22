@@ -194,6 +194,6 @@ export type Action =
   | { type: 'INVITATION_MODIFY_DATES', dates: Date[] }
   | { type: 'USER_NOT_REGISTERED' }
   | { type: 'AUTHENTICATION_REQUEST' }
-  | { type: 'AUTHENTICATION_SUCCESS', accessToken: string }
+  | { type: 'AUTHENTICATION_SUCCESS', pid: string, accessToken: string }
   | { type: 'AUTHENTICATION_FAILURE' }
 
