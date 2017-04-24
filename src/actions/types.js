@@ -47,9 +47,6 @@ export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 // Invitation
 export const INVITATION_OPEN = 'INVITATION_OPEN'
 export const INVITATION_MODIFY_DATES = 'INVITATION_MODIFY_DATES'
-export const INVITATION_ATTENDANCE_REQUEST = 'INVITATION_ATTENDANCE_REQUEST'
-export const INVITATION_ATTENDANCE_SUCCESS = 'INVITATION_ATTENDANCE_SUCCESS'
-export const INVITATION_ATTENDANCE_FAILURE = 'INVITATION_ATTENDANCE_FAILURE'
 
 // Login
 export const LOGIN_CHANGE_COUNTRY = 'LOGIN_CHANGE_COUNTRY'
@@ -177,8 +174,8 @@ export type Action =
   | { type: 'USER_EVENTS_REQUEST' }
   | { type: 'USER_EVENTS_REQUEST_SUCCESS', list: UserEvent[] }
   | { type: 'USER_EVENT_SELECTED', selected: UserEvent }
-  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED', eventId: string, status: Approval }
-  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE', userId: string, eventId: string, status: Approval }
+  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED', loading: boolean }
+  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE', userId: string, loading: boolean, eventId: string, status: Approval }
   | { type: 'USER_EVENT_CANCEL', eventId: string }
   | { type: 'USER_EVENT_CANCEL_RESPONSE', eventId: string, success: boolean }
   | { type: 'USER_EVENT_CREATE', eventId: string, success: boolean }

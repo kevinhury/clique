@@ -1,6 +1,6 @@
 // @flow
 
-import type { EventForm, Approval } from '../actions/types'
+import type { EventForm } from '../actions/types'
 import type { IEventsAPI } from '../api/epoch/EventsAPI'
 
 export default (API: IEventsAPI) => {
@@ -10,7 +10,7 @@ export default (API: IEventsAPI) => {
 				.requestEventsAPICall(userId, accessToken)
 				.then(data => mapResponseDataToUserEvents(data, userId))
 		},
-		changeAttendances: (userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]) => {
+		changeAttendances: (userId: string, accessToken: string, eventId: string, status: string, dates: ?Date[]) => {
 			return API
 				.modifyAttendancesAPICall(userId, accessToken, eventId, status, dates)
 		},
@@ -38,6 +38,7 @@ const mapResponseDataToUserEvents = (events, userId) => {
 		const eventAdmin = data.atendees.find((atendee) => {
 			return atendee.admin === 1
 		})
+		event.id = data.event.id
 		event.title = data.event.title
 		event.description = data.event.description
 		event.location = { latitude: data.event.location.split(';')[0], longitude: data.event.location.split(';')[1] }

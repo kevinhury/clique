@@ -8,10 +8,11 @@ import { Button } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { ProfileIcon, Separator, AddressBarItem, DateBubblePicker } from '../components/Common'
-import { invitationChooseDates, invitationAttendance } from '../actions'
-import type { Location } from '../actions/types'
+import { invitationChooseDates, modifyAttendances } from '../actions'
+import type { Location, Approval } from '../actions/types'
 
 type InvitationPageProps = {
+	id: string,
 	owner: string,
 	title: string,
 	location: Location,
@@ -19,9 +20,12 @@ type InvitationPageProps = {
 	expires: ?Date,
 	limitedRSVP: ?number,
 	dates: Date[],
-	invitationChooseDates: () => void,
+	approved: Approval,
+	invitationChooseDates: (Date[]) => void,
 	selectedDates: Date[],
-	invitationAttendance: () => void,
+	modifyAttendances: (string, string, string, Approval, Approval, Date[]) => void,
+	pid: string,
+	accessToken: string,
 }
 
 class InvitationPage extends Component {
@@ -51,7 +55,7 @@ class InvitationPage extends Component {
 	}
 
 	render() {
-		const { owner, title, location, locationName, expires, limitedRSVP } = this.props
+		const { id, owner, title, location, locationName, expires, limitedRSVP, approved, pid, accessToken, selectedDates } = this.props
 		const startTime = this.props.dates[0].toLocaleTimeString()
 		const inviterImage = 'https://facebook.github.io/react/img/logo_og.png'
 		return (
@@ -95,7 +99,7 @@ class InvitationPage extends Component {
 							buttonStyle={styles.button}
 							backgroundColor='#C55755'
 							onPress={() => {
-								this.props.invitationAttendance('Approved')
+								this.props.modifyAttendances(pid, accessToken, id, approved, 'Declined', selectedDates)
 								Actions.pop()
 							}} />
 						<Button
@@ -103,7 +107,7 @@ class InvitationPage extends Component {
 							buttonStyle={styles.button}
 							backgroundColor='#01A836'
 							onPress={() => {
-								this.props.invitationAttendance('Declined')
+								this.props.modifyAttendances(pid, accessToken, id, approved, 'Approved', selectedDates)
 								Actions.pop()
 							}} />
 					</View>
@@ -214,10 +218,11 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
 	const { selected } = state.events
 	const { selectedDates } = state.invitation
-	return { ...selected, selectedDates }
+	const { pid, accessToken } = state.session
+	return { ...selected, selectedDates, pid, accessToken }
 }
 
 export default connect(mapStateToProps, {
 	invitationChooseDates,
-	invitationAttendance,
+	modifyAttendances,
 })(InvitationPage)

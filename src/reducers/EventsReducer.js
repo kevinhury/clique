@@ -6,7 +6,6 @@ import {
 	USER_EVENTS_REQUEST,
 	USER_EVENTS_REQUEST_SUCCESS,
 	USER_EVENT_SELECTED,
-	USER_EVENT_ATTENDANCES_MODIFIED,
 	USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
 	USER_EVENT_CANCEL,
 	USER_EVENT_CANCEL_RESPONSE,
@@ -37,7 +36,6 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			return { ...state, selected: action.selected }
 		case FORM_SELECT_TO_REVIEW:
 			return { ...state, selected: mapEventFormToEvent(action.form) }
-		case USER_EVENT_ATTENDANCES_MODIFIED:
 		case USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE: {
 			const eventId = action.eventId
 			const list = [...state.list]

@@ -2,11 +2,11 @@
 
 import BaseAPI from './BaseAPI'
 import type { Response } from './BaseAPI'
-import type { EventForm, Approval } from '../../actions/types'
+import type { EventForm } from '../../actions/types'
 
 export type IEventsAPI = {
 	requestEventsAPICall(userId: string, accessToken: string): any,
-	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]): any,
+	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: string, dates: ?Date[]): any,
 	cancelEventAPICall(userId: string, accessToken: string, eventId: string): any,
 	createEventAPICall(userId: string, accessToken: string, form: EventForm): any,
 	modifyEventFieldsAPICall(userId: string, accessToken: string, eventId: string, fields: any): any,
@@ -15,18 +15,18 @@ export type IEventsAPI = {
 export const EventsAPI: IEventsAPI = {
 	requestEventsAPICall(userId: string, accessToken: string) {
 		return BaseAPI
-			.get(`/events/account/${userId}`, { userId, accessToken })
+			.get(`/events/account/${userId}`, { accessToken })
 			.then((response: Response) => {
 				if (!response.ok) { throw response }
 				return response.data
 			})
 	},
-	modifyAttendancesAPICall(userId: string, accessToken: string, eventId: string, status: Approval, dates: ?Date[]) {
+	modifyAttendancesAPICall(pid: string, accessToken: string, eventId: string, approval: string, dates: ?Date[]) {
 		return BaseAPI
-			.get('/event/:id/modify', { userId, accessToken, eventId, status, dates })
+			.patch('/events/changeAttendance', { pid, accessToken, eventId, approval, dates })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response }
+				return response.data
 			})
 	},
 	cancelEventAPICall(userId: string, accessToken: string, eventId: string) {

@@ -36,26 +36,29 @@ export const selectEvent = (selected: UserEvent) => {
 	return { type: USER_EVENT_SELECTED, selected }
 }
 
-export const modifyAttendances = (eventId: string, status: Approval) =>
-	(dispatch: (Object) => void) => {
-		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
-		dispatch({
-			type: USER_EVENT_ATTENDANCES_MODIFIED,
-			userId: 'userId', // TODO: Pass user id
-			eventId,
-			status: obj[status],
-		})
-		EventsService
-			.changeAttendances('userId', 'accessToken', eventId, status)
-			.then((response: any) => {
-				dispatch({
-					type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
-					userId: response.userId,
-					eventId: response.eventId,
-					status: response.status,
+export const modifyAttendances =
+	(pid: string, accessToken: string, eventId: string, previousStatus: Approval, status: Approval, dates: Date[]) =>
+		(dispatch: (Object) => void) => {
+			if (status === 'Pending') return
+			const obj = { Approved: '2', Declined: '1' }
+			const newStatus = obj[status]
+			dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, loading: true })
+			EventsService
+				.changeAttendances(pid, accessToken, eventId, newStatus, dates)
+				.then(({ success }) => {
+					if (!success) throw success
+					dispatch({
+						type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE, success,
+						userId: pid, eventId: eventId, status: status, loading: false,
+					})
 				})
-			})
-	}
+				.catch(() => {
+					dispatch({
+						type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE, success: false,
+						status: previousStatus, userId: pid, eventId: eventId, loading: false,
+					})
+				})
+		}
 
 export const cancelEvent = (eventId: string) =>
 	(dispatch: (Object) => void) => {
