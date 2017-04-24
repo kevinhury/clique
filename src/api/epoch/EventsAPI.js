@@ -31,10 +31,10 @@ export const EventsAPI: IEventsAPI = {
 	},
 	cancelEventAPICall(userId: string, accessToken: string, eventId: string) {
 		return BaseAPI
-			.get('/event/:id/cancel', { userId, accessToken, eventId })
+			.patch('/events/cancel', { pid: userId, accessToken, eventId })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response }
+				return response.data
 			})
 	},
 	createEventAPICall(userId: string, accessToken: string, form: EventForm) {

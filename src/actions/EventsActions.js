@@ -60,17 +60,17 @@ export const modifyAttendances =
 				})
 		}
 
-export const cancelEvent = (eventId: string) =>
+export const cancelEvent = (userId: string, accessToken: string, eventId: string) =>
 	(dispatch: (Object) => void) => {
 		dispatch({ type: USER_EVENT_CANCEL, eventId })
 		EventsService
-			.cancelEventById('userId', 'accessToken', eventId)
-			.then((response: any) => {
-				dispatch({
-					type: USER_EVENT_CANCEL_RESPONSE,
-					eventId: response.eventId,
-					success: response.success,
-				})
+			.cancelEventById(userId, accessToken, eventId)
+			.then(({ success }) => {
+				if (!success) throw success
+				dispatch({ type: USER_EVENT_CANCEL_RESPONSE, eventId, success })
+			})
+			.catch(() => {
+				dispatch({ type: USER_EVENT_CANCEL_RESPONSE, eventId, success: false })
 			})
 	}
 

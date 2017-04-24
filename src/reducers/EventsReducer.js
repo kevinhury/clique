@@ -46,8 +46,17 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			return { ...state, list, selected }
 		}
 		case USER_EVENT_CANCEL:
-		case USER_EVENT_CANCEL_RESPONSE:
-			return { ...state } // TODO: remove event from list
+			return state
+		case USER_EVENT_CANCEL_RESPONSE: {
+			if (!action.success) return state
+			const eventId = action.eventId
+			const list = [...state.list]
+			let selected = list.filter((x) => x.id === eventId)[0]
+			const index = list.indexOf(selected)
+			selected = { ...selected, status: 'Cancelled' }
+			list[index] = selected
+			return { ...state, list, selected }
+		}
 		default:
 			return state
 	}

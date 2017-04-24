@@ -18,8 +18,10 @@ import type { UserEvent } from '../actions/types'
 type EventInfoPageProps = {
 	createFlow: boolean,
 	event: UserEvent,
+	pid: string,
+	accessToken: string,
 	openInvitation: () => void,
-	cancelEvent: () => void,
+	cancelEvent: (string, string, string) => void,
 	createEvent: () => void,
 	form: () => void,
 }
@@ -68,9 +70,10 @@ class EventInfoPage extends Component {
 
 	render() {
 		const {
-			title, description, location, locationName, approved, status, owner,
+			id, title, description, location, locationName, approved, status, owner,
 			dates, isAdmin, invitees, minAtendees, limitedRSVP,
 		} = this.props.event
+		const { pid, accessToken } = this.props
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
@@ -131,7 +134,7 @@ class EventInfoPage extends Component {
 					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
 					buttonText={I18n.t('yes')}
 					buttonCallback={() => {
-						this.props.cancelEvent()
+						this.props.cancelEvent(pid, accessToken, id)
 						Actions.pop()
 					}}
 				/>
@@ -175,10 +178,11 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { events, form } = state
+	const { events, form, session } = state
 	const { selected } = events
+	const { pid, accessToken } = session
 	const createFlow = form.type === 'CREATE'
-	return { event: selected, createFlow, form }
+	return { event: selected, createFlow, form, pid, accessToken }
 }
 
 export default connect(mapStateToProps, {
