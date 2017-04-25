@@ -110,7 +110,7 @@ class CreateEventPage3 extends Component {
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>
-					<NextButton onPress={() => {
+					<NextButton disabled={false} onPress={() => {
 						this.props.selectFormToReview(this.props.form)
 						Actions.eventInfoPage()
 					}} />

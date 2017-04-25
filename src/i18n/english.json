@@ -1,4 +1,5 @@
 {
+  "ok": "OK",
   "edit": "Edit",
   "createdBy": "Created by",
   "no_rsvp": "NO RSVP's at the moment",
@@ -30,6 +31,19 @@
     "userDeclined": "Declined",
     "userNotApproved": "Are you coming?",
     "userRSVPd": "RSVP'd"
+  },
+  "verification": {
+    "codeSentText": "We've sent you a verification code",
+    "codeSentButton": "Sent!",
+    "successText": "You have successfully verified your phone number",
+    "successButton": "Success!",
+    "footerText": "Enter the wrong number or need a new code?",
+    "disclaimerText": "By tapping \"Send confirmation code\" above, we will send you an SMS to confirm your phone number. Message &amp; data rates may apply.",
+    "whatVerificationCode": "What's your verification code?",
+    "whatPhoneNumber": "What's your phone number?",
+    "btnVerifyConf": "Verify confirmation code",
+    "btnSendConf": "Send confirmation code",
+    "phonePlaceholder": "Phone Number"
   },
   "createFlow": {
     "titleInput": "Type event name here...",

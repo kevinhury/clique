@@ -22,21 +22,6 @@ import {
 	removeEventDate,
 } from '../actions'
 
-const generateTimeFormat = (): Array<string> => {
-	const interval = 15
-	return Array.from({
-		length: 24 * 60 / interval,
-	}, (v, i) => {
-		let h = Math.floor(i * interval / 60)
-		let m = i * interval - h * 60
-		if (h < 10)
-			h = '0' + h
-		if (m < 10)
-			m = '0' + m
-		return h + ':' + m
-	})
-}
-
 type Props = {
 	length: number,
 	startTime: string,
@@ -51,17 +36,19 @@ type Props = {
 
 class CreateEventPage2 extends Component {
 	props: Props
-	deadlines: Array<any> = [1, 2, 3, 7, 12, 24, 48, 72].map(x => {
-		return { value: x, label: `${x} Hours` }
-	})
-	days: Array<any> = Array.from(Array(10).keys()).map(x => x + 1).map(x => {
-		return { value: x, label: `${x}` }
-	})
-	hours: Array<any>
+	deadlines: any[]
+	days: any[]
+	hours: any[]
 
 	componentWillMount() {
+		this.deadlines = genereateDeadlinesFormat().map(x => {
+			return { value: x, label: `${x} Hours` }
+		})
+		this.days = generateDaysFormat().map(x => {
+			return { value: x, label: `${x} Days` }
+		})
 		this.hours = generateTimeFormat().map(x => {
-			return { value: x, label: `${x}` }
+			return { value: x, label: `${x} Hours` }
 		})
 	}
 
@@ -120,7 +107,7 @@ class CreateEventPage2 extends Component {
 								onPress={() => this.setDeadlineOnClick()}
 								style={styles.button}
 							/>
-							<NextButton onPress={() => Actions.createEventPage3()} />
+							<NextButton disabled={false} onPress={() => Actions.createEventPage3()} />
 						</View>
 					</View>
 				</CardView>
@@ -212,3 +199,29 @@ export default connect(mapStateToProps, {
 	addEventDate,
 	removeEventDate,
 })(CreateEventPage2)
+
+
+// Helpers
+
+const genereateDeadlinesFormat = () => {
+	return [1, 2, 3, 7, 12, 24, 48, 72]
+}
+
+const generateDaysFormat = () => {
+	return Array.from(Array(10).keys()).map(x => x + 1)
+}
+
+const generateTimeFormat = (): Array<string> => {
+	const interval = 15
+	return Array.from({
+		length: 24 * 60 / interval,
+	}, (v, i) => {
+		let h = Math.floor(i * interval / 60)
+		let m = i * interval - h * 60
+		if (h < 10)
+			h = '0' + h
+		if (m < 10)
+			m = '0' + m
+		return h + ':' + m
+	})
+}
