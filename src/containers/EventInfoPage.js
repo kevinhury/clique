@@ -40,7 +40,7 @@ class EventInfoPage extends Component {
 				fontSize={20}
 				backgroundColor='#289FFF'
 				onPress={() => {
-					this.props.createEvent(this.props.form)
+					this.props.createEvent(this.props.pid, this.props.accessToken, this.props.form)
 					Actions.popTo('main')
 				}}
 			/>

@@ -178,7 +178,7 @@ export type Action =
   | { type: 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE', userId: string, loading: boolean, eventId: string, status: Approval }
   | { type: 'USER_EVENT_CANCEL', eventId: string }
   | { type: 'USER_EVENT_CANCEL_RESPONSE', eventId: string, success: boolean }
-  | { type: 'USER_EVENT_CREATE', eventId: string, success: boolean }
+  | { type: 'USER_EVENT_CREATE', event: ?UserEvent, success: boolean }
   | { type: 'USER_EVENT_MODIFY_FIELDS', event: UserEvent, success: boolean }
   | { type: 'LOGIN_CHANGE_COUNTRY', country: CountryCode }
   | { type: 'LOGIN_CHANGE_NUMBER', number: string }

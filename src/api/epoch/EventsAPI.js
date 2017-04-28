@@ -39,10 +39,10 @@ export const EventsAPI: IEventsAPI = {
 	},
 	createEventAPICall(userId: string, accessToken: string, form: EventForm) {
 		return BaseAPI
-			.get('/events/create', { userId, accessToken, form })
+			.post('/events/createEvent', { pid: userId, accessToken, fields: form })
 			.then((response: Response) => {
-				console.log(response)
-				return response
+				if (!response.ok) { throw response }
+				return response.data
 			})
 	},
 	modifyEventFieldsAPICall(userId: string, accessToken: string, eventId: string, fields: any) {

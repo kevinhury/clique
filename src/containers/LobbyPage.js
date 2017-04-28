@@ -1,13 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-	ListView,
-	View,
-	StyleSheet,
-	TouchableOpacity,
-	RefreshControl,
-} from 'react-native'
+import { ListView, View, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Calendar from 'react-native-calendar'
@@ -15,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
 import PlusButton from '../components/PlusButton'
-import { requestEvents, selectEvent, createForm, modifyForm } from '../actions'
+import { requestEvents, selectEvent, createForm, modifyForm, createEvent } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
@@ -28,6 +22,7 @@ type LobbyPageProps = {
 	selectEvent: () => void,
 	modifyForm: () => void,
 	createForm: () => void,
+	createEvent: (string, string) => void,
 }
 
 class LobbyPage extends Component {
@@ -106,6 +101,7 @@ class LobbyPage extends Component {
 					<PlusButton onPress={() => {
 						this.props.createForm()
 						Actions.createEvent()
+						this.props.createEvent(this.props.pid, this.props.accessToken, null)
 					}} />
 				</CardView>
 			</LinearGradient>
@@ -142,4 +138,5 @@ export default connect(mapStateToProps, {
 	modifyForm,
 	requestEvents,
 	selectEvent,
+	createEvent,
 })(LobbyPage)

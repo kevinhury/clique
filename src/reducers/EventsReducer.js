@@ -9,6 +9,7 @@ import {
 	USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
 	USER_EVENT_CANCEL,
 	USER_EVENT_CANCEL_RESPONSE,
+	USER_EVENT_CREATE,
 	FORM_SELECT_TO_REVIEW,
 } from '../actions/types'
 
@@ -56,6 +57,11 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			selected = { ...selected, status: 'Cancelled' }
 			list[index] = selected
 			return { ...state, list, selected }
+		}
+		case USER_EVENT_CREATE: {
+			if (!action.success || !action.event) return state
+			const list = state.list
+			return { ...state, list: [...list, action.event] }
 		}
 		default:
 			return state

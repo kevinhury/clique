@@ -21,6 +21,8 @@ export default (API: IEventsAPI) => {
 		createEventWithForm: (userId: string, accessToken: string, eventForm: EventForm) => {
 			return API
 				.createEventAPICall(userId, accessToken, eventForm)
+				.then(data => mapResponseDataToUserEvents([data.results], userId))
+				.then(arr => arr[0])
 		},
 		changeEventFields: (userId: string, accessToken: string, eventId: string, fields: any) => {
 			return API

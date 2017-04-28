@@ -1,8 +1,6 @@
 // @flow
 
-// TODO: Replace these
 import { EventsAPI } from '../api/epoch/EventsAPI'
-// import * as API from '../api/epoch/FixtureAPI'
 import EventsServiceGenerate from '../services/EventsService'
 import {
 	USER_EVENTS_REQUEST,
@@ -74,16 +72,15 @@ export const cancelEvent = (userId: string, accessToken: string, eventId: string
 			})
 	}
 
-export const createEvent = (event: EventForm) =>
+export const createEvent = (pid: string, accessToken: string, event: EventForm) =>
 	(dispatch: (Object) => void) => {
 		EventsService
-			.createEventWithForm('userId', 'accessToken', event)
-			.then((response: any) => {
-				dispatch({
-					type: USER_EVENT_CREATE,
-					eventId: response.eventId,
-					success: response.success,
-				})
+			.createEventWithForm(pid, accessToken, event)
+			.then((event: UserEvent) => {
+				dispatch({ type: USER_EVENT_CREATE, event: event, success: true })
+			})
+			.catch((err) => {
+				console.log(err)
 			})
 	}
 
