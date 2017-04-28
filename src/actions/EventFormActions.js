@@ -38,17 +38,17 @@ export const cancelForm = () => {
 	}
 }
 
-export const addContact = (contactId: number) => {
+export const addContact = (contact: any) => {
 	return {
 		type: FORM_ADD_CONTACT,
-		contactId,
+		contact,
 	}
 }
 
-export const removeContact = (contactId: number) => {
+export const removeContact = (contact: any) => {
 	return {
 		type: FORM_REMOVE_CONTACT,
-		contactId,
+		contact,
 	}
 }
 

@@ -56,7 +56,7 @@ class CreateEventPage3 extends Component {
 
 	contactChanged(selected: boolean, contact: any) {
 		const { addContact, removeContact } = this.props
-		selected ? addContact(contact.recordId) : removeContact(contact.recordId)
+		selected ? addContact(contact) : removeContact(contact)
 	}
 
 	onMinRSVPToggle(value: boolean) {
@@ -81,7 +81,7 @@ class CreateEventPage3 extends Component {
 				<View style={styles.list}>
 					<ContactList
 						contacts={this.props.contacts}
-						selectedList={this.props.selectedContacts}
+						selectedList={this.props.selectedContacts.map((x: any) => x.recordId)}
 						onValueChange={this.contactChanged.bind(this)}
 					/>
 				</View>

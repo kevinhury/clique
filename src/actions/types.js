@@ -147,8 +147,8 @@ export type Action =
   { type: 'FORM_CREATE' }
   | { type: 'FORM_MODIFY', event: UserEvent }
   | { type: 'FORM_CANCEL' }
-  | { type: 'FORM_ADD_CONTACT', contactId: number }
-  | { type: 'FORM_REMOVE_CONTACT', contactId: number }
+  | { type: 'FORM_ADD_CONTACT', contact: any }
+  | { type: 'FORM_REMOVE_CONTACT', contact: any }
   | { type: 'FORM_CHANGE_NAME', name: string }
   | { type: 'FORM_CHANGE_DESCRIPTION', description: string }
   | { type: 'FORM_CHANGE_LOCATION_NAME', locationName: string }
