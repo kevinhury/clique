@@ -7,20 +7,18 @@ export type RegisterResponse = {
 	success: boolean,
 }
 
-export type VerifyRegisterResponse = {
-	success: boolean,
-	pid: string,
-	accessToken: string,
-}
-
 export type LoginResponse = {
 	success: boolean,
 	accessToken: string,
+	pid: string,
+	phone: string,
+	image: string,
+	username: string,
 }
 
 export type ILoginAPI = {
 	register(phone: string, password: string): Promise<RegisterResponse>,
-	verifyRegister(phone: string, password: string, token: string): Promise<VerifyRegisterResponse>,
+	verifyRegister(phone: string, password: string, token: string): Promise<LoginResponse>,
 	login(pid: string, password: string): Promise<LoginResponse>,
 }
 
@@ -34,22 +32,20 @@ export const LoginAPI: ILoginAPI = {
 				return { success }
 			})
 	},
-	verifyRegister(phone: string, password: string, token: string): Promise<VerifyRegisterResponse> {
+	verifyRegister(phone: string, password: string, token: string): Promise<LoginResponse> {
 		return BaseAPI
 			.post('/accounts/verifyRegister', { phone, password, token })
 			.then((response: Response) => {
 				if (!response.ok) { throw response }
-				const { success, pid, accessToken } = response.data
-				return { success, pid, accessToken }
+				return response.data
 			})
 	},
 	login(pid: string, password: string): Promise<LoginResponse> {
 		return BaseAPI
 			.post('/accounts/authenticate', { pid, password })
 			.then((response: Response) => {
-				if (!response.ok) { throw response}
-				const { success, accessToken } = response.data
-				return { success, accessToken }
+				if (!response.ok) { throw response }
+				return response.data
 			})
 	},
 }

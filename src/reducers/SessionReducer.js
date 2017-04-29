@@ -9,6 +9,8 @@ export const INITIAL_STATE: SessionState = {
 	accessToken: null,
 	username: null,
 	pid: null,
+	image: null,
+	phone: null,
 }
 
 type SessionState = {
@@ -17,6 +19,8 @@ type SessionState = {
 	accessToken: ?string,
 	username: ?string,
 	pid: ?string,
+	image: ?string,
+	phone: ?string,
 }
 
 export const SessionReducer = (state: SessionState = INITIAL_STATE, action: Action) => {
@@ -25,12 +29,16 @@ export const SessionReducer = (state: SessionState = INITIAL_STATE, action: Acti
 			return { ...state, authenticating: false, authenticated: false }
 		case ActionTypes.AUTHENTICATION_REQUEST:
 			return { ...state, authenticating: true, authenticated: false }
-		case ActionTypes.AUTHENTICATION_SUCCESS:
-			return { ...INITIAL_STATE, authenticating: false, authenticated: true, pid: action.pid, accessToken: action.accessToken }
+		case ActionTypes.AUTHENTICATION_SUCCESS: {
+			const { pid, accessToken, username, phone, image } = action
+			return { ...INITIAL_STATE, authenticating: false, authenticated: true, pid, accessToken, username, phone, image }
+		}
 		case ActionTypes.AUTHENTICATION_FAILURE:
 			return { ...INITIAL_STATE }
-		case ActionTypes.LOGIN_SUBMIT_VERIFICATION_SUCCESS:
-			return { ...INITIAL_STATE, authenticating: false, authenticated: true, accessToken: action.accessToken, pid: action.pid }
+		case ActionTypes.LOGIN_SUBMIT_VERIFICATION_SUCCESS: {
+			const { pid, accessToken, username, phone, image } = action
+			return { ...INITIAL_STATE, authenticating: false, authenticated: true, pid, accessToken, username, phone, image }
+		}
 		default:
 			return state
 	}

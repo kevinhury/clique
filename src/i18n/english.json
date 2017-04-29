@@ -61,7 +61,7 @@
   "dialogs": {
     "daysTitle": "How many days?",
     "timeTitle": "What time your event will start?",
-    "deadlineTitle": "Invites ends in?",
+    "deadlineTitle": "Invites expires in?",
     "minRSVPTitle": "By choosing this option your event will take place only with the minimum RSVPs that you define",
     "maxRSVPTitle": "By choosing this option you will limit your event to a maximum number of participants",
     "inviteesTitle": "See you there!",

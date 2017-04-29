@@ -101,7 +101,6 @@ class LobbyPage extends Component {
 					<PlusButton onPress={() => {
 						this.props.createForm()
 						Actions.createEvent()
-						this.props.createEvent(this.props.pid, this.props.accessToken, null)
 					}} />
 				</CardView>
 			</LinearGradient>

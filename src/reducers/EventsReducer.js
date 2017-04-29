@@ -1,7 +1,6 @@
 // @flow
 
-import moment from 'moment'
-import type { UserEvent, EventForm, Action } from '../actions/types'
+import type { UserEvent, Action } from '../actions/types'
 import {
 	USER_EVENTS_REQUEST,
 	USER_EVENTS_REQUEST_SUCCESS,
@@ -10,7 +9,6 @@ import {
 	USER_EVENT_CANCEL,
 	USER_EVENT_CANCEL_RESPONSE,
 	USER_EVENT_CREATE,
-	FORM_SELECT_TO_REVIEW,
 } from '../actions/types'
 
 type State = {
@@ -35,8 +33,6 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 			return { ...state, list: action.list, loading: false, error: false, selected: null }
 		case USER_EVENT_SELECTED:
 			return { ...state, selected: action.selected }
-		case FORM_SELECT_TO_REVIEW:
-			return { ...state, selected: mapEventFormToEvent(action.form) }
 		case USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE: {
 			const eventId = action.eventId
 			const list = [...state.list]
@@ -66,23 +62,4 @@ export const EventsReducer = (state: State = INITIAL_STATE, action: Action): Sta
 		default:
 			return state
 	}
-}
-
-const mapEventFormToEvent = (form: EventForm): any => {
-	var event = {}
-	event.title = form.name
-	event.description = form.description
-	event.locationName = form.locationName
-	event.location = form.location
-	event.dates = form.dates
-	event.minAtendees = form.minAtendees
-	event.limitedRSVP = form.maxAtendees
-	event.invitees = form.contacts
-	event.lengthInDays = form.length
-	event.expires = moment(form.dates[0]).add(form.deadline, 'hours')
-	event.approved = 'Pending'
-	event.status = 'Pending'
-	event.owner = 'You'
-	event.isAdmin = false
-	return event
 }

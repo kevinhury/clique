@@ -17,7 +17,6 @@ import {
 	changeMinAtendees,
 	changeMaxAtendees,
 	requestContactList,
-	selectFormToReview,
 } from '../actions'
 import type { Contact, EventForm } from '../actions/types'
 
@@ -37,7 +36,6 @@ type CreateEventPage3Props = {
 	changeMinAtendees: () => void,
 	changeMaxAtendees: () => void,
 	requestContactList: () => void,
-	selectFormToReview: () => void,
 	form: EventForm,
 }
 
@@ -111,8 +109,7 @@ class CreateEventPage3 extends Component {
 				</View>
 				<View style={styles.buttonContainer}>
 					<NextButton disabled={false} onPress={() => {
-						this.props.selectFormToReview(this.props.form)
-						Actions.eventInfoPage()
+						Actions.createEventPage4()
 					}} />
 				</View>
 			</View>
@@ -205,5 +202,4 @@ export default connect(mapStateToProps, {
 	changeMinAtendees,
 	changeMaxAtendees,
 	requestContactList,
-	selectFormToReview,
 })(CreateEventPage3)
