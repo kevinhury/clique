@@ -17,6 +17,8 @@ import type { EventForm } from '../actions/types'
 
 type CreateEventPage4Props = {
 	pid: string,
+	username: string,
+	phone: string,
 	accessToken: string,
 	createEvent: () => void,
 	form: EventForm,
@@ -59,9 +61,14 @@ class CreateEventPage4 extends Component {
 	render() {
 		const {
 			name, description, location, locationName,
-			dates, contacts, minAtendees, maxAtendees,
+			dates, minAtendees, maxAtendees, contacts,
 		} = this.props.form
+		const { username, image, phone } = this.props
 		const adminImage = this.props.image
+		const invitees = contacts.map(x => {
+			return { image: x.thumnbail, name: x.name, phone: x.phone, approved: 'Pending' }
+		})
+		invitees.push({ approved: 'Approved', name: username, image, phone })
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
@@ -90,7 +97,7 @@ class CreateEventPage4 extends Component {
 					/>
 					<Separator />
 					<AtendeesSection
-						invitees={contacts}
+						invitees={invitees}
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
 						chatButton={false}
@@ -107,7 +114,7 @@ class CreateEventPage4 extends Component {
 				<Dialog
 					ref={'inviteesDialog'}
 					title={I18n.t('dialogs.inviteesTitle')}
-					type={{ name: 'invitees', invitees: contacts }}
+					type={{ name: 'invitees', invitees }}
 					buttonText={I18n.t('great!')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.inviteesDialogToggle(false)}
@@ -153,8 +160,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
 	const { form, session } = state
-	const { pid, accessToken, image } = session
-	return { form, pid, accessToken, image }
+	const { pid, accessToken, image, username, phone } = session
+	return { form, pid, accessToken, image, username, phone }
 }
 
 export default connect(mapStateToProps, {

@@ -15,7 +15,6 @@ import { cancelEvent, openInvitation } from '../actions'
 import type { UserEvent } from '../actions/types'
 
 type EventInfoPageProps = {
-	createFlow: boolean,
 	event: UserEvent,
 	pid: string,
 	accessToken: string,
@@ -70,7 +69,7 @@ class EventInfoPage extends Component {
 						approved={approved}
 						status={status}
 						onStatusPress={() => {
-							if (this.props.createFlow) return
+							if (isAdmin) return
 							this.props.openInvitation()
 							Actions.invitationPage()
 						}}
@@ -162,8 +161,7 @@ const mapStateToProps = state => {
 	const { events, form, session } = state
 	const { selected } = events
 	const { pid, accessToken } = session
-	const createFlow = form.type === 'CREATE'
-	return { event: selected, createFlow, form, pid, accessToken }
+	return { event: selected, form, pid, accessToken }
 }
 
 export default connect(mapStateToProps, {

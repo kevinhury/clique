@@ -129,7 +129,7 @@ export type EventForm = {
   dates: Array<Date>,
   minAtendees: number,
   maxAtendees: number,
-  contacts: Array<number>,
+  contacts: Contact[],
   length: number,
   startTime: string,
   deadline: number,
