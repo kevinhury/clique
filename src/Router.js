@@ -15,6 +15,7 @@ import EventInfoPage from './containers/EventInfoPage'
 import VerificationPage from './containers/VerificationPage'
 import InvitationPage from './containers/InvitationPage'
 import LoaderPage from './containers/LoaderPage'
+import ChatPage from './containers/ChatPage'
 
 const RouterComponent = () =>
 	<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
@@ -23,6 +24,7 @@ const RouterComponent = () =>
 		<Scene key='main' type="replace">
 			<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 			<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
+			<Scene key='chatPage' component={ChatPage} />
 			<Scene key='createEvent' direction='vertical'>
 				<Scene key='createEventPage' component={CreateEventPage} title={I18n.t('navigation.createEventTitle')} />
 				<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
