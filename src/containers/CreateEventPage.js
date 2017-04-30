@@ -6,13 +6,14 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import RNGooglePlacePicker from 'react-native-google-place-picker'
+import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
 import { changeEventName, changeEventDescription, changeLocationName, changeEventLocation, cancelForm } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton } from '../components/Common'
 import NextButton from '../components/NextButton'
 import CommonInput from '../components/CommonInput'
-import I18n from 'react-native-i18n'
+
 
 import type { Location } from '../actions/types'
 
@@ -20,7 +21,7 @@ type CreateEventPageProps = {
 	name: string,
 	description: string,
 	locationName: string,
-	location: Object,
+	location: Location,
 	changeEventName: (string) => void,
 	changeEventDescription: (string) => void,
 	changeLocationName: (string) => void,
@@ -40,7 +41,17 @@ class CreateEventPage extends Component {
 		Actions.refresh({ leftTitle: I18n.t('cancel'), onLeft })
 	}
 
+	nextDisabled() {
+		return false
+		// const { name, description, locationName, location } = this.props
+		// return name.length <= 0 ||
+		// 	description.length <= 0 ||
+		// 	locationName.length <= 0 ||
+		// 	location.address.length <= 0
+	}
+
 	render() {
+		const nextDisabled = this.nextDisabled()
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
@@ -82,7 +93,7 @@ class CreateEventPage extends Component {
 						/>
 					</View>
 					<View style={styles.buttonContainer}>
-						<NextButton onPress={() => Actions.createEventPage2()} />
+						<NextButton disabled={nextDisabled} onPress={() => Actions.createEventPage2()} />
 					</View>
 				</CardView>
 			</LinearGradient>

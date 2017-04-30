@@ -8,12 +8,12 @@ import { AtendeeBubbles, ChatButton } from '../Common'
 type EventAtendeesSectionProps = {
 	invitees: any,
 	style?: any,
-	createFlow: boolean,
+	chatButton: boolean,
 	onPress: () => void,
 }
 
-const renderChatButton = (createFlow) => {
-	if (createFlow)
+const renderChatButton = (chatButton: boolean) => {
+	if (chatButton)
 		return <View />
 	else
 		return (
@@ -30,7 +30,7 @@ const AtendeesSection = (props: EventAtendeesSectionProps) =>
 		<TouchableWithoutFeedback onPress={props.onPress}>
 			<View style={styles.goingSection}>
 				<AtendeeBubbles images={props.invitees.map(x => x.image)} bubblesToShow={2} />
-				{renderChatButton(props.createFlow)}
+				{renderChatButton(props.chatButton)}
 			</View>
 		</TouchableWithoutFeedback>
 	</View>

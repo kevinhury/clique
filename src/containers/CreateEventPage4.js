@@ -4,34 +4,44 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
+import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { Actions } from 'react-native-router-flux'
 import CardView from '../components/CardView'
 import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
-import { cancelEvent, openInvitation } from '../actions'
+import { createEvent } from '../actions'
 
-import type { UserEvent } from '../actions/types'
+import type { EventForm } from '../actions/types'
 
-type EventInfoPageProps = {
-	event: UserEvent,
+type CreateEventPage4Props = {
 	pid: string,
+	username: string,
+	phone: string,
 	accessToken: string,
-	openInvitation: () => void,
-	cancelEvent: (string, string, string) => void,
 	createEvent: () => void,
-	form: () => void,
+	form: EventForm,
+	image: string,
 }
 
-class EventInfoPage extends Component {
-	props: EventInfoPageProps
+class CreateEventPage4 extends Component {
+	props: CreateEventPage4Props
 
-	cancelDialogToggle(state: boolean) {
-		if (state)
-			this.refs.cancelDialog.modal().open()
-		else
-			this.refs.cancelDialog.modal().close()
+	renderBottomButton() {
+		return (
+			<Button
+				raised
+				title={I18n.t('createFlow.finishSendInvites')}
+				borderRadius={30}
+				fontSize={20}
+				backgroundColor='#289FFF'
+				onPress={() => {
+					this.props.createEvent(this.props.pid, this.props.accessToken, this.props.form)
+					Actions.popTo('main')
+				}}
+			/>
+		)
 	}
 
 	inviteesDialogToggle(state: boolean) {
@@ -50,11 +60,15 @@ class EventInfoPage extends Component {
 
 	render() {
 		const {
-			id, title, description, location, locationName, approved, status, owner,
-			dates, isAdmin, invitees, minAtendees, limitedRSVP,
-		} = this.props.event
-		const { pid, accessToken } = this.props
-		const adminImage = invitees.filter(x => x.admin)[0].image
+			name, description, location, locationName,
+			dates, minAtendees, maxAtendees, contacts,
+		} = this.props.form
+		const { username, image, phone } = this.props
+		const adminImage = this.props.image
+		const invitees = contacts.map(x => {
+			return { image: x.thumnbail, name: x.name, phone: x.phone, approved: 'Pending' }
+		})
+		invitees.push({ approved: 'Approved', name: username, image, phone })
 		return (
 			<LinearGradient
 				colors={['#31A5FD', '#ffffff']}
@@ -62,18 +76,14 @@ class EventInfoPage extends Component {
 			>
 				<CardView>
 					<TitleSection
-						isAdmin={isAdmin}
-						title={title}
-						creator={owner}
+						isAdmin={true}
+						title={name}
+						creator={'You'}
 						image={adminImage}
-						approved={approved}
-						status={status}
-						onStatusPress={() => {
-							if (isAdmin) return
-							this.props.openInvitation()
-							Actions.invitationPage()
-						}}
-						onCancelPress={() => this.cancelDialogToggle(true)}
+						approved={'Approved'}
+						status={'Pending'}
+						onStatusPress={() => { }}
+						onCancelPress={() => { }}
 					/>
 					<View style={styles.descriptionSection}>
 						<Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
@@ -90,37 +100,28 @@ class EventInfoPage extends Component {
 						invitees={invitees}
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
-						chatButton={true}
+						chatButton={false}
 					/>
 					<Separator />
 					<NumAtendeesSection
 						style={styles.numAtendeesSection}
-						limitedRSVP={limitedRSVP}
+						limitedRSVP={maxAtendees}
 						minAtendees={minAtendees}
 					/>
 					<Separator />
+					{this.renderBottomButton()}
 				</CardView>
 				<Dialog
 					ref={'inviteesDialog'}
 					title={I18n.t('dialogs.inviteesTitle')}
-					type={{ name: 'invitees', invitees: this.props.event.invitees }}
+					type={{ name: 'invitees', invitees }}
 					buttonText={I18n.t('great!')}
 					modalStyle={{ height: 280 }}
 					buttonCallback={() => this.inviteesDialogToggle(false)}
 				/>
 				<Dialog
-					ref={'cancelDialog'}
-					title={I18n.t('dialogs.cancelTitle')}
-					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
-					buttonText={I18n.t('yes')}
-					buttonCallback={() => {
-						this.props.cancelEvent(pid, accessToken, id)
-						Actions.pop()
-					}}
-				/>
-				<Dialog
 					ref={'mapDialog'}
-					title={this.props.event.location.address}
+					title={location.address}
 					type={{ name: 'map', locationName, description: location.address, location }}
 					buttonText={I18n.t('takeMeThere')}
 					buttonCallback={() => {
@@ -158,13 +159,11 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { events, form, session } = state
-	const { selected } = events
-	const { pid, accessToken } = session
-	return { event: selected, form, pid, accessToken }
+	const { form, session } = state
+	const { pid, accessToken, image, username, phone } = session
+	return { form, pid, accessToken, image, username, phone }
 }
 
 export default connect(mapStateToProps, {
-	openInvitation,
-	cancelEvent,
-})(EventInfoPage)
+	createEvent,
+})(CreateEventPage4)

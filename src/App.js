@@ -7,10 +7,11 @@ import reducers from './reducers'
 import Router from './Router'
 import './i18n/i18n'
 
+const logger = createLogger()
+const store = createStore(reducers, {}, applyMiddleware(thunk, logger))
+
 class App extends Component {
 	render() {
-		const logger = createLogger()
-		const store = createStore(reducers, {}, applyMiddleware(thunk, logger))
 		return (
 			<Provider store={store}>
 				<Router />

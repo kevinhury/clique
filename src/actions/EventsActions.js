@@ -1,8 +1,6 @@
 // @flow
 
-// TODO: Replace these
-// import * as API from '../api/epoch/EventsAPI'
-import * as API from '../api/epoch/FixtureAPI'
+import { EventsAPI } from '../api/epoch/EventsAPI'
 import EventsServiceGenerate from '../services/EventsService'
 import {
 	USER_EVENTS_REQUEST,
@@ -17,15 +15,18 @@ import {
 } from './types'
 import type { Approval, UserEvent, EventForm } from './types'
 
-const EventsService = EventsServiceGenerate(API)
+const EventsService = EventsServiceGenerate(EventsAPI)
 
-export const requestEvents = () =>
+export const requestEvents = (pid: string, accessToken: string) =>
 	(dispatch: (Object) => void) => {
 		dispatch({ type: USER_EVENTS_REQUEST })
 		EventsService
-			.getLatestEvents('userId', 'accessToken')
+			.getLatestEvents(pid, accessToken)
 			.then((list) => {
 				dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list })
+			})
+			.catch(() => {
+				dispatch({ type: USER_EVENTS_REQUEST_SUCCESS, list: [] })
 			})
 	}
 
@@ -33,51 +34,53 @@ export const selectEvent = (selected: UserEvent) => {
 	return { type: USER_EVENT_SELECTED, selected }
 }
 
-export const modifyAttendances = (eventId: string, status: Approval) =>
-	(dispatch: (Object) => void) => {
-		const obj = { Pending: 'Approved', Approved: 'Declined', Declined: 'Approved' }
-		dispatch({
-			type: USER_EVENT_ATTENDANCES_MODIFIED,
-			userId: 'userId', // TODO: Pass user id
-			eventId,
-			status: obj[status],
-		})
-		EventsService
-			.changeAttendances('userId', 'accessToken', eventId, status)
-			.then((response: any) => {
-				dispatch({
-					type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
-					userId: response.userId,
-					eventId: response.eventId,
-					status: response.status,
+export const modifyAttendances =
+	(pid: string, accessToken: string, eventId: string, previousStatus: Approval, status: Approval, dates: Date[]) =>
+		(dispatch: (Object) => void) => {
+			if (status === 'Pending') return
+			const obj = { Approved: '2', Declined: '1' }
+			const newStatus = obj[status]
+			dispatch({ type: USER_EVENT_ATTENDANCES_MODIFIED, loading: true })
+			EventsService
+				.changeAttendances(pid, accessToken, eventId, newStatus, dates)
+				.then(({ success }) => {
+					if (!success) throw success
+					dispatch({
+						type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE, success,
+						userId: pid, eventId: eventId, status: status, loading: false,
+					})
 				})
-			})
-	}
+				.catch(() => {
+					dispatch({
+						type: USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE, success: false,
+						status: previousStatus, userId: pid, eventId: eventId, loading: false,
+					})
+				})
+		}
 
-export const cancelEvent = (eventId: string) =>
+export const cancelEvent = (userId: string, accessToken: string, eventId: string) =>
 	(dispatch: (Object) => void) => {
 		dispatch({ type: USER_EVENT_CANCEL, eventId })
 		EventsService
-			.cancelEventById('userId', 'accessToken', eventId)
-			.then((response: any) => {
-				dispatch({
-					type: USER_EVENT_CANCEL_RESPONSE,
-					eventId: response.eventId,
-					success: response.success,
-				})
+			.cancelEventById(userId, accessToken, eventId)
+			.then(({ success }) => {
+				if (!success) throw success
+				dispatch({ type: USER_EVENT_CANCEL_RESPONSE, eventId, success })
+			})
+			.catch(() => {
+				dispatch({ type: USER_EVENT_CANCEL_RESPONSE, eventId, success: false })
 			})
 	}
 
-export const createEvent = (event: EventForm) =>
+export const createEvent = (pid: string, accessToken: string, event: EventForm) =>
 	(dispatch: (Object) => void) => {
 		EventsService
-			.createEventWithForm('userId', 'accessToken', event)
-			.then((response: any) => {
-				dispatch({
-					type: USER_EVENT_CREATE,
-					eventId: response.eventId,
-					success: response.success,
-				})
+			.createEventWithForm(pid, accessToken, event)
+			.then((event: UserEvent) => {
+				dispatch({ type: USER_EVENT_CREATE, event: event, success: true })
+			})
+			.catch((err) => {
+				console.log(err)
 			})
 	}
 

@@ -51,12 +51,11 @@ export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Actio
 			return { ...INITIAL_STATE, type: 'INACTIVE' }
 		}
 		case FORM_ADD_CONTACT: {
-			const contactId = action.contactId
-			const contacts = [...state.contacts, contactId]
+			const contacts = [...state.contacts, action.contact]
 			return { ...state, contacts }
 		}
 		case FORM_REMOVE_CONTACT: {
-			const contact = action.contactId
+			const contact = action.contact
 			const contacts = state.contacts.filter(c => c !== contact)
 			return { ...state, contacts }
 		}

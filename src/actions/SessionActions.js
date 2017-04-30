@@ -18,9 +18,10 @@ export const startAuthentication = () =>
 				if (results.pid && results.password) {
 					dispatch({ type: ActionTypes.AUTHENTICATION_REQUEST })
 					LoginService.login(results.pid, results.password)
-						.then(({ accessToken, success }) => {
-							if (!success) { throw success }	
-							dispatch({ type: ActionTypes.AUTHENTICATION_SUCCESS, accessToken })
+						.then((user) => {
+							const { success, accessToken, pid, username, image, phone } = user
+							if (!success) { throw user }
+							dispatch({ type: ActionTypes.AUTHENTICATION_SUCCESS, accessToken, pid, username, image, phone })
 						})
 				} else {
 					dispatch({ type: ActionTypes.USER_NOT_REGISTERED })

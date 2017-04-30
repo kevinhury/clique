@@ -59,10 +59,12 @@ export const submitVerificationCode = (number: string, country: CountryCode, tok
 			.then((password) => {
 				return LoginService.verifyRegister(number, country.callingCode, password, token)
 			})
-			.then(({ success, pid, accessToken }) => {
+			.then(user => {
+				const { success, accessToken, pid, username, image, phone } = user
+				if (!success) throw user
 				SessionService.setCredentialsToStorage({ pid })
 					.then(() => {
-						dispatch({ type: LOGIN_SUBMIT_VERIFICATION_SUCCESS, success, pid, accessToken })
+						dispatch({ type: LOGIN_SUBMIT_VERIFICATION_SUCCESS, accessToken, pid, username, image, phone })
 					})
 			})
 			.catch(() => {

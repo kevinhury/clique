@@ -15,7 +15,6 @@ import {
 	FORM_CHANGE_RSVP_DEADLINE,
 	FORM_CHANGE_MIN_ATENDEES,
 	FORM_CHANGE_MAX_ATENDEES,
-	FORM_SELECT_TO_REVIEW,
 } from './types'
 import type { UserEvent, Location } from './types'
 
@@ -38,17 +37,17 @@ export const cancelForm = () => {
 	}
 }
 
-export const addContact = (contactId: number) => {
+export const addContact = (contact: any) => {
 	return {
 		type: FORM_ADD_CONTACT,
-		contactId,
+		contact,
 	}
 }
 
-export const removeContact = (contactId: number) => {
+export const removeContact = (contact: any) => {
 	return {
 		type: FORM_REMOVE_CONTACT,
-		contactId,
+		contact,
 	}
 }
 
@@ -125,12 +124,5 @@ export const changeMaxAtendees = (atendees: number) => {
 	return {
 		type: FORM_CHANGE_MAX_ATENDEES,
 		atendees,
-	}
-}
-
-export const selectFormToReview = (form: EventForm) => {
-	return {
-		type: FORM_SELECT_TO_REVIEW,
-		form,
 	}
 }

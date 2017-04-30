@@ -1,13 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-	ListView,
-	View,
-	StyleSheet,
-	TouchableOpacity,
-	RefreshControl,
-} from 'react-native'
+import { ListView, View, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Calendar from 'react-native-calendar'
@@ -15,16 +9,20 @@ import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
 import PlusButton from '../components/PlusButton'
-import { requestEvents, selectEvent, createForm, modifyForm } from '../actions'
+import { requestEvents, selectEvent, createForm, modifyForm, createEvent } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
 type LobbyPageProps = {
-	events: any,
+	pid: string,
+	accessToken: string,
+	loading: boolean,
+	list: any,
 	requestEvents: () => void,
 	selectEvent: () => void,
 	modifyForm: () => void,
 	createForm: () => void,
+	createEvent: (string, string) => void,
 }
 
 class LobbyPage extends Component {
@@ -36,19 +34,19 @@ class LobbyPage extends Component {
 		this.onRefresh()
 	}
 
-	componentWillReceiveProps(nextProps: any): void {
+	componentWillReceiveProps(nextProps: LobbyPageProps): void {
 		this.updateDataSource(nextProps)
 	}
 
-	updateDataSource(props: any): void {
+	updateDataSource(props: LobbyPageProps): void {
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2,
 		})
-		this.dataSource = ds.cloneWithRows(props.events.list)
+		this.dataSource = ds.cloneWithRows(props.list)
 	}
 
 	onRefresh(): void {
-		this.props.requestEvents()
+		this.props.requestEvents(this.props.pid, this.props.accessToken)
 	}
 
 	renderRow(event: UserEvent) {
@@ -91,7 +89,7 @@ class LobbyPage extends Component {
 					<ListView
 						refreshControl={
 							<RefreshControl
-								refreshing={this.props.events.loading}
+								refreshing={this.props.loading}
 								onRefresh={this.onRefresh.bind(this)}
 							/>
 						}
@@ -130,8 +128,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-	const { events } = state
-	return { events }
+	const { events, session } = state
+	return { ...events, pid: session.pid, accessToken: session.accessToken }
 }
 
 export default connect(mapStateToProps, {
@@ -139,4 +137,5 @@ export default connect(mapStateToProps, {
 	modifyForm,
 	requestEvents,
 	selectEvent,
+	createEvent,
 })(LobbyPage)

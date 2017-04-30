@@ -2,10 +2,9 @@
 
 import {
 	INVITATION_OPEN,
-	INVITATION_ATTENDANCE_REQUEST,
-	INVITATION_ATTENDANCE_SUCCESS,
-	INVITATION_ATTENDANCE_FAILURE,
 	INVITATION_MODIFY_DATES,
+	USER_EVENT_ATTENDANCES_MODIFIED,
+	USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE,
 } from '../actions/types'
 import type { Action } from '../actions/types'
 
@@ -25,14 +24,11 @@ export const InvitationReducer = (state: InvitationState = INITIAL_STATE, action
 	switch (action.type) {
 		case INVITATION_OPEN:
 			return { ...INITIAL_STATE }
-		case INVITATION_ATTENDANCE_REQUEST:
-			return { ...state, loading: true }
-		case INVITATION_ATTENDANCE_SUCCESS:
-			return { ...state, loading: false }
-		case INVITATION_ATTENDANCE_FAILURE:
-			return { ...state, loading: false }
 		case INVITATION_MODIFY_DATES:
 			return { ...state, selectedDates: action.dates }
+		case USER_EVENT_ATTENDANCES_MODIFIED:
+		case USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE:
+			return { ...state, loading: action.loading }
 		default:
 			return state
 	}

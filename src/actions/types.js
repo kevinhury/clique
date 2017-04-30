@@ -17,7 +17,6 @@ export const FORM_CHANGE_START_TIME = 'FORM_CHANGE_START_TIME'
 export const FORM_CHANGE_RSVP_DEADLINE = 'FORM_CHANGE_RSVP_DEADLINE'
 export const FORM_CHANGE_MIN_ATENDEES = 'FORM_CHANGE_MIN_ATENDEES'
 export const FORM_CHANGE_MAX_ATENDEES = 'FORM_CHANGE_MAX_ATENDEES'
-export const FORM_SELECT_TO_REVIEW = 'FORM_SELECT_TO_REVIEW'
 
 // Contacts
 export const CONTACTS_PERMISSION_CHECK = 'CONTACTS_PERMISSION_CHECK'
@@ -47,9 +46,6 @@ export const USER_EVENT_MODIFY_FIELDS = 'USER_EVENT_MODIFY_FIELDS'
 // Invitation
 export const INVITATION_OPEN = 'INVITATION_OPEN'
 export const INVITATION_MODIFY_DATES = 'INVITATION_MODIFY_DATES'
-export const INVITATION_ATTENDANCE_REQUEST = 'INVITATION_ATTENDANCE_REQUEST'
-export const INVITATION_ATTENDANCE_SUCCESS = 'INVITATION_ATTENDANCE_SUCCESS'
-export const INVITATION_ATTENDANCE_FAILURE = 'INVITATION_ATTENDANCE_FAILURE'
 
 // Login
 export const LOGIN_CHANGE_COUNTRY = 'LOGIN_CHANGE_COUNTRY'
@@ -138,7 +134,7 @@ export type EventForm = {
   dates: Array<Date>,
   minAtendees: number,
   maxAtendees: number,
-  contacts: Array<number>,
+  contacts: Contact[],
   length: number,
   startTime: string,
   deadline: number,
@@ -155,8 +151,8 @@ export type Action =
   { type: 'FORM_CREATE' }
   | { type: 'FORM_MODIFY', event: UserEvent }
   | { type: 'FORM_CANCEL' }
-  | { type: 'FORM_ADD_CONTACT', contactId: number }
-  | { type: 'FORM_REMOVE_CONTACT', contactId: number }
+  | { type: 'FORM_ADD_CONTACT', contact: any }
+  | { type: 'FORM_REMOVE_CONTACT', contact: any }
   | { type: 'FORM_CHANGE_NAME', name: string }
   | { type: 'FORM_CHANGE_DESCRIPTION', description: string }
   | { type: 'FORM_CHANGE_LOCATION_NAME', locationName: string }
@@ -168,7 +164,6 @@ export type Action =
   | { type: 'FORM_CHANGE_RSVP_DEADLINE', deadline: number }
   | { type: 'FORM_CHANGE_MIN_ATENDEES', atendees: number }
   | { type: 'FORM_CHANGE_MAX_ATENDEES', atendees: number }
-  | { type: 'FORM_SELECT_TO_REVIEW', form: EventForm }
   | { type: 'CONTACTS_PERMISSION_CHECK' }
   | { type: 'CONTACTS_PERMISSION_REQUEST' }
   | { type: 'CONTACTS_PERMISSION_AUTHORIZED' }
@@ -182,11 +177,11 @@ export type Action =
   | { type: 'USER_EVENTS_REQUEST' }
   | { type: 'USER_EVENTS_REQUEST_SUCCESS', list: UserEvent[] }
   | { type: 'USER_EVENT_SELECTED', selected: UserEvent }
-  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED', eventId: string, status: Approval }
-  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE', userId: string, eventId: string, status: Approval }
+  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED', loading: boolean }
+  | { type: 'USER_EVENT_ATTENDANCES_MODIFIED_RESPONSE', userId: string, loading: boolean, eventId: string, status: Approval }
   | { type: 'USER_EVENT_CANCEL', eventId: string }
   | { type: 'USER_EVENT_CANCEL_RESPONSE', eventId: string, success: boolean }
-  | { type: 'USER_EVENT_CREATE', eventId: string, success: boolean }
+  | { type: 'USER_EVENT_CREATE', event: ?UserEvent, success: boolean }
   | { type: 'USER_EVENT_MODIFY_FIELDS', event: UserEvent, success: boolean }
   | { type: 'LOGIN_CHANGE_COUNTRY', country: CountryCode }
   | { type: 'LOGIN_CHANGE_NUMBER', number: string }
@@ -194,12 +189,12 @@ export type Action =
   | { type: 'LOGIN_SUBMIT_PHONE_BACK' }
   | { type: 'LOGIN_SUBMIT_RESPONSE', success: boolean }
   | { type: 'LOGIN_SUBMIT_VERIFICATION_REQUEST', code: string }
-  | { type: 'LOGIN_SUBMIT_VERIFICATION_SUCCESS', success: boolean, pid: string, accessToken: string }
+  | { type: 'LOGIN_SUBMIT_VERIFICATION_SUCCESS', pid: string, username: string, accessToken: string, image: string, phone: string }
   | { type: 'LOGIN_SUBMIT_VERIFICATION_FAILURE', success: boolean }
   | { type: 'INVITATION_MODIFY_DATES', dates: Date[] }
   | { type: 'USER_NOT_REGISTERED' }
   | { type: 'AUTHENTICATION_REQUEST' }
-  | { type: 'AUTHENTICATION_SUCCESS', accessToken: string }
+  | { type: 'AUTHENTICATION_SUCCESS', pid: string, username: string, accessToken: string, image: string, phone: string }
   | { type: 'AUTHENTICATION_FAILURE' }
   | { type: 'MESSAGES_NEW_SENT', messages: any[] }
   | { type: 'MESSAGES_NEW_RECEIVED', message: any }

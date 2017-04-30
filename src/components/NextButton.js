@@ -6,14 +6,16 @@ import I18n from 'react-native-i18n'
 import { Button } from 'react-native-elements'
 
 type NextButtonProps = {
+	disabled: ?boolean,
 	onPress: () => void,
 }
 
-const NextButton = (props: NextButtonProps) =>
+const NextButton = ({ disabled, onPress }: NextButtonProps) =>
 	<Button
 		large
 		raised
-		onPress={props.onPress}
+		disabled={disabled || false}
+		onPress={onPress}
 		title={I18n.t('next')}
 		backgroundColor='#01a836'
 		buttonStyle={styles.nextButton}

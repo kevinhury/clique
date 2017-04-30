@@ -4,18 +4,18 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import Calendar from 'react-native-calendar'
 
-type CommonCalendarProps =  {
+type CommonCalendarProps = {
 	events: ?string[],
-	onDateSelect: () => void,
+		onDateSelect: () => void,
 }
 
 const CommonCalendar = (props: CommonCalendarProps) =>
-  <Calendar
-    scrollEnabled
-    dayHeadings={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
-    events={props.events}
-    showEventIndicators
-    customStyle=
+	<Calendar
+		scrollEnabled
+		dayHeadings={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
+		events={props.events}
+		showEventIndicators
+		customStyle=
 		{{
 			calendarContainer: styles.calendar,
 			currentDayCircle: styles.commonBackgroundColor,
@@ -29,8 +29,8 @@ const CommonCalendar = (props: CommonCalendarProps) =>
 			selectedDayText: styles.commonText,
 			title: [styles.commonColor, styles.boldText],
 		}}
-    onDateSelect={props.onDateSelect}
-  />
+		onDateSelect={props.onDateSelect}
+	/>
 
 const primaryColor = '#31A5FD'
 const secondaryColor = '#01a836'

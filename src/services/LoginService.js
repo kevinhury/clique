@@ -1,6 +1,6 @@
 // @flow
 
-import type { RegisterResponse, VerifyRegisterResponse, LoginResponse, ILoginAPI } from '../api/epoch/LoginAPI'
+import type { RegisterResponse, LoginResponse, ILoginAPI } from '../api/epoch/LoginAPI'
 
 export default (API: ILoginAPI) => {
 	return {
@@ -9,7 +9,7 @@ export default (API: ILoginAPI) => {
 			return API
 				.register(phone, password)
 		},
-		verifyRegister: (phoneNumber: string, country: string, password: string, token: string): Promise<VerifyRegisterResponse> => {
+		verifyRegister: (phoneNumber: string, country: string, password: string, token: string): Promise<LoginResponse> => {
 			const phone = country + phoneNumber
 			return API
 				.verifyRegister(phone, password, token)

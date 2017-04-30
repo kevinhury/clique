@@ -5,6 +5,7 @@ import { View, Text, TextInput, Platform, TouchableOpacity, ActivityIndicator, A
 import CountryPicker from 'react-native-country-picker-modal'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
+import I18n from 'react-native-i18n'
 import { changeLoginCountry, changeLoginNumber, submitLogin, submitLoginBack, submitVerificationCode } from '../actions'
 import type { CountryCode } from '../actions/types'
 
@@ -34,13 +35,13 @@ class VerificationPage extends Component {
 
 	componentWillReceiveProps(nextProps: Props) {
 		if (nextProps.loginStage === 'CODE' && !nextProps.loading) {
-			Alert.alert('Sent!', "We've sent you a verification code", [{
-				text: 'OK',
+			Alert.alert(I18n.t('verification.codeSentButton'), I18n.t('verification.codeSentText'), [{
+				text: I18n.t('ok'),
 				onPress: () => this.refs.textInput.focus(),
 			}])
 		} else if (nextProps.loginStage === 'DONE') {
-			Alert.alert('Success!', 'You have successfully verified your phone number', [{
-				text: 'OK',
+			Alert.alert(I18n.t('verification.successButton'), I18n.t('verification.successText'), [{
+				text: I18n.t('ok'),
 				onPress: () => Actions.main({ type: 'replace' }),
 			}])
 		}
@@ -81,15 +82,15 @@ class VerificationPage extends Component {
 			return (
 				<View>
 					<Text style={styles.wrongNumberText} onPress={this._tryAgain.bind(this)}>
-						Enter the wrong number or need a new code?
-          </Text>
+						{I18n.t('verification.footerText')}
+					</Text>
 				</View>
 			)
 
 		return (
 			<View>
 				<Text style={styles.disclaimerText}>
-					By tapping "Send confirmation code" above, we will send you an SMS to confirm your phone number. Message &amp; data rates may apply.
+					{I18n.t('verification.disclaimerText')}
 				</Text>
 			</View>
 		)
@@ -128,8 +129,8 @@ class VerificationPage extends Component {
 	}
 
 	render() {
-		const headerText = `What's your ${this._isCodeStage() ? 'verification code' : 'phone number'}?`
-		const buttonText = this._isCodeStage() ? 'Verify confirmation code' : 'Send confirmation code'
+		const headerText = this._isCodeStage() ? I18n.t('verification.whatVerificationCode') : I18n.t('verification.whatPhoneNumber')
+		const buttonText = this._isCodeStage() ? I18n.t('verification.btnVerifyConf') : I18n.t('verification.btnSendConf')
 		const textStyle = this._isCodeStage() ? {
 			height: 50,
 			textAlign: 'center',
@@ -151,7 +152,7 @@ class VerificationPage extends Component {
 						underlineColorAndroid={'transparent'}
 						autoCapitalize={'none'}
 						autoCorrect={false}
-						placeholder={this._isCodeStage() ? '_ _ _ _ _ _' : 'Phone Number'}
+						placeholder={this._isCodeStage() ? '_ _ _ _ _ _' : I18n.t('verification.phonePlaceholder')}
 						keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
 						style={[styles.textInput, textStyle]}
 						autoFocus

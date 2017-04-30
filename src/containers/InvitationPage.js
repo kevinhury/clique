@@ -7,11 +7,12 @@ import moment from 'moment'
 import { Button } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
-import { ProfileIcon, Separator, AddressBarItem, CommonCalendar } from '../components/Common'
-import { invitationChooseDates, invitationAttendance } from '../actions'
-import type { Location } from '../actions/types'
+import { ProfileIcon, Separator, AddressBarItem, DateBubblePicker } from '../components/Common'
+import { invitationChooseDates, modifyAttendances } from '../actions'
+import type { Location, Approval } from '../actions/types'
 
 type InvitationPageProps = {
+	id: string,
 	owner: string,
 	title: string,
 	location: Location,
@@ -19,40 +20,43 @@ type InvitationPageProps = {
 	expires: ?Date,
 	limitedRSVP: ?number,
 	dates: Date[],
-	invitationChooseDates: () => void,
+	approved: Approval,
+	invitationChooseDates: (Date[]) => void,
 	selectedDates: Date[],
-	invitationAttendance: () => void,
+	modifyAttendances: (string, string, string, Approval, Approval, Date[]) => void,
+	pid: string,
+	accessToken: string,
 }
-
-// const mock = {
-// 	owner: 'Yossi Kerman',
-// 	title: 'FIFA SESSION 17',
-// 	location: { address: '6 Malkat Shva' },
-// 	locationName: 'Kevin\'s place',
-// 	startTime: '10:35',
-// 	expires: '02d 15h 46m',
-// 	limitedRSVP: 20,
-// 	selectedDates: [],
-// 	dates: [new Date()],
-// }
 
 class InvitationPage extends Component {
 	props: InvitationPageProps
 
-	dateOnClick(datestr: string) {
-		const date = new Date(datestr)
+	componentDidMount() {
+		Actions.refresh({ title: I18n.t('invitation.navigationTitle') })
+	}
+
+	dateOnClick(date: Date) {
 		const dates = this.props.selectedDates
 		const index = dates.map(x => x.getTime()).indexOf(date.getTime())
 		if (index > -1)
-			this.props.invitationChooseDates([ ...dates.slice(0, index), ...dates.slice(index + 1) ])
+			this.props.invitationChooseDates([...dates.slice(0, index), ...dates.slice(index + 1)])
 		else if (this.props.selectedDates.length < 3)
-			this.props.invitationChooseDates([ ...dates, date])
+			this.props.invitationChooseDates([...dates, date])
+	}
+
+	renderDateBubbles() {
+		const { dates, selectedDates } = this.props
+		return dates.map((date, index) => {
+			const checked = selectedDates.includes(date)
+			return (
+				<DateBubblePicker key={index} date={date} checked={checked} onPress={() => this.dateOnClick(date)} />
+			)
+		})
 	}
 
 	render() {
-		const { selectedDates, owner, title, location, locationName, expires, limitedRSVP } = this.props
+		const { id, owner, title, location, locationName, expires, limitedRSVP, approved, pid, accessToken, selectedDates } = this.props
 		const startTime = this.props.dates[0].toLocaleTimeString()
-		console.log(`expires in ${moment(expires).format()}`)
 		const inviterImage = 'https://facebook.github.io/react/img/logo_og.png'
 		return (
 			<View style={styles.container}>
@@ -74,12 +78,11 @@ class InvitationPage extends Component {
 					<Separator />
 					<View style={styles.contentInfo}>
 					</View>
-					<View style={[styles.calendar, styles.center]}>
-						<Text style={styles.fontSmall}>{I18n.t('invitation.selectDate')}</Text>
-						<CommonCalendar
-							onDateSelect={this.dateOnClick.bind(this)}
-							events={selectedDates.map(x => { return { date: x } })}
-						/>
+					<View style={styles.calendar}>
+						<Text style={[styles.fontMedium, styles.selectDateText]}>{I18n.t('invitation.selectDate')}</Text>
+						<View style={styles.bubblesContainer}>
+							{this.renderDateBubbles()}
+						</View>
 					</View>
 					<View style={[styles.bottomTextContainer, styles.center]}>
 						<Text style={styles.fontMedium}>{I18n.t('invitation.startTime')} {startTime}</Text>
@@ -93,18 +96,20 @@ class InvitationPage extends Component {
 					<View style={styles.buttons}>
 						<Button
 							title={I18n.t('invitation.declineButton')}
+							buttonStyle={styles.button}
 							backgroundColor='#C55755'
 							onPress={() => {
-								this.props.invitationAttendance('Approved')
+								this.props.modifyAttendances(pid, accessToken, id, approved, 'Declined', selectedDates)
 								Actions.pop()
-							}}/>
+							}} />
 						<Button
 							title={I18n.t('invitation.acceptButton')}
+							buttonStyle={styles.button}
 							backgroundColor='#01A836'
 							onPress={() => {
-								this.props.invitationAttendance('Declined')
+								this.props.modifyAttendances(pid, accessToken, id, approved, 'Approved', selectedDates)
 								Actions.pop()
-							}}/>
+							}} />
 					</View>
 				</View>
 			</View>
@@ -161,25 +166,27 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
 	fontMedium: {
-		fontSize: 16,
+		fontSize: 14,
 	},
 	fontBig: {
 		fontSize: 20,
 	},
 	calendar: {
-		flex: 16,
-		borderWidth: 1,
-		borderRadius: 15,
-		borderColor: '#31A5FD',
+		flex: 3,
 		margin: 5,
+		padding: 5,
+	},
+	selectDateText: {
+		textAlign: 'center',
+		marginBottom: 30,
 	},
 	bottomTextContainer: {
-		flex: 1,
+		flex: 0.5,
 		margin: 5,
 	},
 	notice: {
 		backgroundColor: '#31A5FD',
-		flex: 2,
+		flex: 0.8,
 		padding: 5,
 	},
 	noticeText: {
@@ -187,19 +194,35 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	buttons: {
+		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'center',
+		alignItems: 'center',
 		padding: 5,
+	},
+	button: {
+		borderRadius: 30,
+		height: 35,
+		width: 115,
+		shadowColor: '#000',
+		shadowRadius: 3,
+		shadowOpacity: 0.5,
+		shadowOffset: {},
+	},
+	bubblesContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
 	},
 })
 
 const mapStateToProps = state => {
 	const { selected } = state.events
 	const { selectedDates } = state.invitation
-	return { ...selected, selectedDates }
+	const { pid, accessToken } = state.session
+	return { ...selected, selectedDates, pid, accessToken }
 }
 
 export default connect(mapStateToProps, {
 	invitationChooseDates,
-	invitationAttendance,
+	modifyAttendances,
 })(InvitationPage)
