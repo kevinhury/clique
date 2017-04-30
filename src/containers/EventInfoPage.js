@@ -62,7 +62,7 @@ class EventInfoPage extends Component {
 			>
 				<CardView>
 					<TitleSection
-						isAdmin={isAdmin}
+						renderCancel={isAdmin}
 						title={title}
 						creator={owner}
 						image={adminImage}
@@ -91,6 +91,7 @@ class EventInfoPage extends Component {
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
 						chatButton={true}
+						onChatButtonPress={() => Actions.chatPage()}
 					/>
 					<Separator />
 					<NumAtendeesSection

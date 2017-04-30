@@ -61,7 +61,7 @@ class LobbyPage extends Component {
 						this.props.modifyForm(event)
 						Actions.createEvent()
 					}}
-					onChatPress={() => { }}
+					onChatPress={() => Actions.chatPage()}
 				/>
 			</TouchableOpacity>
 		)

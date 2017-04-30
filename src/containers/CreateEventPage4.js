@@ -76,7 +76,7 @@ class CreateEventPage4 extends Component {
 			>
 				<CardView>
 					<TitleSection
-						isAdmin={true}
+						renderCancel={false}
 						title={name}
 						creator={'You'}
 						image={adminImage}

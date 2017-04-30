@@ -10,13 +10,14 @@ type MiddleSectionProps = {
 	invitees: Invitee[],
 	minAtendees: number,
 	bubblesToShow: number,
+	onChatPress: () => void,
 }
 
 class MiddleSection extends Component {
 	props: MiddleSectionProps
 
 	renderBubbles() {
-		const { invitees, bubblesToShow } = this.props
+		const { invitees, bubblesToShow, onChatPress } = this.props
 		if (invitees.length == 0)
 			return (
 				<View style={styles.noRSVPs}>
@@ -32,7 +33,7 @@ class MiddleSection extends Component {
 				/>
 				<ChatButton
 					title={I18n.t('chat')}
-					onPress={() => console.log('press')}
+					onPress={onChatPress}
 				/>
 			</View>
 		)

@@ -13,6 +13,7 @@ import type { Status, UserEvent } from '../../actions/types'
 type EventCellProps = {
 	event: UserEvent,
 	onEditPress: () => void,
+	onChatPress: () => void,
 }
 
 class EventCell extends Component {
@@ -53,6 +54,7 @@ class EventCell extends Component {
 						invitees={invitees}
 						minAtendees={5}
 						bubblesToShow={3}
+						onChatPress={this.props.onChatPress}
 					/>
 					<View style={styles.separator} />
 					<BottomSection

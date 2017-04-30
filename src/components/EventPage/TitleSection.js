@@ -7,7 +7,7 @@ import I18n from 'react-native-i18n'
 import type { Approval, Status } from '../../actions/types'
 
 type TitleSectionProps = {
-	isAdmin: boolean,
+	renderCancel: boolean,
 	title: string,
 	creator: string,
 	image: string,
@@ -44,8 +44,8 @@ class TitleSection extends Component {
 		return I18n.t(state)
 	}
 
-	renderCancelButton(isAdmin: boolean) {
-		if (isAdmin == false) {
+	renderCancelButton(renderCancel: boolean) {
+		if (!renderCancel) {
 			return (<View />)
 		}
 		return (
@@ -60,13 +60,13 @@ class TitleSection extends Component {
 	}
 
 	render() {
-		const { title, creator, image, approved, status, isAdmin } = this.props
+		const { title, creator, image, approved, status, renderCancel } = this.props
 		return (
 			<View style={styles.titleSection}>
 				<Text style={styles.titleText}>{title}</Text>
 				<Text style={styles.creatorText}>by {creator}</Text>
 				<View style={styles.buttonContainer}>
-					{this.renderCancelButton(isAdmin)}
+					{this.renderCancelButton(renderCancel)}
 					<Image
 						source={{ uri: image }}
 						style={styles.image}
@@ -75,7 +75,7 @@ class TitleSection extends Component {
 						title={this.userStatus(approved, status)}
 						raised
 						buttonStyle={styles.button}
-						backgroundColor='#01a836'
+						backgroundColor={approved === 'Declined' ? '#999' : '#01a836'}
 						onPress={this.props.onStatusPress}
 					/>
 				</View>

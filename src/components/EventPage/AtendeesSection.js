@@ -10,16 +10,17 @@ type EventAtendeesSectionProps = {
 	style?: any,
 	chatButton: boolean,
 	onPress: () => void,
+	onChatButtonPress: () => void,
 }
 
-const renderChatButton = (chatButton: boolean) => {
-	if (chatButton)
+const renderChatButton = (chatButton: boolean, onPress: () => void) => {
+	if (!chatButton)
 		return <View />
 	else
 		return (
 			<ChatButton
 				title={I18n.t('chat')}
-				onPress={() => console.log('press')}
+				onPress={onPress}
 			/>
 		)
 }
@@ -30,7 +31,7 @@ const AtendeesSection = (props: EventAtendeesSectionProps) =>
 		<TouchableWithoutFeedback onPress={props.onPress}>
 			<View style={styles.goingSection}>
 				<AtendeeBubbles images={props.invitees.map(x => x.image)} bubblesToShow={2} />
-				{renderChatButton(props.chatButton)}
+				{renderChatButton(props.chatButton, props.onChatButtonPress)}
 			</View>
 		</TouchableWithoutFeedback>
 	</View>
