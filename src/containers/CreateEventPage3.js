@@ -10,7 +10,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import CardView from '../components/CardView'
 import Dialog from '../components/Dialogs/Dialog'
 import EventCreatePanel from '../components/EventCreatePanel'
-import NextButton from '../components/NextButton'
+import { CommonButton } from '../components/Common'
+
 import {
 	addContact,
 	removeContact,
@@ -50,6 +51,11 @@ class CreateEventPage3 extends Component {
 
 	componentWillMount() {
 		this.props.requestContactList()
+	}
+
+	nextDisabled() {
+		const { selectedContacts } = this.props
+		return selectedContacts.length <= 0
 	}
 
 	contactChanged(selected: boolean, contact: any) {
@@ -108,9 +114,11 @@ class CreateEventPage3 extends Component {
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>
-					<NextButton disabled={false} onPress={() => {
-						Actions.createEventPage4()
-					}} />
+					<CommonButton
+						title={I18n.t('next')}
+						disabled={this.nextDisabled()}
+						onPress={() => { Actions.createEventPage4() }}
+					/>
 				</View>
 			</View>
 		)

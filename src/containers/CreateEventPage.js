@@ -10,8 +10,7 @@ import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
 import { changeEventName, changeEventDescription, changeLocationName, changeEventLocation, cancelForm } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
-import { FormButton } from '../components/Common'
-import NextButton from '../components/NextButton'
+import { FormButton, CommonButton } from '../components/Common'
 import CommonInput from '../components/CommonInput'
 
 
@@ -42,12 +41,11 @@ class CreateEventPage extends Component {
 	}
 
 	nextDisabled() {
-		return false
-		// const { name, description, locationName, location } = this.props
-		// return name.length <= 0 ||
-		// 	description.length <= 0 ||
-		// 	locationName.length <= 0 ||
-		// 	location.address.length <= 0
+		const { name, description, locationName, location } = this.props
+		return name.length <= 0 ||
+			description.length <= 0 ||
+			locationName.length <= 0 ||
+			location.address.length <= 0
 	}
 
 	render() {
@@ -93,7 +91,11 @@ class CreateEventPage extends Component {
 						/>
 					</View>
 					<View style={styles.buttonContainer}>
-						<NextButton disabled={nextDisabled} onPress={() => Actions.createEventPage2()} />
+						<CommonButton
+							title={I18n.t('next')}
+							disabled={nextDisabled}
+							onPress={() => Actions.createEventPage2()}
+						/>
 					</View>
 				</CardView>
 			</LinearGradient>

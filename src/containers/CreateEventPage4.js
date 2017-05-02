@@ -8,7 +8,7 @@ import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { Actions } from 'react-native-router-flux'
 import CardView from '../components/CardView'
-import { Separator } from '../components/Common'
+import { Separator, CommonButton } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
 import { createEvent } from '../actions'
@@ -27,22 +27,6 @@ type CreateEventPage4Props = {
 
 class CreateEventPage4 extends Component {
 	props: CreateEventPage4Props
-
-	renderBottomButton() {
-		return (
-			<Button
-				raised
-				title={I18n.t('createFlow.finishSendInvites')}
-				borderRadius={30}
-				fontSize={20}
-				backgroundColor='#289FFF'
-				onPress={() => {
-					this.props.createEvent(this.props.pid, this.props.accessToken, this.props.form)
-					Actions.popTo('main')
-				}}
-			/>
-		)
-	}
 
 	inviteesDialogToggle(state: boolean) {
 		if (state)
@@ -109,7 +93,14 @@ class CreateEventPage4 extends Component {
 						minAtendees={minAtendees}
 					/>
 					<Separator />
-					{this.renderBottomButton()}
+					<CommonButton
+						title={I18n.t('createFlow.finishSendInvites')}
+						backgroundColor='#289FFF'
+						onPress={() => {
+							this.props.createEvent(this.props.pid, this.props.accessToken, this.props.form)
+							Actions.popTo('main')
+						}}
+					/>
 				</CardView>
 				<Dialog
 					ref={'inviteesDialog'}

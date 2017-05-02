@@ -11,9 +11,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
 import EventCreatePanel from '../components/EventCreatePanel'
-import { FormButton, CommonCalendar } from '../components/Common'
+import { FormButton, CommonCalendar, CommonButton } from '../components/Common'
 import Dialog from '../components/Dialogs/Dialog'
-import NextButton from '../components/NextButton'
 import {
 	changeEventLength,
 	changeStartTime,
@@ -50,6 +49,14 @@ class CreateEventPage2 extends Component {
 		this.hours = generateTimeFormat().map(x => {
 			return { value: x, label: `${x} Hours` }
 		})
+	}
+
+	nextDisabled() {
+		const { length, startTime, deadline, dates } = this.props
+		return length <= 0 ||
+			!startTime ||
+			deadline <= 0 ||
+			dates.length <= 0
 	}
 
 	setDaysOnClick() {
@@ -107,7 +114,11 @@ class CreateEventPage2 extends Component {
 								onPress={() => this.setDeadlineOnClick()}
 								style={styles.button}
 							/>
-							<NextButton disabled={false} onPress={() => Actions.createEventPage3()} />
+							<CommonButton
+								title={I18n.t('next')}
+								disabled={this.nextDisabled()}
+								onPress={() => Actions.createEventPage3()}
+							/>
 						</View>
 					</View>
 				</CardView>

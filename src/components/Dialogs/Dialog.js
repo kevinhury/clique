@@ -7,8 +7,7 @@ import {
 	StyleSheet,
 } from 'react-native'
 import Modal from 'react-native-modalbox'
-import { Separator } from '../Common'
-import { Button } from 'react-native-elements'
+import { Separator, CommonButton } from '../Common'
 import TextComponent from './TextComponent'
 import InviteesComponent from './InviteesComponent'
 import PickerComponent from './PickerComponent'
@@ -35,10 +34,9 @@ class Dialog extends Component {
 			return (<View />)
 
 		return (
-			<View style={styles.button}>
-				<Button
-					style={this.props.buttonStyle}
-					raised
+			<View style={styles.buttonContainer}>
+				<CommonButton
+					style={[styles.button, this.props.buttonStyle]}
 					title={this.props.buttonText}
 					backgroundColor='#14972B'
 					onPress={this.props.buttonCallback}
@@ -106,12 +104,15 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		margin: 10,
 	},
-	button: {
+	buttonContainer: {
 		position: 'absolute',
 		bottom: 5,
 		left: 40,
 		right: 40,
 		alignSelf: 'stretch',
+	},
+	button: {
+		height: 40,
 	},
 })
 
