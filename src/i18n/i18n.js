@@ -13,7 +13,10 @@ I18n.translations = {
 const languageCode = I18n.locale.substr(0, 2)
 
 switch (languageCode) {
-case 'he':
-	I18n.translations.he = require('./he.json')
-	break
+	case 'he':
+		I18n.translations.he = require('./he.json')
+		break
+	case 'ru':
+		I18n.translations.ru = require('./ru.json')
+		break
 }
