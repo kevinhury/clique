@@ -64,7 +64,7 @@ class TitleSection extends Component {
 		return (
 			<View style={styles.titleSection}>
 				<Text style={styles.titleText}>{title}</Text>
-				<Text style={styles.creatorText}>by {creator}</Text>
+				<Text style={styles.creatorText}>{I18n.t('by')} {creator}</Text>
 				<View style={styles.buttonContainer}>
 					{this.renderCancelButton(renderCancel)}
 					<Image

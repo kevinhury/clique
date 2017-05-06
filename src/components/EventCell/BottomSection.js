@@ -50,7 +50,7 @@ class BottomSection extends Component {
 	render() {
 		return (
 			<View style={styles.bottomSection}>
-				<Text>Event Status:{' '}
+				<Text>{I18n.t('eventStatus')}:{' '}
 					<Text style={styles.statusText}>
 						{this.statusText()}
 					</Text>
