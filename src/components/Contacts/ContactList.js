@@ -20,16 +20,17 @@ type ContactListProps = {
 class ContactList extends Component {
 	props: ContactListProps
 	dataSource: any
+	filter: string = ''
 
 	componentWillMount() {
-		this.createDataSource(this.props)
+		this.createDataSource(this.props, this.filter)
 	}
 
 	componentWillReceiveProps(nextProps: any) {
-		this.createDataSource(nextProps)
+		this.createDataSource(nextProps, this.filter)
 	}
 
-	createDataSource({ contacts }: any) {
+	createDataSource({ contacts }: any, filter: string) {
 		const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId]
 		const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`]
 
@@ -39,8 +40,8 @@ class ContactList extends Component {
 			getSectionData,
 			getRowData,
 		})
-
-		const { dataBlob, sectionIds, rowIds } = this.formatData(contacts)
+		const filteredContacts = contacts.filter(contact => contact.name.includes(filter))
+		const { dataBlob, sectionIds, rowIds } = this.formatData(filteredContacts)
 		this.dataSource = ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)
 	}
 
@@ -70,6 +71,11 @@ class ContactList extends Component {
 		return { dataBlob, sectionIds, rowIds }
 	}
 
+	filterList(text: string) {
+		this.filter = text
+		this.createDataSource(this.props, text)
+	}
+
 	renderRow(contact: any) {
 		const selected = this.props.selectedList.includes(contact.recordId)
 		return (
@@ -87,6 +93,12 @@ class ContactList extends Component {
 		)
 	}
 
+	renderHeader() {
+		return (
+			<Header onChangeText={this.filterList.bind(this)} />
+		)
+	}
+
 	render() {
 		return (
 			<ListView
@@ -94,7 +106,7 @@ class ContactList extends Component {
 				renderRow={this.renderRow.bind(this)}
 				renderSeparator={this.renderSeparator.bind(this)}
 				style={styles.container}
-				renderHeader={() => <Header />}
+				renderHeader={this.renderHeader.bind(this)}
 				renderSectionHeader={(sectionData) => <SectionHeader { ...sectionData} />}
 			/>
 		)

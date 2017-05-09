@@ -80,6 +80,20 @@ class CreateEventPage2 extends Component {
 			this.props.addEventDate(date)
 	}
 
+	lengthInputFormatted(): string {
+		if (this.props.length === 0) return ''
+		return this.days.filter(x =>
+			x.value === this.props.length
+		)[0].label || ''
+	}
+
+	rsvpInputFormatted(): string {
+		if (this.props.deadline === 0) return ''
+		return this.deadlines.filter(x =>
+			x.value === this.props.deadline
+		)[0].label || ''
+	}
+
 	render() {
 		return (
 			<LinearGradient
@@ -91,7 +105,7 @@ class CreateEventPage2 extends Component {
 					<View style={styles.card}>
 						<FormButton
 							placeholder={I18n.t('createFlow.lengthInput')}
-							text={`${this.props.length > 0 ? this.props.length : ''}`}
+							text={this.lengthInputFormatted()}
 							onPress={() => this.setDaysOnClick()}
 							style={styles.button}
 						/>
@@ -110,7 +124,7 @@ class CreateEventPage2 extends Component {
 							/>
 							<FormButton
 								placeholder={I18n.t('createFlow.rsvpInput')}
-								text={`${this.props.deadline > 0 ? this.props.deadline : ''}`}
+								text={this.rsvpInputFormatted()}
 								onPress={() => this.setDeadlineOnClick()}
 								style={styles.button}
 							/>

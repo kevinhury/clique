@@ -28,6 +28,9 @@ const CommonCalendar = (props: CommonCalendarProps) =>
 			selectedDayCircle: styles.hasEventCircle,
 			selectedDayText: styles.commonText,
 			title: [styles.commonColor, styles.boldText],
+			calendarHeading: styles.borderless,
+			dayButton: styles.borderless,
+			dayButtonFiller: styles.borderless,
 		}}
 		onDateSelect={props.onDateSelect}
 	/>
@@ -57,6 +60,10 @@ const styles = StyleSheet.create({
 	},
 	boldText: {
 		fontWeight: 'bold',
+	},
+	borderless: {
+		borderTopWidth: 0,
+		borderBottomWidth: 0,
 	},
 })
 

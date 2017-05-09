@@ -69,7 +69,7 @@ class EventInfoPage extends Component {
 						approved={approved}
 						status={status}
 						onStatusPress={() => {
-							if (isAdmin) return
+							if (isAdmin || status != 'Pending') return
 							this.props.openInvitation()
 							Actions.invitationPage()
 						}}

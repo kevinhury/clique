@@ -1,20 +1,22 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-	View,
-	StyleSheet,
-	TextInput,
-} from 'react-native'
+import { View, StyleSheet, TextInput } from 'react-native'
+
+type HeaderProps = {
+	onChangeText: (string) => void,
+}
 
 class Header extends Component {
+	props: HeaderProps
+
 	render() {
 		return (
 			<View style={styles.container}>
 				<TextInput
 					style={styles.input}
 					placeholder="Search..."
-					onChangeText={(text) => console.log('searching for ', text)}
+					onChangeText={this.props.onChangeText}
 				/>
 			</View>
 		)
