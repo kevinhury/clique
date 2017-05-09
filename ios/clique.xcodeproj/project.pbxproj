@@ -40,6 +40,7 @@
 		617415949D2C41CE95C7DF82 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E73909882B3433EB2357F26 /* Ionicons.ttf */; };
 		6C072447374C4D88B5559DE3 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FD14B183B43E2BF601D35 /* EvilIcons.ttf */; };
 		76544975A4064955A9D8A59B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E88A5A2FF55A496BA916EA26 /* FontAwesome.ttf */; };
+		80C4ECCA11CD48D891FBAE9B /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 332EF62547A346CA91C32776 /* libAirMaps.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8799252AABEE4E6DA38270B9 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0D16A598C84ED7841D281B /* libRNVectorIcons.a */; };
 		911AFB671EAF32BF0020E061 /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 911AFB661EAF32A30020E061 /* libRCTContacts.a */; };
@@ -264,6 +265,13 @@
 			remoteGlobalIDString = 1441618E1BD0A79300FA4F59;
 			remoteInfo = RCTContacts;
 		};
+		913118831EC246EC00A7F0B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4E516F0A10241919386A695 /* AirMaps.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = AirMaps;
+		};
 		91E482E31EAF3A4D00FF234F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91E482C41EAF3A4D00FF234F /* RNGooglePlacePicker.xcodeproj */;
@@ -299,6 +307,7 @@
 		2BAAE27AC7A8A662E7373263 /* Pods-clique.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-clique.release.xcconfig"; path = "Pods/Target Support Files/Pods-clique/Pods-clique.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* clique-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "clique-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* clique-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "clique-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		332EF62547A346CA91C32776 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		39EA0EC45F2A479AAF9F051B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		45FF48BC85CB4B7EBD614CE3 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		560D21D600D84FA59334F9BD /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -319,6 +328,7 @@
 		DF0D16A598C84ED7841D281B /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E88A5A2FF55A496BA916EA26 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		E91DC902E1CF4C538E444A89 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
+		F4E516F0A10241919386A695 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +360,7 @@
 				8799252AABEE4E6DA38270B9 /* libRNVectorIcons.a in Frameworks */,
 				A905F0B157C3C7B4AD59179D /* libPods-clique.a in Frameworks */,
 				F24DC57ED6024F6CA3F42E1E /* libBVLinearGradient.a in Frameworks */,
+				80C4ECCA11CD48D891FBAE9B /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +548,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				B6C2288DF64345029017EB17 /* RNVectorIcons.xcodeproj */,
 				020DFF723A614F1C883CA4FC /* BVLinearGradient.xcodeproj */,
+				F4E516F0A10241919386A695 /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -596,6 +608,14 @@
 			isa = PBXGroup;
 			children = (
 				911AFB661EAF32A30020E061 /* libRCTContacts.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		913118801EC246EC00A7F0B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				913118841EC246EC00A7F0B1 /* libAirMaps.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -739,6 +759,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 913118801EC246EC00A7F0B1 /* Products */;
+					ProjectRef = F4E516F0A10241919386A695 /* AirMaps.xcodeproj */;
+				},
 				{
 					ProductGroup = 911AFB3E1EAF32500020E061 /* Products */;
 					ProjectRef = 020DFF723A614F1C883CA4FC /* BVLinearGradient.xcodeproj */;
@@ -1007,6 +1031,13 @@
 			remoteRef = 911AFB651EAF32A30020E061 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		913118841EC246EC00A7F0B1 /* libAirMaps.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAirMaps.a;
+			remoteRef = 913118831EC246EC00A7F0B1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		91E482E41EAF3A4D00FF234F /* libRNGooglePlacePicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1215,7 +1246,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1236,7 +1266,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1302,7 +1331,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1333,7 +1361,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1363,7 +1390,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.clique-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1388,7 +1414,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.clique-tvOSTests";
