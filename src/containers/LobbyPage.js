@@ -4,12 +4,12 @@ import React, { Component } from 'react'
 import { ListView, View, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-import Calendar from '../components/Calendar'
+import { CommonCalendar } from '../components/Common'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
 import PlusButton from '../components/PlusButton'
-import { requestEvents, selectEvent, createForm, modifyForm, createEvent } from '../actions'
+import { requestEvents, selectEvent, createForm, modifyForm, createEvent, chatRoomWillEnter } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
@@ -23,6 +23,7 @@ type LobbyPageProps = {
 	modifyForm: () => void,
 	createForm: () => void,
 	createEvent: (string, string) => void,
+	chatRoomWillEnter: () => void,
 }
 
 class LobbyPage extends Component {
@@ -61,7 +62,10 @@ class LobbyPage extends Component {
 						this.props.modifyForm(event)
 						Actions.createEvent()
 					}}
-					onChatPress={() => Actions.chatPage()}
+					onChatPress={() => {
+						this.props.chatRoomWillEnter(event.id, event.title)
+						Actions.chatPage()
+					}}
 				/>
 			</TouchableOpacity>
 		)
@@ -70,9 +74,9 @@ class LobbyPage extends Component {
 	renderCalendar() {
 		return (
 			<View>
-				<Calendar
+				<CommonCalendar
 					scrollEnabled
-					customStyle={{ calendarContainer: styles.calendar }}
+					events={[]}
 				/>
 				<View style={styles.separator} />
 			</View>
@@ -112,9 +116,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-	calendar: {
-		backgroundColor: 'transparent',
-	},
 	separator: {
 		backgroundColor: 'rgba(254, 193, 51, 0.5)',
 		alignSelf: 'stretch',
@@ -138,4 +139,5 @@ export default connect(mapStateToProps, {
 	requestEvents,
 	selectEvent,
 	createEvent,
+	chatRoomWillEnter,
 })(LobbyPage)

@@ -10,7 +10,7 @@ import CardView from '../components/CardView'
 import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
-import { cancelEvent, openInvitation } from '../actions'
+import { cancelEvent, openInvitation, chatRoomWillEnter } from '../actions'
 
 import type { UserEvent } from '../actions/types'
 
@@ -22,6 +22,7 @@ type EventInfoPageProps = {
 	cancelEvent: (string, string, string) => void,
 	createEvent: () => void,
 	form: () => void,
+	chatRoomWillEnter: () => void,
 }
 
 class EventInfoPage extends Component {
@@ -91,7 +92,10 @@ class EventInfoPage extends Component {
 						style={styles.atendeesSection}
 						onPress={() => this.inviteesDialogToggle(true)}
 						chatButton={true}
-						onChatButtonPress={() => Actions.chatPage()}
+						onChatButtonPress={() => {
+							this.props.chatRoomWillEnter(id, title)
+							Actions.chatPage()
+						}}
 					/>
 					<Separator />
 					<NumAtendeesSection
@@ -168,4 +172,5 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
 	openInvitation,
 	cancelEvent,
+	chatRoomWillEnter,
 })(EventInfoPage)

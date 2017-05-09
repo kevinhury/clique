@@ -110,35 +110,18 @@ export const EventFormReducer = (state: EventForm = INITIAL_STATE, action: Actio
 }
 
 const mapEventToEventForm = (event: UserEvent): any => {
-	var form = {}
-	form.name = event.title
-	form.description = event.description
-	form.locationName = event.locationName
-	form.location = event.location
-	form.dates = event.dates
-	form.minAtendees = event.minAtendees
-	form.maxAtendees = event.limitedRSVP
-	form.contacts = event.invitees
-	form.length = event.lengthInDays
-	form.startTime = moment(event.dates[0]).format('HH:mm')
-	form.deadline = `${moment(event.expires).format('HH') - form.startTime}`
-	form.type = 'CREATE'
-	return form
+	return {
+		name: event.title,
+		description: event.description,
+		locationName: event.locationName,
+		location: event.location,
+		dates: event.dates,
+		minAtendees: event.minAtendees,
+		maxAtendees: event.limitedRSVP,
+		contacts: event.invitees,
+		length: event.lengthInDays,
+		startTime: moment(event.dates[0]).format('HH:mm'),
+		deadline: 0,
+		type: 'CREATE',
+	}
 }
-
-/*
-const mock_initial_state = {
-	name: 'On the fire',
-	description: 'We\'re going to have a great time!!',
-	locationName: 'My Place',
-	location: { address: 'Malkat shva, Ashdod', latitude: 0, longitude: 0 },
-	dates: [new Date()],
-	minAtendees: 3,
-	maxAtendees: 10,
-	contacts: [],
-	length: 1,
-	startTime: '14:30',
-	deadline: 4,
-	type: 'CREATE',
-}
-*/

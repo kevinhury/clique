@@ -43,7 +43,7 @@ const mapResponseDataToUserEvents = (events, userId) => {
 		event.id = data.event.id
 		event.title = data.event.title
 		event.description = data.event.description
-		event.location = { latitude: data.event.location.split(';')[0], longitude: data.event.location.split(';')[1], address: null }
+		event.location = { latitude: parseInt(data.event.location.split(';')[0]), longitude: parseInt(data.event.location.split(';')[1]), address: null }
 		event.location.address = data.event.address
 		event.locationName = data.event.locationName
 		event.approved = mapUserApprovalInteger(myAttendance.approval)

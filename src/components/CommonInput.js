@@ -10,14 +10,18 @@ type CommonInputProps = {
 	style?: Object,
 }
 
-const CommonInput = (props: CommonInputProps) =>
-	<TextInput
-		placeholder={props.placeholder}
-		onChangeText={props.onChangeText}
-		value={props.value}
-		style={[styles.inputStyle, props.style]}
-		multiline
-	/>
+const CommonInput = (props: CommonInputProps) => {
+	const borderColor = props.value.length > 0 ? styles.highlighted : styles.normal
+	return (
+		<TextInput
+			placeholder={props.placeholder}
+			onChangeText={props.onChangeText}
+			value={props.value}
+			style={[styles.inputStyle, borderColor, props.style]}
+			multiline
+		/>
+	)
+}
 
 const styles = StyleSheet.create({
 	inputStyle: {
@@ -28,9 +32,14 @@ const styles = StyleSheet.create({
 		lineHeight: 23,
 		borderRadius: 20,
 		borderWidth: 1,
-		borderColor: '#31A5FD',
 		height: 40,
 		margin: 8,
+	},
+	highlighted: {
+		borderColor: '#31A5FD',
+	},
+	normal: {
+		borderColor: '#BFBFBF',
 	},
 })
 

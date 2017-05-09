@@ -81,14 +81,14 @@ class CreateEventPage2 extends Component {
 	}
 
 	lengthInputFormatted(): string {
-		if (this.props.length === 0) return ''
+		if (!this.props.length) return ''
 		return this.days.filter(x =>
 			x.value === this.props.length
 		)[0].label || ''
 	}
 
 	rsvpInputFormatted(): string {
-		if (this.props.deadline === 0) return ''
+		if (!this.props.deadline) return ''
 		return this.deadlines.filter(x =>
 			x.value === this.props.deadline
 		)[0].label || ''
