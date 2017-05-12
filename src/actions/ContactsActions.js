@@ -39,14 +39,16 @@ const requestPermission = (dispatch) => {
 
 const requestContacts = (dispatch) => {
 	Contacts.getAll((err, contacts) => {
-		contacts = contacts.map(x => {
-			return {
-				recordId: x.recordID,
-				name: `${x.givenName} ${x.familyName}`,
-				phone: x.phoneNumbers[0].number,
-				thumbnail: x.thumbnailPath,
-			}
-		})
+		contacts = contacts
+			.filter(x => x.phoneNumbers.length > 0)
+			.map(x => {
+				return {
+					recordId: x.recordID,
+					name: `${x.givenName} ${x.familyName}`,
+					phone: x.phoneNumbers[0].number,
+					thumbnail: x.thumbnailPath,
+				}
+			})
 		dispatch({ type: CONTACTS_LIST_FETCHED, contacts })
 	})
 }

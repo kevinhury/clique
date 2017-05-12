@@ -5,7 +5,6 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { startAuthentication } from '../actions'
 import { Actions } from 'react-native-router-flux'
-// import * as DebugTests from '../fixtures/debugtests'
 
 type LoaderProps = {
 	authenticating: boolean,

@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, Keyboard, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
@@ -78,6 +78,7 @@ class CreateEventPage extends Component {
 							placeholder={I18n.t('createFlow.locationInput')}
 							text={this.props.location.address}
 							onPress={() => {
+								Keyboard.dismiss()
 								RNGooglePlacePicker.show((response) => {
 									if (response.didCancel || response.error) return
 									this.props.changeEventLocation({

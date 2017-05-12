@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import I18n from 'react-native-i18n'
+import moment from 'moment'
 import CardView from '../components/CardView'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton, CommonCalendar, CommonButton } from '../components/Common'
@@ -47,8 +48,22 @@ class CreateEventPage2 extends Component {
 			return { value: x, label: `${x} Days` }
 		})
 		this.hours = generateTimeFormat().map(x => {
-			return { value: x, label: `${x} Hours` }
+			return { value: x, label: `${x}` }
 		})
+
+		const currentTimeFormatted = () => {
+			const mom = moment()
+			return mom.hours() + ':' + mom.minutes()
+		}
+
+		this.props.changeRSVPDeadline(this.deadlines[4].value)
+		this.props.changeEventLength(this.days[0].value)
+		this.props.changeStartTime(
+			closestTime(
+				currentTimeFormatted(),
+				this.hours.map(x => x.value)
+			)
+		)
 	}
 
 	nextDisabled() {
@@ -249,4 +264,19 @@ const generateTimeFormat = (): Array<string> => {
 			m = '0' + m
 		return h + ':' + m
 	})
+}
+
+const closestTime = (time: string, hours: string[]) => {
+	const toInteger = (format: string) => {
+		const split = format.split(':')
+		return parseInt(split[0]) * 60 + parseInt(split[1])
+	}
+	const inMinutes = hours.map(toInteger)
+	const currentTime = toInteger(time)
+	const diff = []
+	for (let i = 0; i < inMinutes.length; i++)
+		diff.push(Math.abs(currentTime - inMinutes[i]))
+	
+	const index = (diff.indexOf(Math.min.apply(Math, diff)) + 1) % hours.length
+	return hours[index]
 }
