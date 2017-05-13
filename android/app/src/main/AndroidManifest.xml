@@ -10,6 +10,10 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="22" />
 
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBa2sp4LWkqFhaEvWiDgjzOCD-r-Byx2qs"/>
+
     <application
       android:name=".MainApplication"
       android:allowBackup="true"

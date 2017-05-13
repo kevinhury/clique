@@ -19,6 +19,7 @@ const CommonInput = (props: CommonInputProps) => {
 			value={props.value}
 			style={[styles.inputStyle, borderColor, props.style]}
 			multiline
+			underlineColorAndroid={'transparent'}
 			returnKeyType={'done'}
 		/>
 	)

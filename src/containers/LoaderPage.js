@@ -21,9 +21,9 @@ class LoaderPage extends Component {
 
 	componentWillReceiveProps(nextProps: LoaderProps) {
 		if (nextProps.authenticated) {
-			Actions.main()
+			Actions.main({ type: 'replace' })
 		} else if (!nextProps.authenticating) {
-			Actions.verificationPage()
+			Actions.verificationPage({ type: 'replace' })
 		}
 	}
 

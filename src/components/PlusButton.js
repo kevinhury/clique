@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		bottom: 5,
 		right: 5,
+		elevation: 2,
 		shadowColor: '#000',
 		shadowOpacity: 0.8,
 		shadowRadius: 3,

@@ -1,8 +1,6 @@
 // @flow
 
-// TODO: replace these
 import { LoginAPI } from '../api/epoch/LoginAPI'
-// import * as LoginAPI from '../api/epoch/FixtureAPI'
 import LoginServiceGenerate from '../services/LoginService'
 import * as SessionService from '../services/SessionService'
 import {

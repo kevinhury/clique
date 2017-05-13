@@ -20,18 +20,18 @@ import ChatPage from './containers/ChatPage'
 const RouterComponent = () =>
 	<Router sceneStyle={styles.scene} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.leftButton} leftButtonTextStyle={styles.title}>
 		<Scene key='loaderPage' component={LoaderPage} initial />
-		<Scene key='verificationPage' component={VerificationPage} hideNavBar direction='vertical' />
+		<Scene key='verificationPage' component={VerificationPage} hideNavBar />
 		<Scene key='main' type="replace">
 			<Scene key='lobbyPage' component={LobbyPage} title={I18n.t('navigation.eventsTitle')} />
 			<Scene key='eventInfoPage' component={EventInfoPage} title={I18n.t('navigation.eventTitle')} />
 			<Scene key='chatPage' component={ChatPage} />
-			<Scene key='createEvent' direction='vertical'>
+			<Scene key='createEvent'>
 				<Scene key='createEventPage' component={CreateEventPage} title={I18n.t('navigation.createEventTitle')} />
 				<Scene key='createEventPage2' component={CreateEventPage2} title={I18n.t('navigation.createEventTitle')} />
 				<Scene key='createEventPage3' component={CreateEventPage3} title={I18n.t('navigation.createEventTitle')} />
 				<Scene key='createEventPage4' component={CreateEventPage4} title={I18n.t('navigation.createEventTitle')} />
 			</Scene>
-			<Scene key='invitationPage' component={InvitationPage} direction='vertical' />
+			<Scene key='invitationPage' component={InvitationPage} />
 		</Scene>
 	</Router>
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	scene: {
-		paddingTop: 64,
+		// paddingTop: 64, 
 	},
 	navbar: {
 		backgroundColor: '#31A5FD',
