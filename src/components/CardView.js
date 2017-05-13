@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOpacity: 0.5,
 		shadowRadius: 3,
+		elevation: 1,
 		flex: 1,
 		justifyContent: 'space-between',
 	},

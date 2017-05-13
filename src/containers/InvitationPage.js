@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
 		shadowRadius: 3,
 		shadowOpacity: 0.5,
 		shadowOffset: {},
+		elevation: 1,
 	},
 	bubblesContainer: {
 		flexDirection: 'row',

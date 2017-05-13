@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.8,
 		shadowRadius: 3,
 		shadowOffset: {},
+		elevation: 1,
 	},
 	text: {
 		color: '#fff',
