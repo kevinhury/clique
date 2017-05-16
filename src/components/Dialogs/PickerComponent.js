@@ -8,6 +8,7 @@ import {
 import Picker from 'react-native-wheel-picker'
 
 type PickerComponentProps = {
+	value: any,
 	options: any[],
 	onValueChange: () => void,
 }
@@ -22,7 +23,7 @@ class PickerComponent extends Component {
 
 	constructor(props: any) {
 		super(props)
-		this.state = { selection: null }
+		this.state = { selection: props.value }
 	}
 
 	renderItems() {

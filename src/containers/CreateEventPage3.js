@@ -152,7 +152,7 @@ class CreateEventPage3 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.minRSVPTitle')}
 					type={{
-						name: 'picker', options: this.minRSVPs, onValueChange: (index) => {
+						name: 'picker', options: this.minRSVPs, value: this.props.minAtendees, onValueChange: (index) => {
 							this.props.changeMinAtendees(index)
 						},
 					}}
@@ -166,7 +166,7 @@ class CreateEventPage3 extends Component {
 					ref={'maxRSVPDialog'}
 					title={I18n.t('dialogs.maxRSVPTitle')}
 					type={{
-						name: 'picker', options: this.maxRSVPs, onValueChange: (index) => {
+						name: 'picker', options: this.maxRSVPs, value: this.props.maxAtendees, onValueChange: (index) => {
 							this.props.changeMaxAtendees(index)
 						},
 					}}

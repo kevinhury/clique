@@ -158,7 +158,7 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.daysTitle')}
 					type={{
-						name: 'picker', options: this.days, onValueChange: (index) => {
+						name: 'picker', options: this.days, value: this.props.length, onValueChange: (index) => {
 							const length = this.days[index]['value']
 							this.props.changeEventLength(length)
 						},
@@ -172,7 +172,7 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.timeTitle')}
 					type={{
-						name: 'picker', options: this.hours, onValueChange: (index) => {
+						name: 'picker', options: this.hours, value: this.props.startTime, onValueChange: (index) => {
 							const startTime = this.hours[index]['value']
 							this.props.changeStartTime(startTime)
 						},
@@ -186,7 +186,7 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.deadlineTitle')}
 					type={{
-						name: 'picker', options: this.deadlines, onValueChange: (index) => {
+						name: 'picker', options: this.deadlines, value: this.props.deadline, onValueChange: (index) => {
 							const deadline = this.deadlines[index]['value']
 							this.props.changeRSVPDeadline(deadline)
 						},

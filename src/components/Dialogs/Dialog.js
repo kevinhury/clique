@@ -57,6 +57,7 @@ class Dialog extends Component {
 			case 'picker':
 				return (
 					<PickerComponent
+						value={this.props.type.value}
 						options={this.props.type.options}
 						onValueChange={this.props.type.onValueChange}
 					/>
