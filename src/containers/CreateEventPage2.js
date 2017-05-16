@@ -6,7 +6,6 @@ import {
 	StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import I18n from 'react-native-i18n'
 import moment from 'moment'
@@ -23,6 +22,7 @@ import {
 } from '../actions'
 
 type Props = {
+	navigation: any,
 	length: number,
 	startTime: string,
 	deadline: number,
@@ -34,8 +34,22 @@ type Props = {
 	removeEventDate: () => void,
 }
 
+type State = {
+	numDaysDialog: boolean,
+	timeDialog: boolean,
+	deadlineDialog: boolean,
+}
+
 class CreateEventPage2 extends Component {
 	props: Props
+	state: State = {
+		numDaysDialog: false,
+		timeDialog: false,
+		deadlineDialog: false,
+	}
+	static navigationOptions = {
+		title: I18n.t('navigation.createEventTitle'),
+	}
 	deadlines: any[]
 	days: any[]
 	hours: any[]
@@ -74,18 +88,6 @@ class CreateEventPage2 extends Component {
 			dates.length <= 0
 	}
 
-	setDaysOnClick() {
-		this.refs.numDaysDialog.modal().open()
-	}
-
-	setTimeOnClick() {
-		this.refs.timeDialog.modal().open()
-	}
-
-	setDeadlineOnClick() {
-		this.refs.deadlineDialog.modal().open()
-	}
-
 	dateOnClick(datestr: string) {
 		const date = new Date(datestr)
 		const exist = this.props.dates.map(x => x.getTime()).indexOf(date.getTime()) > -1
@@ -121,7 +123,7 @@ class CreateEventPage2 extends Component {
 						<FormButton
 							placeholder={I18n.t('createFlow.lengthInput')}
 							text={this.lengthInputFormatted()}
-							onPress={() => this.setDaysOnClick()}
+							onPress={() => this.setState({ numDaysDialog: true })}
 							style={styles.button}
 						/>
 						<View style={styles.calendarContainer}>
@@ -134,25 +136,26 @@ class CreateEventPage2 extends Component {
 							<FormButton
 								placeholder={I18n.t('createFlow.timeInput')}
 								text={`${this.props.startTime}`}
-								onPress={() => this.setTimeOnClick()}
+								onPress={() => this.setState({ timeDialog: true })}
 								style={styles.button}
 							/>
 							<FormButton
 								placeholder={I18n.t('createFlow.rsvpInput')}
 								text={this.rsvpInputFormatted()}
-								onPress={() => this.setDeadlineOnClick()}
+								onPress={() => this.setState({ deadlineDialog: true })}
 								style={styles.button}
 							/>
 							<CommonButton
 								title={I18n.t('next')}
 								disabled={this.nextDisabled()}
-								onPress={() => Actions.createEventPage3()}
+								onPress={() => {
+									this.props.navigation.navigate('CreateEvent3')
+								}}
 							/>
 						</View>
 					</View>
 				</CardView>
 				<Dialog
-					ref={'numDaysDialog'}
 					title={I18n.t('dialogs.daysTitle')}
 					type={{
 						name: 'picker', options: this.days, onValueChange: (index) => {
@@ -161,11 +164,12 @@ class CreateEventPage2 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 280 }}
-					buttonCallback={() => this.refs.numDaysDialog.modal().close()}
+					modalStyle={{ height: 320 }}
+					isVisible={this.state.numDaysDialog}
+					dismissCallback={() => this.setState({ numDaysDialog: false })}
+					buttonCallback={() => this.setState({ numDaysDialog: false })}
 				/>
 				<Dialog
-					ref={'timeDialog'}
 					title={I18n.t('dialogs.timeTitle')}
 					type={{
 						name: 'picker', options: this.hours, onValueChange: (index) => {
@@ -174,11 +178,12 @@ class CreateEventPage2 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 280 }}
-					buttonCallback={() => this.refs.timeDialog.modal().close()}
+					modalStyle={{ height: 320 }}
+					isVisible={this.state.timeDialog}
+					dismissCallback={() => this.setState({ timeDialog: false })}
+					buttonCallback={() => this.setState({ timeDialog: false })}
 				/>
 				<Dialog
-					ref={'deadlineDialog'}
 					title={I18n.t('dialogs.deadlineTitle')}
 					type={{
 						name: 'picker', options: this.deadlines, onValueChange: (index) => {
@@ -187,8 +192,10 @@ class CreateEventPage2 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 280 }}
-					buttonCallback={() => this.refs.deadlineDialog.modal().close()}
+					modalStyle={{ height: 320 }}
+					isVisible={this.state.deadlineDialog}
+					dismissCallback={() => this.setState({ deadlineDialog: false })}
+					buttonCallback={() => this.setState({ deadlineDialog: false })}
 				/>
 			</LinearGradient>
 		)
@@ -276,7 +283,7 @@ const closestTime = (time: string, hours: string[]) => {
 	const diff = []
 	for (let i = 0; i < inMinutes.length; i++)
 		diff.push(Math.abs(currentTime - inMinutes[i]))
-	
+
 	const index = (diff.indexOf(Math.min.apply(Math, diff)) + 1) % hours.length
 	return hours[index]
 }

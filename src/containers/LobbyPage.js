@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { ListView, View, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
+import I18n from 'react-native-i18n'
 import { CommonCalendar } from '../components/Common'
 import LinearGradient from 'react-native-linear-gradient'
 import EventCell from '../components/EventCell'
@@ -14,6 +14,7 @@ import { requestEvents, selectEvent, createForm, modifyForm, createEvent, chatRo
 import type { UserEvent } from '../actions/types'
 
 type LobbyPageProps = {
+	navigation: any,
 	pid: string,
 	accessToken: string,
 	loading: boolean,
@@ -29,6 +30,9 @@ type LobbyPageProps = {
 class LobbyPage extends Component {
 	dataSource: any
 	props: LobbyPageProps
+	static navigationOptions = {
+		title: I18n.t('navigation.eventsTitle'),
+	}
 
 	componentWillMount(): void {
 		this.updateDataSource(this.props)
@@ -54,17 +58,17 @@ class LobbyPage extends Component {
 		return (
 			<TouchableOpacity onPress={() => {
 				this.props.selectEvent(event)
-				Actions.eventInfoPage()
+				this.props.navigation.navigate('EventInfo')
 			}}>
 				<EventCell
 					event={event}
 					onEditPress={() => {
 						this.props.modifyForm(event)
-						Actions.createEvent()
+						this.props.navigation.navigate('CreateEvent')
 					}}
 					onChatPress={() => {
 						this.props.chatRoomWillEnter(event.id, event.title)
-						Actions.chatPage()
+						this.props.navigation.navigate('Chat')
 					}}
 				/>
 			</TouchableOpacity>
@@ -104,7 +108,7 @@ class LobbyPage extends Component {
 					/>
 					<PlusButton onPress={() => {
 						this.props.createForm()
-						Actions.createEvent()
+						this.props.navigation.navigate('CreateEvent')
 					}} />
 				</CardView>
 			</LinearGradient>

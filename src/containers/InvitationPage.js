@@ -5,13 +5,13 @@ import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { Button } from 'react-native-elements'
-import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { ProfileIcon, Separator, AddressBarItem, DateBubblePicker } from '../components/Common'
 import { invitationChooseDates, modifyAttendances } from '../actions'
 import type { Location, Approval } from '../actions/types'
 
 type InvitationPageProps = {
+	navigation: any,
 	id: string,
 	owner: string,
 	title: string,
@@ -30,9 +30,8 @@ type InvitationPageProps = {
 
 class InvitationPage extends Component {
 	props: InvitationPageProps
-
-	componentDidMount() {
-		Actions.refresh({ title: I18n.t('invitation.navigationTitle') })
+	static navigationOptions = {
+		title: I18n.t('invitation.navigationTitle'),
 	}
 
 	dateOnClick(date: Date) {
@@ -100,7 +99,7 @@ class InvitationPage extends Component {
 							backgroundColor='#C55755'
 							onPress={() => {
 								this.props.modifyAttendances(pid, accessToken, id, approved, 'Declined', selectedDates)
-								Actions.pop()
+								this.props.navigation.back()
 							}} />
 						<Button
 							title={I18n.t('invitation.acceptButton')}
@@ -108,7 +107,7 @@ class InvitationPage extends Component {
 							backgroundColor='#01A836'
 							onPress={() => {
 								this.props.modifyAttendances(pid, accessToken, id, approved, 'Approved', selectedDates)
-								Actions.pop()
+								this.props.navigation.back()
 							}} />
 					</View>
 				</View>

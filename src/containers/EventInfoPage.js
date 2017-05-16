@@ -5,7 +5,6 @@ import { View, Text, StyleSheet, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import I18n from 'react-native-i18n'
-import { Actions } from 'react-native-router-flux'
 import CardView from '../components/CardView'
 import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
@@ -15,6 +14,7 @@ import { cancelEvent, openInvitation, chatRoomWillEnter } from '../actions'
 import type { UserEvent } from '../actions/types'
 
 type EventInfoPageProps = {
+	navigation: any,
 	event: UserEvent,
 	pid: string,
 	accessToken: string,
@@ -25,30 +25,23 @@ type EventInfoPageProps = {
 	chatRoomWillEnter: () => void,
 }
 
+type State = {
+	cancelDialog: boolean,
+	inviteesDialog: boolean,
+	mapDialog: boolean,
+}
+
 class EventInfoPage extends Component {
 	props: EventInfoPageProps
-
-	cancelDialogToggle(state: boolean) {
-		if (state)
-			this.refs.cancelDialog.modal().open()
-		else
-			this.refs.cancelDialog.modal().close()
+	state: State = {
+		cancelDialog: false,
+		inviteesDialog: false,
+		mapDialog: false,
 	}
-
-	inviteesDialogToggle(state: boolean) {
-		if (state)
-			this.refs.inviteesDialog.modal().open()
-		else
-			this.refs.inviteesDialog.modal().close()
+	static navigationOptions = {
+		title: I18n.t('navigation.eventTitle'),
 	}
-
-	mapDialogToggle(state: boolean) {
-		if (state)
-			this.refs.mapDialog.modal().open()
-		else
-			this.refs.mapDialog.modal().close()
-	}
-
+	
 	render() {
 		const {
 			id, title, description, location, locationName, approved, status, owner,
@@ -72,9 +65,9 @@ class EventInfoPage extends Component {
 						onStatusPress={() => {
 							if (isAdmin || status != 'Pending') return
 							this.props.openInvitation()
-							Actions.invitationPage()
+							this.props.navigation.navigate('Invitation')
 						}}
-						onCancelPress={() => this.cancelDialogToggle(true)}
+						onCancelPress={() => this.setState({ cancelDialog: true })}
 					/>
 					<View style={styles.descriptionSection}>
 						<Text style={styles.descriptionText} numberOfLines={3}>{description}</Text>
@@ -84,17 +77,17 @@ class EventInfoPage extends Component {
 						date={dates[0].toLocaleDateString()}
 						time={dates[0].toLocaleTimeString()}
 						location={`${locationName} - ${location.address}`}
-						onLocationPress={() => this.mapDialogToggle(true)}
+						onLocationPress={() => this.setState({ mapDialog: true })}
 					/>
 					<Separator />
 					<AtendeesSection
 						invitees={invitees}
 						style={styles.atendeesSection}
-						onPress={() => this.inviteesDialogToggle(true)}
+						onPress={() => this.setState({ inviteesDialog: true })}
 						chatButton={true}
 						onChatButtonPress={() => {
 							this.props.chatRoomWillEnter(id, title)
-							Actions.chatPage()
+							this.props.navigation.navigate('Chat')
 						}}
 					/>
 					<Separator />
@@ -106,29 +99,34 @@ class EventInfoPage extends Component {
 					<Separator />
 				</CardView>
 				<Dialog
-					ref={'inviteesDialog'}
 					title={I18n.t('dialogs.inviteesTitle')}
 					type={{ name: 'invitees', invitees: this.props.event.invitees }}
 					buttonText={I18n.t('great!')}
 					modalStyle={{ height: 280 }}
-					buttonCallback={() => this.inviteesDialogToggle(false)}
+					isVisible={this.state.inviteesDialog}
+					dismissCallback={() => this.setState({ inviteesDialog: false })}
+					buttonCallback={() => this.setState({ inviteesDialog: false })}
 				/>
 				<Dialog
-					ref={'cancelDialog'}
 					title={I18n.t('dialogs.cancelTitle')}
 					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
 					buttonText={I18n.t('yes')}
+					isVisible={this.state.cancelDialog}
+					dismissCallback={() => this.setState({ cancelDialog: false })}
 					buttonCallback={() => {
+						this.setState({ cancelDialog: false })
 						this.props.cancelEvent(pid, accessToken, id)
-						Actions.pop()
+						this.props.navigation.back()
 					}}
 				/>
 				<Dialog
-					ref={'mapDialog'}
 					title={this.props.event.location.address}
 					type={{ name: 'map', locationName, description: location.address, location }}
 					buttonText={I18n.t('takeMeThere')}
+					isVisible={this.state.mapDialog}
+					dismissCallback={() => this.setState({ mapDialog: false })}
 					buttonCallback={() => {
+						this.setState({ mapDialog: false })
 						const url = `http://maps.apple.com/?ll=${location.latitude},${location.longitude}&q=${location.address}`
 						Linking.canOpenURL(url).then((supported) => {
 							if (!supported) return

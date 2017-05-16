@@ -5,13 +5,16 @@ import {
 	View,
 	Text,
 	StyleSheet,
+	TouchableWithoutFeedback,
 } from 'react-native'
-import Modal from 'react-native-modalbox'
+import Modal from 'react-native-modal'
 import { Separator, CommonButton } from '../Common'
 import TextComponent from './TextComponent'
 import InviteesComponent from './InviteesComponent'
 import PickerComponent from './PickerComponent'
 import MapComponent from './MapComponent'
+
+type Callback = () => void
 
 type DialogProps = {
 	title: string,
@@ -19,29 +22,25 @@ type DialogProps = {
 	modalStyle?: Object,
 	buttonText: string,
 	buttonStyle?: Object,
-	buttonCallback: () => void,
+	buttonCallback: Callback,
+	dismissCallback: ?Callback,
+	isVisible: boolean,
 }
 
 class Dialog extends Component {
 	props: DialogProps
-
-	modal() {
-		return this.refs.modal
-	}
 
 	renderButton() {
 		if (this.props.buttonText === undefined)
 			return (<View />)
 
 		return (
-			<View style={styles.buttonContainer}>
 				<CommonButton
 					style={[styles.button, this.props.buttonStyle]}
 					title={this.props.buttonText}
 					backgroundColor='#14972B'
 					onPress={this.props.buttonCallback}
 				/>
-			</View>
 		)
 	}
 
@@ -77,26 +76,49 @@ class Dialog extends Component {
 
 	render() {
 		return (
-			<Modal style={[styles.modal, this.props.modalStyle]} ref={'modal'} position='bottom'>
-				<View style={styles.container}>
-					<Text style={styles.titleText}>{this.props.title}</Text>
-					<Separator />
-					{this.renderComponent()}
-					{this.renderButton()}
-				</View>
-			</Modal>
+			<TouchableWithoutFeedback
+				onPress={this.props.dismissCallback || this.props.buttonCallback}
+			>
+				<Modal
+					style={styles.modal}
+					isVisible={this.props.isVisible}
+				>
+					<TouchableWithoutFeedback onPress={null}>
+						<View style={[styles.modalContent, this.props.modalStyle]}>
+							<View style={styles.titleContainer}>
+								<Text style={styles.titleText}>{this.props.title}</Text>
+								<Separator />
+							</View>
+							<View style={styles.componentContainer}>
+								{this.renderComponent()}
+							</View>
+							<View style={styles.buttonContainer}>
+								{this.renderButton()}
+							</View>
+						</View>
+					</TouchableWithoutFeedback>
+				</Modal>
+			</TouchableWithoutFeedback>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
 	modal: {
-		backgroundColor: '#fff',
-		height: 230,
+		justifyContent: 'flex-end',
+		margin: 20,
 	},
-	container: {
-		flex: 1,
+	modalContent: {
+		backgroundColor: 'white',
+		padding: 5,
+		justifyContent: 'center',
 		alignItems: 'center',
+		borderRadius: 20,
+		borderColor: 'rgba(0, 0, 0, 0.1)',
+		height: 400,
+	},
+	titleContainer: {
+		flex: 1,
 	},
 	titleText: {
 		color: '#31A5FD',
@@ -104,11 +126,13 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		margin: 10,
 	},
+	componentContainer: {
+		flex: 4,
+		alignSelf: 'stretch',
+		margin: 15,
+	},
 	buttonContainer: {
-		position: 'absolute',
-		bottom: 5,
-		left: 40,
-		right: 40,
+		flex: 1,
 		alignSelf: 'stretch',
 	},
 	button: {

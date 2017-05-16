@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, Platform, TouchableOpacity, ActivityIndicator, Alert, StyleSheet } from 'react-native'
 import CountryPicker from 'react-native-country-picker-modal'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { changeLoginCountry, changeLoginNumber, submitLogin, submitLoginBack, submitVerificationCode } from '../actions'
 import type { CountryCode } from '../actions/types'
@@ -14,6 +13,7 @@ type State = {
 }
 
 type Props = {
+	navigation: any,
 	phoneNumber: string,
 	countryCode: CountryCode,
 	loginStage: string,
@@ -42,7 +42,9 @@ class VerificationPage extends Component {
 		} else if (nextProps.loginStage === 'DONE') {
 			Alert.alert(I18n.t('verification.successButton'), I18n.t('verification.successText'), [{
 				text: I18n.t('ok'),
-				onPress: () => Actions.main({ type: 'replace' }),
+				onPress: () => {
+					this.props.navigation.reset('Lobby')
+				},
 			}])
 		}
 	}

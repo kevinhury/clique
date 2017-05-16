@@ -3,10 +3,11 @@
 import React, { Component } from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { startAuthentication } from '../actions'
-import { Actions } from 'react-native-router-flux'
 
 type LoaderProps = {
+	navigation: any,
 	authenticating: boolean,
 	authenticated: boolean,
 	startAuthentication: () => void,
@@ -14,6 +15,9 @@ type LoaderProps = {
 
 class LoaderPage extends Component {
 	props: LoaderProps
+	static navigationOptions = {
+		header: null,
+	}
 
 	componentDidMount() {
 		this.props.startAuthentication()
@@ -21,10 +25,18 @@ class LoaderPage extends Component {
 
 	componentWillReceiveProps(nextProps: LoaderProps) {
 		if (nextProps.authenticated) {
-			Actions.main({ type: 'replace' })
+			this.changeRoute('Lobby')
 		} else if (!nextProps.authenticating) {
-			Actions.verificationPage({ type: 'replace' })
+			this.changeRoute('Verification')
 		}
+	}
+
+	changeRoute(routeName: string) {
+		const action = NavigationActions.reset({
+			index: 0,
+			actions: [NavigationActions.navigate({ routeName })],
+		})
+		this.props.navigation.dispatch(action)
 	}
 
 	render() {

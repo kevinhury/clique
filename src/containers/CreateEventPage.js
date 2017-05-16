@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { View, Keyboard, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 import RNGooglePlacePicker from 'react-native-google-place-picker'
 import I18n from 'react-native-i18n'
@@ -17,6 +16,7 @@ import CommonInput from '../components/CommonInput'
 import type { Location } from '../actions/types'
 
 type CreateEventPageProps = {
+	navigation: any,
 	name: string,
 	description: string,
 	locationName: string,
@@ -31,16 +31,16 @@ type CreateEventPageProps = {
 
 class CreateEventPage extends Component {
 	props: CreateEventPageProps
+	static navigationOptions = {
+		title: I18n.t('navigation.createEventTitle'),
+	}
 
 	componentDidMount() {
-		const onLeft = () => {
-			this.props.cancelForm()
-			Actions.pop()
-		}
-		Actions.refresh({ leftTitle: I18n.t('cancel'), onLeft })
+
 	}
 
 	nextDisabled() {
+		return false
 		const { name, description, locationName, location } = this.props
 		return name.length <= 0 ||
 			description.length <= 0 ||
@@ -95,7 +95,9 @@ class CreateEventPage extends Component {
 						<CommonButton
 							title={I18n.t('next')}
 							disabled={nextDisabled}
-							onPress={() => Actions.createEventPage2()}
+							onPress={() => {
+								this.props.navigation.navigate('CreateEvent2')
+							}}
 						/>
 					</View>
 				</CardView>

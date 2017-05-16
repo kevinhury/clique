@@ -4,10 +4,10 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { GiftedChat } from 'react-native-gifted-chat'
-import { Actions } from 'react-native-router-flux'
 import { onMessageSent, messageListRequest } from '../actions'
 
 type ChatPageProps = {
+	navigation: any,
 	chatRoomId: string,
 	roomTitle: string,
 	loadingMessages: boolean,
@@ -20,9 +20,16 @@ type ChatPageProps = {
 
 class ChatPage extends Component {
 	props: ChatPageProps
+	static navigationOptions = ({ navigation }) => {
+		let title = ''
+		if (navigation.state.params)
+			title = navigation.state.params.title || ''
+		return { title }
+	}
 
 	componentDidMount() {
-		Actions.refresh({ title: this.props.roomTitle })
+		// Actions.refresh({ title: this.props.roomTitle })
+		this.props.navigation.setParams({ title: this.props.roomTitle })
 		this.props.messageListRequest(this.props.chatRoomId)
 	}
 

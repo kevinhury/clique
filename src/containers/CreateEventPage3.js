@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { View, Text, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import ContactList from '../components/Contacts/ContactList'
 import LinearGradient from 'react-native-linear-gradient'
@@ -27,6 +26,7 @@ type Label = {
 }
 
 type CreateEventPage3Props = {
+	navigation: any,
 	permission: string,
 	contacts: Contact[],
 	selectedContacts: Contact[],
@@ -40,8 +40,21 @@ type CreateEventPage3Props = {
 	form: EventForm,
 }
 
+type State = {
+	minRSVPDialog: boolean,
+	maxRSVPDialog: boolean,
+}
+
 class CreateEventPage3 extends Component {
 	props: CreateEventPage3Props
+	state: State = {
+		minRSVPDialog: false,
+		maxRSVPDialog: false,
+	}
+	static navigationOptions = {
+		title: I18n.t('navigation.createEventTitle'),
+	}
+
 	minRSVPs: Label[] = Array.from(Array(50).keys()).map(x => {
 		return { value: x, label: `${x}` }
 	})
@@ -96,7 +109,7 @@ class CreateEventPage3 extends Component {
 							onValueChange={(value) => {
 								if (value == false)
 									this.props.changeMinAtendees(0)
-								this.onMinRSVPToggle(value)
+								this.setState({ minRSVPDialog: true })
 							}}
 							value={this.props.minAtendees > 0}
 						/>
@@ -117,7 +130,9 @@ class CreateEventPage3 extends Component {
 					<CommonButton
 						title={I18n.t('next')}
 						disabled={this.nextDisabled()}
-						onPress={() => { Actions.createEventPage4() }}
+						onPress={() => {
+							this.props.navigation.navigate('CreateEvent4')
+						}}
 					/>
 				</View>
 			</View>
@@ -135,7 +150,6 @@ class CreateEventPage3 extends Component {
 					{this.renderList()}
 				</CardView>
 				<Dialog
-					ref={'minRSVPDialog'}
 					title={I18n.t('dialogs.minRSVPTitle')}
 					type={{
 						name: 'picker', options: this.minRSVPs, onValueChange: (index) => {
@@ -144,7 +158,9 @@ class CreateEventPage3 extends Component {
 					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
-					buttonCallback={() => this.onMinRSVPToggle(false)}
+					isVisible={this.state.minRSVPDialog}
+					dismissCallback={() => this.setState({ minRSVPDialog: false })}
+					buttonCallback={() => this.setState({ minRSVPDialog: false })}
 				/>
 				<Dialog
 					ref={'maxRSVPDialog'}
@@ -156,7 +172,9 @@ class CreateEventPage3 extends Component {
 					}}
 					buttonText={I18n.t('set')}
 					modalStyle={{ height: 280 }}
-					buttonCallback={() => this.onMaxRSVPToggle(false)}
+					isVisible={this.state.maxRSVPDialog}
+					dismissCallback={() => this.setState({ maxRSVPDialog: false })}
+					buttonCallback={() => this.setState({ maxRSVPDialog: false })}
 				/>
 			</LinearGradient>
 		)
