@@ -76,22 +76,6 @@ class CreateEventPage3 extends Component {
 		selected ? addContact(contact) : removeContact(contact)
 	}
 
-	onMinRSVPToggle(value: boolean) {
-		const modal = this.refs.minRSVPDialog.modal()
-		if (value)
-			modal.open()
-		else
-			modal.close()
-	}
-
-	onMaxRSVPToggle(value: boolean) {
-		const modal = this.refs.maxRSVPDialog.modal()
-		if (value)
-			modal.open()
-		else
-			modal.close()
-	}
-
 	renderList() {
 		return (
 			<View style={styles.page}>
@@ -109,7 +93,7 @@ class CreateEventPage3 extends Component {
 							onValueChange={(value) => {
 								if (value == false)
 									this.props.changeMinAtendees(0)
-								this.setState({ minRSVPDialog: true })
+								this.setState({ minRSVPDialog: value })
 							}}
 							value={this.props.minAtendees > 0}
 						/>
@@ -120,7 +104,7 @@ class CreateEventPage3 extends Component {
 							onValueChange={(value) => {
 								if (value == false)
 									this.props.changeMaxAtendees(0)
-								this.onMaxRSVPToggle(value)
+								this.setState({ maxRSVPDialog: value })
 							}}
 							value={this.props.maxAtendees > 0}
 						/>
@@ -157,7 +141,7 @@ class CreateEventPage3 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 280 }}
+					modalStyle={{ height: 320 }}
 					isVisible={this.state.minRSVPDialog}
 					dismissCallback={() => this.setState({ minRSVPDialog: false })}
 					buttonCallback={() => this.setState({ minRSVPDialog: false })}
@@ -171,7 +155,7 @@ class CreateEventPage3 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 280 }}
+					modalStyle={{ height: 320 }}
 					isVisible={this.state.maxRSVPDialog}
 					dismissCallback={() => this.setState({ maxRSVPDialog: false })}
 					buttonCallback={() => this.setState({ maxRSVPDialog: false })}

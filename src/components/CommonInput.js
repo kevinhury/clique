@@ -7,22 +7,36 @@ type CommonInputProps = {
 	placeholder: string,
 	onChangeText: (string) => void,
 	value: string,
-	style?: Object,
+	style?: any,
+	focus?: boolean,
 }
 
-const CommonInput = (props: CommonInputProps) => {
-	const borderColor = props.value.length > 0 ? styles.highlighted : styles.normal
-	return (
-		<TextInput
-			placeholder={props.placeholder}
-			onChangeText={props.onChangeText}
-			value={props.value}
-			style={[styles.inputStyle, borderColor, props.style]}
-			multiline
-			underlineColorAndroid={'transparent'}
-			returnKeyType={'done'}
-		/>
-	)
+class CommonInput extends React.Component {
+	props: CommonInputProps
+
+	focus() {
+		this.refs.input.focus()
+	}
+
+	componentWillReceiveProps(nextProps: CommonInputProps) {
+		if (nextProps.focus) this.focus()
+	}
+
+	render() {
+		const props = this.props
+		const borderColor = props.value.length > 0 ? styles.highlighted : styles.normal
+		return (
+			<TextInput
+				{...props}
+				ref='input'
+				placeholder={props.placeholder}
+				onChangeText={props.onChangeText}
+				value={props.value}
+				style={[styles.inputStyle, borderColor, props.style]}
+				underlineColorAndroid={'transparent'}
+			/>
+		)
+	}
 }
 
 const styles = StyleSheet.create({

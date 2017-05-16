@@ -29,14 +29,26 @@ type CreateEventPageProps = {
 	onLeft: () => void,
 }
 
+type State = {
+	focusTitleInput: boolean,
+	focusDescInput: boolean,
+	focusLocationNameInput: boolean,
+}
+
+const INITIAL_STATE = {
+	focusTitleInput: false,
+	focusDescInput: false,
+	focusLocationNameInput: false,
+}
+
 class CreateEventPage extends Component {
 	props: CreateEventPageProps
+	state: State = INITIAL_STATE
 	static navigationOptions = () => ({
 		title: I18n.t('navigation.createEventTitle'),
 	})
 
 	nextDisabled() {
-		return false
 		const { name, description, locationName, location } = this.props
 		return name.length <= 0 ||
 			description.length <= 0 ||
@@ -58,17 +70,32 @@ class CreateEventPage extends Component {
 							placeholder={I18n.t('createFlow.titleInput')}
 							onChangeText={this.props.changeEventName}
 							value={this.props.name}
+							autoFocus
+							returnKeyType={'next'}
+							onSubmitEditing={() => {
+								this.setState({ focusTitleInput: false, focusDescInput: true })
+							}}
 						/>
 						<CommonInput
 							placeholder={I18n.t('createFlow.descriptionInput')}
 							onChangeText={this.props.changeEventDescription}
 							value={this.props.description}
 							style={{ height: 100 }}
+							returnKeyType={'next'}
+							focus={this.state.focusDescInput}
+							onSubmitEditing={() => {
+								this.setState({ focusDescInput: false, focusLocationNameInput: true })
+							}}
 						/>
 						<CommonInput
 							placeholder={I18n.t('createFlow.locationNameInput')}
 							onChangeText={this.props.changeLocationName}
 							value={this.props.locationName}
+							returnKeyType={'done'}
+							focus={this.state.focusLocationNameInput}
+							onSubmitEditing={() => {
+								this.setState(INITIAL_STATE)
+							}}
 						/>
 						<FormButton
 							placeholder={I18n.t('createFlow.locationInput')}
