@@ -35,9 +35,9 @@ class CreateEventPage4 extends Component {
 		inviteesDialog: false,
 		mapDialog: false,
 	}
-	static navigationOptions = {
+	static navigationOptions = () => ({
 		title: I18n.t('navigation.createEventTitle'),
-	}
+	})
 
 	render() {
 		const {

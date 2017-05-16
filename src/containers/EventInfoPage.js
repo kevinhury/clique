@@ -38,9 +38,9 @@ class EventInfoPage extends Component {
 		inviteesDialog: false,
 		mapDialog: false,
 	}
-	static navigationOptions = {
+	static navigationOptions = () => ({
 		title: I18n.t('navigation.eventTitle'),
-	}
+	})
 	
 	render() {
 		const {
@@ -87,7 +87,7 @@ class EventInfoPage extends Component {
 						chatButton={true}
 						onChatButtonPress={() => {
 							this.props.chatRoomWillEnter(id, title)
-							this.props.navigation.navigate('Chat')
+							this.props.navigation.navigate('Chat', { title })
 						}}
 					/>
 					<Separator />

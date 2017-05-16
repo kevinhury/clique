@@ -31,13 +31,9 @@ type CreateEventPageProps = {
 
 class CreateEventPage extends Component {
 	props: CreateEventPageProps
-	static navigationOptions = {
+	static navigationOptions = () => ({
 		title: I18n.t('navigation.createEventTitle'),
-	}
-
-	componentDidMount() {
-
-	}
+	})
 
 	nextDisabled() {
 		return false

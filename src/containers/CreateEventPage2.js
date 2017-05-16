@@ -47,9 +47,9 @@ class CreateEventPage2 extends Component {
 		timeDialog: false,
 		deadlineDialog: false,
 	}
-	static navigationOptions = {
+	static navigationOptions = () => ({
 		title: I18n.t('navigation.createEventTitle'),
-	}
+	})
 	deadlines: any[]
 	days: any[]
 	hours: any[]

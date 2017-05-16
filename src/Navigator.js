@@ -1,6 +1,6 @@
 // @flow
 
-import { StackNavigator, DrawerNavigator } from 'react-navigation'
+import { StackNavigator } from 'react-navigation'
 
 // Screens
 import LobbyPage from './containers/LobbyPage'
@@ -48,8 +48,15 @@ const Application = StackNavigator({
 },
 	{
 		initialRouteName: 'Loader',
-		headerStyle: {
-			backgroundColor: 'red',
+		navigationOptions: {
+			headerStyle: {
+				backgroundColor: 'transparent',
+				shadowRadius: 0,
+				borderWidth: 0,
+				shadowColor: 'transparent',
+				// TODO: Remove shadow
+				// TODO: buttons color to white
+			},
 		},
 	})
 

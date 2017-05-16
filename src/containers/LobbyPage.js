@@ -30,9 +30,9 @@ type LobbyPageProps = {
 class LobbyPage extends Component {
 	dataSource: any
 	props: LobbyPageProps
-	static navigationOptions = {
+	static navigationOptions = () => ({
 		title: I18n.t('navigation.eventsTitle'),
-	}
+	})
 
 	componentWillMount(): void {
 		this.updateDataSource(this.props)
@@ -68,7 +68,7 @@ class LobbyPage extends Component {
 					}}
 					onChatPress={() => {
 						this.props.chatRoomWillEnter(event.id, event.title)
-						this.props.navigation.navigate('Chat')
+						this.props.navigation.navigate('Chat', { title: event.title })
 					}}
 				/>
 			</TouchableOpacity>

@@ -51,9 +51,9 @@ class CreateEventPage3 extends Component {
 		minRSVPDialog: false,
 		maxRSVPDialog: false,
 	}
-	static navigationOptions = {
+	static navigationOptions = () => ({
 		title: I18n.t('navigation.createEventTitle'),
-	}
+	})
 
 	minRSVPs: Label[] = Array.from(Array(50).keys()).map(x => {
 		return { value: x, label: `${x}` }

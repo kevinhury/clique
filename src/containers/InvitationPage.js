@@ -30,9 +30,9 @@ type InvitationPageProps = {
 
 class InvitationPage extends Component {
 	props: InvitationPageProps
-	static navigationOptions = {
+	static navigationOptions = ({
 		title: I18n.t('invitation.navigationTitle'),
-	}
+	})
 
 	dateOnClick(date: Date) {
 		const dates = this.props.selectedDates

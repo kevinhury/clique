@@ -21,15 +21,11 @@ type ChatPageProps = {
 class ChatPage extends Component {
 	props: ChatPageProps
 	static navigationOptions = ({ navigation }) => {
-		let title = ''
-		if (navigation.state.params)
-			title = navigation.state.params.title || ''
+		const title = navigation.state.params.title
 		return { title }
 	}
 
 	componentDidMount() {
-		// Actions.refresh({ title: this.props.roomTitle })
-		this.props.navigation.setParams({ title: this.props.roomTitle })
 		this.props.messageListRequest(this.props.chatRoomId)
 	}
 
