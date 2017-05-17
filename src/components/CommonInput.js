@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native'
+import { defaultColors } from '../themes/styles'
 
 type CommonInputProps = {
 	placeholder: string,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
 		margin: 8,
 	},
 	highlighted: {
-		borderColor: '#31A5FD',
+		borderColor: defaultColors.primaryColor,
 	},
 	normal: {
 		borderColor: '#BFBFBF',

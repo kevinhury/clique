@@ -13,6 +13,7 @@ import TextComponent from './TextComponent'
 import InviteesComponent from './InviteesComponent'
 import PickerComponent from './PickerComponent'
 import MapComponent from './MapComponent'
+import { defaultColors } from '../../themes/styles'
 
 type Callback = () => void
 
@@ -35,12 +36,12 @@ class Dialog extends Component {
 			return (<View />)
 
 		return (
-				<CommonButton
-					style={[styles.button, this.props.buttonStyle]}
-					title={this.props.buttonText}
-					backgroundColor='#14972B'
-					onPress={this.props.buttonCallback}
-				/>
+			<CommonButton
+				style={[styles.button, this.props.buttonStyle]}
+				title={this.props.buttonText}
+				backgroundColor='#14972B'
+				onPress={this.props.buttonCallback}
+			/>
 		)
 	}
 
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	titleText: {
-		color: '#31A5FD',
+		color: defaultColors.primaryColor,
 		fontSize: 20,
 		fontWeight: 'bold',
 		margin: 10,

@@ -19,6 +19,7 @@ import {
 	requestContactList,
 } from '../actions'
 import type { Contact, EventForm } from '../actions/types'
+import { defaultColors } from '../themes/styles'
 
 type Label = {
 	value: any,
@@ -126,7 +127,7 @@ class CreateEventPage3 extends Component {
 	render() {
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={[defaultColors.primaryColor, '#ffffff']}
 				style={styles.page}
 			>
 				<CardView style={styles.card}>

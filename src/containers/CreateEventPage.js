@@ -10,7 +10,7 @@ import { changeEventName, changeEventDescription, changeLocationName, cancelForm
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton, CommonButton } from '../components/Common'
 import CommonInput from '../components/CommonInput'
-
+import { defaultColors } from '../themes/styles'
 
 import type { Location } from '../actions/types'
 
@@ -58,7 +58,7 @@ class CreateEventPage extends Component {
 		const nextDisabled = this.nextDisabled()
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={[defaultColors.primaryColor, '#ffffff']}
 				style={styles.page}
 			>
 				<CardView style={styles.card}>

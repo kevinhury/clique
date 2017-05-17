@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { AtendeeBubbles, ChatButton } from '../Common'
 import I18n from 'react-native-i18n'
+import { defaultColors } from '../../themes/styles'
 import type { Invitee } from '../../actions/types'
 
 type MiddleSectionProps = {
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
 		marginBottom: 6,
 	},
 	minText: {
-		color: '#01a836',
+		color: defaultColors.secondaryColor,
 		fontSize: 12,
 		fontWeight: 'bold',
 		alignSelf: 'center',

@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import I18n from 'react-native-i18n'
+import { defaultColors } from '../../themes/styles'
 import type { Status, Approval } from '../../actions/types'
 
 type TitleSectionProps = {
@@ -41,7 +42,7 @@ class TitleSection extends Component {
 		var backgroundColor: string
 		switch (this.props.approved) {
 			case 'Approved':
-				backgroundColor = '#01a836'
+				backgroundColor = defaultColors.secondaryColor
 				break
 			case 'Pending':
 				backgroundColor = '#3c9bfd'

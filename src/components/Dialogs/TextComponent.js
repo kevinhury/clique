@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { defaultColors } from '../../themes/styles'
 
 type TextComponentProps = {
 	text: string,
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
 		margin: 5,
 	},
 	text: {
-		color: '#31A5FD',
+		color: defaultColors.primaryColor,
 		textAlign: 'center',
 		fontSize: 22,
 		padding: 15,

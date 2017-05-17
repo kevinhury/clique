@@ -4,6 +4,7 @@ import React from 'react'
 import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { defaultColors } from '../../themes/styles'
 
 export type DateBubblePickerProps = {
 	date: Date,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
 
 	},
 	baseBubble: {
-		backgroundColor: '#31A5FD',
+		backgroundColor: defaultColors.primaryColor,
 		shadowColor: '#000',
 		shadowOpacity: 0.8,
 		shadowRadius: 3,
@@ -64,12 +65,12 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		backgroundColor: 'transparent',
 		borderWidth: 2,
-		borderColor: '#01A836',
+		borderColor: defaultColors.secondaryColor,
 		shadowRadius: 0,
 	},
 	checkedIcon: {
 		position: 'absolute',
-		color: '#01A836',
+		color: defaultColors.secondaryColor,
 		bottom: -13,
 		right: -13,
 		shadowColor: '#fff',

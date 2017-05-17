@@ -10,7 +10,7 @@ import { Separator } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
 import { cancelEvent, openInvitation, chatRoomWillEnter } from '../actions'
-
+import { defaultColors } from '../themes/styles'
 import type { UserEvent } from '../actions/types'
 
 type EventInfoPageProps = {
@@ -41,7 +41,7 @@ class EventInfoPage extends Component {
 	static navigationOptions = () => ({
 		title: I18n.t('navigation.eventTitle'),
 	})
-	
+
 	render() {
 		const {
 			id, title, description, location, locationName, approved, status, owner,
@@ -51,7 +51,7 @@ class EventInfoPage extends Component {
 		const adminImage = invitees.filter(x => x.admin)[0].image
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={[defaultColors.primaryColor, '#ffffff']}
 				style={styles.page}
 			>
 				<CardView>

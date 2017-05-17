@@ -6,6 +6,7 @@ import CountryPicker from 'react-native-country-picker-modal'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import { changeLoginCountry, changeLoginNumber, submitLogin, submitLoginBack, submitVerificationCode } from '../actions'
+import { defaultColors } from '../themes/styles'
 import type { CountryCode } from '../actions/types'
 
 type State = {
@@ -178,7 +179,7 @@ class VerificationPage extends Component {
 	}
 }
 
-const brandColor = '#31A5FD'
+const brandColor = defaultColors.primaryColor
 const styles = StyleSheet.create({
 	countryPicker: {
 		alignItems: 'center',

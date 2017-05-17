@@ -3,6 +3,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
+import { defaultColors } from '../../themes/styles'
 
 type CommonButtonProps = {
 	title: string,
@@ -19,7 +20,7 @@ const CommonButton = ({ backgroundColor, title, disabled, onPress, style }: Comm
 		disabled={disabled || false}
 		onPress={onPress}
 		title={title}
-		backgroundColor={backgroundColor || '#01a836'}
+		backgroundColor={backgroundColor || defaultColors.secondaryColor}
 		buttonStyle={[styles.button, style]}
 	/>
 

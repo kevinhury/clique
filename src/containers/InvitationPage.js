@@ -8,6 +8,7 @@ import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
 import { ProfileIcon, Separator, AddressBarItem, DateBubblePicker } from '../components/Common'
 import { invitationChooseDates, modifyAttendances } from '../actions'
+import { defaultColors } from '../themes/styles'
 import type { Location, Approval } from '../actions/types'
 
 type InvitationPageProps = {
@@ -104,7 +105,7 @@ class InvitationPage extends Component {
 						<Button
 							title={I18n.t('invitation.acceptButton')}
 							buttonStyle={styles.button}
-							backgroundColor='#01A836'
+							backgroundColor={defaultColors.secondaryColor}
 							onPress={() => {
 								this.props.modifyAttendances(pid, accessToken, id, approved, 'Approved', selectedDates)
 								this.props.navigation.back()
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
 		margin: 5,
 	},
 	notice: {
-		backgroundColor: '#31A5FD',
+		backgroundColor: defaultColors.primaryColor,
 		flex: 0.8,
 		padding: 5,
 	},

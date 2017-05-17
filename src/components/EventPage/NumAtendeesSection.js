@@ -3,6 +3,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
+import { defaultColors } from '../../themes/styles'
 
 type NumAtendeesSectionProps = {
 	style?: Object,
@@ -34,7 +35,7 @@ const NumAtendeesSection = (props: NumAtendeesSectionProps) =>
 
 const styles = StyleSheet.create({
 	greenText: {
-		color: '#01a836',
+		color: defaultColors.secondaryColor,
 		fontWeight: 'bold',
 	},
 })

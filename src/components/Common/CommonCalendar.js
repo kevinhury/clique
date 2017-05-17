@@ -3,6 +3,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import Calendar from '../Calendar'
+import { defaultColors } from '../../themes/styles'
 
 type CommonCalendarProps = {
 	events: ?string[],
@@ -35,8 +36,8 @@ const CommonCalendar = (props: CommonCalendarProps) =>
 		onDateSelect={props.onDateSelect}
 	/>
 
-const primaryColor = '#31A5FD'
-const secondaryColor = '#01a836'
+const primaryColor = defaultColors.primaryColor
+const secondaryColor = defaultColors.secondaryColor
 const styles = StyleSheet.create({
 	calendar: {
 		backgroundColor: 'transparent',

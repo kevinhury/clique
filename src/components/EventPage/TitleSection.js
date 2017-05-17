@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
 import I18n from 'react-native-i18n'
+import { defaultColors } from '../../themes/styles'
 import type { Approval, Status } from '../../actions/types'
 
 type TitleSectionProps = {
@@ -75,7 +76,7 @@ class TitleSection extends Component {
 						title={this.userStatus(approved, status)}
 						raised
 						buttonStyle={styles.button}
-						backgroundColor={approved === 'Declined' ? '#999' : '#01a836'}
+						backgroundColor={approved === 'Declined' ? '#999' : defaultColors.secondaryColor}
 						onPress={this.props.onStatusPress}
 					/>
 				</View>

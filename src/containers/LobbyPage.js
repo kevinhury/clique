@@ -10,7 +10,7 @@ import EventCell from '../components/EventCell'
 import CardView from '../components/CardView'
 import PlusButton from '../components/PlusButton'
 import { requestEvents, selectEvent, createForm, modifyForm, createEvent, chatRoomWillEnter } from '../actions'
-
+import { defaultColors } from '../themes/styles'
 import type { UserEvent } from '../actions/types'
 
 type LobbyPageProps = {
@@ -90,7 +90,7 @@ class LobbyPage extends Component {
 	render() {
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={[defaultColors.primaryColor, '#ffffff']}
 				style={styles.container}
 			>
 				<CardView>

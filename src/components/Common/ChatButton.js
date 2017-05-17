@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 } from 'react-native'
 import { Button } from 'react-native-elements'
+import { defaultColors } from '../../themes/styles'
 
 type ChatButtonProps = {
 	title: string,
@@ -17,7 +18,7 @@ const ChatButton = (props: ChatButtonProps) => (
 		icon={{ name: 'md-chatboxes', type: 'ionicon' }}
 		title={props.title}
 		iconRight
-		backgroundColor='#31A5FD'
+		backgroundColor={defaultColors.primaryColor}
 		onPress={props.onPress}
 		buttonStyle={styles.chatButton}
 	/>

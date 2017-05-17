@@ -20,6 +20,7 @@ import {
 	addEventDate,
 	removeEventDate,
 } from '../actions'
+import { defaultColors } from '../themes/styles'
 
 type Props = {
 	navigation: any,
@@ -114,7 +115,7 @@ class CreateEventPage2 extends Component {
 	render() {
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={[defaultColors.primaryColor, '#ffffff']}
 				style={styles.page}
 			>
 				<CardView style={styles.card}>
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
 		flex: 2,
 		borderWidth: 1,
 		borderRadius: 15,
-		borderColor: '#31A5FD',
+		borderColor: defaultColors.primaryColor,
 		margin: 8,
 		marginLeft: 5,
 		marginRight: 5,

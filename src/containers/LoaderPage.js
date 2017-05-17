@@ -5,6 +5,7 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { startAuthentication } from '../actions'
+import { defaultColors } from '../themes/styles'
 
 type LoaderProps = {
 	navigation: any,
@@ -48,7 +49,7 @@ class LoaderPage extends Component {
 
 const styles = StyleSheet.create({
 	background: {
-		backgroundColor: '#31A5FD',
+		backgroundColor: defaultColors.primaryColor,
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',

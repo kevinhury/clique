@@ -6,6 +6,7 @@ import {
 	StyleSheet,
 	Image,
 } from 'react-native'
+import { defaultColors } from '../../themes/styles'
 
 type UserBubbleProps = {
 	style?: Object,
@@ -28,7 +29,7 @@ class UserBubble extends Component {
 const styles = StyleSheet.create({
 	container: {
 		borderRadius: 30,
-		backgroundColor: '#01a836',
+		backgroundColor: defaultColors.secondaryColor,
 		padding: 1,
 	},
 	image: {

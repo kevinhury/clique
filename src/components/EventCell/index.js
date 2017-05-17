@@ -7,6 +7,7 @@ import TitleSection from './TitleSection'
 import TopSection from './TopSection'
 import MiddleSection from './MiddleSection'
 import BottomSection from './BottomSection'
+import { defaultColors } from '../../themes/styles'
 
 import type { Status, UserEvent } from '../../actions/types'
 
@@ -23,11 +24,11 @@ class EventCell extends Component {
 		const status: Status = this.props.event.status
 		switch (status) {
 			case 'Pending':
-				return ['#31A5FD', '#fff']
+				return [defaultColors.primaryColor, '#fff']
 			case 'Cancelled':
 				return ['#999999', '#fff']
 			case 'Cliqued':
-				return ['#01a836', '#fff']
+				return [defaultColors.secondaryColor, '#fff']
 		}
 		return []
 	}

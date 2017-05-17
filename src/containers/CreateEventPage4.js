@@ -10,7 +10,7 @@ import { Separator, CommonButton } from '../components/Common'
 import { AtendeesSection, NumAtendeesSection, TitleSection, InfoSection } from '../components/EventPage'
 import Dialog from '../components/Dialogs/Dialog'
 import { createEvent } from '../actions'
-
+import { defaultColors } from '../themes/styles'
 import type { EventForm } from '../actions/types'
 
 type CreateEventPage4Props = {
@@ -52,7 +52,7 @@ class CreateEventPage4 extends Component {
 		invitees.push({ approved: 'Approved', name: username, image, phone })
 		return (
 			<LinearGradient
-				colors={['#31A5FD', '#ffffff']}
+				colors={[defaultColors.primaryColor, '#ffffff']}
 				style={styles.page}
 			>
 				<CardView>
@@ -114,7 +114,7 @@ class CreateEventPage4 extends Component {
 					buttonText={I18n.t('takeMeThere')}
 					isVisible={this.state.mapDialog}
 					dismissCallback={() => this.setState({ mapDialog: false })}
-					buttonCallback={() => {	
+					buttonCallback={() => {
 						this.setState({ mapDialog: false })
 						const url = `http://maps.apple.com/?ll=${location.latitude},${location.longitude}&q=${location.address}`
 						Linking.canOpenURL(url).then((supported) => {
