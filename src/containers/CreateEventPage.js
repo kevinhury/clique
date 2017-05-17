@@ -4,10 +4,9 @@ import React, { Component } from 'react'
 import { View, Keyboard, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
-import RNGooglePlacePicker from 'react-native-google-place-picker'
 import I18n from 'react-native-i18n'
 import CardView from '../components/CardView'
-import { changeEventName, changeEventDescription, changeLocationName, changeEventLocation, cancelForm } from '../actions'
+import { changeEventName, changeEventDescription, changeLocationName, cancelForm } from '../actions'
 import EventCreatePanel from '../components/EventCreatePanel'
 import { FormButton, CommonButton } from '../components/Common'
 import CommonInput from '../components/CommonInput'
@@ -24,7 +23,6 @@ type CreateEventPageProps = {
 	changeEventName: (string) => void,
 	changeEventDescription: (string) => void,
 	changeLocationName: (string) => void,
-	changeEventLocation: (Location) => void,
 	cancelForm: () => void,
 	onLeft: () => void,
 }
@@ -102,14 +100,7 @@ class CreateEventPage extends Component {
 							text={this.props.location.address}
 							onPress={() => {
 								Keyboard.dismiss()
-								RNGooglePlacePicker.show((response) => {
-									if (response.didCancel || response.error) return
-									this.props.changeEventLocation({
-										longitude: response.longitude,
-										latitude: response.latitude,
-										address: response.address,
-									})
-								})
+								this.props.navigation.navigate('SetLocation')
 							}}
 							style={styles.locationButton}
 						/>
@@ -164,6 +155,5 @@ export default connect(mapStateToProps, {
 	changeEventName,
 	changeEventDescription,
 	changeLocationName,
-	changeEventLocation,
 	cancelForm,
 })(CreateEventPage)
