@@ -17,36 +17,35 @@ class SetLocationPage extends Component {
 		title: I18n.t('navigation.createEventTitle'),
 	})
 
-	setLocation(response: any) {
-		if (response.didCancel || response.error) return
+	setLocation({ address, latitude, longitude }: any) {
+		if (!address || !latitude || !longitude) return
 		this.props.changeEventLocation({
-			longitude: response.longitude,
-			latitude: response.latitude,
-			address: response.address,
+			longitude,
+			latitude,
+			address,
 		})
+		this.props.navigation.goBack()
 	}
 
 	render() {
 		return (
 			<GooglePlacesAutocomplete
 				placeholder='Search'
-				minLength={2} // minimum length of text to search
-				autoFocus={false}
-				listViewDisplayed='auto'    // true/false/undefined
+				minLength={2}
+				autoFocus
 				fetchDetails={true}
-				renderDescription={(row) => row.description} // custom description render
-				onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-					console.log(data)
-					console.log(details)
+				renderDescription={(row) => row.description}
+				onPress={(data, details) => {
+					this.setLocation({
+						address: details.formatted_address,
+						latitude: details.geometry.location.lat,
+						longitude: details.geometry.location.lng,
+					})
 				}}
-				getDefaultValue={() => {
-					return '' // text input default value
-				}}
+				getDefaultValue={() => ''}
 				query={{
-					// available options: https://developers.google.com/places/web-service/autocomplete
 					key: 'AIzaSyAT900HJPlE7i3-opAiNy4vzjoeSANTw3E',
-					language: 'en', // language of the results
-					types: '(cities)', // default: 'geocode'
+					language: I18n.currentLocale(),
 				}}
 				styles={{
 					description: {
@@ -56,19 +55,10 @@ class SetLocationPage extends Component {
 						color: '#1faadb',
 					},
 				}}
-				currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+				currentLocation={true}
 				currentLocationLabel="Current location"
-				nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-				GoogleReverseGeocodingQuery={{
-					// available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-				}}
-				GooglePlacesSearchQuery={{
-					// available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-					rankby: 'distance',
-					types: 'food',
-				}}
-				filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-				debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+				nearbyPlacesAPI='GoogleReverseGeocoding'
+				debounce={400}
 			/>
 		)
 	}

@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 	Text,
 } from 'react-native'
+import { defaultColors } from '../../themes/styles'
 
 type FormButtonProps = {
 	text: string,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 6,
 	},
 	highlighted: {
-		borderColor: '#31A5FD',
+		borderColor: defaultColors.primaryColor,
 	},
 	normal: {
 		borderColor: '#BFBFBF',
