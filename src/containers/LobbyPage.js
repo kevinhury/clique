@@ -106,10 +106,13 @@ class LobbyPage extends Component {
 						renderHeader={this.renderCalendar.bind(this)}
 						renderRow={this.renderRow.bind(this)}
 					/>
-					<PlusButton onPress={() => {
-						this.props.createForm()
-						this.props.navigation.navigate('CreateEvent')
-					}} />
+					<PlusButton
+						style={styles.plusButton}
+						onPress={() => {
+							this.props.createForm()
+							this.props.navigation.navigate('CreateEvent')
+						}}
+					/>
 				</CardView>
 			</LinearGradient>
 		)
@@ -129,6 +132,10 @@ const styles = StyleSheet.create({
 	indicator: {
 		alignSelf: 'center',
 		justifyContent: 'center',
+	},
+	plusButton: {
+		bottom: 10,
+		right: 5,
 	},
 })
 

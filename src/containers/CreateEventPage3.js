@@ -68,8 +68,13 @@ class CreateEventPage3 extends Component {
 	}
 
 	nextDisabled() {
-		const { selectedContacts } = this.props
-		return selectedContacts.length <= 0
+		const { selectedContacts, minAtendees, maxAtendees } = this.props
+		const contactSelected = selectedContacts.length > 0
+		const minLowerThanMax = maxAtendees === 0 || minAtendees <= maxAtendees
+		const contactsHigherThanMin = selectedContacts.length >= minAtendees
+		return !contactSelected ||
+			!minLowerThanMax ||
+			!contactsHigherThanMin
 	}
 
 	contactChanged(selected: boolean, contact: any) {

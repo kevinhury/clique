@@ -136,9 +136,11 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flex: 1,
 		alignSelf: 'stretch',
+		justifyContent: 'flex-end',
 	},
 	button: {
 		height: 40,
+		bottom: 5,
 	},
 })
 

@@ -112,6 +112,7 @@ class EventInfoPage extends Component {
 					type={{ name: 'text', text: I18n.t('dialogs.cancelText') }}
 					buttonText={I18n.t('yes')}
 					isVisible={this.state.cancelDialog}
+					modalStyle={{ height: 200 }}
 					dismissCallback={() => this.setState({ cancelDialog: false })}
 					buttonCallback={() => {
 						this.setState({ cancelDialog: false })

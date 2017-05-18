@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements'
 
 type PlusButtonProps = {
 	onPress: () => void,
+	style: any,
 }
 
 const PlusButton = (props: PlusButtonProps) =>
@@ -16,14 +17,12 @@ const PlusButton = (props: PlusButtonProps) =>
 		raised
 		reverse
 		onPress={props.onPress}
-		containerStyle={styles.plusButton}
+		containerStyle={[styles.plusButton, props.style]}
 	/>
 
 const styles = StyleSheet.create({
 	plusButton: {
 		position: 'absolute',
-		bottom: 5,
-		right: 5,
 		elevation: 2,
 		shadowColor: '#000',
 		shadowOpacity: 0.8,
