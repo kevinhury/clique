@@ -35,7 +35,7 @@ class EventCell extends Component {
 
 	render() {
 		const {
-			title, owner, dates, approved, status, expires, invitees, isAdmin,
+			title, owner, dates, approved, status, expires, invitees, isAdmin, minAtendees,
 		} = this.props.event
 		return (
 			<LinearGradient
@@ -53,7 +53,7 @@ class EventCell extends Component {
 					<View style={styles.separator} />
 					<MiddleSection
 						invitees={invitees}
-						minAtendees={5}
+						minAtendees={minAtendees || 0}
 						bubblesToShow={3}
 						onChatPress={this.props.onChatPress}
 					/>

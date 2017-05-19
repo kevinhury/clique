@@ -110,6 +110,7 @@ class CreateEventPage extends Component {
 							title={I18n.t('next')}
 							disabled={nextDisabled}
 							onPress={() => {
+								Keyboard.dismiss()
 								this.props.navigation.navigate('CreateEvent2')
 							}}
 						/>

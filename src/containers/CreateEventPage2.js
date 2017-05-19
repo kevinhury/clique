@@ -35,10 +35,18 @@ type Props = {
 	removeEventDate: () => void,
 }
 
+type Label = {
+	value: any,
+	label: string,
+}
+
 type State = {
 	numDaysDialog: boolean,
 	timeDialog: boolean,
 	deadlineDialog: boolean,
+	deadlines: Label[],
+	days: Label[],
+	hours: Label[],
 }
 
 class CreateEventPage2 extends Component {
@@ -47,22 +55,22 @@ class CreateEventPage2 extends Component {
 		numDaysDialog: false,
 		timeDialog: false,
 		deadlineDialog: false,
+		deadlines: [],
+		days: [],
+		hours: [],
 	}
 	static navigationOptions = () => ({
 		title: I18n.t('navigation.createEventTitle'),
 	})
-	deadlines: any[]
-	days: any[]
-	hours: any[]
 
 	componentWillMount() {
-		this.deadlines = genereateDeadlinesFormat().map(x => {
+		const deadlines = genereateDeadlinesFormat().map(x => {
 			return { value: x, label: `${x} Hours` }
 		})
-		this.days = generateDaysFormat().map(x => {
+		const days = generateDaysFormat().map(x => {
 			return { value: x, label: `${x} Days` }
 		})
-		this.hours = generateTimeFormat().map(x => {
+		const hours = generateTimeFormat().map(x => {
 			return { value: x, label: `${x}` }
 		})
 
@@ -71,14 +79,16 @@ class CreateEventPage2 extends Component {
 			return mom.hours() + ':' + mom.minutes()
 		}
 
-		this.props.changeRSVPDeadline(this.deadlines[4].value)
-		this.props.changeEventLength(this.days[0].value)
+		this.props.changeRSVPDeadline(deadlines[4].value)
+		this.props.changeEventLength(days[0].value)
 		this.props.changeStartTime(
 			closestTime(
 				currentTimeFormatted(),
-				this.hours.map(x => x.value)
+				hours.map(x => x.value)
 			)
 		)
+
+		this.setState({ deadlines, days, hours })
 	}
 
 	nextDisabled() {
@@ -100,14 +110,14 @@ class CreateEventPage2 extends Component {
 
 	lengthInputFormatted(): string {
 		if (!this.props.length) return ''
-		return this.days.filter(x =>
+		return this.state.days.filter(x =>
 			x.value === this.props.length
 		)[0].label || ''
 	}
 
 	rsvpInputFormatted(): string {
 		if (!this.props.deadline) return ''
-		return this.deadlines.filter(x =>
+		return this.state.deadlines.filter(x =>
 			x.value === this.props.deadline
 		)[0].label || ''
 	}
@@ -159,8 +169,8 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.daysTitle')}
 					type={{
-						name: 'picker', options: this.days, value: this.props.length, onValueChange: (index) => {
-							const length = this.days[index]['value']
+						name: 'picker', options: this.state.days, value: this.props.length, onValueChange: (index) => {
+							const length = this.state.days[index]['value']
 							this.props.changeEventLength(length)
 						},
 					}}
@@ -173,8 +183,8 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.timeTitle')}
 					type={{
-						name: 'picker', options: this.hours, value: this.props.startTime, onValueChange: (index) => {
-							const startTime = this.hours[index]['value']
+						name: 'picker', options: this.state.hours, value: this.props.startTime, onValueChange: (index) => {
+							const startTime = this.state.hours[index]['value']
 							this.props.changeStartTime(startTime)
 						},
 					}}
@@ -187,8 +197,8 @@ class CreateEventPage2 extends Component {
 				<Dialog
 					title={I18n.t('dialogs.deadlineTitle')}
 					type={{
-						name: 'picker', options: this.deadlines, value: this.props.deadline, onValueChange: (index) => {
-							const deadline = this.deadlines[index]['value']
+						name: 'picker', options: this.state.deadlines, value: this.props.deadline, onValueChange: (index) => {
+							const deadline = this.state.deadlines[index]['value']
 							this.props.changeRSVPDeadline(deadline)
 						},
 					}}
@@ -256,7 +266,7 @@ const genereateDeadlinesFormat = () => {
 }
 
 const generateDaysFormat = () => {
-	return Array.from(Array(10).keys()).map(x => x + 1)
+	return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
 const generateTimeFormat = (): Array<string> => {

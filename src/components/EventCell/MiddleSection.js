@@ -40,11 +40,18 @@ class MiddleSection extends Component {
 		)
 	}
 
+	minAtendeesText() {
+		if (this.props.minAtendees === 0) return
+		return (
+			<Text style={styles.minText}>{I18n.t('min_people', { number: this.props.minAtendees })}</Text>
+		)
+	}
+
 	render() {
 		return (
 			<View style={styles.middleSection}>
 				{this.renderBubbles()}
-				<Text style={styles.minText}>{I18n.t('min_people', { number: this.props.minAtendees })}</Text>
+				{this.minAtendeesText()}
 			</View>
 		)
 	}
