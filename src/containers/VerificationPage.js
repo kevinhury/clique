@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import { View, Text, TextInput, Platform, TouchableOpacity, ActivityIndicator, Alert, StyleSheet } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import CountryPicker from 'react-native-country-picker-modal'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
@@ -44,7 +45,12 @@ class VerificationPage extends Component {
 			Alert.alert(I18n.t('verification.successButton'), I18n.t('verification.successText'), [{
 				text: I18n.t('ok'),
 				onPress: () => {
-					this.props.navigation.reset('Lobby')
+					const routeName = 'Lobby'
+					const action = NavigationActions.reset({
+						index: 0,
+						actions: [NavigationActions.navigate({ routeName })],
+					})
+					this.props.navigation.dispatch(action)
 				},
 			}])
 		}

@@ -15,11 +15,18 @@ export const startAuthentication = () =>
 			.then((results) => {
 				if (results.pid && results.password) {
 					dispatch({ type: ActionTypes.AUTHENTICATION_REQUEST })
-					LoginService.login(results.pid, results.password)
+					return LoginService.login(results.pid, results.password)
 						.then((user) => {
 							const { success, accessToken, pid, username, image, phone } = user
 							if (!success) { throw user }
 							dispatch({ type: ActionTypes.AUTHENTICATION_SUCCESS, accessToken, pid, username, image, phone })
+						})
+						.catch(error => {
+							if (error.message === 'Invalid crendentials') {
+								dispatch({ type: ActionTypes.USER_NOT_REGISTERED })
+							} else {
+								throw error
+							}
 						})
 				} else {
 					dispatch({ type: ActionTypes.USER_NOT_REGISTERED })

@@ -17,6 +17,7 @@ export default (API: ILoginAPI) => {
 		login: (pid: string, password: string): Promise<LoginResponse> => {
 			return API
 				.login(pid, password)
+				.catch(error => error.data)
 		},
 	}
 }
