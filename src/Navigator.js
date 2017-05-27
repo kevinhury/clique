@@ -55,12 +55,14 @@ const Application = StackNavigator({
 		navigationOptions: {
 			headerStyle: {
 				backgroundColor: 'transparent',
-				shadowRadius: 0,
-				borderWidth: 0,
 				shadowColor: 'transparent',
 				// TODO: Remove shadow
 				// TODO: buttons color to white
 			},
+			headerTitleStyle: {
+				color: 'white',
+			},
+			headerTintColor: '#fff',
 		},
 	})
 

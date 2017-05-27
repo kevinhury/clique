@@ -9,15 +9,24 @@ import Navigator from './Navigator'
 import './i18n/i18n'
 import { defaultColors } from './themes/styles'
 
-const logger = createLogger()
-const store = createStore(reducers, {}, applyMiddleware(thunk, logger))
+const initializeStore = () => {
+	const isDebug = __DEV__
+	let store = null
+	if (isDebug) {
+		const logger = createLogger()
+		store = createStore(reducers, {}, applyMiddleware(thunk, logger))
+	} else {
+		store = createStore(reducers, {}, applyMiddleware(thunk))
+	}
+	return store
+}
 
 class App extends Component {
 	render() {
 		return (
-			<Provider store={store}>
+			<Provider store={initializeStore()}>
 				<View style={{ backgroundColor: defaultColors.primaryColor, flex: 1 }}>
-					<Navigator />
+					<Navigator onNavigationStateChange={null} />
 				</View>
 			</Provider>
 		)

@@ -42,6 +42,7 @@ class PickerComponent extends Component {
 					style={styles.picker}
 					selectedValue={this.state.selection}
 					onValueChange={(value, index) => {
+						if (typeof index === 'undefined') return
 						this.props.onValueChange(index)
 						this.setState({ selection: value })
 					}}
@@ -55,13 +56,15 @@ class PickerComponent extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		margin: 5,
+		flex: 1,
+		// alignItems: 'center',
+		// margin: 5,
+		borderWidth: 1,
+		borderColor: 'red',
 	},
 	picker: {
-		flex: 1,
 		width: 400,
+		height: 150,
 	},
 })
 

@@ -99,6 +99,7 @@
     "beforeEach": true,
     "expect": true,
     "Promise": true,
+    "__DEV__": true,
   },
   "settings": {
     "flowtype": {

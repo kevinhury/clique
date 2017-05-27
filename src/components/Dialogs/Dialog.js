@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
 		flex: 4,
 		alignSelf: 'stretch',
 		margin: 15,
+		borderWidth: 1,
 	},
 	buttonContainer: {
 		flex: 1,
