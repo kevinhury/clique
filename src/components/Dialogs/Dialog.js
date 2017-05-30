@@ -37,7 +37,7 @@ class Dialog extends Component {
 
 		return (
 			<CommonButton
-				style={[styles.button, this.props.buttonStyle]}
+				style={this.props.buttonStyle}
 				title={this.props.buttonText}
 				backgroundColor='#14972B'
 				onPress={this.props.buttonCallback}
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 20,
 		borderColor: 'rgba(0, 0, 0, 0.1)',
+		height: 320,
 	},
 	titleContainer: {
 		flex: 1,
@@ -136,10 +137,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignSelf: 'stretch',
 		justifyContent: 'flex-end',
-	},
-	button: {
-		height: 40,
-		bottom: 5,
 	},
 })
 

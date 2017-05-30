@@ -13,7 +13,7 @@ type ChatPageProps = {
 	loadingMessages: boolean,
 	messages: [],
 	onMessageSent: (any[]) => void,
-	messageListRequest: () => void,
+	messageListRequest: (string) => void,
 	pid: string,
 	accessToken: string,
 }

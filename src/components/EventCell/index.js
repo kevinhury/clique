@@ -13,7 +13,7 @@ import type { Status, UserEvent } from '../../actions/types'
 
 type EventCellProps = {
 	event: UserEvent,
-	onEditPress: () => void,
+	onEditPress: (any) => void,
 	onChatPress: () => void,
 }
 

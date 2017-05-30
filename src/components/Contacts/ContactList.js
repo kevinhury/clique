@@ -46,7 +46,12 @@ class ContactList extends Component {
 	}
 
 	formatData(data: any) {
-		const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+		const alphabet = data
+			.map(user => user.name[0].toUpperCase())
+			.sort()
+			.filter((item, pos, ary) => {
+				return !pos || item != ary[pos - 1]
+			})
 
 		const dataBlob = {}
 		const sectionIds = []

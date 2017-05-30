@@ -1,11 +1,12 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, Text, Switch, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import ContactList from '../components/Contacts/ContactList'
 import LinearGradient from 'react-native-linear-gradient'
+import { CheckBox } from 'react-native-elements'
 import CardView from '../components/CardView'
 import Dialog from '../components/Dialogs/Dialog'
 import EventCreatePanel from '../components/EventCreatePanel'
@@ -93,28 +94,24 @@ class CreateEventPage3 extends Component {
 					/>
 				</View>
 				<View style={styles.rsvpSection}>
-					<View style={styles.rsvpCell}>
-						<Text>{I18n.t('createFlow.minRSVP')}:{' '}</Text>
-						<Switch
-							onValueChange={(value) => {
-								if (value == false)
-									this.props.changeMinAtendees(0)
-								this.setState({ minRSVPDialog: value })
-							}}
-							value={this.props.minAtendees > 0}
-						/>
-					</View>
-					<View style={styles.rsvpCell}>
-						<Text>{I18n.t('createFlow.maxRSVP')}:{' '}</Text>
-						<Switch
-							onValueChange={(value) => {
-								if (value == false)
-									this.props.changeMaxAtendees(0)
-								this.setState({ maxRSVPDialog: value })
-							}}
-							value={this.props.maxAtendees > 0}
-						/>
-					</View>
+					<CheckBox
+						title={`${I18n.t('createFlow.minRSVP')}: ${this.props.minAtendees}`}
+						checked={this.props.minAtendees > 0}
+						onPress={(value) => {
+							if (value == false)
+								this.props.changeMinAtendees(0)
+							this.setState({ minRSVPDialog: value })
+						}}
+					/>
+					<CheckBox
+						title={`${I18n.t('createFlow.maxRSVP')}: ${this.props.maxAtendees}`}
+						checked={this.props.maxAtendees > 0}
+						onPress={(value) => {
+							if (value == false)
+								this.props.changeMaxAtendees(0)
+							this.setState({ maxRSVPDialog: value })
+						}}
+					/>
 				</View>
 				<View style={styles.buttonContainer}>
 					<CommonButton
@@ -146,19 +143,20 @@ class CreateEventPage3 extends Component {
 							this.props.changeMinAtendees(index)
 						},
 					}}
+					modalStyle={{ height: 380 }}
 					buttonText={I18n.t('set')}
 					isVisible={this.state.minRSVPDialog}
 					dismissCallback={() => this.setState({ minRSVPDialog: false })}
 					buttonCallback={() => this.setState({ minRSVPDialog: false })}
 				/>
 				<Dialog
-					ref={'maxRSVPDialog'}
 					title={I18n.t('dialogs.maxRSVPTitle')}
 					type={{
 						name: 'picker', options: this.maxRSVPs, value: this.props.maxAtendees, onValueChange: (index) => {
 							this.props.changeMaxAtendees(index)
 						},
 					}}
+					modalStyle={{ height: 380 }}
 					buttonText={I18n.t('set')}
 					isVisible={this.state.maxRSVPDialog}
 					dismissCallback={() => this.setState({ maxRSVPDialog: false })}
@@ -183,14 +181,9 @@ const styles = StyleSheet.create({
 	},
 	rsvpSection: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
-	rsvpCell: {
-		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		padding: 8,
+		padding: 5,
 	},
 	buttonContainer: {
 		flex: 2,

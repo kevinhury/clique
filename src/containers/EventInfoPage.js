@@ -22,7 +22,7 @@ type EventInfoPageProps = {
 	cancelEvent: (string, string, string) => void,
 	createEvent: () => void,
 	form: () => void,
-	chatRoomWillEnter: () => void,
+	chatRoomWillEnter: (string, string) => void,
 }
 
 type State = {

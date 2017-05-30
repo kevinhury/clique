@@ -24,7 +24,7 @@ type LobbyPageProps = {
 	modifyForm: (UserEvent) => void,
 	createForm: () => void,
 	createEvent: (string, string) => void,
-	chatRoomWillEnter: () => void,
+	chatRoomWillEnter: (string, string) => void,
 }
 
 class LobbyPage extends Component {

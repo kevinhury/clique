@@ -4,8 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.zyu.ReactNativeWheelPickerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.zyu.ReactNativeWheelPickerPackage;
 import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -31,8 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeWheelPickerPackage(),
             new MapsPackage(),
+            new ReactNativeWheelPickerPackage(),
             new ReactNativePermissionsPackage(),
             new ReactNativeContacts(),
             new LinearGradientPackage(),

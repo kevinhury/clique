@@ -175,7 +175,6 @@ class CreateEventPage2 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 320 }}
 					isVisible={this.state.numDaysDialog}
 					dismissCallback={() => this.setState({ numDaysDialog: false })}
 					buttonCallback={() => this.setState({ numDaysDialog: false })}
@@ -189,7 +188,6 @@ class CreateEventPage2 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 320 }}
 					isVisible={this.state.timeDialog}
 					dismissCallback={() => this.setState({ timeDialog: false })}
 					buttonCallback={() => this.setState({ timeDialog: false })}
@@ -203,7 +201,6 @@ class CreateEventPage2 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 320 }}
 					isVisible={this.state.deadlineDialog}
 					dismissCallback={() => this.setState({ deadlineDialog: false })}
 					buttonCallback={() => this.setState({ deadlineDialog: false })}

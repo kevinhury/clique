@@ -47,11 +47,12 @@ class CreateEventPage extends Component {
 	})
 
 	nextDisabled() {
-		const { name, description, locationName, location } = this.props
-		return name.length <= 0 ||
-			description.length <= 0 ||
-			locationName.length <= 0 ||
-			location.address.length <= 0
+		return false
+		// const { name, description, locationName, location } = this.props
+		// return name.length <= 0 ||
+		// 	description.length <= 0 ||
+		// 	locationName.length <= 0 ||
+		// 	location.address.length <= 0
 	}
 
 	render() {

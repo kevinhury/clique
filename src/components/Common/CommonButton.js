@@ -17,17 +17,21 @@ const CommonButton = ({ backgroundColor, title, disabled, onPress, style }: Comm
 	<Button
 		large
 		raised
+		borderRadius={25}
 		disabled={disabled || false}
 		onPress={onPress}
 		title={title}
 		backgroundColor={backgroundColor || defaultColors.secondaryColor}
 		buttonStyle={[styles.button, style]}
+		containerViewStyle={styles.container}
 	/>
 
 const styles = StyleSheet.create({
+	container: {
+		borderRadius: 25,
+	},
 	button: {
 		height: 50,
-		borderRadius: 25,
 	},
 })
 
