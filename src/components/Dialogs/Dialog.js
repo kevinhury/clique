@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 20,
 		borderColor: 'rgba(0, 0, 0, 0.1)',
-		height: 400,
 	},
 	titleContainer: {
 		flex: 1,
@@ -132,7 +131,6 @@ const styles = StyleSheet.create({
 		flex: 4,
 		alignSelf: 'stretch',
 		margin: 15,
-		borderWidth: 1,
 	},
 	buttonContainer: {
 		flex: 1,

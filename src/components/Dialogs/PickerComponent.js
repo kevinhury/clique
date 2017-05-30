@@ -39,8 +39,9 @@ class PickerComponent extends Component {
 		return (
 			<View style={styles.container}>
 				<Picker
-					style={{ width: 400, height: 150 }}
+					style={styles.picker}
 					selectedValue={this.state.selection}
+					itemStyle={{ color: 'gray' }}
 					onValueChange={(value, index) => {
 						if (typeof index === 'undefined') return
 						this.props.onValueChange(index)
@@ -59,8 +60,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		margin: 5,
-		borderWidth: 1,
-		borderColor: 'red',
 	},
 	picker: {
 		width: 400,
