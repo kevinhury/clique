@@ -19,7 +19,7 @@ type CreateEventPage4Props = {
 	username: string,
 	phone: string,
 	accessToken: string,
-	createEvent: () => void,
+	createEvent: (string, string, any) => void,
 	form: EventForm,
 	image: string,
 }

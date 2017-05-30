@@ -19,5 +19,6 @@
 		"**/ios": true,
 		"**/android": true
 	},
-	"flow.path": "./node_modules/.bin/flow"
+	"flow.enabled": true,
+	"flow.useNPMPackagedFlow": true
 }

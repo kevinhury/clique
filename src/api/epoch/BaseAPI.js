@@ -11,5 +11,7 @@ export type Response = {
 }
 
 export default create({
-	baseURL: 'http://localhost:3000',
+	// baseURL: 'http://146.185.144.235/',
+	// baseURL: 'http://localhost:3000',
+	baseURL: 'http:/10.0.0.4:3000',
 })

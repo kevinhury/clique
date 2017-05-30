@@ -33,11 +33,11 @@ type CreateEventPage3Props = {
 	selectedContacts: Contact[],
 	minAtendees: number,
 	maxAtendees: number,
-	addContact: () => void,
-	removeContact: () => void,
-	changeMinAtendees: () => void,
-	changeMaxAtendees: () => void,
-	requestContactList: () => void,
+	addContact: (any) => void,
+	removeContact: (any) => void,
+	changeMinAtendees: (any) => void,
+	changeMaxAtendees: (any) => void,
+	requestContactList: (any) => void,
 	form: EventForm,
 }
 
@@ -147,7 +147,6 @@ class CreateEventPage3 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 320 }}
 					isVisible={this.state.minRSVPDialog}
 					dismissCallback={() => this.setState({ minRSVPDialog: false })}
 					buttonCallback={() => this.setState({ minRSVPDialog: false })}
@@ -161,7 +160,6 @@ class CreateEventPage3 extends Component {
 						},
 					}}
 					buttonText={I18n.t('set')}
-					modalStyle={{ height: 320 }}
 					isVisible={this.state.maxRSVPDialog}
 					dismissCallback={() => this.setState({ maxRSVPDialog: false })}
 					buttonCallback={() => this.setState({ maxRSVPDialog: false })}

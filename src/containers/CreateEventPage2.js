@@ -28,11 +28,11 @@ type Props = {
 	startTime: string,
 	deadline: number,
 	dates: Date[],
-	changeEventLength: () => void,
-	changeStartTime: () => void,
-	changeRSVPDeadline: () => void,
-	addEventDate: () => void,
-	removeEventDate: () => void,
+	changeEventLength: (any) => void,
+	changeStartTime: (any) => void,
+	changeRSVPDeadline: (any) => void,
+	addEventDate: (any) => void,
+	removeEventDate: (any) => void,
 }
 
 type Label = {

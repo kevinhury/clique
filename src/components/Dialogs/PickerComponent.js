@@ -10,7 +10,7 @@ import Picker from 'react-native-wheel-picker'
 type PickerComponentProps = {
 	value: any,
 	options: any[],
-	onValueChange: () => void,
+	onValueChange: (any) => void,
 }
 
 type PickerComponentState = {
@@ -39,7 +39,7 @@ class PickerComponent extends Component {
 		return (
 			<View style={styles.container}>
 				<Picker
-					style={styles.picker}
+					style={{ width: 400, height: 150 }}
 					selectedValue={this.state.selection}
 					onValueChange={(value, index) => {
 						if (typeof index === 'undefined') return
@@ -57,8 +57,8 @@ class PickerComponent extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// alignItems: 'center',
-		// margin: 5,
+		alignItems: 'center',
+		margin: 5,
 		borderWidth: 1,
 		borderColor: 'red',
 	},
